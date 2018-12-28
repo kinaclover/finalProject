@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cal">
+
+	<select id="all" resultType="calVO">
+		select * from calendar
+	</select>
+
+	<select id="select" parameterType="String" resultType="calVO">
+		select * from calendar where id = #{value}
+	</select>
+	
+	<select id="totalWeek" parameterType="int" resultType="calVO">
+		select * from calendar where fweek = #{value}
+	</select>
+	
+	<select id="thisWeek" parameterType="HashMap" resultType="calVO">
+		select * from calendar where id = #{id} and fweek = #{fweek}
+	</select>
+
+</mapper>

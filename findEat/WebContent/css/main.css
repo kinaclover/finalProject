@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+#thisWeek, #beforeWeek {
+	width: 90%;
+	min-width: 920px;
+	height: 310px;
+	margin: 0 auto;
+}
+
+.list-group-horizontal .list-group-item {
+	display: inline-block;
+}
+.mon,.tue,.wed,.thu,.fri{
+	width: 19%;
+	height: 309px;
+	vertical-align: middle;
+}
+.mid {
+	height: 109px;
+}
+.list-group-horizontal .list-group-item:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.15);
+}

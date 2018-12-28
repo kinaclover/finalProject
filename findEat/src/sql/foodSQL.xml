@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="food">
+		
+	<!-- insert foods -->
+	<insert id="insertFood" parameterType="foodVO">
+		insert into food values(#{classify},#{fcode},#{fname})
+	</insert>
+	
+	<!-- check total -->
+	<select id="checkTotal" parameterType="String" resultType="int">
+		select count(*) from food where classify = #{value}
+	</select>
+	<select id="checkGroup" parameterType="String" resultType="foodVO">
+		select * from food where classify = #{value}
+	</select>
+	
+	<!-- delete -->
+	<delete id="delete" parameterType="foodVO">
+		delete from food where classify = #{classify} and fcode = #{fcode}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="login">
+
+	<select id="loginPro" parameterType="HashMap" resultType="int">
+		select count(*) from client where id=#{id} and pw=#{pw}
+	</select>
+	
+	<select id="resetCheck" parameterType="String" resultType="int">
+		select reset from client where id=#{value}
+	</select>
+	
+	<select id="updateSet" parameterType="String" resultType="loginVO">
+		select * from client where id=#{id}
+	</select>
+	
+	<update id="updatePro" parameterType="loginVO">
+		update client set pw=#{pw}, email=#{email}, reset=#{reset} where id=#{id}
+	</update>
+	
+	<select id="count" resultType="int">
+		select count(*) from client
+	</select>
+	
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(*) from client where id = #{value}
+	</select>
+	
+	<select id="emailCheck" parameterType="HashMap" resultType="int">
+		select count(*) from client where id = #{id} and email = #{email}
+	</select>
+	
+	<insert id="joinPro" parameterType="loginVO">
+		insert into client values(#{id},#{pw},#{email},#{reset})
+	</insert>
+	
+	<delete id="delete" parameterType="HashMap">
+		delete from client where id=#{id} and pw=#{pw}
+	</delete>
+		
+</mapper>

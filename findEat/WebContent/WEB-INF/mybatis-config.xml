@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="findEat.DB.bean.FindEatVO" alias="findEatVO"/>
+		<typeAlias type="findEat.DB.bean.LoginVO" alias="loginVO"/>
+		<typeAlias type="findEat.DB.bean.CalendarVO" alias="calVO"/>
+		<typeAlias type="findEat.DB.bean.FoodVO" alias="foodVO"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="/sql/foodSQL.xml"/>
+		<mapper resource="/sql/loginSQL.xml"/>
+		<mapper resource="/sql/calSQL.xml"/>
+	</mappers>
+
+
+</configuration>
