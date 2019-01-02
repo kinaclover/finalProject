@@ -6,14 +6,14 @@
 	<typeAliases>
 		<typeAlias type="findEat.DB.bean.FindEatVO" alias="findEatVO"/>
 		<typeAlias type="findEat.DB.bean.LoginVO" alias="loginVO"/>
-		<typeAlias type="findEat.DB.bean.CalendarVO" alias="calVO"/>
+		<typeAlias type="findEat.DB.bean.IndexCalendarVO" alias="indexCalVO"/>
 		<typeAlias type="findEat.DB.bean.FoodVO" alias="foodVO"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/sql/foodSQL.xml"/>
 		<mapper resource="/sql/loginSQL.xml"/>
-		<mapper resource="/sql/calSQL.xml"/>
+		<mapper resource="/sql/indexCalSQL.xml"/>
 	</mappers>
 
 

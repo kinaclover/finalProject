@@ -46,10 +46,10 @@ public class MainAction {
 	private Calendar cal	= new GregorianCalendar();
 	
 	@Autowired
-	private IndexCalendarDAOImpl calDAO	= null;
+	private IndexCalendarDAOImpl indexCalDAO	= null;
 	
 	@Autowired
-	private IndexCalendarVO calVO = null;
+	private IndexCalendarVO indexCalVO = null;
 	
 	@RequestMapping("index.do")
 	public String index(HttpServletRequest request) throws Exception {
@@ -58,7 +58,7 @@ public class MainAction {
 		int day		= cal.get(Calendar.DAY_OF_WEEK);
 		
 		//total list
-		totalList		= calDAO.TotalList();
+		totalList		= indexCalDAO.TotalList();
 		totalMonList	= new HashMap<>();
 		totalTueList	= new HashMap<>();
 		totalWedList	= new HashMap<>();
@@ -138,7 +138,7 @@ public class MainAction {
 		
 		//total week list
 		if(day>2) {
-			totalWeekList		= calDAO.TotalWeekList(week);
+			totalWeekList		= indexCalDAO.TotalWeekList(week);
 			totalWeekMonList	= new HashMap<>();
 			totalWeekTueList	= new HashMap<>();
 			totalWeekWedList	= new HashMap<>();
@@ -218,7 +218,7 @@ public class MainAction {
 		//personal list
 		if(request.getSession().getAttribute("id")!=null) {
 			String id	= (String)request.getSession().getAttribute("id");
-			list		= calDAO.SelectAll(id);			//
+			list		= indexCalDAO.SelectAll(id);			//
 			monList	= new HashMap<>();
 			tueList	= new HashMap<>();
 			wedList	= new HashMap<>();
@@ -227,7 +227,7 @@ public class MainAction {
 
 			//this week data
 			if(day>2) {
-				weekList		= calDAO.SelectThisWeek(id, week);
+				weekList		= indexCalDAO.SelectThisWeek(id, week);
 			}//this week data end
 			
 			//insert to map food list by day

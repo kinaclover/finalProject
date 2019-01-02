@@ -3,19 +3,19 @@
 
 <mapper namespace="cal">
 
-	<select id="all" resultType="calVO">
+	<select id="all" resultType="indexCalVO">
 		select * from calendar
 	</select>
 
-	<select id="select" parameterType="String" resultType="calVO">
+	<select id="select" parameterType="String" resultType="indexCalVO">
 		select * from calendar where id = #{value}
 	</select>
 	
-	<select id="totalWeek" parameterType="int" resultType="calVO">
+	<select id="totalWeek" parameterType="int" resultType="indexCalVO">
 		select * from calendar where fweek = #{value}
 	</select>
 	
-	<select id="thisWeek" parameterType="HashMap" resultType="calVO">
+	<select id="thisWeek" parameterType="HashMap" resultType="indexCalVO">
 		select * from calendar where id = #{id} and fweek = #{fweek}
 	</select>
 
