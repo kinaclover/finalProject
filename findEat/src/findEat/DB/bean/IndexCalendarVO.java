@@ -1,6 +1,6 @@
 package findEat.DB.bean;
 
-public class CalendarVO {
+public class IndexCalendarVO {
 	private String id;
 	private int fyear;
 	private int fmonth;

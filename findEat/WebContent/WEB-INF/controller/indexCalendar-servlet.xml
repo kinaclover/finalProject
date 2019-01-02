@@ -12,8 +12,8 @@
 	
 	<context:component-scan base-package="findEat.action.cal"/>
 	
-	<bean id="calVO" class="findEat.DB.bean.CalendarVO"/>
-	<bean id="calDAO" class="findEat.DB.dao.CalendarDAOImpl">
+	<bean id="calVO" class="findEat.DB.bean.IndexCalendarVO"/>
+	<bean id="calDAO" class="findEat.DB.dao.IndexCalendarDAOImpl">
 		<property name="sqlSession" ref="sqlSession"/>
 	</bean>
 	

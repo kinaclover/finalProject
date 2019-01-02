@@ -16,7 +16,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/controller/calendar-servlet.xml
+				/WEB-INF/controller/indexCalendar-servlet.xml
 				/WEB-INF/controller/recommand-servlet.xml
 				/WEB-INF/controller/root-servlet.xml
 				/WEB-INF/controller/login-servlet.xml

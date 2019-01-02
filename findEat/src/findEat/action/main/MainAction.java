@@ -12,16 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import findEat.DB.bean.CalendarVO;
-import findEat.DB.dao.CalendarDAOImpl;
+import findEat.DB.bean.IndexCalendarVO;
+import findEat.DB.dao.IndexCalendarDAOImpl;
 
 @Controller
 public class MainAction {
 	
-	private List<CalendarVO> totalList		= null;				//전체 음식목록
-	private List<CalendarVO> totalWeekList	= null;				//이번주 전체 음식목록
-	private List<CalendarVO> list			= null;				//회원 전체 음식목록
-	private List<CalendarVO> weekList		= null;				//이번주 회원 전체 음식목록
+	private List<IndexCalendarVO> totalList		= null;				//전체 음식목록
+	private List<IndexCalendarVO> totalWeekList	= null;				//이번주 전체 음식목록
+	private List<IndexCalendarVO> list			= null;				//회원 전체 음식목록
+	private List<IndexCalendarVO> weekList		= null;				//이번주 회원 전체 음식목록
 	
 	private Map<String,Integer> totalMonList	= null;			//전체 월요일 음식목록
 	private Map<String,Integer> totalTueList	= null;			//전체 화요일 음식목록
@@ -46,10 +46,10 @@ public class MainAction {
 	private Calendar cal	= new GregorianCalendar();
 	
 	@Autowired
-	private CalendarDAOImpl calDAO	= null;
+	private IndexCalendarDAOImpl calDAO	= null;
 	
 	@Autowired
-	private CalendarVO calVO = null;
+	private IndexCalendarVO calVO = null;
 	
 	@RequestMapping("index.do")
 	public String index(HttpServletRequest request) throws Exception {
@@ -66,7 +66,7 @@ public class MainAction {
 		totalFriList	= new HashMap<>();
 		
 		//this week total
-		for(CalendarVO temp: totalList) {
+		for(IndexCalendarVO temp: totalList) {
 			switch(temp.getFday()) {
 			case 1:
 				if(totalMonList.isEmpty()) totalMonList.put(temp.getFname(), 1);
@@ -144,7 +144,7 @@ public class MainAction {
 			totalWeekWedList	= new HashMap<>();
 			totalWeekThuList	= new HashMap<>();
 			totalWeekFriList	= new HashMap<>();
-			for(CalendarVO temp: totalWeekList) {
+			for(IndexCalendarVO temp: totalWeekList) {
 				switch(temp.getFday()) {
 				case 1:
 					if(totalWeekMonList.isEmpty()) totalWeekMonList.put(temp.getFname(),1);
@@ -231,7 +231,7 @@ public class MainAction {
 			}//this week data end
 			
 			//insert to map food list by day
-			for(CalendarVO temp: list) {
+			for(IndexCalendarVO temp: list) {
 				switch(temp.getFday()) {
 				case 1:
 					if(monList.isEmpty()) monList.put(temp.getFname(),1);
