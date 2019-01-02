@@ -10,11 +10,7 @@
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd"
 	>
 	
-	<context:component-scan base-package="findEat.action.login"/>
+	<context:component-scan base-package="findEat.action.board"/>
 	
-	<bean id="loginVO" class="findEat.DB.bean.LoginVO"/>
-	<bean id="loginDAO" class="findEat.DB.dao.LoginDAOImpl">
-		<property name="sqlSession" ref="sqlSession"/>
-	</bean>
 
 </beans>

@@ -1,4 +1,4 @@
-package findEat.cal.action;
+package findEat.action.cal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package findEat.login.action;
+package findEat.action.login;
 
 import java.util.Properties;
 import java.util.Random;

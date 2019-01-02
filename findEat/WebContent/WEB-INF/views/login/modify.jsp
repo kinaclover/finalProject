@@ -8,7 +8,7 @@
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <!-- bootstrap label example -->
-<link href="https://getbootstrap.com/docs/4.1/examples/floating-labels/floating-labels.css" rel="stylesheet">
+<link rel="stylesheet" href="css/floating-labels.css">
 
 </head>
 <body class="d-block">

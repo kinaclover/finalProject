@@ -20,7 +20,7 @@
 		</property>
 	</bean>	
 	
-	<context:component-scan base-package="findEat.recommand.action"/>
+	<context:component-scan base-package="findEat.action.recommand"/>
 		
 	
 </beans>

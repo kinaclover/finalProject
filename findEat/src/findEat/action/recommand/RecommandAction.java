@@ -1,4 +1,4 @@
-package findEat.recommand.action;
+package findEat.action.recommand;
 
 import java.util.HashMap;
 import java.util.Map;

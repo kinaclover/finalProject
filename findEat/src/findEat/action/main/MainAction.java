@@ -1,4 +1,4 @@
-package findEat.main.action;
+package findEat.action.main;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
