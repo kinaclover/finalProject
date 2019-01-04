@@ -12,5 +12,9 @@
 	
 	<context:component-scan base-package="findEat.action.board"/>
 	
+	<bean id="boardVO" class="findEat.DB.bean.BoardVO"/>
+	<bean id="boardDAO" class="findEat.DB.dao.BoardDAOImpl">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
 
 </beans>

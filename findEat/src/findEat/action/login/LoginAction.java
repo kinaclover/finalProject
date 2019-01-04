@@ -77,7 +77,7 @@ public class LoginAction {
 	
 	@ResponseBody
 	@RequestMapping("idCheck.do")
-	public String idCheck(@RequestBody String id) throws Exception {
+	public String idCheck(@RequestBody String id) throws Exception{
 		int count = (Integer)loginDAO.IdCheck(id);
 		return String.valueOf(count);
 	}

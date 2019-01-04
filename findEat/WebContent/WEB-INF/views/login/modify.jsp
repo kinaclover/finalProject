@@ -23,7 +23,7 @@
 		<h5 class="mb-5 font-weight-light">오늘의 점심을 추천해드릴게요!</h5>
 	</div>
 	<div class="form-label-group">
-		<input type="text" class="form-control" id="inputId" value="${loginVO.id}" disabled="disabled"/>
+		<input type="text" class="form-control-plaintext" id="inputId" value="${loginVO.id}" readonly/>
 		<label for="inputId">ID</label>
 	</div>
 	<div class="form-label-group">

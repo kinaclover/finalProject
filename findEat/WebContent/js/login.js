@@ -48,7 +48,8 @@ $(function() {
 			$.ajax({
 				async: true,
 				type: 'POST',
-				data: id,
+				data: JSON.stringify(id),
+				contentType: "application/json; charset=UTF-8",
 				url: 'idCheck.do',
 				success: function(data) {
 					if($.trim(data) != 0) {
@@ -60,8 +61,9 @@ $(function() {
 						$('#idCheck').val(1);
 					}
 				},
-				error: function(error) {
+				error: function(request,status,error) {
 					alert("Error : "+error.d);
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
 		}

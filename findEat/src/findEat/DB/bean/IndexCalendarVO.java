@@ -9,6 +9,7 @@ public class IndexCalendarVO {
 	private int fweek;
 	private String fname;
 	private int fcode;
+	private String classify;
 	
 	public String getId() {
 		return id;
@@ -57,5 +58,11 @@ public class IndexCalendarVO {
 	}
 	public void setFcode(int fcode) {
 		this.fcode = fcode;
+	}
+	public String getClassify() {
+		return classify;
+	}
+	public void setClassify(String classify) {
+		this.classify = classify;
 	}	
 }
