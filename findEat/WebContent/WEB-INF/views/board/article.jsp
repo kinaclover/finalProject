@@ -26,7 +26,8 @@
 		<h2 class="text-center font-weight-normal">View article</h2>
 	</div>
 	<div style="width:60%;min-width:600px;margin:0 auto">
-		<form class="form" action="modifyPro.do" method="post">
+		<form class="form" action="boardModifyPro.do" method="post">
+			<input type="hidden" id="idx" name="idx" value="${idx}"/>
 			<div class="form-group row">
 				<label for="staticId" class="col-sm-2 text-center form-control-plaintext font-weight-bold">ID</label>
 				<input type="text" class="col-sm-10 form-control-plaintext" id="staticId" name="id" value="${boardVO.id}" readonly/>
@@ -38,10 +39,11 @@
 			</div>
 			<div class="form-group row">
 				<label for="inputContent" class="col-sm-2 text-center form-control-plaintext font-weight-bold">Content</label>
-				<textarea rows="10" cols="" class="col-sm-10" id="inputContent" name="content" value="${boardVO.content}" readonly></textarea>
+				<textarea rows="10" cols="" class="col-sm-10" id="inputContent" name="content" readonly>${boardVO.content}</textarea>
 			</div>
+			<c:if test="${sessionScope.id.equauls(boardVO.id)}">
 			<!-- modify -->
-			<div class="form-group row">
+			<div class="form-group row" id="modiBox">
 				<div class="col-sm-8" id="modifyDiv" hidden="hidden">
 					<div class="row">
 					<span class="col-sm-3 font-weight-bold px-0 text-center">Password</span>
@@ -51,18 +53,19 @@
 				</div>
 				<div class="col-sm-4">
 					<input type="hidden" id="chkNum" value="0"/>
-					<input type="button" class="btn-sm btn-outline-warning text-center" id="chkBtn" value="수정"/>
+					<input type="button" class="btn-md btn-outline-warning text-center" id="chkBtn" value="수정"/>
 				</div>
 			</div>
 			<div class="form-group text-right" id="modifySub" hidden="hidden">
 				<input type="submit" class="btn btn-outline-primary" value="글 수정"/>
 				<input type="button" class="btn btn-outline-secondary" id="modifyCancel" value="취소"/>
 			</div>
+			</c:if>
 		</form>
 	</div>
 	<!-- comment -->
-	<div class="mt-3 mb-5">
-		<jsp:include page="${request.contextPath}/findEat/*.do"></jsp:include>
+	<div class="mt-3 mb-5 mx-auto" style="width:60%">
+		<jsp:include page="${request.contextPath}/findEat/comment.do"></jsp:include>
 	</div>
 </c:if>
 

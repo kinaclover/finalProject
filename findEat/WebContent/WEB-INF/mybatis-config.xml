@@ -9,6 +9,7 @@
 		<typeAlias type="findEat.DB.bean.IndexCalendarVO" alias="indexCalVO"/>
 		<typeAlias type="findEat.DB.bean.FoodVO" alias="foodVO"/>
 		<typeAlias type="findEat.DB.bean.BoardVO" alias="boardVO"/>
+		<typeAlias type="findEat.DB.bean.CommentsVO" alias="commentsVO"/>
 	</typeAliases>
 	
 	<mappers>

@@ -2,6 +2,7 @@ package findEat.action.board;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -97,8 +98,26 @@ public class Board {
 	
 	@ResponseBody
 	@RequestMapping("articleCheck.do")
-	public String articleCheck(@RequestBody String pw) throws Exception{
-		int check = 0;
+	public String articleCheck(@RequestBody Map<String,String> data) throws Exception{
+		String idx	= data.get("idx");
+		String pw	= data.get("pw");
+		int check = boardDAO.PasswordCheck(idx, pw);
 		return String.valueOf(check);
+	}
+	
+	@RequestMapping("boardModifyPro.do")
+	public String modifyPro(BoardVO boardVO, HttpServletRequest request) throws Exception{
+		int check	= boardDAO.UpdateArticle(boardVO);
+		int status	= 2;
+		request.setAttribute("check", check);
+		request.setAttribute("status", status);
+		request.setAttribute("idx", boardVO.getIdx());
+		return "/board/status";
+	}
+	
+	@RequestMapping("comments.do")
+	public String comments() throws Exception {
+		
+		return "/board/comment";
 	}
 }

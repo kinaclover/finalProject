@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import findEat.DB.bean.BoardVO;
+import findEat.DB.bean.CommentsVO;
 
 public class BoardDAOImpl implements BoardDAO {
 	
@@ -39,6 +40,15 @@ public class BoardDAOImpl implements BoardDAO {
 		boardVO = sqlSession.selectOne("board.select",idx);
 		return boardVO;
 	}
+	
+	@Override
+	public int PasswordCheck(String idx, String pw) throws Exception {
+		HashMap<String, String> map = new HashMap<>();
+		map.put("idx", idx);
+		map.put("pw", pw);
+		int check = sqlSession.selectOne("board.pwCheck",map);
+		return check;
+	}
 
 	@Override
 	public int InsertArticle(BoardVO boardVO) throws Exception {
@@ -48,8 +58,8 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int UpdateArticle(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int check	= sqlSession.update("board.update");
+		return check;
 	}
 
 	@Override
@@ -57,5 +67,27 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
+	//comments action
+	@Override
+	public List<CommentsVO> CommentsList(int idx) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int InsertComment(CommentsVO commentsVO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int UpdateComment(CommentsVO commentsVO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public int DeleteComment(CommentsVO commentsVO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }

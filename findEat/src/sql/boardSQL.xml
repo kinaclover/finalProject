@@ -23,6 +23,11 @@
 	<select id="select" parameterType="int" resultType="boardVO">
 		select * from board where idx = #{value}
 	</select>
+	<!-- password check -->
+	<select id="pwCheck" parameterType="HashMap" resultType="int">
+		select count(*) from board where idx=#{idx} and pw=#{pw}
+	</select>
+	
 	<!-- insert article -->
 	<insert id="insert" parameterType="boardVO">
 		<selectKey resultType="String" keyProperty="email" order="BEFORE">
@@ -30,5 +35,10 @@
 		</selectKey>
 		insert into board values(board_idx.NEXTVAL,#{id},#{pw},#{email},#{subject},#{content},sysdate,0,#{atype})
 	</insert>
+	
+	<!-- update article -->
+	<update id="update" parameterType="boardVO">
+		update board set content=#{content} where idx=#{idx}
+	</update>
 	
 </mapper>
