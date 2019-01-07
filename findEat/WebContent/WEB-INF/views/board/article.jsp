@@ -23,14 +23,14 @@
 
 <c:if test="${idx!=null}">
 	<div class="mt-5 mb-5">
-		<h2 class="text-center font-weight-normal">Insert article</h2>
+		<h2 class="text-center font-weight-normal">View article</h2>
 	</div>
 	<div style="width:60%;min-width:600px;margin:0 auto">
 		<form class="form" action="modifyPro.do" method="post">
 			<div class="form-group row">
 				<label for="staticId" class="col-sm-2 text-center form-control-plaintext font-weight-bold">ID</label>
-				<input type="text" class="col-sm-10 form-control-plaintext" id="staticId" name="id" value="${sessionScope.id}" readonly/>
-				<input type="hidden" name="atype" value="normal"/>
+				<input type="text" class="col-sm-10 form-control-plaintext" id="staticId" name="id" value="${boardVO.id}" readonly/>
+				<input type="hidden" name="atype" value="${boardVO.atype}"/>
 			</div>
 			<div class="form-group row">
 				<label for="inputSubject" class="col-sm-2 text-center form-control-plaintext font-weight-bold">Subject</label>
@@ -42,16 +42,27 @@
 			</div>
 			<!-- modify -->
 			<div class="form-group row">
-				<label for="inputPw" class="col-sm-2 text-center form-control-plaintext font-weight-bold">Password</label>
-				<input type="password" class="col-sm-4" id="inputPw" name="pw"/>
+				<div class="col-sm-8" id="modifyDiv" hidden="hidden">
+					<div class="row">
+					<span class="col-sm-3 font-weight-bold px-0 text-center">Password</span>
+					<input type="password" class="col-sm-6 px-0" id="inputPw" name="pw"/>
+					<input type="button" class="col-sm-3 text-center btn-sm btn-outline-secondary" id="modifyBtn" value="Check"/>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<input type="hidden" id="chkNum" value="0"/>
+					<input type="button" class="btn-sm btn-outline-warning text-center" id="chkBtn" value="수정"/>
+				</div>
 			</div>
-			
-			<div class="form-group text-right">
-				<input type="submit" class="btn btn-outline-primary" value="글 작성"/>
-				<input type="reset" class="btn btn-outline-dark" value="리셋"/>
-				<input type="button" class="btn btn-outline-secondary" value="돌아가기" onclick="history.back()"/>
+			<div class="form-group text-right" id="modifySub" hidden="hidden">
+				<input type="submit" class="btn btn-outline-primary" value="글 수정"/>
+				<input type="button" class="btn btn-outline-secondary" id="modifyCancel" value="취소"/>
 			</div>
 		</form>
+	</div>
+	<!-- comment -->
+	<div class="mt-3 mb-5">
+		<jsp:include page="${request.contextPath}/findEat/*.do"></jsp:include>
 	</div>
 </c:if>
 
@@ -62,5 +73,6 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/main.js"></script>
+<script src="js/board.js"></script>
 </body>
 </html>

@@ -55,7 +55,9 @@
 				<c:forEach items="${noticeList}" var="list">
 					<tr class="d-flex table-warning">
 						<th scope="row" class="col-1 text-center">!</th>
-						<td class="col-5">${list.subject}</td>
+						<td class="col-5">
+							<a class="form-control-plaintext pt-0" href="${request.contextPath}/findEat/article.do?idx=${list.idx}">${list.subject}</a>
+						</td>
 						<td class="col-2 text-center">${list.id}</td>
 						<td class="col-3">${list.regDate}</td>
 						<td class="col-1 text-center">${list.vcount}</td>
@@ -71,7 +73,7 @@
 							<c:set var="count" value="${count-1}"/>
 						</th>
 						<td class="col-5">
-							<a class="form-control-plaintext pt-0" href="${request.contextPath}/article.do?idx=${list.idx}">${list.subject}</a>
+							<a class="form-control-plaintext pt-0" href="${request.contextPath}/findEat/article.do?idx=${list.idx}">${list.subject}</a>
 						</td>
 						<td class="col-2 text-center">${list.id}</td>
 						<td class="col-3">

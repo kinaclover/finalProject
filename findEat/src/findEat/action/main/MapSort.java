@@ -14,6 +14,8 @@ public class MapSort {
 	
 	public Map<String, Integer> Sorting(Map<String, Integer> temp) {
 		
+		if(temp==null) temp = Collections.emptyMap();
+		
 		List<Entry<String, Integer>> list	= new LinkedList<>(temp.entrySet());
 		
 		Collections.sort(list, new Comparator<Entry<String,Integer>>() {

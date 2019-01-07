@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import findEat.DB.bean.BoardVO;
 import findEat.DB.dao.BoardDAOImpl;
@@ -85,10 +87,18 @@ public class Board {
 	}
 	
 	@RequestMapping("article.do")
-	public String article(@ModelAttribute BoardVO boardVO, HttpServletRequest request) throws Exception {
+	public String article(HttpServletRequest request) throws Exception {
 		int idx	= Integer.parseInt(request.getParameter("idx"));
 		boardVO	= boardDAO.ViewArticle(idx);
 		request.setAttribute("boardVO", boardVO);
+		request.setAttribute("idx", idx);
 		return "/board/article";
+	}
+	
+	@ResponseBody
+	@RequestMapping("articleCheck.do")
+	public String articleCheck(@RequestBody String pw) throws Exception{
+		int check = 0;
+		return String.valueOf(check);
 	}
 }
