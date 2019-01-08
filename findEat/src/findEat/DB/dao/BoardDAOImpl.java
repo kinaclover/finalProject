@@ -37,6 +37,7 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public BoardVO ViewArticle(int idx) throws Exception {
+		sqlSession.update("board.countUp",idx);
 		boardVO = sqlSession.selectOne("board.select",idx);
 		return boardVO;
 	}
@@ -63,21 +64,22 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int DeleteArticle(int idx, String pw) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int DeleteArticle(int idx) throws Exception {
+		sqlSession.delete("board.deleteComments",idx);			//comment delete
+		int check	= sqlSession.delete("board.delete",idx);
+		return check;
 	}
 	
 	//comments action
 	@Override
 	public List<CommentsVO> CommentsList(int idx) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<CommentsVO> list = sqlSession.selectList("board.commentsList",idx);
+		return list;
 	}
 	@Override
 	public int InsertComment(CommentsVO commentsVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int check	= sqlSession.insert("board.commentInsert",commentsVO);
+		return check;
 	}
 	@Override
 	public int UpdateComment(CommentsVO commentsVO) throws Exception {
@@ -85,9 +87,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return 0;
 	}
 	@Override
-	public int DeleteComment(CommentsVO commentsVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int DeleteComment(int num) throws Exception {
+		int check	= sqlSession.delete("board.commentDelete",num);
+		return check;
 	}
 	
 }

@@ -1,9 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
+<div class="row">
+<!-- notice -->
+<div class="col-sm-1 text-center pl-3 pt-1">
+	<label for="noticeDiv" class="text-info">Notice>></label>
+</div>
+<div class="col-sm-8 text-left" style="height:40px;overflow: hidden">
+	<div id="noticeDiv">
+		<c:if test="${noticeList==null}">
+			<span>공지사항이 없습니다.</span>
+		</c:if>
+		<c:if test="${noticeList!=null}">
+			<div class="noticeGroup list-group list-group-flush" style="position:relative;width:100%;">
+				<c:forEach items="${noticeList}" var="list">
+					<a class="noticeItem list-group-item form-control-plaintext pt-1 roll" href="${request.contextPath}/findEat/article.do?idx=${list.idx}">${list.subject}</a>
+				</c:forEach>
+			</div>
+		</c:if>
+	</div>
+</div>
+
 <!-- guest -->
 <c:if test="${sessionScope.id==null}">
-	<div class="text-right">
+	<div class="col-sm-3 text-right">
 		<button class="btn btn-sm btn-outline-secondary" onclick="window.location='/findEat/list.do'">Board</button>
 		<button class="btn btn-sm btn-outline-primary" onclick="window.location='/findEat/login.do'">Login</button>
 		<button class="btn btn-sm btn-outline-info" onclick="window.location='/findEat/join.do'">Sign Up</button>
@@ -12,7 +32,7 @@
 
 <!-- client -->
 <c:if test="${sessionScope.id!=null}">
-	<div class="dropdown text-right">
+	<div class="col-sm-3 dropdown text-right">
 		<button class="btn btn-sm btn-outline-secondary" onclick="window.location='/findEat/list.do'">Board</button>
 		<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expended="false">My menu</button>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropDown">
@@ -26,3 +46,5 @@
 		<button class="btn btn-sm btn-danger" id="logoutBtn">Logout</button>
 	</div>
 </c:if>
+
+</div>

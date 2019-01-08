@@ -36,7 +36,7 @@
 					<label class="form-check-label" for="radio1">Notice</label>
 				</div>
 				<div class="form-check form-check-inline col-sm-2">
-					<input type="radio" class="form-check-input" id="radio2" name="atype" value="normal"/>
+					<input type="radio" class="form-check-input" id="radio2" name="atype" value="normal" checked/>
 					<label class="form-check-label" for="radio2">Normal</label>
 				</div>
 			</div>
@@ -74,6 +74,6 @@
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
-<script src="js/main.js"></script>
+<script src="js/menu.js"></script>
 </body>
 </html>

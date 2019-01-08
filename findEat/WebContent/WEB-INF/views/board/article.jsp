@@ -41,7 +41,7 @@
 				<label for="inputContent" class="col-sm-2 text-center form-control-plaintext font-weight-bold">Content</label>
 				<textarea rows="10" cols="" class="col-sm-10" id="inputContent" name="content" readonly>${boardVO.content}</textarea>
 			</div>
-			<c:if test="${sessionScope.id.equauls(boardVO.id)}">
+			<c:if test="${sessionScope.id==boardVO.id}">
 			<!-- modify -->
 			<div class="form-group row" id="modiBox">
 				<div class="col-sm-8" id="modifyDiv" hidden="hidden">
@@ -54,6 +54,7 @@
 				<div class="col-sm-4">
 					<input type="hidden" id="chkNum" value="0"/>
 					<input type="button" class="btn-md btn-outline-warning text-center" id="chkBtn" value="수정"/>
+					<input type="button" class="btn-md btn-danger text-center" id="articleDelBtn" value="삭제"/>
 				</div>
 			</div>
 			<div class="form-group text-right" id="modifySub" hidden="hidden">
@@ -64,8 +65,8 @@
 		</form>
 	</div>
 	<!-- comment -->
-	<div class="mt-3 mb-5 mx-auto" style="width:60%">
-		<jsp:include page="${request.contextPath}/findEat/comment.do"></jsp:include>
+	<div class="mt-3 mb-5 mx-auto" id="commentsDiv" style="width:60%">
+		<jsp:include page="${request.contextPath}/comments.do"></jsp:include>
 	</div>
 </c:if>
 
@@ -77,5 +78,6 @@
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/main.js"></script>
 <script src="js/board.js"></script>
+<script src="js/menu.js"></script>
 </body>
 </html>

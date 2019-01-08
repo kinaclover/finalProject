@@ -12,10 +12,10 @@ public interface BoardDAO {
 	public int PasswordCheck(String idx, String pw) throws Exception;
 	public int InsertArticle(BoardVO boardVO) throws Exception;
 	public int UpdateArticle(BoardVO boardVO) throws Exception;
-	public int DeleteArticle(int idx,String pw) throws Exception;
+	public int DeleteArticle(int idx) throws Exception;
 	//comments action
 	public List<CommentsVO> CommentsList(int idx) throws Exception;
 	public int InsertComment(CommentsVO commentsVO) throws Exception;
 	public int UpdateComment(CommentsVO commentsVO) throws Exception;
-	public int DeleteComment(CommentsVO commentsVO) throws Exception;
+	public int DeleteComment(int num) throws Exception;
 }

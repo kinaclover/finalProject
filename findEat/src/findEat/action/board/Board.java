@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import findEat.DB.bean.BoardVO;
+import findEat.DB.bean.CommentsVO;
 import findEat.DB.dao.BoardDAOImpl;
 
 @Controller
@@ -115,9 +116,33 @@ public class Board {
 		return "/board/status";
 	}
 	
+	@RequestMapping("deleteArticle.do")
+	public String deleteArticle(int idx, HttpServletRequest request) throws Exception {
+		int check	= boardDAO.DeleteArticle(idx);
+		int status	= 3;
+		request.setAttribute("check", check);
+		request.setAttribute("status", status);
+		return "/board/status";
+	}
+	
 	@RequestMapping("comments.do")
-	public String comments() throws Exception {
-		
+	public String comments(int idx, HttpServletRequest request) throws Exception {
+		List<CommentsVO> list = boardDAO.CommentsList(idx);
+		request.setAttribute("commentsList", list);
 		return "/board/comment";
+	}
+	
+	@ResponseBody
+	@RequestMapping("insertComm.do")
+	public String insertComm(@RequestBody CommentsVO commentsVO) throws Exception {
+		int check = boardDAO.InsertComment(commentsVO);
+		return String.valueOf(check);
+	}
+	
+	@ResponseBody
+	@RequestMapping("deleteComm.do")
+	public String deleteComm(@RequestBody int num) throws Exception {
+		int check	= boardDAO.DeleteComment(num);
+		return String.valueOf(check);
 	}
 }

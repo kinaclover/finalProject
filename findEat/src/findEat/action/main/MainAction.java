@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import findEat.DB.bean.BoardVO;
 import findEat.DB.bean.IndexCalendarVO;
+import findEat.DB.dao.BoardDAOImpl;
 import findEat.DB.dao.IndexCalendarDAOImpl;
 
 @Controller
@@ -50,6 +52,9 @@ public class MainAction {
 	
 	@Autowired
 	private IndexCalendarVO indexCalVO = null;
+	
+	@Autowired
+	private BoardDAOImpl boardDAO = null;
 	
 	@RequestMapping("index.do")
 	public String index(HttpServletRequest request) throws Exception {
@@ -346,7 +351,9 @@ public class MainAction {
 	
 	//fixed menu bar
 	@RequestMapping("menu.do")
-	public String menu() {
+	public String menu(HttpServletRequest request) throws Exception {
+		List<BoardVO> noticeList = boardDAO.NoticeList();
+		request.setAttribute("noticeList", noticeList);
 		return "/menu/menu";
 	}
 	

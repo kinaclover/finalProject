@@ -2,14 +2,6 @@
  * 	main javascript
  */
 
-//logout button
-$(function() {
-	$("#logoutBtn").click(function(){
-		var result	= confirm("로그아웃 하시겠습니까?");
-		if(result) window.location = "logout.do";
-	});
-});
-
 //total view
 $(function(){
 	$('#totalBtn').click(function(){

@@ -23,6 +23,10 @@
 	<select id="select" parameterType="int" resultType="boardVO">
 		select * from board where idx = #{value}
 	</select>
+	<!-- view countUp -->
+	<update id="countUp" parameterType="int">
+		update board set vcount = vcount+1 where idx = #{value}
+	</update>
 	<!-- password check -->
 	<select id="pwCheck" parameterType="HashMap" resultType="int">
 		select count(*) from board where idx=#{idx} and pw=#{pw}
@@ -38,7 +42,29 @@
 	
 	<!-- update article -->
 	<update id="update" parameterType="boardVO">
-		update board set content=#{content} where idx=#{idx}
+		update board set content = #{content} where idx = #{idx}
 	</update>
+	
+	<!-- delete article -->
+	<delete id="delete" parameterType="int">
+		delete from board where idx = #{value}
+	</delete>
+	<delete id="deleteComments" parameterType="int">
+		delete from comments where idx = #{value}
+	</delete>
+	
+	<!-- comments -->
+	<!-- select -->
+	<select id="commentsList" parameterType="int" resultType="commentsVO">
+		select * from comments where idx=#{value} order by regDate asc
+	</select>
+	<!-- insert -->
+	<insert id="commentInsert" parameterType="commentsVO">
+		insert into comments values(comments_num.NEXTVAL,#{id},#{idx},#{content},sysdate)
+	</insert>
+	<!-- delete -->
+	<delete id="commentDelete" parameterType="int">
+		delete from comments where num = #{value}
+	</delete>
 	
 </mapper>

@@ -59,7 +59,9 @@
 							<a class="form-control-plaintext pt-0" href="${request.contextPath}/findEat/article.do?idx=${list.idx}">${list.subject}</a>
 						</td>
 						<td class="col-2 text-center">${list.id}</td>
-						<td class="col-3">${list.regDate}</td>
+						<td class="col-3">
+							<fmt:formatDate value="${list.regDate}" pattern="yy/MM/dd"/>
+						</td>
 						<td class="col-1 text-center">${list.vcount}</td>
 					</tr>
 				</c:forEach>
@@ -120,6 +122,6 @@
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
-<script src="js/main.js"></script>
+<script src="js/menu.js"></script>
 </body>
 </html>
