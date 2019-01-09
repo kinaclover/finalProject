@@ -27,7 +27,7 @@
 	<c:if test="${check==1}">
 		<script type="text/javascript">
 			alert("글 수정 완료.");
-			window.location = "/findEat/list.do?idx="+${idx};
+			window.location = "/findEat/list.do";
 		</script>
 	</c:if>
 	<!-- fail -->

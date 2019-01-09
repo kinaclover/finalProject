@@ -47,6 +47,8 @@ $(function(){
 					$("#modifySub").removeAttr("hidden");
 					$("#inputSubject").removeAttr("readonly");
 					$("#inputContent").removeAttr("readonly");
+					$("#radio1").removeAttr("disabled");
+					$("#radio2").removeAttr("disabled");
 					$("#modiBox").attr("hidden",true);
 					$("#modifyDiv").attr("hidden",true);
 					$("#chkBtn").val("수정");
@@ -70,6 +72,8 @@ $(function(){
 		$("#modifySub").attr("hidden",true);
 		$("#inputSubject").attr("readonly",true);
 		$("#inputContent").attr("readonly",true);
+		$("#radio1").attr("disabled",true);
+		$("#radio2").attr("disabled",true);
 	});
 });
 
@@ -112,16 +116,60 @@ $(function(){
 	});
 });
 
-//modify
+//modify check
 $(function(){
 	$("#modBtn").click(function(){
 		//수정버튼 클릭
+		var chk			= $("#modiCheck").val();
+		var modiNum		= $("#modiNum").val();
+		var modiComm	= "#comm-"+modiNum;
+		if(chk==0){
+			$(modiComm).removeAttr("readonly");
+			$(modiComm).focus();
+			$("#modBtn2").removeAttr("hidden");
+			$("#modBtn").html('취소');
+			$("#modBtn").removeClass("btn-outline-warning");
+			$("#modBtn").addClass("btn-outline-secondary");
+			$("#modiCheck").val('1');
+			
+		} else {
+			$(modiComm).attr("readonly",true);
+			$("#modBtn2").attr("hidden",true);
+			$("#modBtn").html('수정');
+			$("#modBtn").removeClass("btn-outline-secondary");
+			$("#modBtn").addClass("btn-outline-warning");
+			$("#modiCheck").val('0');
+		}
 	});
 });
+//modify
+$(function(){
+	$("#modBtn2").click(function(){
+		var modiNum		= $("#modiNum").val();
+		var modiComm	= "#comm-"+modiNum;
+		var comm		= $(modiComm).val();
+		$.ajax({
+			async: true,
+			type: 'POST',
+			data: JSON.stringify({"comm":comm,"num":modiNum}),
+			contentType: "application/json; charset=UTF-8",
+			url: 'modifyComm.do',
+			success: function(data){
+				alert("댓글을 수정했습니다.");
+				$("#commentsDiv").load(location.reload());
+			},
+			error: function(request,status,error) {
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});
+	});
+});
+
 
 //delete
 $(function(){
 	$("#delBtn").click(function(){
+		//삭제버튼 클릭
 		if(confirm("정말 삭제하시겠습니까?")){
 			var num	= $("#commNum").val();
 			$.ajax({
@@ -137,6 +185,9 @@ $(function(){
 					}else {
 						alert("오류가 발생했습니다. 다시 시도해주세요.");
 					}
+				},
+				error: function(request,status,error) {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
 		}

@@ -1,6 +1,5 @@
 package findEat.action.board;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,6 +20,9 @@ public class Board {
 	
 	@Autowired
 	private BoardVO boardVO = null;
+	
+	@Autowired
+	private CommentsVO commentsVO = null;
 	
 	@Autowired
 	private BoardDAOImpl boardDAO = null;
@@ -42,7 +43,7 @@ public class Board {
 		if(request.getParameter("pageNum")!=null)
 			pageNum		= Integer.parseInt(request.getParameter("pageNum"));
 		
-		int pageSize	= 10;							//한 페이지에 표시될 최대 글 수
+		int pageSize	= 5;							//한 페이지에 표시될 최대 글 수
 		int start		= (pageNum-1) * pageSize + 1;
 		int end			= pageNum * pageSize;
 		int startPage	= 0;
@@ -51,14 +52,14 @@ public class Board {
 		
 		List<BoardVO> normalList = boardDAO.ListUp(start,end);
 		List<BoardVO> noticeList = boardDAO.NoticeList();
-		total	= normalList.size();
+		total	= boardDAO.TotalNormal();
 		if(total!=0) {
 			check	= 1;
 			count	= total - ((pageNum-1) * pageSize);
 			//set startPage
-			startPage = (((pageNum-1)/10)*10)+1;
+			startPage = (((pageNum-1)/pageSize)*pageSize)+1;
 			//set endPage
-			endNum = ((total-1)/10)+ 1;
+			endNum = ((total-1)/pageSize)+ 1;
 			if((endNum-startPage) >= 10) endPage = startPage + 9;
 			else endPage = endNum;
 		}
@@ -136,6 +137,15 @@ public class Board {
 	@RequestMapping("insertComm.do")
 	public String insertComm(@RequestBody CommentsVO commentsVO) throws Exception {
 		int check = boardDAO.InsertComment(commentsVO);
+		return String.valueOf(check);
+	}
+	
+	@ResponseBody
+	@RequestMapping("modifyComm.do")
+	public String modifyComm(@RequestBody Map<String,String> data) throws Exception {
+		commentsVO.setContent(data.get("comm"));
+		commentsVO.setNum(Integer.parseInt(data.get("num")));
+		int check	= boardDAO.UpdateComment(commentsVO);
 		return String.valueOf(check);
 	}
 	

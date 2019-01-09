@@ -30,6 +30,12 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	
 	@Override
+	public int TotalNormal() throws Exception {
+		int total = sqlSession.selectOne("board.total");
+		return total;
+	}
+	
+	@Override
 	public List<BoardVO> NoticeList() throws Exception {
 		List<BoardVO> list = sqlSession.selectList("board.notice");
 		return list;
@@ -59,7 +65,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public int UpdateArticle(BoardVO boardVO) throws Exception {
-		int check	= sqlSession.update("board.update");
+		int check	= sqlSession.update("board.update",boardVO);
 		return check;
 	}
 
@@ -83,8 +89,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	@Override
 	public int UpdateComment(CommentsVO commentsVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int check	= sqlSession.update("board.commentUpdate",commentsVO);
+		return check;
 	}
 	@Override
 	public int DeleteComment(int num) throws Exception {

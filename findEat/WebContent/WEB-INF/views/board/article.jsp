@@ -22,16 +22,34 @@
 </c:if>
 
 <c:if test="${idx!=null}">
-	<div class="mt-5 mb-5">
-		<h2 class="text-center font-weight-normal">View article</h2>
+<div class="mx-auto my-3 d-block" style="width: 75%">
+	<div class="btn-group btn-group-sm mb-3">
+	<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do'">글 목록</button>
 	</div>
 	<div style="width:60%;min-width:600px;margin:0 auto">
 		<form class="form" action="boardModifyPro.do" method="post">
 			<input type="hidden" id="idx" name="idx" value="${idx}"/>
 			<div class="form-group row">
-				<label for="staticId" class="col-sm-2 text-center form-control-plaintext font-weight-bold">ID</label>
-				<input type="text" class="col-sm-10 form-control-plaintext" id="staticId" name="id" value="${boardVO.id}" readonly/>
-				<input type="hidden" name="atype" value="${boardVO.atype}"/>
+				<c:if test="${sessionScope.id!='admin' }">
+					<label for="staticId" class="col-sm-2 text-center form-control-plaintext font-weight-bold">ID</label>
+					<input type="text" class="col-sm-10 form-control-plaintext" id="staticId" name="id" value="${boardVO.id}" readonly/>
+					<input type="hidden" name="atype" value="${boardVO.atype}"/>
+				</c:if>
+				<c:if test="${sessionScope.id=='admin'}">
+					<label for="staticId" class="col-sm-2 text-center form-control-plaintext font-weight-bold">ID</label>
+					<input type="text" class="col-sm-4 form-control-plaintext" id="staticId" name="id" value="${boardVO.id}" readonly/>
+					
+					<div class="form-check form-check-inline col-sm-2">
+						<input type="radio" class="form-check-input" id="radio1" name="atype" value="notice" checked disabled/>
+						<label class="form-check-label" for="radio1">Notice</label>
+					</div>
+					<div class="form-check form-check-inline col-sm-2">
+						<input type="radio" class="form-check-input" id="radio2" name="atype" value="normal" disabled/>
+						<label class="form-check-label" for="radio2">Normal</label>
+					</div>
+					
+				</c:if>
+				
 			</div>
 			<div class="form-group row">
 				<label for="inputSubject" class="col-sm-2 text-center form-control-plaintext font-weight-bold">Subject</label>
@@ -65,11 +83,11 @@
 		</form>
 	</div>
 	<!-- comment -->
-	<div class="mt-3 mb-5 mx-auto" id="commentsDiv" style="width:60%">
+	<div class="mt-3 mb-5 mx-auto" id="commentsDiv" style="width:72%">
 		<jsp:include page="${request.contextPath}/comments.do"></jsp:include>
 	</div>
+</div>
 </c:if>
-
 
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>

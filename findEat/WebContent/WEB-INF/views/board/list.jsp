@@ -101,7 +101,7 @@
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
 					<li class="page-item">
-						<a class="page-link" href="${request.contextPath}/list.do?pageNum=${i}">${i}</a></li>
+						<a class="page-link" href="${request.contextPath}/findEat/list.do?pageNum=${i}">${i}</a></li>
 				</c:forEach>
 				<c:if test="${endNum > 10}">
 					<li class="page-item">

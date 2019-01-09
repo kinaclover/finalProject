@@ -30,12 +30,15 @@
 					<input type="text" class="form-control-plaintext" name="id" value="${list.id}" readonly/>
 					<c:if test="${list.id.equals(sessionScope.id)}">
 					<div class="btn-group">
+						<input type="hidden" id="modiCheck" value="0"/>
+						<input type="hidden" id="modiNum" value="${list.num}"/>
 						<button type="button" id="modBtn" class="btn btn-sm btn-outline-warning">수정</button>
+						<button type="button" id="modBtn2" class="btn btn-sm btn-warning" hidden="hidden">수정</button>
 						<button type="button" id="delBtn" class="btn btn-sm btn-danger">삭제</button>
 					</div>
 					</c:if>
 				</div>
-				<textarea rows="4" cols="" class="col-8" name="comment" readonly>${list.content}</textarea>
+				<textarea rows="4" cols="" class="col-8" id="comm-${list.num}" name="comment" readonly>${list.content}</textarea>
 			</div>
 		</form>
 	</c:forEach>

@@ -58,7 +58,7 @@
 			</div>
 			<div class="form-group row">
 				<label for="inputPw" class="col-sm-2 text-center form-control-plaintext font-weight-bold">Password</label>
-				<input type="password" class="col-sm-4" id="inputPw" name="pw"/>
+				<input type="password" class="col-sm-4" id="inputPw" name="pw" required/>
 			</div>
 			<div class="form-group text-right">
 				<input type="submit" class="btn btn-outline-primary" value="글 작성"/>

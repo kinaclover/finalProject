@@ -7,6 +7,7 @@ import findEat.DB.bean.CommentsVO;
 
 public interface BoardDAO {
 	public List<BoardVO> ListUp(int start,int end) throws Exception;
+	public int TotalNormal() throws Exception;
 	public List<BoardVO> NoticeList() throws Exception;
 	public BoardVO ViewArticle(int idx) throws Exception;
 	public int PasswordCheck(String idx, String pw) throws Exception;

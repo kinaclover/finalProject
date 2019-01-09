@@ -18,7 +18,10 @@
 		where r >= #{start} and r <= #{end}
 		]]>
 	</select>
-	
+	<!-- total -->
+	<select id="total" resultType="int">
+		select count(*) from board where atype='normal'
+	</select>
 	<!-- select article -->
 	<select id="select" parameterType="int" resultType="boardVO">
 		select * from board where idx = #{value}
@@ -42,7 +45,7 @@
 	
 	<!-- update article -->
 	<update id="update" parameterType="boardVO">
-		update board set content = #{content} where idx = #{idx}
+		update board set content = #{content}, atype = #{atype}, subject = #{subject} where idx = #{idx}
 	</update>
 	
 	<!-- delete article -->
@@ -62,6 +65,10 @@
 	<insert id="commentInsert" parameterType="commentsVO">
 		insert into comments values(comments_num.NEXTVAL,#{id},#{idx},#{content},sysdate)
 	</insert>
+	<!-- update -->
+	<update id="commentUpdate" parameterType="commentsVO">
+		update comments set content = #{content} where num = #{num}
+	</update>
 	<!-- delete -->
 	<delete id="commentDelete" parameterType="int">
 		delete from comments where num = #{value}
