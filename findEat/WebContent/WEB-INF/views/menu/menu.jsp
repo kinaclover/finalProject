@@ -36,7 +36,7 @@
 		<button class="btn btn-sm btn-outline-secondary" onclick="window.location='/findEat/list.do'">Board</button>
 		<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expended="false">My menu</button>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropDown">
-				<a class="dropdown-item" href="">Calendar</a>
+				<a class="dropdown-item" href="/findEat/cal.do">Calendar</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="/findEat/modify.do">Modify</a>
 				<c:if test="${sessionScope.id.equals('admin')}">

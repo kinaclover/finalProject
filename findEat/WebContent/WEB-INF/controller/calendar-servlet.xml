@@ -12,9 +12,4 @@
 	
 	<context:component-scan base-package="findEat.action.cal"/>
 	
-	<bean id="indexCalVO" class="findEat.DB.bean.IndexCalendarVO"/>
-	<bean id="indexCalDAO" class="findEat.DB.dao.IndexCalendarDAOImpl">
-		<property name="sqlSession" ref="sqlSession"/>
-	</bean>
-	
 </beans>

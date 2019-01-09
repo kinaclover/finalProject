@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cal">
+		
+	<select id="classifyk" parameterType="int" resultType="calVO">
+		select * from calendar where classify='k' and fweek != #{value} 
+	</select>
+	<select id="classifyj" parameterType="int" resultType="calVO">
+		select * from calendar where classify='j' and fweek != #{value} 
+	</select>
+	<select id="classifyc" parameterType="int" resultType="calVO">
+		select * from calendar where classify='c' and fweek != #{value} 
+	</select>
+	<select id="classifyw" parameterType="int" resultType="calVO">
+		select * from calendar where classify='w' and fweek != #{value} 
+	</select>
+	<select id="classifyf" parameterType="int" resultType="calVO">
+		select * from calendar where classify='f' and fweek != #{value} 
+	</select>
+	<select id="classifye" parameterType="int" resultType="calVO">
+		select * from calendar where classify='e' and fweek != #{value} 
+	</select>
+	
+	
+	
+	<select id="pclassifyk" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='k' and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="pclassifyj" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='j' and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="pclassifyc" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='c' and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="pclassifyw" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='w' and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="pclassifyf" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='f' and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="pclassifye" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='e' and fweek != #{fweek} and id=#{id}
+	</select>
+	
+</mapper>

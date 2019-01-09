@@ -1,102 +1,162 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!doctype html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.Calendar"%>
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>Calendar DEMO</title>
-     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
-    <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
-    <link rel="stylesheet" type="text/css" href="calendar/dist/tui-calendar.css" />
-    <link rel="stylesheet" type="text/css" href="css/default.css"></link>
-    <link rel="stylesheet" type="text/css" href="css/icons.css"></link>
-    
+<meta charset="UTF-8">
+<title>Calendar Page</title>
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="css/cal.css">
+
+<script src="js/cal.js"></script>
+<script src="js/calFoodSelect.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+
 </head>
 <body>
-    <div id="right">
-        <div id="menu">
-            <span class="dropdown">
-                <button id="dropdownMenu-calendarType" class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true">
-                    <i id="calendarTypeIcon" class="calendar-icon ic_view_month" style="margin-right: 4px;"></i>
-                    <span id="calendarTypeName">Dropdown</span>&nbsp;
-                    <i class="calendar-icon tui-full-calendar-dropdown-arrow"></i>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-calendarType">
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-daily">
-                            <i class="calendar-icon ic_view_day"></i>Daily
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weekly">
-                            <i class="calendar-icon ic_view_week"></i>Weekly
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-monthly">
-                            <i class="calendar-icon ic_view_month"></i>Month
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks2">
-                            <i class="calendar-icon ic_view_week"></i>2 weeks
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a class="dropdown-menu-title" role="menuitem" data-action="toggle-weeks3">
-                            <i class="calendar-icon ic_view_week"></i>3 weeks
-                        </a>
-                    </li>
-                    <li role="presentation" class="dropdown-divider"></li>
-                    <li role="presentation">
-                        <a role="menuitem" data-action="toggle-workweek">
-                            <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-workweek" checked>
-                            <span class="checkbox-title"></span>Show weekends
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" data-action="toggle-start-day-1">
-                            <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-start-day-1">
-                            <span class="checkbox-title"></span>Start Week on Monday
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a role="menuitem" data-action="toggle-narrow-weekend">
-                            <input type="checkbox" class="tui-full-calendar-checkbox-square" value="toggle-narrow-weekend">
-                            <span class="checkbox-title"></span>Narrower than weekdays
-                        </a>
-                    </li>
-                </ul>
-            </span>
-            <span id="menu-navi">
-                <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
-                <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
-                    <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
-                </button>
-                <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
-                    <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
-                </button>
-            </span>
-            <span id="renderRange" class="render-range"></span>
-        </div>
-        <div id="calendar"></div>
-    </div>
+<div class="mt-0 mb-3" id="menu">
+	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
+</div>
 
-   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.min.js"></script>
-    <script type="text/javascript" src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js"></script>
-    <script type="text/javascript" src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
-    <script src="calendar/dist/tui-calendar.js"></script>
-    <script src="js/calendars.js"></script>
-    <script src="js/schedules.js"></script>
-    <script src="js/dooray.js"></script>
-    <script src="js/default.js"></script>
+<div id="container"> 
+    <div id="position">
+    
+    <!-- 메뉴 바 -->
+    <div class="row">
+    	<div id="top-menu">
+    		<div class="btn-group" role="group" style="width:100%;">
+				<div style="margin:0 auto;">
+        			<button type="button" id="prev" class="btn-custom btn-default btn-sm-custom" onclick="prevmonth();">
+						<i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+       				</button>
+        			<button type="button" id="next" class="btn-custom btn-default btn-sm-custom" onclick="nextmonth();">
+        				<i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+        			</button>
+        			<span id="Ymd"></span>
+        		</div>
+			</div>
+		</div>
+  	</div>  
+	<!-- 메뉴 바 -->
+
+  	<!-- 달력 -->
+   	<div class="col-md-12">
+       	  <table class="table table-bordered" id="tab">
+       	    <thead class="text-center">
+				<tr align="center">
+           			<td align="center">일</td>
+           			<td align="center">월</td>
+           			<td align="center">화</td>
+           			<td align="center">수</td>
+           			<td align="center">목</td>
+           			<td align="center">금</td>
+           			<td align="center">토</td>  
+       			</tr>
+			</thead>
+			<tbody id="tabBody"> <!-- 달력 출력 -->
+       			<script>present();
+       			var Ymd_text = $('#Ymd').text();
+       			console.log(Ymd_text);
+       			$('#prev, #next').click(function() {
+       				var Ymd_text = $('#Ymd').text();
+           			console.log(Ymd_text);	
+       			});
+       			</script>
+       			<!-- 달력에 음식 정보 출력 -->
+			</tbody>
+         	</table>
+       	</div>
+   	</div>  
+    <!-- 달력 -->	
+    	
+    	
+    	
+    	
+    <!-- Modal -->
+  	<div class="modal fade" id="myModal" role="dialog">
+    
+    <div class="modal-dialog">
+    
+	<!-- Modal content-->
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5>Food Select</h5>
+			<button type="button" class="close" data-dismiss="modal">×</button>
+		</div>
+		
+		<div class="modal-body">
+		
+			<!-- 음식 선택창 -->
+			<div style="width:50%; margin:0 auto">
+				<fieldset> <!-- 음식 분류 정보는 spring 을 통해서 db 에서 가져오고 메서드로 setting 해줌 -->
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroup01">대분류</label>
+						</div>
+						<select class="custom-select" id="inputGroup03" name="classify"> <!-- 선택한 옵션의 value 값을 js 에서 참조해서 아래 그룹의 속성변경 -->
+							<option value="none" selected>선택하세요.</option>
+							<option value="k">한식</option>
+							<option value="j">일식</option>
+							<option value="c">중식</option>
+							<option value="w">양식</option>
+							<option value="f">페스트푸드/분식</option>
+							<option value="e">기타</option>
+						</select>
+					</div>
+					<div class="input-group mb-3">
+						<select class="custom-select" id="inputGroup04" name="fcode"> <!-- 메서드에서 setting 한 db 음식 분류 정보를 출력하고 위 옵션에 따라 속성을 변경해가며 보여준다 -->
+							<option value="none" selected>선택하세요.</option>
+							<c:forEach items="${kGroup}" var="temp">
+								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+							</c:forEach>
+							<c:forEach items="${jGroup}" var="temp">
+								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+							</c:forEach>
+							<c:forEach items="${cGroup}" var="temp">
+								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+							</c:forEach>
+							<c:forEach items="${wGroup}" var="temp">
+								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+							</c:forEach>
+							<c:forEach items="${fGroup}" var="temp">
+								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+							</c:forEach>
+							<c:forEach items="${eGroup}" var="temp">
+								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</fieldset>
+			</div>
+			<!-- 음식 선택창  -->
+        </div>
+        
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="saveBtn"> Save </button>             
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
+		</div>
+	</div>
+      
+	</div>
+
+	</div>
+<!-- Modal -->
+
+
+
+
+</div>
+
+
+<!-- for bootstrap/jQuery/Popper -->
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/bootstrap.bundle.js"></script>
+<script src="js/menu.js"></script>
+
 </body>
 </html>
