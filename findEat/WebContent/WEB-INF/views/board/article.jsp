@@ -24,6 +24,7 @@
 <c:if test="${idx!=null}">
 <div class="mx-auto my-3 d-block" style="width: 75%">
 	<div class="btn-group btn-group-sm mb-3">
+	<button type="button" class="btn btn btn-outline-primary" onclick="window.location='/findEat/index.do'">메인으로</button>
 	<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do'">글 목록</button>
 	</div>
 	<div style="width:60%;min-width:600px;margin:0 auto">

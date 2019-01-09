@@ -354,4 +354,9 @@ public class MainAction {
 		return "/menu/menu";
 	}
 	
+	//index modals
+	@RequestMapping("indexModal.do")
+	public String indexModal() {
+		return "/main/indexModal";
+	}
 }
