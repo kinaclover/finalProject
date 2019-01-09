@@ -118,40 +118,43 @@ $(function(){
 
 //modify check
 $(function(){
-	$("#modBtn").click(function(){
+	$(".modBtn").click(function(){
 		//수정버튼 클릭
-		var chk			= $("#modiCheck").val();
-		var modiNum		= $("#modiNum").val();
-		var modiComm	= "#comm-"+modiNum;
+		var num			= $(event.target).val();
+		var modBtn		= ".modBtn-"+num;
+		var modBtn2		= ".modBtn2-"+num;
+		var modiComm	= ".comm-"+num;
+		var chkClass	= ".modiCheck-"+num;
+		var chk			= $(chkClass).val();
 		if(chk==0){
 			$(modiComm).removeAttr("readonly");
 			$(modiComm).focus();
-			$("#modBtn2").removeAttr("hidden");
-			$("#modBtn").html('취소');
-			$("#modBtn").removeClass("btn-outline-warning");
-			$("#modBtn").addClass("btn-outline-secondary");
-			$("#modiCheck").val('1');
+			$(modBtn2).removeAttr("hidden");
+			$(modBtn).html('취소');
+			$(modBtn).removeClass("btn-outline-warning");
+			$(modBtn).addClass("btn-outline-secondary");
+			$(chkClass).val('1');
 			
 		} else {
 			$(modiComm).attr("readonly",true);
-			$("#modBtn2").attr("hidden",true);
-			$("#modBtn").html('수정');
-			$("#modBtn").removeClass("btn-outline-secondary");
-			$("#modBtn").addClass("btn-outline-warning");
-			$("#modiCheck").val('0');
+			$(modBtn2).attr("hidden",true);
+			$(modBtn).html('수정');
+			$(modBtn).removeClass("btn-outline-secondary");
+			$(modBtn).addClass("btn-outline-warning");
+			$(chkClass).val('0');
 		}
 	});
 });
 //modify
 $(function(){
-	$("#modBtn2").click(function(){
-		var modiNum		= $("#modiNum").val();
-		var modiComm	= "#comm-"+modiNum;
+	$(".modBtn2").click(function(){
+		var num			= $(event.target).val();
+		var modiComm	= ".comm-"+num;
 		var comm		= $(modiComm).val();
 		$.ajax({
 			async: true,
 			type: 'POST',
-			data: JSON.stringify({"comm":comm,"num":modiNum}),
+			data: JSON.stringify({"comm":comm,"num":num}),
 			contentType: "application/json; charset=UTF-8",
 			url: 'modifyComm.do',
 			success: function(data){
@@ -168,14 +171,15 @@ $(function(){
 
 //delete
 $(function(){
-	$("#delBtn").click(function(){
+	$(".delBtn").click(function(){
 		//삭제버튼 클릭
 		if(confirm("정말 삭제하시겠습니까?")){
-			var num	= $("#commNum").val();
+			var num	= $(event.target).val();
+			var idx	= $("#idx").val();
 			$.ajax({
 				async: true,
 				type: 'POST',
-				data: JSON.stringify(num),
+				data: JSON.stringify({'num':num,'idx':idx}),
 				contentType: "application/json; charset=UTF-8",
 				url: 'deleteComm.do',
 				success: function(data){

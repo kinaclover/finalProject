@@ -97,5 +97,13 @@ public class BoardDAOImpl implements BoardDAO {
 		int check	= sqlSession.delete("board.commentDelete",num);
 		return check;
 	}
+	@Override
+	public void UpdateCommentsCount(int idx) throws Exception {
+		sqlSession.update("board.articleCommentUp",idx);
+	}
+	@Override
+	public void DeleteCommentsCount(int idx) throws Exception {
+		sqlSession.update("board.articleCommentDown",idx);
+	}
 	
 }

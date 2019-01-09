@@ -15,6 +15,7 @@ public class BoardVO {
 	private int srcStep;			//
 	private int srcLevel;			//
 	private String atype;			//글 종류
+	private int comments;			//해당 글의 총 댓글 수
 	
 	public int getIdx() {
 		return idx;
@@ -87,5 +88,11 @@ public class BoardVO {
 	}
 	public void setAtype(String atype) {
 		this.atype = atype;
+	}
+	public int getComments() {
+		return comments;
+	}
+	public void setComments(int comments) {
+		this.comments = comments;
 	}
 }

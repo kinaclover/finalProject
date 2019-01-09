@@ -25,7 +25,7 @@
 <div class="mx-auto my-3 d-block" style="width: 75%">
 	<div class="btn-group btn-group-sm mb-3">
 	<button type="button" class="btn btn btn-outline-primary" onclick="window.location='/findEat/index.do'">메인으로</button>
-	<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do'">글 목록</button>
+	<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do?pageNum=${pageNum}'">글 목록</button>
 	</div>
 	<div style="width:60%;min-width:600px;margin:0 auto">
 		<form class="form" action="boardModifyPro.do" method="post">
@@ -82,11 +82,12 @@
 			</div>
 			</c:if>
 		</form>
+		<!-- comment -->
+		<div class="mt-3 mb-5 mx-auto" id="commentsDiv" style="width:100%">
+			<jsp:include page="${request.contextPath}/comments.do"></jsp:include>
+		</div>
 	</div>
-	<!-- comment -->
-	<div class="mt-3 mb-5 mx-auto" id="commentsDiv" style="width:72%">
-		<jsp:include page="${request.contextPath}/comments.do"></jsp:include>
-	</div>
+	
 </div>
 </c:if>
 

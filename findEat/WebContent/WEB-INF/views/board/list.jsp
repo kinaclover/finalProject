@@ -56,7 +56,12 @@
 					<tr class="d-flex table-warning">
 						<th scope="row" class="col-1 text-center">!</th>
 						<td class="col-5">
-							<a class="form-control-plaintext pt-0" href="${request.contextPath}/findEat/article.do?idx=${list.idx}">${list.subject}</a>
+							<a class="form-control-plaintext pt-0" 
+							href="${request.contextPath}/findEat/article.do?idx=${list.idx}&pageNum=${pageNum}">${list.subject} 
+							<c:if test="${list.comments!=0}">
+							<span class="badge badge-info badge-pill">${list.comments}</span>
+							</c:if>
+							</a>
 						</td>
 						<td class="col-2 text-center">${list.id}</td>
 						<td class="col-3">
@@ -75,7 +80,12 @@
 							<c:set var="count" value="${count-1}"/>
 						</th>
 						<td class="col-5">
-							<a class="form-control-plaintext pt-0" href="${request.contextPath}/findEat/article.do?idx=${list.idx}">${list.subject}</a>
+							<a class="form-control-plaintext pt-0" 
+							href="${request.contextPath}/findEat/article.do?idx=${list.idx}&pageNum=${pageNum}">${list.subject}
+							<c:if test="${list.comments!=0}">
+							<span class="badge badge-info badge-pill">${list.comments}</span>
+							</c:if>
+							</a>
 						</td>
 						<td class="col-2 text-center">${list.id}</td>
 						<td class="col-3">

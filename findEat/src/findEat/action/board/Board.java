@@ -72,6 +72,7 @@ public class Board {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("endNum", endNum);
+		request.setAttribute("pageNum", pageNum);
 		return "/board/list";
 	}
 	
@@ -95,6 +96,7 @@ public class Board {
 		boardVO	= boardDAO.ViewArticle(idx);
 		request.setAttribute("boardVO", boardVO);
 		request.setAttribute("idx", idx);
+		request.setAttribute("pageNum", request.getParameter("pageNum"));
 		return "/board/article";
 	}
 	
@@ -137,6 +139,7 @@ public class Board {
 	@RequestMapping("insertComm.do")
 	public String insertComm(@RequestBody CommentsVO commentsVO) throws Exception {
 		int check = boardDAO.InsertComment(commentsVO);
+		boardDAO.UpdateCommentsCount(commentsVO.getIdx());
 		return String.valueOf(check);
 	}
 	
@@ -151,8 +154,11 @@ public class Board {
 	
 	@ResponseBody
 	@RequestMapping("deleteComm.do")
-	public String deleteComm(@RequestBody int num) throws Exception {
+	public String deleteComm(@RequestBody Map<String,String> data) throws Exception {
+		int num		= Integer.parseInt(data.get("num"));
+		int idx		= Integer.parseInt(data.get("idx"));
 		int check	= boardDAO.DeleteComment(num);
+		boardDAO.DeleteCommentsCount(idx);
 		return String.valueOf(check);
 	}
 }

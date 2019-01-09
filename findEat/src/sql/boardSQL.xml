@@ -13,7 +13,7 @@
 	<select id="normal" parameterType="HashMap" resultType="boardVO">
 		<![CDATA[
 		select * from
-			(select idx,id,pw,email,subject,content,regDate,vcount,atype,rownum r from 
+			(select idx,id,pw,email,subject,content,regDate,vcount,atype,comments,rownum r from 
 				(select * from board where atype='normal' order by regDate desc) order by regDate desc) 
 		where r >= #{start} and r <= #{end}
 		]]>
@@ -40,7 +40,7 @@
 		<selectKey resultType="String" keyProperty="email" order="BEFORE">
 			select email from client where id = #{id}
 		</selectKey>
-		insert into board values(board_idx.NEXTVAL,#{id},#{pw},#{email},#{subject},#{content},sysdate,0,#{atype})
+		insert into board values(board_idx.NEXTVAL,#{id},#{pw},#{email},#{subject},#{content},sysdate,0,#{atype},0)
 	</insert>
 	
 	<!-- update article -->
@@ -69,9 +69,15 @@
 	<update id="commentUpdate" parameterType="commentsVO">
 		update comments set content = #{content} where num = #{num}
 	</update>
+	<update id="articleCommentUp" parameterType="int">
+		update board set comments = comments + 1 where idx = #{value}
+	</update>
 	<!-- delete -->
 	<delete id="commentDelete" parameterType="int">
 		delete from comments where num = #{value}
 	</delete>
+	<update id="articleCommentDown" parameterType="int">
+		update board set comments = comments - 1 where idx = #{value}
+	</update>
 	
 </mapper>

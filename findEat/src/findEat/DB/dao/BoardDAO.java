@@ -17,6 +17,8 @@ public interface BoardDAO {
 	//comments action
 	public List<CommentsVO> CommentsList(int idx) throws Exception;
 	public int InsertComment(CommentsVO commentsVO) throws Exception;
+	public void UpdateCommentsCount(int idx) throws Exception;
 	public int UpdateComment(CommentsVO commentsVO) throws Exception;
 	public int DeleteComment(int num) throws Exception;
+	public void DeleteCommentsCount(int idx) throws Exception;
 }
