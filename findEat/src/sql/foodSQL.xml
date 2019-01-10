@@ -22,4 +22,9 @@
 		delete from food where classify = #{classify} and fcode = #{fcode}
 	</delete>
 	
+	
+	<!-- temporary insert cal -->
+	<insert id="calDB" parameterType="calVO">
+		insert into calendar values(#{id},#{fyear},#{fmonth},#{fdate},#{fday},#{fweek},#{fname},#{fcode},#{classify})
+	</insert>
 </mapper>

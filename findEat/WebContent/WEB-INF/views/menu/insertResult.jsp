@@ -39,5 +39,21 @@
 	</c:if>
 </c:if>
 
+<c:if test="${status==3}">
+	<c:if test="${check==1}">
+		<script>
+			alert("입력완료.");
+			window.location = "/findEat/insertFood.do";
+		</script>
+	</c:if>
+	
+	<c:if test="${check!=1}">
+		<script>
+			alert("입력되지 않았습니다. 다시 시도해주세요.");
+			history.back();
+		</script>
+	</c:if>
+</c:if>
+
 </body>
 </html>

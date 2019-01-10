@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import findEat.DB.bean.CalendarVO;
 import findEat.DB.bean.FoodVO;
 
 public class FoodAdminDAOImpl implements FoodAdminDAO {
@@ -34,6 +35,12 @@ public class FoodAdminDAOImpl implements FoodAdminDAO {
 	@Override
 	public int DeleteFood(FoodVO foodVO) throws Exception {
 		int check = sqlSession.delete("food.delete", foodVO);
+		return check;
+	}
+
+	@Override
+	public int InsertCalDB(CalendarVO calVO) throws Exception {
+		int check	= sqlSession.insert("food.calDB",calVO);
 		return check;
 	}
 	
