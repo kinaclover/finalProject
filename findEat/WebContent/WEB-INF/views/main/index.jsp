@@ -8,17 +8,6 @@
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/main.css">
-<style type="text/css">
-.centered { display: table; margin-left: auto; margin-right: auto; }
-
-.double {
-      width:1700px;
-　　      height:600px;
-        border-style: double;
-        box-sizing : border-box;
-      }
-
-</style>
 </head>
 <body class="d-block">
 <!-- menu -->

@@ -60,7 +60,7 @@
 				<label for="inputContent" class="col-sm-2 text-center form-control-plaintext font-weight-bold">Content</label>
 				<textarea rows="10" cols="" class="col-sm-10" id="inputContent" name="content" readonly>${boardVO.content}</textarea>
 			</div>
-			<c:if test="${sessionScope.id==boardVO.id}">
+			<c:if test="${sessionScope.id.equals(boardVO.id)||sessionScope.id.equals('admin')}">
 			<!-- modify -->
 			<div class="form-group row" id="modiBox">
 				<div class="col-sm-8" id="modifyDiv" hidden="hidden">

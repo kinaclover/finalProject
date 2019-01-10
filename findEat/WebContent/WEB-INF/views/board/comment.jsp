@@ -26,7 +26,7 @@
 			<div class="row my-3 comment-${list.num}">
 				<div class="col-4">
 					<input type="text" class="form-control-plaintext" name="id" value="${list.id}" readonly/>
-					<c:if test="${list.id.equals(sessionScope.id)}">
+					<c:if test="${list.id.equals(sessionScope.id)||sessionScope.id.equals('admin')}">
 					<div class="btn-group">
 						<input type="hidden" class="modiCheck-${list.num}" value="0"/>
 						<button type="button" class="modBtn modBtn-${list.num} btn btn-sm btn-outline-warning" value="${list.num}">수정</button>
