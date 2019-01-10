@@ -25,9 +25,14 @@
 
 <!-- change button -->
 <div class="btn-group" role="group" style="width:100%;">
+	<input type="hidden" id="dayValue" value="0"/>
 	<div style="margin:0 auto;">
 		<button type="button" id="totalBtn">Total</button>
 		<button type="button" id="personalBtn">Personal</button>
+		<c:if test="${sessionScope.id.equals('admin') }">
+			<button type="button" class="btn btn-sm btn-outline-secondary align-baseline" id="dayBackward"> &laquo;</button>
+			<button type="button" class="btn btn-sm btn-outline-secondary align-baseline" id="dayForward"> &raquo;</button>
+		</c:if>
 	</div>
 </div>
 

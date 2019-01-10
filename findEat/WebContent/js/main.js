@@ -47,6 +47,7 @@ $(function(){
 $(document).ready(function(){
 	var date	= new Date();
 	var day		= date.getDay();
+	$("#dayValue").val(day);
 	var check	= document.getElementById('sessionCheck').value;
 	if(check==0) {
 		$('#thisWeek').attr("hidden",true);
@@ -115,5 +116,184 @@ $(document).ready(function(){
 		$('.thu li').addClass("disabled");
 		$('.fri p').html("Friday");
 	}
+});
+
+
+//day change for admin
+$(function(){
+	$("#dayForward").click(function(){
+		var day	= Number($("#dayValue").val())+Number(1);
+		if(day>5) day = 1;
+		$("#dayValue").val(day);
+		if(day==1) {
+			$('.mon p').html("Monday");
+			$('.mon').removeClass("disabled");
+			$('.mon li').removeClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==2) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("Tuesday");
+			$('.tue').removeClass("disabled");
+			$('.tue li').removeClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==3) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("Wednesday");
+			$('.wed').removeClass("disabled");
+			$('.wed li').removeClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==4) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("Thursday");
+			$('.thu').removeClass("disabled");
+			$('.thu li').removeClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==5) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("Friday");
+			$('.fri').removeClass("disabled");
+			$('.fri li').removeClass("disabled");
+		}
+	});
+});
+$(function(){
+	$("#dayBackward").click(function(){
+		var day	= Number($("#dayValue").val())-Number(1);
+		if(day<1) day = 5;
+		$("#dayValue").val(day);
+		if(day==1) {
+			$('.mon p').html("Monday");
+			$('.mon').removeClass("disabled");
+			$('.mon li').removeClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==2) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("Tuesday");
+			$('.tue').removeClass("disabled");
+			$('.tue li').removeClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==3) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("Wednesday");
+			$('.wed').removeClass("disabled");
+			$('.wed li').removeClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==4) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("Thursday");
+			$('.thu').removeClass("disabled");
+			$('.thu li').removeClass("disabled");
+			$('.fri p').html("F");
+			$('.fri').addClass("disabled");
+			$('.fri li').addClass("disabled");
+		} else if(day==5) {
+			$('.mon p').html("M");
+			$('.mon').addClass("disabled");
+			$('.mon li').addClass("disabled");
+			$('.tue p').html("T");
+			$('.tue').addClass("disabled");
+			$('.tue li').addClass("disabled");
+			$('.wed p').html("W");
+			$('.wed').addClass("disabled");
+			$('.wed li').addClass("disabled");
+			$('.thu p').html("T");
+			$('.thu').addClass("disabled");
+			$('.thu li').addClass("disabled");
+			$('.fri p').html("Friday");
+			$('.fri').removeClass("disabled");
+			$('.fri li').removeClass("disabled");
+		}
+	});
 });
 
