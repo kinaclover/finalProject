@@ -43,7 +43,7 @@
 	<c:if test="${check==1}">
 		<script>
 			alert("입력완료.");
-			window.location = "/findEat/insertFood.do";
+			window.location = "/findEat/insertCalDB.do";
 		</script>
 	</c:if>
 	

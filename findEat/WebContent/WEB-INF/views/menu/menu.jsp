@@ -41,6 +41,8 @@
 				<a class="dropdown-item" href="/findEat/modify.do">Modify</a>
 				<c:if test="${sessionScope.id.equals('admin')}">
 				<a class="dropdown-item" href="/findEat/insertFood.do">Food Administrator</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="/findEat/insertCalDB.do">Insert Calendar(temporary)</a>
 				</c:if>
 			</div>
 		<button class="btn btn-sm btn-danger" id="logoutBtn">Logout</button>
