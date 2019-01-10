@@ -12,7 +12,9 @@
 	<c:if test="${idCheck!=1}">
 		<script type="text/javascript">
 			alert("가입먼저 해주세요! :)");
-			window.location	= "/findEat/join.do";
+			if(confirm("가입페이지로 이동할까요?")){
+				window.location	= "/findEat/join.do";
+			}
 		</script>
 	</c:if>
 	<c:if test="${check==1}">

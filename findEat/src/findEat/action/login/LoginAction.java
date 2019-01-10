@@ -169,7 +169,7 @@ public class LoginAction {
 						"</head>\n" + 
 						"<body>\n" + 
 						"<div class=\"mt-5 mb5 d-block\" style=\"width:60%; margin:0 auto\">\n" + 
-						"	<p class=\"mt-3 mb-3\">요청하신 비밀번호는 "+pw+"입니다.</p>\n<br/><br/>" + 
+						"	<p class=\"mt-3 mb-3\">요청하신 임시 비밀번호는 "+pw+"입니다.</p>\n<br/><br/>" + 
 						"	<button class=\"btn-outline-primary btn-sm\"" + 
 						" onclick=\"window.location='http://localhost:8080/findEat/index.do'\">FindEat 페이지로 이동</button>\n" + 
 						"</div>\n" + 
