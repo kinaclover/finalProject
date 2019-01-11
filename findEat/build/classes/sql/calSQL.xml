@@ -1,45 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cal">
 		
-	<select id="classifyk" parameterType="int" resultType="calVO">
+	<select id="dclassifyk" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='k' and fday = #{fday} and fweek != #{fweek} 
+	</select>
+	<select id="dclassifyj" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='j' and fday = #{fday} and fweek != #{fweek} 
+	</select>
+	<select id="dclassifyc" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='c' and fday = #{fday} and fweek != #{fweek} 
+	</select>
+	<select id="dclassifyw" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='w' and fday = #{fday} and fweek != #{fweek} 
+	</select>
+	<select id="dclassifyf" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='f' and fday = #{fday} and fweek != #{fweek} 
+	</select>
+	<select id="dclassifye" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='e' and fday = #{fday} and fweek != #{fweek} 
+	</select>
+	
+		<select id="wclassifyk" parameterType="int" resultType="calVO">
 		select * from calendar where classify='k' and fweek != #{value} 
 	</select>
-	<select id="classifyj" parameterType="int" resultType="calVO">
+	<select id="wclassifyj" parameterType="int" resultType="calVO">
 		select * from calendar where classify='j' and fweek != #{value} 
 	</select>
-	<select id="classifyc" parameterType="int" resultType="calVO">
+	<select id="wclassifyc" parameterType="int" resultType="calVO">
 		select * from calendar where classify='c' and fweek != #{value} 
 	</select>
-	<select id="classifyw" parameterType="int" resultType="calVO">
+	<select id="wclassifyw" parameterType="int" resultType="calVO">
 		select * from calendar where classify='w' and fweek != #{value} 
 	</select>
-	<select id="classifyf" parameterType="int" resultType="calVO">
+	<select id="wclassifyf" parameterType="int" resultType="calVO">
 		select * from calendar where classify='f' and fweek != #{value} 
 	</select>
-	<select id="classifye" parameterType="int" resultType="calVO">
+	<select id="wclassifye" parameterType="int" resultType="calVO">
 		select * from calendar where classify='e' and fweek != #{value} 
 	</select>
 	
 	
+	<select id="dpclassifyk" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='k' and fday = #{fday} and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="dpclassifyj" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='j' and fday = #{fday} and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="dpclassifyc" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='c' and fday = #{fday} and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="dpclassifyw" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='w' and fday = #{fday} and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="dpclassifyf" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='f' and fday = #{fday} and fweek != #{fweek} and id=#{id}
+	</select>
+	<select id="dpclassifye" parameterType="HashMap" resultType="calVO">
+		select * from calendar where classify='e' and fday = #{fday} and fweek != #{fweek} and id=#{id}
+	</select>
 	
-	<select id="pclassifyk" parameterType="HashMap" resultType="calVO">
+	
+	<select id="wpclassifyk" parameterType="HashMap" resultType="calVO">
 		select * from calendar where classify='k' and fweek != #{fweek} and id=#{id}
 	</select>
-	<select id="pclassifyj" parameterType="HashMap" resultType="calVO">
+	<select id="wpclassifyj" parameterType="HashMap" resultType="calVO">
 		select * from calendar where classify='j' and fweek != #{fweek} and id=#{id}
 	</select>
-	<select id="pclassifyc" parameterType="HashMap" resultType="calVO">
+	<select id="wpclassifyc" parameterType="HashMap" resultType="calVO">
 		select * from calendar where classify='c' and fweek != #{fweek} and id=#{id}
 	</select>
-	<select id="pclassifyw" parameterType="HashMap" resultType="calVO">
+	<select id="wpclassifyw" parameterType="HashMap" resultType="calVO">
 		select * from calendar where classify='w' and fweek != #{fweek} and id=#{id}
 	</select>
-	<select id="pclassifyf" parameterType="HashMap" resultType="calVO">
+	<select id="wpclassifyf" parameterType="HashMap" resultType="calVO">
 		select * from calendar where classify='f' and fweek != #{fweek} and id=#{id}
 	</select>
-	<select id="pclassifye" parameterType="HashMap" resultType="calVO">
+	<select id="wpclassifye" parameterType="HashMap" resultType="calVO">
 		select * from calendar where classify='e' and fweek != #{fweek} and id=#{id}
 	</select>
 	

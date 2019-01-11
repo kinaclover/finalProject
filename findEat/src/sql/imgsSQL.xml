@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Imgs">
+
+	<insert id="insertImgs" parameterType="imgsVO">
+		insert into imgs_url values (#{img_url}, #{keyword}, #{place_name}, #{pageNum})
+	</insert>
+	
+	<select id="searchKeyword" parameterType="HashMap" resultType="int">
+		select count(*) from imgs_url where keyword like '%'||#{keyword}||'%' and pagenum = #{pageNum}
+	</select>
+	
+	<select id="selectKeyword" parameterType="HashMap" resultType="imgsVO">
+		select * from imgs_url where keyword like '%'||#{keyword}||'%' and pagenum = #{pageNum}
+	</select>
+	
+			
+</mapper>

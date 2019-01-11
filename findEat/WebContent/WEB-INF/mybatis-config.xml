@@ -10,6 +10,7 @@
 		<typeAlias type="findEat.DB.bean.FoodVO" alias="foodVO"/>
 		<typeAlias type="findEat.DB.bean.BoardVO" alias="boardVO"/>
 		<typeAlias type="findEat.DB.bean.CommentsVO" alias="commentsVO"/>
+		<typeAlias type="findEat.DB.bean.ImgsVO" alias="imgsVO"/>
 	</typeAliases>
 	
 	<mappers>
@@ -18,6 +19,7 @@
 		<mapper resource="/sql/indexCalSQL.xml"/>
 		<mapper resource="/sql/boardSQL.xml"/>
 		<mapper resource="/sql/calSQL.xml"/>
+		<mapper resource="/sql/imgsSQL.xml"/>
 	</mappers>
 
 

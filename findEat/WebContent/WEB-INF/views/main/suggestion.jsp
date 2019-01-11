@@ -3,7 +3,8 @@
 
 <h5 class="centered"> 추천 리스트</h5>
 
-<div class="card text-center">
+<input type="hidden" id="totalCheck" value="0"/>
+<div class="card text-center" id="totalclas">
 	<div class="card-header">
 		<ul class="nav nav-tabs card-header-tabs">
 			<div id="center" class="container">
@@ -65,3 +66,69 @@
 		</ul>
 	</div>
 </div>
+
+<input type="hidden" id="personalCheck" value="0"/>
+<div class="card text-center" id="personalclas" >
+	<div class="card-header">
+		<ul class="nav nav-tabs card-header-tabs">
+			<div id="center" class="container">
+				<li class="nav-item">
+					<a class="nav-link active" href="#">한식</a>
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<c:forEach var="list" items="${personalclassifyk}" end="4">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#">일식</a>
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<c:forEach var="list" items="${personalclassifyj}" end="4">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#">중식</a>
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<c:forEach var="list" items="${personalclassifyc}" end="4">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#">양식</a>
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<c:forEach var="list" items="${personalclassifyw}" end="4">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#">패스트푸드</a>
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<c:forEach var="list" items="${personalclassifyf}" end="4">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="#">기타</a>
+					<div class="card-body">
+						<h5 class="card-title"></h5>
+						<c:forEach var="list" items="${personalclassifye}" end="4">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+					</div>
+				</li>
+			</div>
+		</ul>
+	</div>
+</div>
+
+

@@ -1,7 +1,5 @@
 package findEat.recommand.bean;
 
-import java.util.List;
-
 public class PlaceInfo {
 	private String address_name;
 	private String category_group_code;
