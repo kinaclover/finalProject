@@ -1,6 +1,7 @@
 package findEat.action.main;
 
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,14 @@ public class SuggestAction {
 	private Map<String,Integer> dtotalclassifyf	= null;
 	private Map<String,Integer> dtotalclassifye	= null;
 	
+	private List<CalendarVO> wtotalclassify		= null;	
+	private Map<String,Integer> wtotalclassifyk	= null;
+	private Map<String,Integer> wtotalclassifyj	= null;
+	private Map<String,Integer> wtotalclassifyc	= null;
+	private Map<String,Integer> wtotalclassifyw	= null;
+	private Map<String,Integer> wtotalclassifyf	= null;
+	private Map<String,Integer> wtotalclassifye	= null;
+	
 	private List<CalendarVO> dpersonalclassify		= null;
 	private Map<String,Integer> dpersonalclassifyk	= null;
 	private Map<String,Integer> dpersonalclassifyj	= null;
@@ -33,6 +42,14 @@ public class SuggestAction {
 	private Map<String,Integer> dpersonalclassifyw	= null;
 	private Map<String,Integer> dpersonalclassifyf	= null;
 	private Map<String,Integer> dpersonalclassifye	= null;
+	
+	private List<CalendarVO> wpersonalclassify		= null;
+	private Map<String,Integer> wpersonalclassifyk	= null;
+	private Map<String,Integer> wpersonalclassifyj	= null;
+	private Map<String,Integer> wpersonalclassifyc	= null;
+	private Map<String,Integer> wpersonalclassifyw	= null;
+	private Map<String,Integer> wpersonalclassifyf	= null;
+	private Map<String,Integer> wpersonalclassifye	= null;
 	
 	private MapSort sort	= new MapSort();						//map 정렬을 위한 함수
 	
@@ -48,7 +65,7 @@ public class SuggestAction {
 		int week	= cal.get(Calendar.WEEK_OF_YEAR);
 		int day		= cal.get(Calendar.DAY_OF_WEEK) - 1;
 		
-		//recommand K total
+		//recommand K total(d)
 		dtotalclassify = calDAO.DClassifyk(week, day);
 		dtotalclassifyk	= new HashMap<>();
 		
@@ -77,7 +94,7 @@ public class SuggestAction {
 		*/
 		
 		
-		//recommand J total
+		//recommand J total(d)
 		dtotalclassify = calDAO.DClassifyj(week, day);
 		dtotalclassifyj	= new HashMap<>();
 
@@ -98,7 +115,7 @@ public class SuggestAction {
 		dtotalclassifyj = sort.Sorting(dtotalclassifyj);
 		request.setAttribute("dtotalclassifyj", dtotalclassifyj);
 		
-		//recommand C total
+		//recommand C total(d)
 		dtotalclassify = calDAO.DClassifyc(week, day);
 		dtotalclassifyc	= new HashMap<>();
 		
@@ -120,7 +137,7 @@ public class SuggestAction {
 		dtotalclassifyc = sort.Sorting(dtotalclassifyc);
 		request.setAttribute("dtotalclassifyc", dtotalclassifyc);
 		
-		//recommand W total
+		//recommand W total(d)
 		dtotalclassify = calDAO.DClassifyw(week, day);
 		dtotalclassifyw	= new HashMap<>();
 		
@@ -142,7 +159,7 @@ public class SuggestAction {
 		dtotalclassifyw = sort.Sorting(dtotalclassifyw);
 		request.setAttribute("dtotalclassifyw", dtotalclassifyw);
 		
-		//recommand F total
+		//recommand F total(d)
 		dtotalclassify = calDAO.DClassifyf(week, day);
 		dtotalclassifyf	= new HashMap<>();
 		
@@ -165,7 +182,7 @@ public class SuggestAction {
 		request.setAttribute("dtotalclassifyf", dtotalclassifyf);
 		
 		
-		//recommand E total
+		//recommand E total(d)
 		dtotalclassify = calDAO.DClassifye(week, day);
 		dtotalclassifye	= new HashMap<>();
 		
@@ -187,7 +204,166 @@ public class SuggestAction {
 		dtotalclassifye = sort.Sorting(dtotalclassifye);
 		request.setAttribute("dtotalclassifye", dtotalclassifye);		
 		
-		//personal recommand K
+		
+		
+		
+		//recommand K total(w)
+				wtotalclassify = calDAO.WClassifyk(week);
+				wtotalclassifyk	= new HashMap<>();
+						
+				
+				for(CalendarVO temp: wtotalclassify) {
+				if(wtotalclassifyk.isEmpty()) wtotalclassifyk.put(temp.getFname(), 1);
+				else {
+					for(int i = 0; i < wtotalclassifyk.size(); i++) {
+						if(dtotalclassifyk.containsKey(wtotalclassifyk.get(i))) {
+							wtotalclassifyk.remove(i);
+							System.out.println(dtotalclassifyk.containsKey(wtotalclassifyk.get(i)));
+						}
+						
+					for(Map.Entry<String, Integer> x :wtotalclassifyk.entrySet()) {
+						if(temp.getFname().equals(x.getKey())) {
+							x.setValue(x.getValue()+1);
+							count++;
+						}
+					}
+					if(count==0) wtotalclassifyk.put(temp.getFname(), 1);
+					count = 0;
+					}
+				}
+				}
+				
+				wtotalclassifyk = sort.Sorting(wtotalclassifyk);
+				request.setAttribute("wtotalclassifyk", wtotalclassifyk);
+				/*
+				for(Map.Entry<String, Integer> temp: dtotalclassifyk.entrySet()) {
+					System.out.println(temp.getKey());
+				}
+				System.out.println("day value:"+day);
+				*/
+				
+				
+				//recommand J total(w)
+				wtotalclassify = calDAO.WClassifyj(week);
+				wtotalclassifyj	= new HashMap<>();
+				for(CalendarVO temp: wtotalclassify) {
+					if(wtotalclassifyj.isEmpty()) wtotalclassifyj.put(temp.getFname(), 1);
+					else {
+						for(Map.Entry<String, Integer> x :wtotalclassifyj.entrySet()) {
+							if(temp.getFname().equals(x.getKey())) {
+								x.setValue(x.getValue()+1);
+								count++;
+							}
+						}
+						if(count==0) wtotalclassifyj.put(temp.getFname(), 1);
+						count = 0;
+					}
+				}
+				
+				for(Map.Entry<String, Integer> temp: wtotalclassifyj.entrySet()) {
+					if(dtotalclassifyj.containsKey(temp.getKey())) {
+						//
+					}
+				}
+				
+				wtotalclassifyj = sort.Sorting(wtotalclassifyj);
+				request.setAttribute("wtotalclassifyj", wtotalclassifyj);
+				
+				//recommand C total(w)
+				wtotalclassify = calDAO.WClassifyc(week);
+				wtotalclassifyc	= new HashMap<>();
+				
+
+				for(CalendarVO temp: wtotalclassify) {
+				if(wtotalclassifyc.isEmpty()) wtotalclassifyc.put(temp.getFname(), 1);
+				else {
+					for(Map.Entry<String, Integer> x :wtotalclassifyc.entrySet()) {
+						if(temp.getFname().equals(x.getKey())) {
+							x.setValue(x.getValue()+1);
+							count++;
+						}
+					}
+					if(count==0) wtotalclassifyc.put(temp.getFname(), 1);
+					count = 0;
+					}
+				}
+				
+				wtotalclassifyc = sort.Sorting(wtotalclassifyc);
+				request.setAttribute("wtotalclassifyc", wtotalclassifyc);
+				
+				//recommand W total(w)
+				wtotalclassify = calDAO.WClassifyw(week);
+				wtotalclassifyw	= new HashMap<>();
+				
+
+				for(CalendarVO temp: wtotalclassify) {
+				if(wtotalclassifyw.isEmpty()) wtotalclassifyw.put(temp.getFname(), 1);
+				else {
+					for(Map.Entry<String, Integer> x :wtotalclassifyw.entrySet()) {
+						if(temp.getFname().equals(x.getKey())) {
+							x.setValue(x.getValue()+1);
+							count++;
+						}
+					}
+					if(count==0) wtotalclassifyw.put(temp.getFname(), 1);
+					count = 0;
+					}
+				}
+				
+				wtotalclassifyw = sort.Sorting(wtotalclassifyw);
+				request.setAttribute("wtotalclassifyw", wtotalclassifyw);
+				
+				//recommand F total(w)
+				wtotalclassify = calDAO.WClassifyf(week);
+				wtotalclassifyf	= new HashMap<>();
+				
+
+				for(CalendarVO temp: wtotalclassify) {
+				if(wtotalclassifyf.isEmpty()) wtotalclassifyf.put(temp.getFname(), 1);
+				else {
+					for(Map.Entry<String, Integer> x :wtotalclassifyf.entrySet()) {
+						if(temp.getFname().equals(x.getKey())) {
+							x.setValue(x.getValue()+1);
+							count++;
+						}
+					}
+					if(count==0) wtotalclassifyf.put(temp.getFname(), 1);
+					count = 0;
+					}
+				}
+				
+				wtotalclassifyf = sort.Sorting(wtotalclassifyf);
+				request.setAttribute("wtotalclassifyf", wtotalclassifyf);
+				
+				
+				//recommand E total(w)
+				wtotalclassify = calDAO.WClassifye(week);
+				wtotalclassifye	= new HashMap<>();
+				
+
+				for(CalendarVO temp: wtotalclassify) {
+				if(wtotalclassifye.isEmpty()) wtotalclassifye.put(temp.getFname(), 1);
+				else {
+					for(Map.Entry<String, Integer> x :wtotalclassifye.entrySet()) {
+						if(temp.getFname().equals(x.getKey())) {
+							x.setValue(x.getValue()+1);
+							count++;
+						}
+					}
+					if(count==0) wtotalclassifye.put(temp.getFname(), 1);
+					count = 0;
+					}
+				}
+				
+				wtotalclassifye = sort.Sorting(wtotalclassifye);
+				request.setAttribute("wtotalclassifye", wtotalclassifye);	
+		
+		
+		
+		
+		
+		
+		//personal recommand K(d)
 		if(request.getSession().getAttribute("id")!=null) {
 			String id	= (String)request.getSession().getAttribute("id");
 			dpersonalclassify	= calDAO.DPClassifyk(id, week, day);			
@@ -212,7 +388,7 @@ public class SuggestAction {
 				request.setAttribute("dpersonalclassifyk", dpersonalclassifyk);	
 			}
 		}
-		//personal recommand J
+		//personal recommand J(d)
 				if(request.getSession().getAttribute("id")!=null) {
 					String id	= (String)request.getSession().getAttribute("id");
 					dpersonalclassify	= calDAO.DPClassifyj(id, week, day);			
@@ -238,7 +414,7 @@ public class SuggestAction {
 					}
 				}
 			
-				//personal recommand C
+				//personal recommand C(d)
 				if(request.getSession().getAttribute("id")!=null) {
 					String id	= (String)request.getSession().getAttribute("id");
 					dpersonalclassify	= calDAO.DPClassifyc(id, week, day);			
@@ -264,7 +440,7 @@ public class SuggestAction {
 					}
 				}		
 		
-				//personal recommand W
+				//personal recommand W(d)
 				if(request.getSession().getAttribute("id")!=null) {
 					String id	= (String)request.getSession().getAttribute("id");
 					dpersonalclassify	= calDAO.DPClassifyw(id, week, day);			
@@ -290,7 +466,7 @@ public class SuggestAction {
 					}
 				}		
 		
-				//personal recommand F
+				//personal recommand F(d)
 				if(request.getSession().getAttribute("id")!=null) {
 					String id	= (String)request.getSession().getAttribute("id");
 					dpersonalclassify	= calDAO.DPClassifyf(id, week, day);			
@@ -316,7 +492,7 @@ public class SuggestAction {
 					}
 				}		
 		
-				//personal recommand E
+				//personal recommand E(d)
 				if(request.getSession().getAttribute("id")!=null) {
 					String id	= (String)request.getSession().getAttribute("id");
 					dpersonalclassify	= calDAO.DPClassifye(id, week, day);			
@@ -341,6 +517,163 @@ public class SuggestAction {
 						request.setAttribute("dpersonalclassifye", dpersonalclassifye);	
 					}
 				}		
+				
+				
+			
+				//personal recommand K(w)
+				if(request.getSession().getAttribute("id")!=null) {
+					String id	= (String)request.getSession().getAttribute("id");
+					wpersonalclassify	= calDAO.WPClassifyk(id, week);			
+					
+					wpersonalclassifyk = new HashMap<>();
+					if(wpersonalclassify!=null) {
+						for(CalendarVO temp: wpersonalclassify) {
+							if(wpersonalclassifyk.isEmpty()) wpersonalclassifyk.put(temp.getFname(),1);
+							else {
+								for(Map.Entry<String, Integer> x:wpersonalclassifyk.entrySet()) {
+									if(temp.getFname().equals(x.getKey())) {
+										x.setValue(x.getValue()+1);
+										count++;
+									}
+								}
+								if(count==0) wpersonalclassifyk.put(temp.getFname(),1);
+								count = 0;
+							}
+						}
+						
+						wpersonalclassifyk = sort.Sorting(wpersonalclassifyk);
+						request.setAttribute("wpersonalclassifyk", wpersonalclassifyk);	
+					}
+				}
+				//personal recommand J(w)
+						if(request.getSession().getAttribute("id")!=null) {
+							String id	= (String)request.getSession().getAttribute("id");
+							wpersonalclassify	= calDAO.WPClassifyj(id, week);			
+							
+							wpersonalclassifyj = new HashMap<>();
+							if(wpersonalclassify!=null) {
+								for(CalendarVO temp: wpersonalclassify) {
+									if(wpersonalclassifyj.isEmpty()) wpersonalclassifyj.put(temp.getFname(),1);
+									else {
+										for(Map.Entry<String, Integer> x:wpersonalclassifyj.entrySet()) {
+											if(temp.getFname().equals(x.getKey())) {
+												x.setValue(x.getValue()+1);
+												count++;
+											}
+										}
+										if(count==0) wpersonalclassifyj.put(temp.getFname(),1);
+										count = 0;
+									}
+								}
+								
+								wpersonalclassifyj = sort.Sorting(wpersonalclassifyj);
+								request.setAttribute("wpersonalclassifyj", wpersonalclassifyj);	
+							}
+						}
+					
+						//personal recommand C(w)
+						if(request.getSession().getAttribute("id")!=null) {
+							String id	= (String)request.getSession().getAttribute("id");
+							wpersonalclassify	= calDAO.WPClassifyc(id, week);			
+							
+							wpersonalclassifyc = new HashMap<>();
+							if(wpersonalclassify!=null) {
+								for(CalendarVO temp: wpersonalclassify) {
+									if(wpersonalclassifyc.isEmpty()) wpersonalclassifyc.put(temp.getFname(),1);
+									else {
+										for(Map.Entry<String, Integer> x:wpersonalclassifyc.entrySet()) {
+											if(temp.getFname().equals(x.getKey())) {
+												x.setValue(x.getValue()+1);
+												count++;
+											}
+										}
+										if(count==0) wpersonalclassifyc.put(temp.getFname(),1);
+										count = 0;
+									}
+								}
+								
+								wpersonalclassifyc = sort.Sorting(wpersonalclassifyc);
+								request.setAttribute("wpersonalclassifyc", wpersonalclassifyc);	
+							}
+						}		
+				
+						//personal recommand W(w)
+						if(request.getSession().getAttribute("id")!=null) {
+							String id	= (String)request.getSession().getAttribute("id");
+							wpersonalclassify	= calDAO.WPClassifyw(id, week);			
+							
+							wpersonalclassifyw = new HashMap<>();
+							if(wpersonalclassify!=null) {
+								for(CalendarVO temp: wpersonalclassify) {
+									if(wpersonalclassifyw.isEmpty()) wpersonalclassifyw.put(temp.getFname(),1);
+									else {
+										for(Map.Entry<String, Integer> x:wpersonalclassifyw.entrySet()) {
+											if(temp.getFname().equals(x.getKey())) {
+												x.setValue(x.getValue()+1);
+												count++;
+											}
+										}
+										if(count==0) wpersonalclassifyw.put(temp.getFname(),1);
+										count = 0;
+									}
+								}
+								
+								wpersonalclassifyw = sort.Sorting(wpersonalclassifyw);
+								request.setAttribute("wpersonalclassifyw", wpersonalclassifyw);	
+							}
+						}		
+				
+						//personal recommand F(w)
+						if(request.getSession().getAttribute("id")!=null) {
+							String id	= (String)request.getSession().getAttribute("id");
+							wpersonalclassify	= calDAO.WPClassifyf(id, week);			
+							
+							wpersonalclassifyf = new HashMap<>();
+							if(wpersonalclassify!=null) {
+								for(CalendarVO temp: wpersonalclassify) {
+									if(wpersonalclassifyf.isEmpty()) wpersonalclassifyf.put(temp.getFname(),1);
+									else {
+										for(Map.Entry<String, Integer> x:wpersonalclassifyf.entrySet()) {
+											if(temp.getFname().equals(x.getKey())) {
+												x.setValue(x.getValue()+1);
+												count++;
+											}
+										}
+										if(count==0) wpersonalclassifyf.put(temp.getFname(),1);
+										count = 0;
+									}
+								}
+								
+								wpersonalclassifyf = sort.Sorting(wpersonalclassifyf);
+								request.setAttribute("wpersonalclassifyf", wpersonalclassifyf);	
+							}
+						}		
+				
+						//personal recommand E(w)
+						if(request.getSession().getAttribute("id")!=null) {
+							String id	= (String)request.getSession().getAttribute("id");
+							wpersonalclassify	= calDAO.WPClassifye(id, week);			
+							
+							wpersonalclassifye = new HashMap<>();
+							if(wpersonalclassify!=null) {
+								for(CalendarVO temp: wpersonalclassify) {
+									if(wpersonalclassifye.isEmpty()) wpersonalclassifye.put(temp.getFname(),1);
+									else {
+										for(Map.Entry<String, Integer> x:wpersonalclassifye.entrySet()) {
+											if(temp.getFname().equals(x.getKey())) {
+												x.setValue(x.getValue()+1);
+												count++;
+											}
+										}
+										if(count==0) wpersonalclassifye.put(temp.getFname(),1);
+										count = 0;
+									}
+								}
+								
+								wpersonalclassifye = sort.Sorting(wpersonalclassifye);
+								request.setAttribute("wpersonalclassifye", wpersonalclassifye);	
+							}
+						}			
 				
 		return "/main/suggestion";
 	}
