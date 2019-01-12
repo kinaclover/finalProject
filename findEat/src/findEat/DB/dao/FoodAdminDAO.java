@@ -13,4 +13,6 @@ public interface FoodAdminDAO {
 	public int DeleteFood(FoodVO foodVO) throws Exception;
 	/* temporary insert cal */
 	public int InsertCalDB(CalendarVO calVO) throws Exception;
+	public List<CalendarVO> IdList() throws Exception;				//select All
+	public int DeleteOne(CalendarVO calVO) throws Exception;		//delete One
 }

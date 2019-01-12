@@ -103,7 +103,31 @@
 			</div>
 		</fieldset>
 	</form>
+	
+	<!-- DB data -->
+	<div>
+		<div>
+			<select class="custom-select" id="idList">
+			<!-- ID List -->
+				<c:forEach items="${idList}" var="list">
+					<option class="">${lsit.id}</option>
+				</c:forEach>
+			</select>
+			<!-- Data -->
+			<div>
+				<c:forEach items="${idList}" var="list">
+					<div class="row ">
+						<input class="" />
+						<div class="col-10">${list.fyear}/${list.fmonth}/${list.fdate} : ${list.fname}</div>
+						<button class="col-2"></button>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
 </div>
+
+
 </c:if>
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
