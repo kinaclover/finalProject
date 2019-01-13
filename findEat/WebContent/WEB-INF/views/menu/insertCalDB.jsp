@@ -104,8 +104,8 @@
 		</fieldset>
 	</form>
 	
-	<!-- DB data -->
-	<div>
+	<!-- DB data (temporary)-->
+	<div hidden="hidden mt-5">
 		<div>
 			<select class="custom-select" id="idList">
 			<!-- ID List -->

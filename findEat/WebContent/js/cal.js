@@ -197,7 +197,7 @@ function save() {
 		var sel_menu_code = $('#inputGroup04 option:selected').val();
 		var sel_menu_name = $('#inputGroup04 option:selected').text();
 		var sel_menu_classify= $('#inputGroup04 option:selected').attr('class');
-		var id = "admin";
+		var id = $("#calIdCheck").val();
 		
 		$.ajax({
 			async: true,
@@ -267,7 +267,7 @@ function loadDB(now_month) {
 	$.ajax({ // 시작 시 db 에서 데이터 가져옴 
 	  url : "calFoodSelect.do",
 	  type: "get",
-	  data : { "id" : "admin" },
+	  data : { "id" : $("#calIdCheck").val() },
 	  dataType: 'json',
 	  success : function(data) {
 		  // 현재 월의 데이터를 가져옴

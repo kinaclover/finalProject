@@ -19,6 +19,8 @@
 	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
 </div>
 
+<input type="hidden" id="calIdCheck" value="${sessionScope.id}"/>
+
 <div id="container"> 
     <div id="position">
     
