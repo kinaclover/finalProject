@@ -19,4 +19,17 @@
 		select * from calendar where id = #{id} and fweek = #{fweek}
 	</select>
 
+	<insert id="insertMenu" parameterType="calVO">
+		insert into calendar values(#{id}, #{fyear}, #{fmonth}, #{fdate}, #{fday}, #{fweek}, #{fname}, #{fcode}, #{classify})
+	</insert>
+	
+	<delete id="deleteMenu" parameterType="hashmap">
+		delete from calendar where 
+		fyear=#{year} and 
+		fmonth=#{month} and 
+		fdate=#{date} and 
+		fcode=#{selCode} and 
+		classify=#{selClfiy}
+	</delete>
+	
 </mapper>

@@ -9,11 +9,10 @@
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/cal.css">
-
+<!-- calendar -->
+<script src="js/jquery-3.3.1.js"></script>
 <script src="js/cal.js"></script>
-<script src="js/calFoodSelect.js"></script>
 <script src="js/jquery-ui.min.js"></script>
-
 </head>
 <body>
 <div class="mt-0 mb-3" id="menu">
@@ -56,14 +55,7 @@
        			</tr>
 			</thead>
 			<tbody id="tabBody"> <!-- 달력 출력 -->
-       			<script>present();
-       			var Ymd_text = $('#Ymd').text();
-       			console.log(Ymd_text);
-       			$('#prev, #next').click(function() {
-       				var Ymd_text = $('#Ymd').text();
-           			console.log(Ymd_text);	
-       			});
-       			</script>
+       			<script>present();</script>
        			<!-- 달력에 음식 정보 출력 -->
 			</tbody>
          	</table>
@@ -75,7 +67,7 @@
     	
     	
     <!-- Modal -->
-  	<div class="modal fade" id="myModal" role="dialog">
+  	<div class="modal fade" id="menuModal" role="dialog">
     
     <div class="modal-dialog">
     
@@ -134,8 +126,8 @@
         </div>
         
 		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal" id="saveBtn"> Save </button>             
-			<button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="saveBtn"> 저장 </button>             
+			<button type="button" class="btn btn-default" data-dismiss="modal" id="close"> 취소 </button>
 		</div>
 	</div>
       
@@ -144,18 +136,34 @@
 	</div>
 <!-- Modal -->
 
-
+<!-- Modal2 -->
+<div class="modal fade" id="deleteModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      <!-- body -->
+      <div class="modal-body" id="delete_contents">
+            정말 삭제하시겠습니까?
+      </div>
+     <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="delete_confirm">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal2 -->
 
 
 </div>
 
 
 <!-- for bootstrap/jQuery/Popper -->
-<script src="js/jquery-3.3.1.js"></script>
 <script src="js/popper.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/menu.js"></script>
-
 </body>
 </html>
