@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import findEat.DB.bean.CalendarVO;
 import findEat.DB.bean.FoodVO;
@@ -90,6 +92,7 @@ public class FoodAction {
 		List<FoodVO> wGroup	= foodDAO.CheckGroup("w");
 		List<FoodVO> fGroup	= foodDAO.CheckGroup("f");
 		List<FoodVO> eGroup	= foodDAO.CheckGroup("e");
+		List<CalendarVO> idList	= foodDAO.IdList();
 		
 		request.setAttribute("kTotal", kTotal);
 		request.setAttribute("jTotal", jTotal);
@@ -103,6 +106,7 @@ public class FoodAction {
 		request.setAttribute("wGroup", wGroup);
 		request.setAttribute("fGroup", fGroup);
 		request.setAttribute("eGroup", eGroup);
+		request.setAttribute("idList", idList);
 		return "/menu/insertCalDB";
 	}
 	@RequestMapping("insertCalDBPro.do")
@@ -112,5 +116,11 @@ public class FoodAction {
 		request.setAttribute("check", check);
 		request.setAttribute("status", status);
 		return "/menu/insertResult";
+	}
+	@ResponseBody
+	@RequestMapping("deleteCalOne.do")
+	public String deleteCalOne(@RequestBody CalendarVO calVO) throws Exception {
+		int check	= foodDAO.DeleteOne(calVO);
+		return String.valueOf(check);
 	}
 }

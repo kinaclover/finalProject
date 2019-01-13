@@ -12,8 +12,13 @@
 					<a class="nav-link active" href="#">한식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${totalclassifyk}" end="4">
+						<c:forEach var="list" items="${dtotalclassifyk}" end="2">
 							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wtotalclassifyk}" end="1">
+						
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						
 						</c:forEach>
 					</div>
 				</li>
@@ -21,7 +26,10 @@
 					<a class="nav-link active" href="#">일식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${totalclassifyj}" end="4">
+						<c:forEach var="list" items="${dtotalclassifyj}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wtotalclassifyj}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -30,7 +38,10 @@
 					<a class="nav-link active" href="#">중식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${totalclassifyc}" end="4">
+						<c:forEach var="list" items="${dtotalclassifyc}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wtotalclassifyc}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -39,7 +50,10 @@
 					<a class="nav-link active" href="#">양식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${totalclassifyw}" end="4">
+						<c:forEach var="list" items="${dtotalclassifyw}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wtotalclassifyw}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -48,7 +62,10 @@
 					<a class="nav-link active" href="#">패스트푸드</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${totalclassifyf}" end="4">
+						<c:forEach var="list" items="${dtotalclassifyf}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wtotalclassifyf}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -57,7 +74,10 @@
 					<a class="nav-link active" href="#">기타</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${totalclassifye}" end="4">
+						<c:forEach var="list" items="${dtotalclassifye}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wtotalclassifye}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -76,7 +96,10 @@
 					<a class="nav-link active" href="#">한식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${personalclassifyk}" end="4">
+						<c:forEach var="list" items="${dpersonalclassifyk}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wpersonalclassifyk}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -85,7 +108,10 @@
 					<a class="nav-link active" href="#">일식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${personalclassifyj}" end="4">
+						<c:forEach var="list" items="${dpersonalclassifyj}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wpersonalclassifyj}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -94,7 +120,10 @@
 					<a class="nav-link active" href="#">중식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${personalclassifyc}" end="4">
+						<c:forEach var="list" items="${dpersonalclassifyc}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wpersonalclassifyc}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -103,7 +132,10 @@
 					<a class="nav-link active" href="#">양식</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${personalclassifyw}" end="4">
+						<c:forEach var="list" items="${dpersonalclassifyw}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wpersonalclassifyw}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -112,7 +144,10 @@
 					<a class="nav-link active" href="#">패스트푸드</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${personalclassifyf}" end="4">
+						<c:forEach var="list" items="${dpersonalclassifyf}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wpersonalclassifyf}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
@@ -121,7 +156,10 @@
 					<a class="nav-link active" href="#">기타</a>
 					<div class="card-body">
 						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${personalclassifye}" end="4">
+						<c:forEach var="list" items="${dpersonalclassifye}" end="2">
+							<a href="#" class="btn btn-primary">${list.key}</a>
+						</c:forEach>
+						<c:forEach var="list" items="${wpersonalclassifye}" end="1">
 							<a href="#" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>

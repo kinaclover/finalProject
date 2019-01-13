@@ -24,7 +24,7 @@
 <!-- guest -->
 <c:if test="${sessionScope.id==null}">
 	<div class="col-sm-3 text-right">
-		<button class="btn btn-sm btn-outline-secondary" onclick="window.location='/findEat/list.do'">Board</button>
+		<button class="btn btn-sm btn-outline-info" id="mainButton" onclick="window.location='/findEat/index.do'">Index</button>
 		<button class="btn btn-sm btn-outline-primary" onclick="window.location='/findEat/login.do'">Login</button>
 		<button class="btn btn-sm btn-outline-info" onclick="window.location='/findEat/join.do'">Sign Up</button>
 	</div>
@@ -33,16 +33,17 @@
 <!-- client -->
 <c:if test="${sessionScope.id!=null}">
 	<div class="col-sm-3 dropdown text-right">
-		<button class="btn btn-sm btn-outline-secondary" onclick="window.location='/findEat/list.do'">Board</button>
+		<button class="btn btn-sm btn-outline-info" id="mainButton" onclick="window.location='/findEat/index.do'">Index</button>
 		<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expended="false">My menu</button>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropDown">
 				<a class="dropdown-item" href="/findEat/cal.do">Calendar</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="/findEat/modify.do">Modify</a>
+				<a class="dropdown-item" href="/findEat/search.do">Search</a>
 				<c:if test="${sessionScope.id.equals('admin')}">
-				<a class="dropdown-item" href="/findEat/insertFood.do">Food Administrator</a>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="/findEat/insertCalDB.do">Insert Calendar(temporary)</a>
+					<a class="dropdown-item" href="/findEat/insertFood.do">Food Administrator</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="/findEat/insertCalDB.do">Insert Calendar(temporary)</a>
 				</c:if>
 			</div>
 		<button class="btn btn-sm btn-danger" id="logoutBtn">Logout</button>

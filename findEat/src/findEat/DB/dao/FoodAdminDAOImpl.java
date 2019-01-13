@@ -38,9 +38,20 @@ public class FoodAdminDAOImpl implements FoodAdminDAO {
 		return check;
 	}
 
+	/* temporary insert cal */
 	@Override
 	public int InsertCalDB(CalendarVO calVO) throws Exception {
 		int check	= sqlSession.insert("food.calDB",calVO);
+		return check;
+	}
+	@Override
+	public List<CalendarVO> IdList() throws Exception {
+		List<CalendarVO> list	= sqlSession.selectList("food.selectAll");
+		return list;
+	}
+	@Override
+	public int DeleteOne(CalendarVO calVO) throws Exception {
+		int check	= sqlSession.delete("food.deleteOne",calVO);
 		return check;
 	}
 	
