@@ -1,11 +1,11 @@
 package findEat.action.main;
 
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,6 +57,14 @@ public class SuggestAction {
 	
 	@Autowired
 	private CalendarDAOImpl calDAO	= null;
+	
+	private void removeKey(Map<String, Integer> map, Set<String> set) {
+		for(String key : set) {
+			if(map.containsKey(key)) {
+				map.remove(key);
+			}
+		}
+	}
 
 	@RequestMapping("suggestion.do")
 	public String suggest(HttpServletRequest request) throws Exception {
@@ -210,17 +218,12 @@ public class SuggestAction {
 		//recommand K total(w)
 				wtotalclassify = calDAO.WClassifyk(week);
 				wtotalclassifyk	= new HashMap<>();
-						
+				
+
 				
 				for(CalendarVO temp: wtotalclassify) {
 				if(wtotalclassifyk.isEmpty()) wtotalclassifyk.put(temp.getFname(), 1);
 				else {
-					for(int i = 0; i < wtotalclassifyk.size(); i++) {
-						if(dtotalclassifyk.containsKey(wtotalclassifyk.get(i))) {
-							wtotalclassifyk.remove(i);
-							System.out.println(dtotalclassifyk.containsKey(wtotalclassifyk.get(i)));
-						}
-						
 					for(Map.Entry<String, Integer> x :wtotalclassifyk.entrySet()) {
 						if(temp.getFname().equals(x.getKey())) {
 							x.setValue(x.getValue()+1);
@@ -231,8 +234,8 @@ public class SuggestAction {
 					count = 0;
 					}
 				}
-				}
-				
+				removeKey(wtotalclassifyk, dtotalclassifyk.keySet());
+
 				wtotalclassifyk = sort.Sorting(wtotalclassifyk);
 				request.setAttribute("wtotalclassifyk", wtotalclassifyk);
 				/*
@@ -246,26 +249,24 @@ public class SuggestAction {
 				//recommand J total(w)
 				wtotalclassify = calDAO.WClassifyj(week);
 				wtotalclassifyj	= new HashMap<>();
+				
+
+				
 				for(CalendarVO temp: wtotalclassify) {
-					if(wtotalclassifyj.isEmpty()) wtotalclassifyj.put(temp.getFname(), 1);
-					else {
-						for(Map.Entry<String, Integer> x :wtotalclassifyj.entrySet()) {
-							if(temp.getFname().equals(x.getKey())) {
-								x.setValue(x.getValue()+1);
-								count++;
-							}
+				if(wtotalclassifyj.isEmpty()) wtotalclassifyj.put(temp.getFname(), 1);
+				else {
+					for(Map.Entry<String, Integer> x :wtotalclassifyj.entrySet()) {
+						if(temp.getFname().equals(x.getKey())) {
+							x.setValue(x.getValue()+1);
+							count++;
 						}
-						if(count==0) wtotalclassifyj.put(temp.getFname(), 1);
-						count = 0;
+					}
+					if(count==0) wtotalclassifyj.put(temp.getFname(), 1);
+					count = 0;
 					}
 				}
-				
-				for(Map.Entry<String, Integer> temp: wtotalclassifyj.entrySet()) {
-					if(dtotalclassifyj.containsKey(temp.getKey())) {
-						//
-					}
-				}
-				
+				removeKey(wtotalclassifyj, dtotalclassifyj.keySet());
+
 				wtotalclassifyj = sort.Sorting(wtotalclassifyj);
 				request.setAttribute("wtotalclassifyj", wtotalclassifyj);
 				
@@ -274,6 +275,7 @@ public class SuggestAction {
 				wtotalclassifyc	= new HashMap<>();
 				
 
+				
 				for(CalendarVO temp: wtotalclassify) {
 				if(wtotalclassifyc.isEmpty()) wtotalclassifyc.put(temp.getFname(), 1);
 				else {
@@ -287,8 +289,9 @@ public class SuggestAction {
 					count = 0;
 					}
 				}
-				
-				wtotalclassifyc = sort.Sorting(wtotalclassifyc);
+				removeKey(wtotalclassifyc, dtotalclassifyc.keySet());
+
+				wtotalclassifyk = sort.Sorting(wtotalclassifyc);
 				request.setAttribute("wtotalclassifyc", wtotalclassifyc);
 				
 				//recommand W total(w)
@@ -296,6 +299,7 @@ public class SuggestAction {
 				wtotalclassifyw	= new HashMap<>();
 				
 
+				
 				for(CalendarVO temp: wtotalclassify) {
 				if(wtotalclassifyw.isEmpty()) wtotalclassifyw.put(temp.getFname(), 1);
 				else {
@@ -309,7 +313,8 @@ public class SuggestAction {
 					count = 0;
 					}
 				}
-				
+				removeKey(wtotalclassifyw, dtotalclassifyw.keySet());
+
 				wtotalclassifyw = sort.Sorting(wtotalclassifyw);
 				request.setAttribute("wtotalclassifyw", wtotalclassifyw);
 				
@@ -318,6 +323,7 @@ public class SuggestAction {
 				wtotalclassifyf	= new HashMap<>();
 				
 
+				
 				for(CalendarVO temp: wtotalclassify) {
 				if(wtotalclassifyf.isEmpty()) wtotalclassifyf.put(temp.getFname(), 1);
 				else {
@@ -331,16 +337,17 @@ public class SuggestAction {
 					count = 0;
 					}
 				}
-				
+				removeKey(wtotalclassifyf, dtotalclassifyf.keySet());
+
 				wtotalclassifyf = sort.Sorting(wtotalclassifyf);
 				request.setAttribute("wtotalclassifyf", wtotalclassifyf);
-				
 				
 				//recommand E total(w)
 				wtotalclassify = calDAO.WClassifye(week);
 				wtotalclassifye	= new HashMap<>();
 				
 
+				
 				for(CalendarVO temp: wtotalclassify) {
 				if(wtotalclassifye.isEmpty()) wtotalclassifye.put(temp.getFname(), 1);
 				else {
@@ -354,11 +361,10 @@ public class SuggestAction {
 					count = 0;
 					}
 				}
-				
+				removeKey(wtotalclassifye, dtotalclassifye.keySet());
+
 				wtotalclassifye = sort.Sorting(wtotalclassifye);
-				request.setAttribute("wtotalclassifye", wtotalclassifye);	
-		
-		
+				request.setAttribute("wtotalclassifye", wtotalclassifye);
 		
 		
 		
@@ -540,6 +546,8 @@ public class SuggestAction {
 								count = 0;
 							}
 						}
+						removeKey(wpersonalclassifyk, dpersonalclassifyk.keySet());
+						
 						
 						wpersonalclassifyk = sort.Sorting(wpersonalclassifyk);
 						request.setAttribute("wpersonalclassifyk", wpersonalclassifyk);	
@@ -565,6 +573,7 @@ public class SuggestAction {
 										count = 0;
 									}
 								}
+								removeKey(wpersonalclassifyj, dpersonalclassifyj.keySet());
 								
 								wpersonalclassifyj = sort.Sorting(wpersonalclassifyj);
 								request.setAttribute("wpersonalclassifyj", wpersonalclassifyj);	
@@ -592,6 +601,7 @@ public class SuggestAction {
 									}
 								}
 								
+								removeKey(wpersonalclassifyc, dpersonalclassifyc.keySet());
 								wpersonalclassifyc = sort.Sorting(wpersonalclassifyc);
 								request.setAttribute("wpersonalclassifyc", wpersonalclassifyc);	
 							}
@@ -618,6 +628,7 @@ public class SuggestAction {
 									}
 								}
 								
+								removeKey(wpersonalclassifyw, dpersonalclassifyw.keySet());
 								wpersonalclassifyw = sort.Sorting(wpersonalclassifyw);
 								request.setAttribute("wpersonalclassifyw", wpersonalclassifyw);	
 							}
@@ -644,6 +655,7 @@ public class SuggestAction {
 									}
 								}
 								
+								removeKey(wpersonalclassifyf, dpersonalclassifyf.keySet());
 								wpersonalclassifyf = sort.Sorting(wpersonalclassifyf);
 								request.setAttribute("wpersonalclassifyf", wpersonalclassifyf);	
 							}
@@ -669,7 +681,7 @@ public class SuggestAction {
 										count = 0;
 									}
 								}
-								
+								removeKey(wpersonalclassifye, dpersonalclassifye.keySet());
 								wpersonalclassifye = sort.Sorting(wpersonalclassifye);
 								request.setAttribute("wpersonalclassifye", wpersonalclassifye);	
 							}
