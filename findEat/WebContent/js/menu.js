@@ -28,4 +28,12 @@ $(document).ready(function(){
 	}
 	noticeRollingOff = setInterval(noticeRolling,4000);
 	$(".noticeGroup").append($(".noticeItem").first().clone());
+	
+	var path	= $(location).attr('pathname');
+	if(path=='/findEat/index.do'){
+		$("#mainButton").attr('onclick',"window.location='/findEat/list.do'");
+		$("#mainButton").html("Board");
+		$("#mainButton").removeClass("btn-outline-info");
+		$("#mainButton").addClass("btn-outline-secondary");
+	}
 });

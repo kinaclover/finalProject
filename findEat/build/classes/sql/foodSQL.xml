@@ -27,4 +27,10 @@
 	<insert id="calDB" parameterType="calVO">
 		insert into calendar values(#{id},#{fyear},#{fmonth},#{fdate},#{fday},#{fweek},#{fname},#{fcode},#{classify})
 	</insert>
+	<select id="selectAll" resultType="calVO">
+		select * from calendar
+	</select>
+	<delete id="deleteOne" parameterType="calVO">
+		delete from calendar where id=#{id} and fyear=#{fyear} and fmonth=#{fmonth} and fdate=#{fdate}
+	</delete>
 </mapper>
