@@ -39,6 +39,8 @@
 	</c:if>
 </c:if>
 
+<!-- temporary cal DB -->
+
 <c:if test="${status==3}">
 	<c:if test="${check==1}">
 		<script>
@@ -50,6 +52,22 @@
 	<c:if test="${check!=1}">
 		<script>
 			alert("입력되지 않았습니다. 다시 시도해주세요.");
+			history.back();
+		</script>
+	</c:if>
+</c:if>
+
+<c:if test="${status==4}">
+	<c:if test="${check==1}">
+		<script>
+			alert("삭제완료.");
+			window.location = "/findEat/insertCalDB.do";
+		</script>
+	</c:if>
+	
+	<c:if test="${check!=1}">
+		<script>
+			alert("삭제되지 않았습니다. 다시 시도해주세요.");
 			history.back();
 		</script>
 	</c:if>

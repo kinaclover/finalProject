@@ -8,7 +8,6 @@
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
- <link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <body class="d-block">
 <!-- menu -->
@@ -105,26 +104,39 @@
 	</form>
 	
 	<!-- DB data (temporary) / admin setting -->
-	<div class="mt-5" hidden="hidden">
+	<fieldset class="mt-5">
+		<legend>Calendar DB Delete(Temporary)</legend>
+	<div class="mt-1">
 		<div>
-			<select class="custom-select" id="idList">
-			<!-- ID List -->
-				<c:forEach items="${idList}" var="list">
-					<option class="">${lsit.id}</option>
-				</c:forEach>
-			</select>
-			<!-- Data -->
-			<div>
-				<c:forEach items="${idList}" var="list">
-					<div class="row ">
-						<input type="hidden" class="" />
-						<div class="col-10">${list.fyear}/${list.fmonth}/${list.fdate} : ${list.fname}</div>
-						<button class="col-2" id="delCalDB">Delete</button>
-					</div>
-				</c:forEach>
-			</div>
+			<form action="deleteCalOne.do" method="post" onsubmit="return DelCheck()">
+				<select class="custom-select" id="idList" name="id">
+				<!-- ID List -->
+					<option>----------</option>
+					<c:forEach items="${idList}" var="list">
+						<option value="${list}">${list}</option>
+					</c:forEach>
+				</select>
+				<!-- Data -->
+				<div class="input-group mt-3 mx-0 row">
+					<label class="mb-0 col-2 text-right align-bottom" for="datepicker2">Date : </label>
+					<input class="py-0 col-10 align-bottom" type="text" id="datepicker2"/>
+					<input type="hidden" id="fyearDel" name="fyear" value=""/>
+					<input type="hidden" id="fmonthDel" name="fmonth" value=""/>
+					<input type="hidden" id="fdateDel" name="fdate" value=""/>
+					<input type="hidden" id="fdayDel" name="fday" value=""/>
+					<input type="hidden" id="fweekDel" name="fweek" value=""/>
+				</div>
+				<div class="input-group mt-3 mx-0 row">
+					<label class="mb-0 col-2 text-right align-bottom" for="resultFname">Fname : </label>
+					<input type="text" class="py-0 col-10 form-control-plaintext align-bottom" id="resultFname" value="" readonly/>
+				</div>
+				<div class="mt-3">
+					<input class="btn-secondary btn-md" type="submit" value="삭제하기"/>
+				</div>
+			</form>
 		</div>
 	</div>
+	</fieldset>
 </div>
 
 

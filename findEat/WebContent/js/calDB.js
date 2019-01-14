@@ -79,4 +79,46 @@ $('#inputGroup03').change(function(){
 	}
 });
 
-//
+///////////////////////////
+//admin db 관리
+$(document).ready(function(){
+	$(".totalList").hide();
+});
+//datepicker - delete
+$(function(){
+	$("#datepicker2").datepicker({
+		onSelect: function(){
+			var data	= $(this).datepicker('getDate');
+			var year	= data.getFullYear();
+			var month	= Number(data.getMonth())+Number(1);
+			var date	= data.getDate();
+			var id		= $("#idList option:selected").val();
+			$("#fyearDel").val(year);
+			$("#fmonthDel").val(month);
+			$("#fdateDel").val(date);
+			$.ajax({
+				async: true,
+				type: 'POST',
+				data: JSON.stringify({"id":id,"fyear":year,"fmonth":month,"fdate":date}),
+				contentType: "application/json; charset=UTF-8",
+				url: 'checkFname.do',
+				success: function(data){
+					$("#resultFname").val(data);
+				},
+				error: function(request,status,error) {
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+	});
+});
+
+function DelCheck() {
+	var fname	= document.getElementById("resultFname").value;
+	if(fname=="null") {
+		alert("삭제할 값이 없습니다.");
+		return false;
+	}else {
+		return true;
+	}
+}

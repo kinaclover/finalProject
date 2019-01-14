@@ -21,21 +21,39 @@
 
 <input type="hidden" id="calIdCheck" value="${sessionScope.id}"/>
 
-<div id="container"> 
-    <div id="position">
+<!-- login Check -->
+<c:if test="${sessionScope.id==null}">
+	<script type="text/javascript">
+		alert("로그인이 필요합니다.");
+		window.location = "/findEat/login.do";
+	</script>
+</c:if>
+
+<c:if test="${sessionScope.id!=null}">
+<!-- title -->
+<div>
+	<h5 class="text-center font-weight-bold">나의 월간 식단표</h5>
+</div>
+<div id="container" style="width:100%" class="mb-3"> 
+
+    <div id="position" style="width:90%;margin:0 auto">
     
     <!-- 메뉴 바 -->
-    <div class="row">
+    <div class="row mt-3 mb-3">
     	<div id="top-menu">
     		<div class="btn-group" role="group" style="width:100%;">
-				<div style="margin:0 auto;">
-        			<button type="button" id="prev" class="btn-custom btn-default btn-sm-custom" onclick="prevmonth();">
-						<i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+				<div style="margin:0 auto;" class="align-bottom">
+        			<button type="button" id="prev" class="btn-custom btn-default btn-outline-info" onclick="prevmonth();">
+						<i class="calendar-icon ic-arrow-line-left align-baseline" data-action="move-prev"></i>
        				</button>
-        			<button type="button" id="next" class="btn-custom btn-default btn-sm-custom" onclick="nextmonth();">
-        				<i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+        			<button type="button" id="next" class="btn-custom btn-default btn-outline-info btn-sm-custom" onclick="nextmonth();">
+        				<i class="calendar-icon ic-arrow-line-right align-baseline" data-action="move-next"></i>
         			</button>
-        			<span id="Ymd"></span>
+        			<button type="button" id="todayBtn" class="btn-custom btn-default btn-outline-primary btn-sm-custom" onclick="todayMonth();">
+        				<i class="calendar-icon align-baseline">T</i>
+        			</button>
+        			<input type="hidden" id="calYear" value=""/>
+        			<label id="Ymd" class="ml-3"></label>
         		</div>
 			</div>
 		</div>
@@ -44,16 +62,16 @@
 
   	<!-- 달력 -->
    	<div class="col-md-12">
-       	  <table class="table table-bordered" id="tab">
-       	    <thead class="text-center">
+       	  <table class="table table-bordered table-hover-cells" id="tab">
+       	    <thead class="thead text-center">
 				<tr align="center">
-           			<td align="center">일</td>
-           			<td align="center">월</td>
-           			<td align="center">화</td>
-           			<td align="center">수</td>
-           			<td align="center">목</td>
-           			<td align="center">금</td>
-           			<td align="center">토</td>  
+           			<th scope="col" style="min-width:120px;max-width:150px">일</th>
+           			<th scope="col"  style="min-width:120px;max-width:150px">월</th>
+           			<th scope="col"  style="min-width:120px;max-width:150px">화</th>
+           			<th scope="col"  style="min-width:120px;max-width:150px">수</th>
+           			<th scope="col"  style="min-width:120px;max-width:150px">목</th>
+           			<th scope="col"  style="min-width:120px;max-width:150px">금</th>
+           			<th scope="col"  style="min-width:120px;max-width:150px">토</th>  
        			</tr>
 			</thead>
 			<tbody id="tabBody"> <!-- 달력 출력 -->
@@ -157,9 +175,8 @@
   </div>
 </div>
 <!-- Modal2 -->
-
-
 </div>
+</c:if>
 
 
 <!-- for bootstrap/jQuery/Popper -->

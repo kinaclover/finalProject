@@ -45,7 +45,7 @@ public class FoodAdminDAOImpl implements FoodAdminDAO {
 		return check;
 	}
 	@Override
-	public List<CalendarVO> IdList() throws Exception {
+	public List<CalendarVO> CalTotalList() throws Exception {
 		List<CalendarVO> list	= sqlSession.selectList("food.selectAll");
 		return list;
 	}
@@ -53,6 +53,12 @@ public class FoodAdminDAOImpl implements FoodAdminDAO {
 	public int DeleteOne(CalendarVO calVO) throws Exception {
 		int check	= sqlSession.delete("food.deleteOne",calVO);
 		return check;
+	}
+
+	@Override
+	public String SelectFname(CalendarVO calVO) throws Exception {
+		String fname	= sqlSession.selectOne("food.selectFname",calVO);
+		return fname;
 	}
 	
 	
