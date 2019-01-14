@@ -104,8 +104,8 @@
 		</fieldset>
 	</form>
 	
-	<!-- DB data (temporary)-->
-	<div hidden="hidden mt-5">
+	<!-- DB data (temporary) / admin setting -->
+	<div class="mt-5" hidden="hidden">
 		<div>
 			<select class="custom-select" id="idList">
 			<!-- ID List -->
@@ -117,9 +117,9 @@
 			<div>
 				<c:forEach items="${idList}" var="list">
 					<div class="row ">
-						<input class="" />
+						<input type="hidden" class="" />
 						<div class="col-10">${list.fyear}/${list.fmonth}/${list.fdate} : ${list.fname}</div>
-						<button class="col-2"></button>
+						<button class="col-2" id="delCalDB">Delete</button>
 					</div>
 				</c:forEach>
 			</div>
