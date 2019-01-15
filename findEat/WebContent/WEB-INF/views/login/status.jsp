@@ -64,13 +64,13 @@
 
 <!-- 4. delete -->
 <c:if test="${status==4}">
-	<c:if test="${check==1}">
+	<c:if test="${check>=2}">
 		<script type="text/javascript">
 			alert("안녕히가세요.");
 			window.location = "/findEat/index.do";
 		</script>
 	</c:if>
-	<c:if test="${check!=1}">
+	<c:if test="${check!=2}">
 		<script type="text/javascript">
 			alert("비밀번호를 확인해주세요.");
 			history.back();

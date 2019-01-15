@@ -46,6 +46,18 @@ public class LoginDAOImpl implements LoginDAO {
 		int check	= (Integer)sqlSession.delete("login.delete",map);
 		return check;
 	}
+	
+	@Override
+	public int DeleteCalCheck(String id) throws Exception {
+		int check	= sqlSession.selectOne("login.deleteCalCheck",id);
+		return check;
+	}
+	
+	@Override
+	public int DeleteCal(String id) throws Exception {
+		int check = sqlSession.delete("login.deleteCal",id);
+		return check;
+	}
 
 	@Override
 	public LoginVO SelectPro(String id) throws Exception {
