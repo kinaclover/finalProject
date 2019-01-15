@@ -48,8 +48,12 @@ public class RecommandAction {
 	@Autowired
 	private ImgsDAOImpl imgsDAO=null;
 	
+	
 	@RequestMapping("search.do")
-	public String test(HttpServletRequest request){
+	public String test(HttpServletRequest request, Model model){
+		String listkeyword = request.getParameter("listkeyword");
+		System.out.println("server =========>"+listkeyword);
+		model.addAttribute("listkeyword", listkeyword);
 		
 		return "recommand/search";
 	}
@@ -61,10 +65,9 @@ public class RecommandAction {
 		String[] place_url=new String[result.length];
 		String keyword= request.getParameter("keyword");
 		String pageNum=request.getParameter("pageNum");
-		System.out.println("~~~~~~~~~~~~~~~~~~"+pageNum);
-		System.out.println("000000000000000000000000=="+keyword);
+		System.out.println("pagenum============="+pageNum);
+		System.out.println("keyword============="+keyword);
 		int check=imgsDAO.searchKeyword(keyword, pageNum);
-		System.out.println("1111111111111111111111111111=="+check);
 		Map result_map=null;
 		List<ImgsVO> list=null;
 		for(int i=0; i<result.length; i++) {
@@ -93,69 +96,40 @@ public class RecommandAction {
 	
 	//동적 크롤링을 위한 함수
 	public Map SeleniumCrawling(String[] place_url){
+		for(String a : place_url) {
+			System.out.println("selenium place_url========>"+a);
+		}
 		RConnection r=null;
-		HashMap result_map=new HashMap();
+		Map result_map=new HashMap();
 		try {
 			r =new RConnection();
 			r.setStringEncoding("utf8");
 			r.eval("library(RSelenium)");
-			r.assign("url", place_url);
-
-			r.eval("result_menu = list()");
-			r.eval("result_title =list()");
-			r.eval("result_review = list()");
 			r.eval("result_img = list()");
 			r.eval("remDr <- remoteDriver(remoteServerAddr='localhost',port=4445,browserName='chrome')");
-			r.eval("remDr$open() ");
+			r.eval("remDr$open()");
+			r.assign("url", place_url);
 			r.eval("for( i in 1:length(url)){"
-					+ " Sys.sleep(2);"
-					+ " remDr$navigate(url[i]);"
-					+ " Sys.sleep(3);"
-					+ " doms <- remDr$findElements(using = 'css', '.cont_menu > ul > li > div > span');"
-					+ " doms2 <- remDr$findElements(using = 'css', '.place_details > div > h2');"
-					+ " doms3 <- remDr$findElements(using = 'css', '.review_story > strong, .review_story > p');"
-					+ " doms4 <- remDr$findElements(using = 'css', '.details_present > a > span.bg_present');"
-					+ " menu <- sapply(doms, function (x) {x$getElementText()});"
-					+ " title <- sapply(doms2, function (x) {x$getElementText()});"
-					+ " review <- sapply(doms3, function (x) {x$getElementText()});"
-					+ " img <- sapply(doms4, function(x){x$getElementAttribute('style')});"
-					+ " result_menu<-append(result_menu,menu);"
-					
-					+ " result_title<-append(result_title,title);"
-					
-					+ " result_review <- append(result_review, review);"
-					
-					+ " result_img <- append(result_img, img);}");
+					+" Sys.sleep(2);"
+					+" remDr$navigate(url[i]);"
+					+" Sys.sleep(3);"
+					+" doms<- remDr$findElements(using = 'css', '.details_present > a > span.bg_present');"
+					+" img <- sapply(doms, function(x){x$getElementAttribute('style')});"
+					+" if(length(img)==0){" + 
+					"  img[[1]] <-'http://www.belimoseoul.com/data/3/7a9637933db7117ea07390745349a302.jpg'" + 
+					"};"
+					+" result_img <- append(result_img, img);}");
 			
-			
-			r.eval("result_menu <- gsub(' ','', result_menu)");
-			r.eval("result_menu <- gsub('\t','', result_menu)");
-			r.eval("result_menu <- gsub('\r\n','', result_menu)");
-			r.eval("result_menu <- result_menu[c(result_menu!='')]");
-			
-			r.eval("result_title <- gsub(' ','', result_title)");
-			r.eval("result_title <- gsub('\t','', result_title)");
-			r.eval("result_title <- gsub('\r\n','', result_title)");
-			r.eval("result_title <- result_title[c(result_title!='')]");
 			r.eval("result_img<-unlist(result_img, use.names=FALSE)");
-			r.eval("result_review<-unlist(result_review, use.names=FALSE)");
-			
-			
-			REXP rx=r.eval("result_menu");
-			REXP rxs=r.eval("result_title");
-			REXP rxr=r.eval("result_review");
-			REXP rxi=r.eval("result_img");
-			String[] result_menu=rx.asStrings();
-			String[] result_title=rxs.asStrings();
-			String[] result_review=rxr.asStrings();
-			String[] result_img=rxi.asStrings();
 		
+			REXP rx=r.eval("result_img");
+			String[] imgs=getIMG(rx.asStrings());
 			
-			result_img=getIMG(result_img);
-			result_map.put("menu", result_menu);
-			result_map.put("title", result_title);
-			result_map.put("review", result_review);
-			result_map.put("img", result_img);
+			result_map.put("img", imgs);
+			
+			for(String a : rx.asStrings()) {
+				System.out.println("크롤링에서 imgs===============>"+a);
+			}
 			
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -169,14 +143,18 @@ public class RecommandAction {
 	public String[] getIMG(String[] img) {
 		int size=img.length;
 		System.out.println("크기===============>"+size);
-		String[] result_img=new String[size];
+		String[] result_img=new String[15];
 		for(int i=0; i<img.length; i++) {
+			System.out.println("img 내용 ========>"+img[i]);
 			int start = img[i].indexOf("img1");
-			int end=img[i].indexOf("\");");
+			System.out.println("start indexof"+i+ "=======>"+start);
+			if(start==-1) {
+				continue;
+			}
+			int end=img[i].lastIndexOf("\");");
 			String parseText=img[i].substring(start, end);
 			result_img[i]=parseText;
-			
-		}
+			}
 		return result_img;
 		
 	}
@@ -185,11 +163,19 @@ public class RecommandAction {
 		System.out.println("2222222222222");
 		int size= info.length;
 		System.out.println("sizezzzzz==>"+size);
-		String[] result_img=(String[]) result.get("img");
+		String[] imgs=(String[]) result.get("img");
+		for(String a : imgs) {
+			System.out.println("inputdb imgs====================>"+a);
+		}
+		
 		for(int i=0; i<size; i++) {
 			ImgsVO iv=new ImgsVO();	
 			iv.setPageNum(pageNum);
-			iv.setImg_url(result_img[i]);
+			if(imgs[i]==null) {
+				iv.setImg_url("www.belimoseoul.com/data/3/7a9637933db7117ea07390745349a302.jpg");
+			}else {
+			iv.setImg_url(imgs[i]);
+			}
 			iv.setKeyword(keyword);
 			iv.setPlace_name(info[i].getPlace_name());
 			

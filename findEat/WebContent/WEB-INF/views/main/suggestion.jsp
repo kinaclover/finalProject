@@ -13,7 +13,7 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dtotalclassifyk}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wtotalclassifyk}" end="1">
 						
