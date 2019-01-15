@@ -7,6 +7,8 @@ public class ImgsVO {
 	private String place_name;
 	private String pageNum;
 	
+	
+	
 	public String getPageNum() {
 		return pageNum;
 	}

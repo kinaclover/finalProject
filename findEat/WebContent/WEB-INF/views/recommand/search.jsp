@@ -66,6 +66,7 @@
 
 </head>
 <body>
+<c:set var="lk" value="${listkeyword }"/>
 
 <div class="container.fluid">
 
@@ -116,6 +117,10 @@
 <script src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8d9b38a8afd2bcec1ece996622e6d39&libraries=services"></script>
 <script>
+/**
+/ * search javascript
+ */
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -135,6 +140,16 @@ var ps = new daum.maps.services.Places();
 var infowindow = new daum.maps.InfoWindow({zIndex:1});
 var address_name=null;
 var keyword=null;
+var listkeyword='${lk}';
+console.log(listkeyword);
+if(listkeyword!=""){
+	getPosition();
+	
+}
+
+
+
+
 
 
 function getPosition(){
@@ -182,8 +197,13 @@ function getAddress(lon, lat){
    				address_name=data.documents[0].address.region_1depth_name+
    							" "+data.documents[0].address.region_2depth_name+
    							" "+data.documents[0].address.region_3depth_name;
+   							
+   				if(listkeyword!=null){
+   					keyword =address_name+" "+listkeyword;
+   					
+   					searchGeo(keyword);
+   				}
    				
-   				searchGeo(address_name);
    				
    			}
    			
@@ -218,7 +238,7 @@ function displayMarker(locPosition, message) {
 
 //내 현재위치 검색
 function searchGeo(address_name) {
-    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다.
     
     var option ={ category_group_code : "FD6" };
     ps.keywordSearch(address_name, placesSearchCB, option);
@@ -312,7 +332,7 @@ function getListItem(index, places) {
     var el = document.createElement('li'),
     itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
                 '<div class="info">' +
-                '   <h5>' + places.place_name + '</h5>';
+                '   <h5><a href="'+places.place_url+'">' + places.place_name + '</a></h5>';
 
     if (places.road_address_name) {
         itemStr += '    <span>' + places.road_address_name + '</span>' +
@@ -477,9 +497,6 @@ function closeOverlay() {
 	infowindow.close();   
 }
 
-
 </script>
-
-
 </body>
 </html>
