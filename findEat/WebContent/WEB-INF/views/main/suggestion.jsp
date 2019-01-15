@@ -17,7 +17,7 @@
 						</c:forEach>
 						<c:forEach var="list" items="${wtotalclassifyk}" end="1">
 						
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						
 						</c:forEach>
 					</div>
@@ -27,10 +27,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dtotalclassifyj}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wtotalclassifyj}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -39,10 +39,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dtotalclassifyc}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wtotalclassifyc}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -51,10 +51,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dtotalclassifyw}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wtotalclassifyw}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -63,10 +63,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dtotalclassifyf}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wtotalclassifyf}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -75,10 +75,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dtotalclassifye}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wtotalclassifye}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -97,10 +97,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dpersonalclassifyk}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wpersonalclassifyk}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -109,10 +109,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dpersonalclassifyj}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wpersonalclassifyj}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -121,10 +121,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dpersonalclassifyc}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wpersonalclassifyc}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -133,10 +133,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dpersonalclassifyw}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wpersonalclassifyw}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -145,10 +145,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dpersonalclassifyf}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wpersonalclassifyf}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
@@ -157,10 +157,10 @@
 					<div class="card-body">
 						<h5 class="card-title"></h5>
 						<c:forEach var="list" items="${dpersonalclassifye}" end="2">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 						<c:forEach var="list" items="${wpersonalclassifye}" end="1">
-							<a href="#" class="btn btn-primary">${list.key}</a>
+							<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-primary">${list.key}</a>
 						</c:forEach>
 					</div>
 				</li>
