@@ -57,7 +57,15 @@ function nextmonth(){  //다음 월로 가는 함수
 	var ymda = year + "년" + month+"월";
 	present(); //present()함수를 호출하여 다시 찍어줌
 }
- 
+
+/************** today action ***************/
+function todayMonth(){
+	year	= today.getFullYear();
+	month	= Number(today.getMonth())+Number(1);
+	present();
+	loadDB(year,month);
+}
+
 function present(){ // 달력 출력
 	var start = new Date(year, month-1, 1);	// 1월 클릭하면 1월 저장
 	var end = new Date(year, month, 1); // 1월 클릭하면 2월 저장
@@ -65,10 +73,11 @@ function present(){ // 달력 출력
 	var Tab = document.getElementById("tabBody");
 	var row = null;
 	var cnt = 0;
-
-	var ym = year + "년" + (month)+"월";
+	
+	var ym = year + "년 " + (month)+"월";
 
 	ymda.innerHTML = ym;
+	$("#calYear").val(year);
 	while(tab.rows.length >1){     //테이블의 행의 길이가 2보다 크면 테이블의 행 제거함.
     	tab.deleteRow(tab.rows.length -1);
 	}
@@ -81,7 +90,7 @@ function present(){ // 달력 출력
 
 	for(var i = 0; i<dayy(year, month); i++){ //달력 일수만큼 찍어줌
 		cell = row.insertCell();
-		cell.innerHTML = i+1;
+		cell.innerHTML = "<strong>"+(i+1)+"</strong><br/><br/>&nbsp;";
 		cell.setAttribute('class', 'cdate'); // 모든 셀에 cdate 클래스 지정 
 		cell.setAttribute('id', i+1);		// cdate 클릭시 id 값 출력
 		cell.setAttribute('onclick','modal_action(this)');
@@ -95,6 +104,15 @@ function present(){ // 달력 출력
 		if(end.getDay() != 0) {
 			cell = row.insertCell();
 		}
+	}
+	//오늘 날짜에 강조표시
+	var currentYear = today.getFullYear();
+	var calYear		= $("#calYear").val();
+	var currentDate	= today.getDate();
+	var currentMonth= Number(today.getMonth())+Number(1);
+	var todayInfo	= "#"+currentDate;
+	if(currentYear == calYear){
+		if(month==currentMonth) $(todayInfo).addClass('table-success');
 	}
 }
 /************** draw Calendar **************/
@@ -178,9 +196,9 @@ $(function (){ // 페이지 시작 시 모두 가리고 시작
 			$('.e').show();
 		}
 	});
-	loadDB(month); // 새로고침 시 로드
+	loadDB(year,month); // 새로고침 시 로드
 	$('#prev, #next').off("click").on('click', function() { // 달력 넘길 시 로드 // click 들이 연동되서 누적되는 오류를 방지하기 위해 off 해줌
-		loadDB(month); // 넘겨진 달력의 월 전달
+		loadDB(year,month); // 넘겨진 달력의 연,월 전달
 	});
 });
 /************** reload when page start **************/
@@ -216,8 +234,8 @@ function save() {
 	        },
 	        success : function() {
 	        	var html_btn = '<button type="button" class="close" onclick="deleteMenu(this)">×</button>';
-	        	$('#'+date).append('<p class="sel_menu" value="'+sel_menu_code+","+sel_menu_classify+
-	        			'">'+sel_menu_name+html_btn+'</p>');
+	        	$('#'+date).html("<strong>"+date+"</strong>"+'<br/><br/>'+'<span class="sel_menu" value="'+sel_menu_code+","+sel_menu_classify+
+	        			'">'+sel_menu_name+html_btn+'</span>');
 	        	console.log("insert Success!");
 	        },
 	        error : function(xhr, status, error) {
@@ -233,8 +251,8 @@ function deleteMenu(data) {
 	event.stopPropagation();
 	$("#deleteModal").modal();
 	$("#delete_confirm").off("click").on('click',function(d) { 
-		var pStr = $(data).parent('p').attr('value').split(',');
-		var tdDate = $(data).parent('p').parent('td').attr('id');
+		var pStr = $(data).parent('span').attr('value').split(',');
+		var tdDate = $(data).parent('span').parent('td').attr('id');
 		var selCode = pStr[0];
 		var selClfiy = pStr[1];
 		$.ajax ({
@@ -251,7 +269,7 @@ function deleteMenu(data) {
 			}),
 			success : function(s) {
 				console.log(s);
-				$(data).parent('p').remove();
+				$(data).parent('span').remove();
 			},
 			error : function(xhr, status, error) {
 	            console.log(JSON.stringify(error));
@@ -263,7 +281,7 @@ function deleteMenu(data) {
 
 
 /************** load all menu of this month **************/
-function loadDB(now_month) {
+function loadDB(now_year,now_month) {
 	$.ajax({ // 시작 시 db 에서 데이터 가져옴 
 	  url : "calFoodSelect.do",
 	  type: "get",
@@ -272,18 +290,20 @@ function loadDB(now_month) {
 	  success : function(data) {
 		  // 현재 월의 데이터를 가져옴
 		  console.log('now_month : '+now_month);
-		  var html_btn = '<button type="button" class="close" onclick="deleteMenu(this)">×</button>';
+		  var html_btn = '<button type="button" class="close" onclick="deleteMenu(this)"><span>&times;</span></button>';
 	      dataset = JSON.parse(data); // json -> 배열 // 요소 접근을 위해 필요함.
 		  for(var i in dataset.CalVOList) {
-		  	if(dataset.CalVOList[i].fmonth == now_month) { // 해당 달의
-		  		for(var k=0; k<32; k++) {
-		  			if($('#'+k).attr('id') == dataset.CalVOList[i].fdate) { // 해당 일에 추가
-		  				$('#'+k).append('<p class="sel_menu" value="'+dataset.CalVOList[i].fcode+','+dataset.CalVOList[i].classify+
-		  						'">'+dataset.CalVOList[i].fname+html_btn+'</p>');
-		  			}
-		  		}
-		  	}
-		  };	  
+			  if(dataset.CalVOList[i].fyear == now_year) {
+			  	if(dataset.CalVOList[i].fmonth == now_month) { // 해당 달의
+			  		for(var k=0; k<32; k++) {
+			  			if($('#'+k).attr('id') == dataset.CalVOList[i].fdate) { // 해당 일에 추가
+			  				$('#'+k).html("<strong>"+dataset.CalVOList[i].fdate+"</strong>"+'<br/><br/><span class="sel_menu" value="'+dataset.CalVOList[i].fcode+
+			  						','+dataset.CalVOList[i].classify+'">'+dataset.CalVOList[i].fname+html_btn+'</span>');
+			  			}
+			  		}
+			  	}
+			  }
+		  };
 	  },
 	  error : function(xhr, status, error) {
 	  	console.log("error ! status : " + status + ", xhr : " + xhr + ", error : "+ error);

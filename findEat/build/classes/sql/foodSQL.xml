@@ -33,4 +33,7 @@
 	<delete id="deleteOne" parameterType="calVO">
 		delete from calendar where id=#{id} and fyear=#{fyear} and fmonth=#{fmonth} and fdate=#{fdate}
 	</delete>
+	<select id="selectFname" parameterType="calVO" resultType="String">
+		select fname from calendar where id=#{id} and fyear=#{fyear} and fmonth=#{fmonth} and fdate=#{fdate}
+	</select>
 </mapper>
