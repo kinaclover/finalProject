@@ -14,9 +14,6 @@
 	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
 </div>
 
-
-
-
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/popper.js"></script>
