@@ -41,7 +41,11 @@ public class LoginAction {
 	private LoginVO loginVO = null;
 
 	@RequestMapping("login.do")
-	public String login() {
+	public String login(HttpServletRequest request) {
+		String cont	= request.getContextPath();
+		String path	= request.getHeader("referer");
+		path	= path.substring(path.indexOf(cont));	//직전 페이지 주소
+		request.getSession().setAttribute("path", path);
 		return "/login/login";
 	}
 	

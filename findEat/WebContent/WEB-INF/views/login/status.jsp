@@ -18,8 +18,10 @@
 		</script>
 	</c:if>
 	<c:if test="${check==1}">
+		<input type="hidden" id="beforePage" value="${sessionScope.path}"/>
 		<script type="text/javascript">
-			window.location = "/findEat/index.do";
+			var path = document.getElementById("beforePage").value;
+			window.location = path;
 		</script>
 	</c:if>
 	<c:if test="${check!=1}">

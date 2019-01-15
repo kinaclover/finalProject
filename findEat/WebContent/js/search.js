@@ -28,11 +28,6 @@ if(listkeyword!=""){
 	
 }
 
-
-
-
-
-
 function getPosition(){
 	if(navigator.geolocation) {
 	    

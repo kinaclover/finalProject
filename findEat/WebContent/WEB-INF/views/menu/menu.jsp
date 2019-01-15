@@ -6,7 +6,7 @@
 <div class="col-sm-1 text-center pl-3 pt-1">
 	<label for="noticeDiv" class="text-info">Notice>></label>
 </div>
-<div class="col-sm-8 text-left" style="height:40px;overflow: hidden">
+<div class="col-sm-6 text-left" style="height:40px;overflow: hidden">
 	<div id="noticeDiv">
 		<c:if test="${noticeList==null}">
 			<span>공지사항이 없습니다.</span>
@@ -23,8 +23,9 @@
 
 <!-- guest -->
 <c:if test="${sessionScope.id==null}">
-	<div class="col-sm-3 text-right">
-		<button class="btn btn-sm btn-outline-info" id="mainButton" onclick="window.location='/findEat/index.do'">Index</button>
+	<div class="col-sm-5 text-right">
+		<button class="btn btn-sm btn-outline-info" id="indexButton" onclick="window.location='/findEat/index.do'">Index</button>
+		<button class="btn btn-sm btn-outline-secondary" id="boardButton" onclick="window.location='/findEat/list.do'">Board</button>
 		<button class="btn btn-sm btn-outline-primary" onclick="window.location='/findEat/login.do'">Login</button>
 		<button class="btn btn-sm btn-outline-info" onclick="window.location='/findEat/join.do'">Sign Up</button>
 	</div>
@@ -32,8 +33,9 @@
 
 <!-- client -->
 <c:if test="${sessionScope.id!=null}">
-	<div class="col-sm-3 dropdown text-right">
-		<button class="btn btn-sm btn-outline-info" id="mainButton" onclick="window.location='/findEat/index.do'">Index</button>
+	<div class="col-sm-5 dropdown text-right">
+		<button class="btn btn-sm btn-outline-info" id="indexButton" onclick="window.location='/findEat/index.do'">Index</button>
+		<button class="btn btn-sm btn-outline-secondary" id="boardButton" onclick="window.location='/findEat/list.do'">Board</button>
 		<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" id="dropDown" data-toggle="dropdown" aria-haspopup="true" aria-expended="false">My menu</button>
 			<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropDown">
 				<a class="dropdown-item" href="/findEat/cal.do">Calendar</a>
