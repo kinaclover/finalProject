@@ -25,7 +25,12 @@
 <div class="mx-auto my-3 d-block" style="width: 75%">
 	<div class="btn-group btn-group-sm mb-3">
 	<button type="button" class="btn btn btn-outline-primary" onclick="window.location='/findEat/index.do'">메인으로</button>
+	<c:if test="${boardVO.atype.equals('notice') }">
+		<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do?pageNum=1'">글 목록</button>
+	</c:if>
+	<c:if test="${!boardVO.atype.equals('notice') }">
 	<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do?pageNum=${pageNum}'">글 목록</button>
+	</c:if>
 	</div>
 	<div style="width:60%;min-width:600px;margin:0 auto">
 		<form class="form" action="boardModifyPro.do" method="post">
