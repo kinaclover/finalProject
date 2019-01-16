@@ -120,21 +120,69 @@ function present(){ // 달력 출력
 
 /************** modal pop **************/
 function modal_action(data) {
-		$("#menuModal").modal();
-		date = $(data).attr("id"); // db 전달용
-    	// 다른 날짜 클릭시 이전에 선택한 것들 초기화
-    	$('.k').hide();
-		$('.j').hide();
-		$('.c').hide();
-		$('.w').hide();
-		$('.f').hide();
-		$('.e').hide();
-		$('#inputGroup03').val("none").prop('selected', true);
-		$('#inputGroup04').val("none").prop('selected', true);
+		var thisId	= "#"+$(data).attr('id')+" span";
+		var menu	= $(thisId).text();
 		
-		$('#saveBtn').off("click").on('click', function() {
-			save();
-		});
+		if(menu==""){
+			$("#menuModal").modal();
+			date = $(data).attr("id"); // db 전달용
+	    	// 다른 날짜 클릭시 이전에 선택한 것들 초기화
+	    	$('.k').hide();
+			$('.j').hide();
+			$('.c').hide();
+			$('.w').hide();
+			$('.f').hide();
+			$('.e').hide();
+			$('#inputGroup03').val("none").prop('selected', true);
+			$('#inputGroup04').val("none").prop('selected', true);
+			
+			$('#saveBtn').off("click").on('click', function() {
+				save();
+			});
+		} else {
+			if(confirm("이미 값이 있습니다. 지우고 새로 입력하시겠습니까?")){
+				var pStr = $(thisId).attr('value').split(',');
+				var tdDate = $(thisId).parent('td').attr('id');
+				var selCode = pStr[0];
+				var selClfiy = pStr[1];
+				$.ajax ({
+					async: true,
+					url: "calFoodDelete.do",
+					type: "post",
+					contentType: "application/json; charset=UTF-8",
+					data : JSON.stringify ({
+						"year": year,
+						"month": month,
+						"date": tdDate,
+						"selCode": selCode,
+						"selClfiy": selClfiy
+					}),
+					success : function(s) {
+						console.log(s);
+						$(data).parent('span').remove();
+					},
+					error : function(xhr, status, error) {
+			            console.log(JSON.stringify(error));
+					}
+				});
+				//
+				$("#menuModal").modal();
+				date = $(data).attr("id"); // db 전달용
+		    	// 다른 날짜 클릭시 이전에 선택한 것들 초기화
+		    	$('.k').hide();
+				$('.j').hide();
+				$('.c').hide();
+				$('.w').hide();
+				$('.f').hide();
+				$('.e').hide();
+				$('#inputGroup03').val("none").prop('selected', true);
+				$('#inputGroup04').val("none").prop('selected', true);
+				
+				$('#saveBtn').off("click").on('click', function() {
+					save();
+				});
+			}
+		}
 }
 /************** modal pop **************/
 
