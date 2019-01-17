@@ -225,4 +225,40 @@ public class LoginAction {
 	public String naverLoginCallback() {
 		return "/login/naverLoginCallback";
 	}
+	
+	@RequestMapping("naverLoginPro.do")
+	public @ResponseBody String naverLoginPro(String id, HttpServletRequest request) throws Exception {
+		int idCheck	= 1;
+		System.out.println("naverLoginPro "+id);
+		int check	= 1;
+		int status	= 1;
+		int mdCheck	= 0;
+		
+		request.getSession().setAttribute("id", id);
+		mdCheck	= (Integer)loginDAO.ResetCheck(id);
+		
+		request.setAttribute("idCheck", idCheck);
+		request.setAttribute("check", check);
+		request.setAttribute("status", status);
+		request.getSession().setAttribute("mdCheck", mdCheck);
+		return "loginOk";
+	}
+	
+	@RequestMapping("naverJoinPro.do")
+	public @ResponseBody String naverJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception {
+		loginVO.setReset(0);
+		System.out.println("naverJoinPro "+loginVO.getId());
+		int check	= (Integer)loginDAO.JoinPro(loginVO);
+		int status	= 3;
+		request.setAttribute("check", check);
+		request.setAttribute("status", status);
+		return "joinOK";
+	} 
+	
+	@RequestMapping("naverIdCheck.do")
+	public @ResponseBody String naverIdCheck(@RequestBody String id) throws Exception{
+		System.out.println("naverIdCheck "+id);
+		int count = (Integer)loginDAO.IdCheck(id);
+		return String.valueOf(count);
+	}
 }

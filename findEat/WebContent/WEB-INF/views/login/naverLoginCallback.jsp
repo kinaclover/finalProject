@@ -48,72 +48,85 @@
 						type: 'POST',
 						data: JSON.stringify(uniqId),
 						contentType: "application/json; charset=UTF-8",
-						url: 'idCheck.do',
+						url: 'naverIdCheck.do',
 						success: function(data) {
+							alert("data"+data);
 							if($.trim(data) != 0) { // 네이버 아이디 정보가 db 에 있을 때
 								alert(email.split('@',1)+" 님 어서오세요!");
 								$.ajax ({
+									async: true,
 									type: 'POST',
 									data: {
 										"id": uniqId,
 										"pw": " "
 									},
-									url: 'loginPro.do',
+									url: 'naverLoginPro.do',
 									success: function() {
 										alert("nvr is in db : success");
 									},
+									complete: function() {
+										
+									},
 									error: function(request,status,error) {
-										alert("Error : "+error.d);
+										alert("Error1 : "+error.d);
+										alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 									}
 								});
+								alert("testest");
 							} else {
 								if (confirm("아직 가입하지 않은 사용자 입니다. 가입 하시겠습니까?") == true){    //확인
 								    $('#idCheck').val(1);
 									$.ajax ({	// 네이버 아이디 정보가 db 에 없을때
+										async: true,
 										type: 'POST',
 										data: {
 											"id": uniqId,
 											"email": email,
 											"pw": " "
 										},
-										url: 'joinPro.do',
+										url: 'naverJoinPro.do',
 										success: function() {
 											alert("nvr insert in db : success");
 											$.ajax ({
+												async: true,
 												type: 'POST',
 												data: {
 													"id": uniqId,
 													"pw": " "
 												},
-												url: 'loginPro.do',
+												url: 'naverLoginPro.do',
 												success: function() {
 													alert("nvr is in db (first time) : success");
 												},
 												error: function(request,status,error) {
-													alert("Error : "+error.d);												}
+													alert("Error2 : "+error.d);												}
 											});
 										},
 										error: function(request,status,error) {
-											alert("Error : "+error.d);
+											alert("Error3 : "+error.d);
 										}
 									});
 								}else{   //취소
-								    return;
+								    alert("!!!");
+									return;
 								}
 							}
 						},
 						error: function(request,status,error) {
 							alert("Error : "+error.d);
+							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 						}
 					});
 					//window.location.href="http://localhost:8080/findEat/index.do";
-					window.location=("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/index.do");
+					window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/index.do");
 					// 보안상 replace 사용 (뒤로가기 안됨)
+					
 				} else {
-					console.log("callback 처리에 실패하였습니다.");
+					alert("callback 처리에 실패하였습니다.");
 				}
 			});
 		});
 	</script>
+	
 </body>
 </html>
