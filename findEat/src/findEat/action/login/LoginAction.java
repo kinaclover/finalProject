@@ -1,5 +1,6 @@
 package findEat.action.login;
 
+import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 
@@ -9,12 +10,15 @@ import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -46,6 +50,7 @@ public class LoginAction {
 		String path	= request.getHeader("referer");
 		path	= path.substring(path.indexOf(cont));	//직전 페이지 주소
 		request.getSession().setAttribute("path", path);
+	
 		return "/login/login";
 	}
 	
@@ -218,5 +223,10 @@ public class LoginAction {
 		request.setAttribute("status", status);
 		request.setAttribute("check", check);
 		return "/login/status";
+	}
+	
+	@RequestMapping("naverLoginCallback.do")
+	public String naverLoginCallback() {
+		return "/login/naverLoginCallback";
 	}
 }
