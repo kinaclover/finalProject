@@ -252,7 +252,7 @@ public class LoginAction {
 		int status	= 3;
 		request.setAttribute("check", check);
 		request.setAttribute("status", status);
-		return "joinOK";
+		return "joinOK"; 
 	} 
 	
 	@RequestMapping("naverIdCheck.do")
