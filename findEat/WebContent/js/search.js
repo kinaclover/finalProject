@@ -22,11 +22,10 @@ var ps = new daum.maps.services.Places();
 var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
 var keyword=$('input#menu').val();
-console.log("keyword=============>"+keyword);
 var address_name1=null,address_name2=null,address_name3=null;
 getAddress();
 
-if(keyword!="" && keyword!=null){
+if(keyword!="" || keyword!=null){
 if (navigator.geolocation) {
 	    
 	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -34,7 +33,7 @@ if (navigator.geolocation) {
 	        
 	        var lat = position.coords.latitude; // 위도
 	        var lon = position.coords.longitude; // 경도
-	        console.log(lat+","+lon);
+	        
 	        
 	        var locPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 	            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
@@ -53,13 +52,13 @@ if (navigator.geolocation) {
 				contentType : "application/json",
 				async:false,
 			  	success : function(data){
-					console.log(data);
+					
 					address_name1=data.documents[0].address.region_1depth_name;
 					address_name2=data.documents[0].address.region_2depth_name;
 					address_name3=data.documents[0].address.region_3depth_name;
 					var option ={ category_group_code : "FD6" };
 					var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
-					console.log(result_keyword);
+					
 				    ps.keywordSearch(result_keyword, placesSearchCB, option);
 				}
 			});
@@ -92,7 +91,7 @@ function getAddress(){
 	        
 	        var lat = position.coords.latitude; // 위도
 	        var lon = position.coords.longitude; // 경도
-	        console.log(lat+","+lon);
+	        
 	        
 	        var locPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
 	            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
@@ -123,7 +122,7 @@ function getTrans(lat, lon){
 			contentType : "application/json",
 			async:false,
 		  	success : function(data){
-				console.log(data);
+				
 				address_name1=data.documents[0].address.region_1depth_name;
 				address_name2=data.documents[0].address.region_2depth_name;
 				address_name3=data.documents[0].address.region_3depth_name;
@@ -208,7 +207,7 @@ function post_to_url2(address_name1, address_name2, address_name3, params, pagin
 			 removeAllChildNods(listEl);
 			 removeMarker();
 			var save_imgs=new Array();
-			console.log(data);
+			
 			for(var i=0; i<data.img.length; i++){
 				save_imgs.push(data.img[i]);
 			}
@@ -236,7 +235,7 @@ function placesSearchCB(data, status, pagination) {
     if (status === daum.maps.services.Status.OK) {
     	// 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
-	   console.log(address_name1);
+	  
 	   
        post_to_url(keyword,data,pagination);     
         
@@ -329,8 +328,7 @@ function getListItem(index, places) {
 //place 데이터 전송
 
 function post_to_url(keyword, params, pagination) {
-		console.log(pagination.current);
-		console.log(keyword);
+		
 		
 		$.ajax({
 			type : "POST",
@@ -347,7 +345,7 @@ function post_to_url(keyword, params, pagination) {
 				 removeAllChildNods(listEl);
 				 removeMarker();
 				var save_imgs=new Array();
-				console.log(data);
+				
 				for(var i=0; i<data.img.length; i++){
 					save_imgs.push(data.img[i]);
 				}
