@@ -18,8 +18,10 @@
 		</script>
 	</c:if>
 	<c:if test="${check==1}">
+		<input type="hidden" id="beforePage" value="${sessionScope.path}"/>
 		<script type="text/javascript">
-			window.location = "/findEat/index.do";
+			var path = document.getElementById("beforePage").value;
+			window.location = path;
 		</script>
 	</c:if>
 	<c:if test="${check!=1}">
@@ -64,13 +66,13 @@
 
 <!-- 4. delete -->
 <c:if test="${status==4}">
-	<c:if test="${check==1}">
+	<c:if test="${check>=2}">
 		<script type="text/javascript">
 			alert("안녕히가세요.");
 			window.location = "/findEat/index.do";
 		</script>
 	</c:if>
-	<c:if test="${check!=1}">
+	<c:if test="${check!=2}">
 		<script type="text/javascript">
 			alert("비밀번호를 확인해주세요.");
 			history.back();

@@ -41,7 +41,11 @@ public class LoginAction {
 	private LoginVO loginVO = null;
 
 	@RequestMapping("login.do")
-	public String login() {
+	public String login(HttpServletRequest request) {
+		String cont	= request.getContextPath();
+		String path	= request.getHeader("referer");
+		path	= path.substring(path.indexOf(cont));	//직전 페이지 주소
+		request.getSession().setAttribute("path", path);
 		return "/login/login";
 	}
 	
@@ -123,8 +127,19 @@ public class LoginAction {
 	public String deletePro(String pw, HttpServletRequest request) throws Exception {
 		String id	= (String)request.getSession().getAttribute("id");
 		int check	= (Integer)loginDAO.DeletePro(id, pw);
+		int temp	= 0;
+		/*	calendar database delete	*/
+		if(check==1) {
+			temp = (Integer)loginDAO.DeleteCalCheck(id);
+			if(temp!=0) {
+				check += (Integer)loginDAO.DeleteCal(id);
+			}
+			else {
+				check+=1;
+			}
+		}
 		int status	= 4;
-		if(check==1) request.getSession().invalidate();
+		if(check>=2) request.getSession().invalidate();
 		request.setAttribute("check", check);
 		request.setAttribute("status", status);
 		return "/login/status";

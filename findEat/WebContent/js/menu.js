@@ -31,9 +31,11 @@ $(document).ready(function(){
 	
 	var path	= $(location).attr('pathname');
 	if(path=='/findEat/index.do'){
-		$("#mainButton").attr('onclick',"window.location='/findEat/list.do'");
-		$("#mainButton").html("Board");
-		$("#mainButton").removeClass("btn-outline-info");
-		$("#mainButton").addClass("btn-outline-secondary");
+		$("#indexButton").attr('hidden',true);
+		$("#boardButton").removeAttr('hidden');
+	}
+	if(path=='/findEat/list.do'){
+		$("#boardButton").attr('hidden',true);
+		$("#indexButton").removeAttr('hidden');
 	}
 });

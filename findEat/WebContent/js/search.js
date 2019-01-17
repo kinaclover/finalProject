@@ -1,3 +1,4 @@
+
 /**
 / * search javascript
  */
@@ -20,12 +21,12 @@ var ps = new daum.maps.services.Places();
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
-var keyword='${menu}';
-
+var keyword=$('input#menu').val();
+console.log("keyword=============>"+keyword);
 var address_name1=null,address_name2=null,address_name3=null;
 getAddress();
 
-if(keyword!=""){
+if(keyword!="" && keyword!=null){
 if (navigator.geolocation) {
 	    
 	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -470,4 +471,3 @@ function closeOverlay() {
 	
 	infowindow.close();   
 }
-
