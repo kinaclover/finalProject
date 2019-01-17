@@ -94,6 +94,8 @@ public class Board {
 	public String article(HttpServletRequest request) throws Exception {
 		int idx	= Integer.parseInt(request.getParameter("idx"));
 		boardVO	= boardDAO.ViewArticle(idx);
+		String contents	= boardVO.getContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>");
+		request.setAttribute("contents",contents);
 		request.setAttribute("boardVO", boardVO);
 		request.setAttribute("idx", idx);
 		request.setAttribute("pageNum", request.getParameter("pageNum"));
