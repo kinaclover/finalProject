@@ -689,4 +689,11 @@ public class SuggestAction {
 				
 		return "/main/suggestion";
 	}
+	
+	//test version - suggestion_ver2
+	@RequestMapping("suggestion2.do")
+	public String sugVer2() throws Exception {
+		
+		return "/main/suggestion2";
+	}
 }
