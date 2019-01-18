@@ -8,6 +8,11 @@
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/billboard.css">
+<script src="js/billboard.pkgd.js"></script>
+<script src="js/moment.js"></script>
+<script src="js/Chart.js"></script>
+<script src="js/suggestChart.js"></script>
 </head>
 <body class="d-block">
 <!-- menu -->
@@ -39,18 +44,12 @@
 <!-- week total/personal -->
 <jsp:include page="${request.contextPath}/week.do"></jsp:include>
 
-<!-- modals -->
-<jsp:include page="${request.contextPath}/indexModal.do"></jsp:include>
-
-<!-- suggestion -->
-<div id="center" class="container">
+<!-- suggestion ver2 -->
+<div style="width:75%;overflow: auto;" class="mx-auto mt-3 mb-5">
 	<jsp:include page="${request.contextPath}/suggestion.do"></jsp:include>
 </div>
 
-<!-- suggestion ver2 -->
-<div>
-	<jsp:include page="${request.contextPath}/suggestion2.do"></jsp:include>
-</div>
+<canvas id="test" width="200" height="100"></canvas>
 
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
@@ -59,6 +58,7 @@
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/main.js"></script>
 <script src="js/suggest.js"></script>
+<script src="js/suggestGraph.js"></script>
 <script src="js/menu.js"></script>
 </body>
 </html>

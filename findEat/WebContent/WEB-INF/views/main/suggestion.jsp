@@ -1,382 +1,300 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<div class="text-center">
-<h5> 추천 리스트</h5>
-</div>
-<input type="hidden" id="totalCheck" value="0"/>
-<div class="card text-center" id="totalclas">
-	<div class="card-header">
-		<ul class="nav nav-tabs card-header-tabs">
-				<li class="nav-item">
-				<div class="row">
-				<div class="col-md-4">
-					<a class="nav-link active" >한식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dtotalclassifyk}" end="2" varStatus="status">
-						<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wtotalclassifyk}" end="1" varStatus="status">
-						<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-					<a class="nav-link active" href="#">일식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dtotalclassifyj}" end="2" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wtotalclassifyj}" end="1" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-				<a class="nav-link active" href="#">중식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dtotalclassifyc}" end="2" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wtotalclassifyc}" end="1" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
+
+<!-- tabs - total -->
+<div id="totalRankList">
+	<nav>
+		<div class="nav nav-tabs" id="totalTab" role="tablist">
+			<a class="nav-item nav-link active" id="total-tab" data-toggle="tab" href="#totalT" role="tab">종합</a>
+			<a class="nav-item nav-link" id="k-tab" data-toggle="tab" href="#koreanT" role="tab">한식</a>
+			<a class="nav-item nav-link" id="j-tab" data-toggle="tab" href="#japaneseT" role="tab">일식</a>
+			<a class="nav-item nav-link" id="c-tab" data-toggle="tab" href="#chineseT" role="tab">중식</a>
+			<a class="nav-item nav-link" id="w-tab" data-toggle="tab" href="#westernT" role="tab">양식</a>
+			<a class="nav-item nav-link" id="f-tab" data-toggle="tab" href="#fastT" role="tab">패스트푸드</a>
+			<a class="nav-item nav-link" id="e-tab" data-toggle="tab" href="#etcT" role="tab">기타</a>
+		</div>
+	</nav>
+	<!-- content -->
+	<div class="tab-content" id="totalTabContent">
+		<!-- total -->
+		<div class="tab-pane fade show active" role="tabpanel" id="totalT">
+			<c:if test="${totalRankMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!totalRankMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-2">
+					<c:forEach items="${totalRankMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="totalRankMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="totalRankMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
 				</div>
-				</li>
-				
-				
-				<li class="nav-item">
-				<div class="row">
-				<div class="col-md-4">
-					<a class="nav-link active" href="#">양식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dtotalclassifyw}" end="2" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wtotalclassifyw}" end="1" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-					<a class="nav-link active" href="#">패스트푸드</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dtotalclassifyf}" end="2" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wtotalclassifyf}" end="1" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-					<a class="nav-link active" href="#">기타</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dtotalclassifye}" end="2" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wtotalclassifye}" end="1" varStatus="status">
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					</div>
-				</li>
-		</ul>
+				<div id="totalTabPie-total" class="col-5"></div>
+				<c:forEach items="${totalClassifyMap}" var="map" varStatus="stat">
+					<input type="hidden" class="totalClasMapKey-${stat.count}" value="${map.key}"/>
+					<input type="hidden" class="totalClasMapValue-${stat.count}" value="${map.value}"/>
+				</c:forEach>
+				<div id="totalTabPie-totalB" class="col-5"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 한식-Korean -->
+		<div class="tab-pane fade" role="tabpanel" id="koreanT">
+			<c:if test="${totalKMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!totalKMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;" >
+				<div class="col-4">
+					<c:forEach items="${totalKMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="totalKMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="totalKMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="totalTabPie-k" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 일식-Japanese -->
+		<div class="tab-pane fade" role="tabpanel" id="japaneseT">
+			<c:if test="${totalJMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!totalJMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${totalJMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="totalJMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="totalJMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="totalTabPie-j" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 중식-Chinese -->
+		<div class="tab-pane fade" role="tabpanel" id="chineseT">
+			<c:if test="${totalCMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!totalCMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${totalCMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="totalCMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="totalCMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="totalTabPie-c" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 양식-Western -->
+		<div class="tab-pane fade" role="tabpanel" id="westernT">
+			<c:if test="${totalWMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!totalWMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${totalWMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="totalWMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="totalWMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="totalTabPie-w" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 패스트푸드/분식-Fast -->
+		<div class="tab-pane fade" role="tabpanel" id="fastT">
+			<c:if test="${totalFMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!totalFMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${totalFMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="totalFMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="totalFMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="totalTabPie-f" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 기타-Etc -->
+		<div class="tab-pane fade" role="tabpanel" id="etcT">
+			<c:if test="${totalEMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!totalEMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${totalEMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="totalEMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="totalEMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="totalTabPie-e" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
 	</div>
 </div>
 
-<input type="hidden" id="personalCheck" value="0"/>
-<div class="card text-center" id="personalclas" >
-<div class="card-header">
-		<ul class="nav nav-tabs card-header-tabs center-block">
-				<li class="nav-item center-block" >
-				<div class="row">
-				<div class="col-md-4">
-					<a class="nav-link active center-block" id="ktag">한식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dpersonalclassifyk}" end="2" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="dpersonalclassifykCheck" value="0"/>
-						</c:if>
-						
-						<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						
-						<c:forEach var="list" items="${wpersonalclassifyk}" end="1" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="wpersonalclassifykCheck" value="0"/>
-						</c:if>
-						
-						<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-					<a class="nav-link active center-block" id="jtag">일식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dpersonalclassifyj}" end="2" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="dpersonalclassifyjCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wpersonalclassifyj}" end="1" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="wpersonalclassifyjCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-				<a class="nav-link active center-block" id="ctag">중식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dpersonalclassifyc}" end="2" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="dpersonalclassifycCheck" value="0"/>
-						</c:if>
-						<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wpersonalclassifyc}" end="1" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="wpersonalclassifycCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
+<!-- tabs - user -->
+<div id="userRankList">
+	<nav>
+		<div class="nav nav-tabs" id="userTab" role="tablist">
+			<a class="nav-item nav-link active" id="total-tab" data-toggle="tab" href="#totalU" role="tab">종합</a>
+			<a class="nav-item nav-link" id="k-tab" data-toggle="tab" href="#koreanU" role="tab">한식</a>
+			<a class="nav-item nav-link" id="j-tab" data-toggle="tab" href="#japaneseU" role="tab">일식</a>
+			<a class="nav-item nav-link" id="c-tab" data-toggle="tab" href="#chineseU" role="tab">중식</a>
+			<a class="nav-item nav-link" id="w-tab" data-toggle="tab" href="#westernU" role="tab">양식</a>
+			<a class="nav-item nav-link" id="f-tab" data-toggle="tab" href="#fastU" role="tab">패스트푸드</a>
+			<a class="nav-item nav-link" id="e-tab" data-toggle="tab" href="#etcU" role="tab">기타</a>
+		</div>
+	</nav>
+	<!-- content -->
+	<div class="tab-content" id="userTabContent">
+		<!-- total -->
+		<div class="tab-pane fade show active" role="tabpanel" id="totalU">
+			<c:if test="${userRankMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!userRankMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-2">
+					<c:forEach items="${userRankMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="userRankMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="userRankMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
 				</div>
-				</li>
-				
-				
-				<li class="nav-item center-block">
-				<div class="row">
-				<div class="col-md-4">
-					<a class="nav-link active center-block" id="wtag">양식</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dpersonalclassifyw}" end="2" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="dpersonalclassifywCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wpersonalclassifyw}" end="1" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="wpersonalclassifywCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-					<a class="nav-link active center-block" id="ftag">패스트푸드</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dpersonalclassifyf}" end="2" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="dpersonalclassifyfCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wpersonalclassifyf}" end="1" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="wpersonalclassifyfCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					<div class="col-md-4">
-					<a class="nav-link active center-block" id="etag">기타</a>
-					<div class="card-body">
-						<h5 class="card-title"></h5>
-						<c:forEach var="list" items="${dpersonalclassifye}" end="2" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="dpersonalclassifyeCheck" value="0"/>
-						</c:if>
-							<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-danger custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-warning custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 2}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-primary custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-						<c:forEach var="list" items="${wpersonalclassifye}" end="1" varStatus="status">
-						<c:if test="${list.key == null}">
-						<input type="hidden" id="wpersonalclassifyeCheck" value="0"/>
-						</c:if>
-						<c:if  test="${status.index eq 0}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-success custom">${list.key}</a>
-						</c:if>
-						<c:if  test="${status.index eq 1}">
-						<a href="http://localhost:8080/findEat/search.do?listkeyword=${list.key}" class="btn btn-outline-info custom">${list.key}</a>
-						</c:if>
-						</c:forEach>
-					</div>
-					</div>
-					</div>
-				</li>
-		</ul>
+				<div id="userTabPie-total" class="col-5"></div>
+				<c:forEach items="${userClassifyMap}" var="map" varStatus="stat">
+					<input type="hidden" class="userClasMapKey-${stat.count}" value="${map.key}"/>
+					<input type="hidden" class="userClasMapValue-${stat.count}" value="${map.value}"/>
+				</c:forEach>
+				<div id="userTabPie-totalB" class="col-5"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 한식-Korean -->
+		<div class="tab-pane fade" role="tabpanel" id="koreanU">
+			<c:if test="${userKMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!userKMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${userKMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="userKMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="userKMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="userTabPie-k" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 일식-Japanese -->
+		<div class="tab-pane fade" role="tabpanel" id="japaneseU">
+			<c:if test="${userJMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!userJMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${userJMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="userJMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="userJMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="userTabPie-j" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 중식-Chinese -->
+		<div class="tab-pane fade" role="tabpanel" id="chineseU">
+			<c:if test="${userCMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!userCMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${userCMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="userCMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="userCMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="userTabPie-c" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 양식-Western -->
+		<div class="tab-pane fade" role="tabpanel" id="westernU">
+			<c:if test="${userWMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!userWMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${userWMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="userWMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="userWMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="userTabPie-w" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 패스트푸드/분식-Fast -->
+		<div class="tab-pane fade" role="tabpanel" id="fastU">
+			<c:if test="${userFMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!userFMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${userFMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="userFMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="userFMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="userTabPie-f" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
+		<!-- 기타-Etc -->
+		<div class="tab-pane fade" role="tabpanel" id="etcU">
+			<c:if test="${userEMap.isEmpty()}">
+				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
+			</c:if>
+			<c:if test="${!userEMap.isEmpty()}">
+			<div class="row py-3 px-5" style="height: 232px;">
+				<div class="col-4">
+					<c:forEach items="${userEMap}" var="map" end="4" varStatus="stat">
+						<input type="hidden" class="userEMapKey-${stat.count}" value="${map.key}"/>
+						<input type="hidden" class="userEMapValue-${stat.count}" value="${map.value}"/>
+						<p class="">${stat.count}위. ${map.key}</p>
+					</c:forEach>
+				</div>
+				<div id="userTabPie-e" class="col-8"></div>
+			</div>
+			</c:if>
+		</div>
 	</div>
 </div>
-
-

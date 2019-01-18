@@ -300,3 +300,7 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- modals -->
+<jsp:include page="${request.contextPath}/indexModal.do"></jsp:include>

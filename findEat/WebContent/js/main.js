@@ -9,6 +9,8 @@ $(function(){
 		if(check==0) {
 			$('#beforeWeek').removeAttr('hidden');
 			$('#thisWeek').attr('hidden',true);
+			$('#userRankList').attr('hidden',true);
+			$('#totalRankList').removeAttr('hidden');
 			$('#totalBtn').removeClass('btn-light');
 			$('#totalBtn').addClass('btn-dark');
 			$('#personalBtn').removeClass('btn-dark');
@@ -26,6 +28,8 @@ $(function(){
 		if(check==0) {
 			$('#thisWeek').removeAttr('hidden');
 			$('#beforeWeek').attr('hidden',true);
+			$('#totalRankList').attr('hidden',true);
+			$('#userRankList').removeAttr('hidden');
 			$('#totalBtn').removeClass('btn-dark');
 			$('#totalBtn').addClass('btn-light');
 			$('#personalBtn').removeClass('btn-light');
