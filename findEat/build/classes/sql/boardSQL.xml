@@ -45,7 +45,7 @@
 	
 	<!-- update article -->
 	<update id="update" parameterType="boardVO">
-		update board set content = #{content}, atype = #{atype}, subject = #{subject} where idx = #{idx}
+		update board set content = #{content}, atype = #{atype} where idx = #{idx}
 	</update>
 	
 	<!-- delete article -->

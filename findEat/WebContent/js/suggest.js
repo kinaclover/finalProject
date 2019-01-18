@@ -2,14 +2,16 @@
  * 	suggest javascript
  */
 
-$(function(){
+$(document).ready(function(){
 
 	$('#personalclas').attr('hidden',true);
 	var check	= document.getElementById('sessionCheck').value;
+	
 	if(check == 1){
 		$('#totalclas').attr('hidden',true);
 		$('#personalclas').removeAttr('hidden');
 	}
+	
 });
 
 $(function(){

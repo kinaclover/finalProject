@@ -52,9 +52,11 @@
     </div>
 
        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
-
+		<div style="overflow:auto; width:100%;padding-right:10px;">
+	        <ul id="placesList"></ul>
+	        
+	        <div id="pagination"></div>
+        </div>
 </div>
     </div>
 

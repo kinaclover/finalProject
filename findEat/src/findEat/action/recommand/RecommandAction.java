@@ -64,13 +64,13 @@ public class RecommandAction {
 	public Map searchPro(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
 		
 		String address_name1= request.getParameter("address_name1");
-		System.out.println("address_name1=======>"+address_name1);
+		
 		String address_name2= request.getParameter("address_name2");
-		System.out.println("address_name1=======>"+address_name2);
+		
 		String address_name3= request.getParameter("address_name3");
-		System.out.println("address_name1=======>"+address_name3);
+		
 		String menu= request.getParameter("menu");
-		System.out.println("menu=======>"+menu);
+		
 		
 		
 		ArrayList<String> place_url=new ArrayList<String>();
@@ -83,7 +83,7 @@ public class RecommandAction {
 		
 			String temp=result[i].getPlace_name();
 		    int check=imgsDAO.searchKeyword(address_name1.trim(), address_name2.trim(), address_name3.trim(), menu.trim(), temp.trim());
-		    System.out.println("check=="+check);
+		  
 		    if(check==0) {
 		    	
 		    	place_name.add(result[i].getPlace_name());
@@ -137,9 +137,7 @@ public class RecommandAction {
 	
 	//동적 크롤링을 위한 함수
 	public Map SeleniumCrawling(String[] place_url){
-		for(String a : place_url) {
-			System.out.println("selenium place_url========>"+a);
-		}
+		
 		RConnection r=null;
 		Map result_map=new HashMap();
 		try {
@@ -196,12 +194,7 @@ public class RecommandAction {
 
 	public void inputDB(String address_name1, String address_name2, String address_name3, String img_url, String place_name, String menu) throws Exception {
 		ImgsVO iv=new ImgsVO();
-		System.out.println("1==="+address_name1);
-		System.out.println("2==="+address_name2);
-		System.out.println("3==="+address_name3);
-		System.out.println("4==="+img_url);
-		System.out.println("5==="+place_name);
-		System.out.println("6==="+menu);
+		
 		iv.setAddress1(address_name1);
 		iv.setAddress2(address_name2);
 		iv.setAddress3(address_name3);
