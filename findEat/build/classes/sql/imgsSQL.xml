@@ -12,7 +12,7 @@
 	</select>
 	
 	<select id="selectKeyword" parameterType="HashMap" resultType="imgsVO">
-		select * from imgs_url where address1= #{address_name1} and address2 = #{address_name2} and address3 = #{address_name3} and menu = #{menu} and place_name = #{place_name}
+		select distinct * from imgs_url where address1= #{address_name1} and address2 = #{address_name2} and address3 =#{address_name3} and menu =#{menu} and place_name =#{place_name}
 		
 	</select>
 	

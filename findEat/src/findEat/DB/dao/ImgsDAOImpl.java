@@ -35,6 +35,7 @@ public class ImgsDAOImpl implements ImgsDAO {
 	public int checkMyPosition(String address_name1, String address_name2, String address_name3, String place_name)	throws Exception {
 		HashMap<String,String> map=new HashMap<String, String>();
 		map.put("address_name1", address_name1);
+		
 		map.put("address_name2", address_name2);
 		map.put("address_name3", address_name3);
 		map.put("place_name", place_name);
@@ -45,6 +46,7 @@ public class ImgsDAOImpl implements ImgsDAO {
 	public MyPositionVO getPostionVO(String address_name1, String address_name2, String address_name3, String place_name)
 			throws Exception {
 		HashMap<String,String> map=new HashMap<String, String>();
+		
 		map.put("address_name1", address_name1);
 		map.put("address_name2", address_name2);
 		map.put("address_name3", address_name3);
@@ -56,6 +58,11 @@ public class ImgsDAOImpl implements ImgsDAO {
 	@Override
 	public int searchKeyword(String address_name1,String address_name2,String address_name3,String keyword, String place_name) throws Exception {
 		HashMap<String, String> map=new HashMap<>();
+		System.out.println("address_name1====="+address_name1);
+		System.out.println("address_name1====="+address_name2);
+		System.out.println("address_name1====="+address_name3);
+		System.out.println("keyword====="+keyword);
+		System.out.println("place_name====="+place_name);
 		map.put("address_name1", address_name1);
 		map.put("address_name2", address_name2);
 		map.put("address_name3", address_name3);

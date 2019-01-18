@@ -64,13 +64,13 @@ public class RecommandAction {
 	public Map searchPro(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
 		
 		String address_name1= request.getParameter("address_name1");
-		System.out.println("address_name1="+address_name1);
+		System.out.println("address_name1=======>"+address_name1);
 		String address_name2= request.getParameter("address_name2");
-		System.out.println("address_name2="+address_name2);
+		System.out.println("address_name1=======>"+address_name2);
 		String address_name3= request.getParameter("address_name3");
-		System.out.println("address_name3="+address_name3);
+		System.out.println("address_name1=======>"+address_name3);
 		String menu= request.getParameter("menu");
-		System.out.println("menu="+menu);
+		System.out.println("menu=======>"+menu);
 		
 		
 		ArrayList<String> place_url=new ArrayList<String>();
@@ -83,8 +83,9 @@ public class RecommandAction {
 		
 			String temp=result[i].getPlace_name();
 		    int check=imgsDAO.searchKeyword(address_name1.trim(), address_name2.trim(), address_name3.trim(), menu.trim(), temp.trim());
-		   
+		    System.out.println("check=="+check);
 		    if(check==0) {
+		    	
 		    	place_name.add(result[i].getPlace_name());
 		    	place_url.add(result[i].getPlace_url());
 		    }
@@ -96,7 +97,7 @@ public class RecommandAction {
 		String[] temp = new String[place_url.size()]; // string 배열로 url
 		String[] temp2 = new String[place_name.size()];// string 배열로 place_name
 		temp=place_url.toArray(temp);
-	
+		temp2=place_name.toArray(temp2);
 			
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
@@ -110,7 +111,7 @@ public class RecommandAction {
 			
 		
 		for(int i=0; i<result_img.length; i++) {
-		inputDB(address_name1,address_name2,address_name3, result_img[i], temp2[i], menu);
+		inputDB(address_name1.trim(),address_name2.trim(),address_name3.trim(), result_img[i].trim(), temp2[i].trim(), menu.trim());
 		}
 		
 		}else {
@@ -195,14 +196,19 @@ public class RecommandAction {
 
 	public void inputDB(String address_name1, String address_name2, String address_name3, String img_url, String place_name, String menu) throws Exception {
 		ImgsVO iv=new ImgsVO();
+		System.out.println("1==="+address_name1);
+		System.out.println("2==="+address_name2);
+		System.out.println("3==="+address_name3);
+		System.out.println("4==="+img_url);
+		System.out.println("5==="+place_name);
+		System.out.println("6==="+menu);
 		iv.setAddress1(address_name1);
 		iv.setAddress2(address_name2);
 		iv.setAddress3(address_name3);
 		iv.setImg_url(img_url);
 		iv.setPlace_name(place_name);
 		iv.setMenu(menu);
-		
-		
+				
 		imgsDAO.insertIMGS(iv);
 	}
 	@RequestMapping("myPosition.do")
