@@ -176,7 +176,7 @@
 <div class="card text-center" id="personalclas" >
 <div class="card-header">
 		<ul class="nav nav-tabs card-header-tabs center-block">
-				<li class="nav-item pagination" >
+				<li class="nav-item center-block" >
 				<div class="row">
 				<div class="col-md-4">
 					<a class="nav-link active center-block" id="ktag">한식</a>
@@ -278,7 +278,7 @@
 				</li>
 				
 				
-				<li class="nav-item">
+				<li class="nav-item center-block">
 				<div class="row">
 				<div class="col-md-4">
 					<a class="nav-link active center-block" id="wtag">양식</a>
