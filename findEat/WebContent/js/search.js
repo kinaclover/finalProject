@@ -474,3 +474,12 @@ function closeOverlay() {
 	
 	infowindow.close();   
 }
+
+/***********************************************************************************************************************/
+//custom function
+//ul tag style 수정
+$(function(){
+	$("#searchBtn").click(function(){
+		$("#placesList").attr("style","overflow:auto;height:630px");
+	});
+});

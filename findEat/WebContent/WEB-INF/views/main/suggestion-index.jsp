@@ -34,11 +34,11 @@
 					<c:forEach items="${totalRankMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalRankMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalRankMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
-			<div class="row" style="width:70%;float:right;">
+			<div class="row ml-5 mr-0 pl-5" style="width:70%;float:none;">
 				<div id="totalTabPie-total" class="col-6"></div>
 				<c:forEach items="${totalClassifyMap}" var="map" varStatus="stat">
 					<input type="hidden" class="totalClasMapKey-${stat.count}" value="${map.key}"/>
@@ -59,7 +59,7 @@
 					<c:forEach items="${totalKMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalKMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalKMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 					<c:forEach items="${totalJMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalJMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalJMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 					<c:forEach items="${totalCMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalCMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalCMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 					<c:forEach items="${totalWMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalWMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalWMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -131,7 +131,7 @@
 					<c:forEach items="${totalKMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalFMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalFMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -149,7 +149,7 @@
 					<c:forEach items="${totalEMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalEMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalEMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -185,13 +185,13 @@
 					<c:forEach items="${userRankMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userRankMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userRankMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
-			<div class="row" style="width:70%;float:right;">
+			<div class="row ml-5 mr-0 pl-5" style="width:70%;float:none;">
 				<div id="userTabPie-total" class="col-6"></div>
-				<c:forEach items="${totalClassifyMap}" var="map" varStatus="stat">
+				<c:forEach items="${userClassifyMap}" var="map" varStatus="stat">
 					<input type="hidden" class="userClasMapKey-${stat.count}" value="${map.key}"/>
 					<input type="hidden" class="userClasMapValue-${stat.count}" value="${map.value}"/>
 				</c:forEach>
@@ -210,7 +210,7 @@
 					<c:forEach items="${userKMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userKMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userKMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -228,7 +228,7 @@
 					<c:forEach items="${userJMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userJMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userJMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -246,7 +246,7 @@
 					<c:forEach items="${userCMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userCMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userCMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -264,7 +264,7 @@
 					<c:forEach items="${userWMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userWMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userWMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -282,7 +282,7 @@
 					<c:forEach items="${userFMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userFMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userFMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>
@@ -300,7 +300,7 @@
 					<c:forEach items="${userEMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userEMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userEMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
 			</div>

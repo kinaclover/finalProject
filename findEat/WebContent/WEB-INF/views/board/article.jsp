@@ -109,7 +109,7 @@
 			</div>
 			</c:if>
 			<!-- comments -->
-			<div class="mt-5 mb-3 mx-auto" style="width:90%;background-color: #e6e6ff;">
+			<div class="mt-5 mb-3 mx-auto" style="width:90%;background-color: #e1efff;">
 				<div></div>
 				<div class="mt-3 mb-5 mx-auto" id="commentsDiv" style="width:100%">
 					<jsp:include page="${request.contextPath}/comments.do"></jsp:include>

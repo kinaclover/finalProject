@@ -12,7 +12,7 @@ var totalRank = bb.generate({
 		],
 		type: "pie",
 		onclick: function(d, i) {
-			window.location = "/findEat/search.do?item="+d.id;
+			window.location = "/findEat/search.do?keyword="+d.id;
 		},
 		onover: function(d, i) {
 			console.log("onover", d, i);
@@ -68,7 +68,7 @@ var userRank = bb.generate({
 			],
 		type: "pie",
 		onclick: function(d, i) {
-			window.location = "/findEat/search.do?item="+d.id;
+			window.location = "/findEat/search.do?keyword="+d.id;
 		},
 		onover: function(d, i) {
 			console.log("onover", d, i);
@@ -127,7 +127,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -153,7 +153,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -179,7 +179,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -205,7 +205,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -231,7 +231,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -257,7 +257,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -284,7 +284,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -310,7 +310,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -336,7 +336,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -362,7 +362,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -388,7 +388,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);
@@ -414,7 +414,7 @@ $(document).ready(function(){
 		    ],
 		    type: "pie",
 		    onclick: function(d, i) {
-		    	window.location = "/findEat/search.do?item="+d.id;
+		    	window.location = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
 			console.log("onover", d, i);

@@ -8,60 +8,46 @@
 <link href="css/search.css" rel="stylesheet">
 </head>
 <body>
-<c:set var="menu" value="${menu }"/>
+<c:set var="menu" value="${keyword}"/>
 <!-- menu -->
 <div class="mt-0 mb-3" id="menu">
 	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
 </div>
 
-<div class="container.fluid">
+<div class="container.fluid" style="height:850px">
+	<div class="row mx-3" style="height:100%;">
+		<div class="col-8">
+			<div class="map_wrap mx-3" style="height:100%">
+				<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+			</div>
+		</div>
 
-<div class="row">
-   
-    <div class="col-sm">
-    <div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-</div>
+		<div class="col-4">    
+			<div id="menu_wrap" class="bg_white">
+				<div class="option">
+					<form onsubmit="searchPlaces(); return false;">
+						<h5 class="mt-1 mb-3">검색 키워드 </h5>
+						<div class="my-1 mx-0">
+							<input class="form-control" type="text" id="keyword" name="" size="15"  placeholder="Search">
+						</div>
+						<div class="my-1 mx-0">
+							<button id="searchBtn"class="btn btn-mid btn-info btn-block mx-0" type="submit">검색하기</button>
+						</div>
+					</form>
+					<!-- temporary -->
+					<input type="hidden" id="menu" value="${menu}"/>
+					<div class="mt-1 mb-3 mx-0">
+						<button class="btn btn-mid btn-info btn-block mx-0" onClick="getPosition()">내위치 맛집찾기</button>
+					</div>
+				</div>
+			</div>
+			<div style="width:100%;">
+				<ul class="px-0" id="placesList"></ul>
+				<div class="text-center mb-3" id="pagination"></div>
+			</div>
+		</div>
     </div>
-    <div class="col-6 col-md-4" style="margin-top:30px;">
-    
-      <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            
-                <form onsubmit="searchPlaces(); return false;">
-                
-                <h5 class="mt-5">
-                    검색 키워드   </h5>
-                    <div class="row">
-                    <input class="form-control mr-sm-2" type="text" id="keyword" size="15"  placeholder="Search"> 
-                   </div>
-                  <div class="row"> 
-                    <button class="btn btn-mid btn-info btn-block" type="submit">검색하기</button> 
-                </div>
-                   
-                </form>
-                
-                <!-- temporary -->
-                <input type="hidden" id="menu" value="${menu}"/>
-                 <div class="row"> 
-                    <button class="btn btn-mid btn-info btn-block" onClick="getPosition()">내위치 맛집찾기</button> 
-                </div>
-                
-        </div>
-       
-    </div>
-
-       <hr>
-		<div style="overflow:auto; width:100%;padding-right:10px;">
-	        <ul id="placesList"></ul>
-	        
-	        <div id="pagination"></div>
-        </div>
 </div>
-    </div>
-
-</div>
-
 
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>

@@ -43,7 +43,7 @@
 <jsp:include page="${request.contextPath}/week.do"></jsp:include>
 
 <!-- suggestion ver2 -->
-<div style="width:75%;overflow: auto;" class="mx-auto mt-3 mb-5">
+<div style="width:75%;overflow: auto;" class="mx-auto mt-5 mb-5">
 	<jsp:include page="${request.contextPath}/suggestion.do"></jsp:include>
 </div>
 

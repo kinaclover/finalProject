@@ -43,7 +43,7 @@ public class Board {
 		if(request.getParameter("pageNum")!=null)
 			pageNum		= Integer.parseInt(request.getParameter("pageNum"));
 		
-		int pageSize	= 5;							//한 페이지에 표시될 최대 글 수
+		int pageSize	= 7;							//한 페이지에 표시될 최대 글 수
 		int start		= (pageNum-1) * pageSize + 1;
 		int end			= pageNum * pageSize;
 		int startPage	= 0;
