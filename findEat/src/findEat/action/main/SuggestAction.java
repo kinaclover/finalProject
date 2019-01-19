@@ -68,8 +68,6 @@ public class SuggestAction {
 		//
 		int week	= cal.get(Calendar.WEEK_OF_YEAR);		//오늘의 주 번호
 		int day		= cal.get(Calendar.DAY_OF_WEEK) - 1;	//오늘의 요일
-		//test
-		day = 4;
 		String id	= null;		//id확인
 		if(request.getSession().getAttribute("id")!=null) id = (String)request.getSession().getAttribute("id");
 		
