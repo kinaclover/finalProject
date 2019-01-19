@@ -11,5 +11,5 @@ $(document).ready(function(){
 		$('#totalRankList').attr('hidden',true);
 		$('#userRankList').removeAttr('hidden');
 	}
-	
+
 });

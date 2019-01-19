@@ -11,6 +11,7 @@
 		<typeAlias type="findEat.DB.bean.BoardVO" alias="boardVO"/>
 		<typeAlias type="findEat.DB.bean.CommentsVO" alias="commentsVO"/>
 		<typeAlias type="findEat.DB.bean.ImgsVO" alias="imgsVO"/>
+		<typeAlias type="findEat.DB.bean.MyPositionVO" alias="mypositionVO"/>
 	</typeAliases>
 	
 	<mappers>

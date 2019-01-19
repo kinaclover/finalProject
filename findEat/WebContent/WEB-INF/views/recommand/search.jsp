@@ -8,12 +8,11 @@
 <link href="css/search.css" rel="stylesheet">
 </head>
 <body>
+<c:set var="menu" value="${menu }"/>
 <!-- menu -->
 <div class="mt-0 mb-3" id="menu">
 	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
 </div>
-
-<c:set var="lk" value="${listkeyword }"/>
 
 <div class="container.fluid">
 
@@ -43,7 +42,7 @@
                 </form>
                 
                 <!-- temporary -->
-                <input type="hidden" id="lk" value="${lk}"/>
+                <input type="hidden" id="menu" value="${menu}"/>
                  <div class="row"> 
                     <button class="btn btn-mid btn-info btn-block" onClick="getPosition()">내위치 맛집찾기</button> 
                 </div>

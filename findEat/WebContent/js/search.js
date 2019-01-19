@@ -1,3 +1,4 @@
+
 /**
 / * search javascript
  */
@@ -19,74 +20,117 @@ var ps = new daum.maps.services.Places();
 
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new daum.maps.InfoWindow({zIndex:1});
-var address_name=null;
-var keyword=null;
-var listkeyword= document.getElementById("lk").value;
-console.log(listkeyword);
-if(listkeyword!=""){
-	getPosition();
-	
-}
 
-function getPosition(){
-	if(navigator.geolocation) {
+var keyword=$('input#menu').val();
+var address_name1=null,address_name2=null,address_name3=null;
+getAddress();
+
+if(keyword!="" && keyword!=null){
+if (navigator.geolocation) {
 	    
 	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
 	    navigator.geolocation.getCurrentPosition(function(position) {
 	        
-	    	var lat = position.coords.latitude; // 위도
-	    	var	lon = position.coords.longitude; // 경도
+	        var lat = position.coords.latitude; // 위도
+	        var lon = position.coords.longitude; // 경도
 	        
-	       var locPosition = new daum.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-	       var message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
-	      
-	       getAddress(lon, lat);
+	        
+	        var locPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+	            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
 	        
 	        // 마커와 인포윈도우를 표시합니다
 	        displayMarker(locPosition, message);
-	            
-	      });
-	    
+	       
+	            //좌표 --> 주소명 변환
+	        $.ajax({
+				type : "GET",
+				beforeSend: function(request) {
+				    request.setRequestHeader("Authorization", "KakaoAK 6caec61a6ae3ea1078caf3f394ae525b");
+				},
+				url :  "https://dapi.kakao.com/v2/local/geo/coord2address.json?x="+lon+"&y="+lat+"&input_coord=WGS84",
+				dataType : "json",
+				contentType : "application/json",
+				async:false,
+			  	success : function(data){
+					
+					address_name1=data.documents[0].address.region_1depth_name;
+					address_name2=data.documents[0].address.region_2depth_name;
+					address_name3=data.documents[0].address.region_3depth_name;
+					var option ={ category_group_code : "FD6" };
+					var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
+					
+				    ps.keywordSearch(result_keyword, placesSearchCB, option);
+				}
+			});
+			});
+	   
 	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
 	    
 	    var locPosition = new daum.maps.LatLng(33.450701, 126.570667),    
 	        message = 'geolocation을 사용할수 없어요..'
 	        
-	    displayMarker(locPosition, message);
-	}
+	    displayMarker(locPosition, address_name2);
+	} 
+	
+	
+}
+function getPosition(){
+	 var result_keyword=address_name1+" "+address_name2+" "+address_name3;
+	 var option ={ category_group_code : "FD6" };
+	 ps.keywordSearch(result_keyword, mylocationCallback, option);
 	
 }
 
-function getAddress(lon, lat){
-	$(document).ready(function(){
-   		$.ajax({
-   			type : "GET",
-   			beforeSend: function(request) {
-   			    request.setRequestHeader("Authorization", "KakaoAK 6caec61a6ae3ea1078caf3f394ae525b");
-   			},
-   			url :  "https://dapi.kakao.com/v2/local/geo/coord2address.json?x="+lon+"&y="+lat+"&input_coord=WGS84",
-   			dataType : "json",
-   			contentType : "application/json",
-   			
-   			success : function(data){
-   				
-   				address_name=data.documents[0].address.region_1depth_name+
-   							" "+data.documents[0].address.region_2depth_name+
-   							" "+data.documents[0].address.region_3depth_name;
-   							
-   				if(listkeyword!=null){
-   					keyword =address_name+" "+listkeyword;
-   					
-   					searchGeo(keyword);
-   				}
-   				
-   				
-   			}
-   			
-   			
-   		});
-   		});
+//좌표 -> 시 군 구로 바꿔줌.
+function getAddress(){
+	
+	if (navigator.geolocation) {
+	    
+	    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+	    navigator.geolocation.getCurrentPosition(function(position) {
+	        
+	        var lat = position.coords.latitude; // 위도
+	        var lon = position.coords.longitude; // 경도
+	        
+	        
+	        var locPosition = new daum.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+	            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+	        
+	        // 마커와 인포윈도우를 표시합니다
+	        displayMarker(locPosition, message);
+	       
+	            //좌표 --> 주소명 변환
+	       	getTrans(lat, lon);
+			});
+	   
+	} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+	    
+	    var locPosition = new daum.maps.LatLng(33.450701, 126.570667),    
+	        message = 'geolocation을 사용할수 없어요..'
+	        
+	    displayMarker(locPosition, address_name2);
+	} 
 }
+function getTrans(lat, lon){
+	 $.ajax({
+			type : "GET",
+			beforeSend: function(request) {
+			    request.setRequestHeader("Authorization", "KakaoAK 6caec61a6ae3ea1078caf3f394ae525b");
+			},
+			url :  "https://dapi.kakao.com/v2/local/geo/coord2address.json?x="+lon+"&y="+lat+"&input_coord=WGS84",
+			dataType : "json",
+			contentType : "application/json",
+			async:false,
+		  	success : function(data){
+				
+				address_name1=data.documents[0].address.region_1depth_name;
+				address_name2=data.documents[0].address.region_2depth_name;
+				address_name3=data.documents[0].address.region_3depth_name;
+				
+			}
+		});
+}
+
 
 function displayMarker(locPosition, message) {
 
@@ -112,39 +156,98 @@ function displayMarker(locPosition, message) {
     map.setCenter(locPosition);      
 }    
 
-//내 현재위치 검색
-function searchGeo(address_name) {
-    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다.
-    
-    var option ={ category_group_code : "FD6" };
-    ps.keywordSearch(address_name, placesSearchCB, option);
-    
-}
 
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+ 	if(keyword!="" || keyword!=null){
+ 		keyword=null;
+ 	}
+    keyword = document.getElementById('keyword').value;
+    var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
     
-	keyword = document.getElementById('keyword').value;
+    if(keyword=="" || keyword==null){
+    	alert("검색어를 입력해주세요");
+    	return;
+    }
+    
     var option ={ category_group_code : "FD6" };
-    ps.keywordSearch(keyword, placesSearchCB, option);
+    ps.keywordSearch(result_keyword, placesSearchCB, option);
     
+}
+function mylocationCallback(data, status, pagination){
+	 if (status === daum.maps.services.Status.OK) {
+	    	   
+		 post_to_url2(address_name1, address_name2, address_name3,data,pagination);
+	        
+
+	    } else if (status === daum.maps.services.Status.ZERO_RESULT) {
+
+	        alert('검색 결과가 존재하지 않습니다.');
+	        return;
+
+	    } else if (status === daum.maps.services.Status.ERROR) {
+
+	        alert('검색 결과 중 오류가 발생했습니다.');
+	        return;
+	       
+
+	    }
+	
+}
+function post_to_url2(address_name1, address_name2, address_name3, params, pagination){
+	$.ajax({
+		type : "POST",
+		url : "/findEat/myPosition.do?address_name1="+address_name1+"&address_name2="+address_name2+"&address_name3="+address_name3,
+		dataType: 'json',
+		contentType:'application/json',
+		data : JSON.stringify(params),
+		success : function(data){
+			 var listEl = document.getElementById('placesList'), 
+			    menuEl = document.getElementById('menu_wrap'),
+			    fragment = document.createDocumentFragment(), 
+			    bounds = new daum.maps.LatLngBounds(), 
+			    listStr = '';
+			 removeAllChildNods(listEl);
+			 removeMarker();
+			var save_imgs=new Array();
+			
+			for(var i=0; i<data.img.length; i++){
+				save_imgs.push(data.img[i]);
+			}
+			
+			for(var i=0; i<params.length; i++){
+				makeitemEl(params[i], markers[i], params[i].place_name,params[i].address_name, params[i].phone, params[i].place_url, i, save_imgs[i],bounds,fragment);
+			}
+			
+			// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
+		    listEl.appendChild(fragment);
+		    menuEl.scrollTop = 0;
+
+		    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+		    map.setBounds(bounds);		
+						
+		    displayPagination(pagination);				
+		}
+	});
+	
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
+	
     if (status === daum.maps.services.Status.OK) {
     	// 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
-
-        
+	  
+	   
        post_to_url(keyword,data,pagination);     
         
 
     } else if (status === daum.maps.services.Status.ZERO_RESULT) {
 
-        //alert('검색 결과가 존재하지 않습니다.');		//임시조치
+        alert('검색 결과가 존재하지 않습니다.');
         return;
 
     } else if (status === daum.maps.services.Status.ERROR) {
@@ -230,11 +333,11 @@ function getListItem(index, places) {
 //place 데이터 전송
 
 function post_to_url(keyword, params, pagination) {
-		console.log(pagination.current);
-		console.log(keyword);
-	 	$.ajax({
+		
+		
+		$.ajax({
 			type : "POST",
-			url : "/findEat/searchPro.do?keyword="+keyword+"&pageNum="+pagination.current,
+			url : "/findEat/searchPro.do?address_name1="+address_name1+"&address_name2="+address_name2+"&address_name3="+address_name3+"&menu="+keyword+"&pageNum="+pagination.current,
 			dataType: 'json',
 			contentType:'application/json',
 			data : JSON.stringify(params),
@@ -247,7 +350,7 @@ function post_to_url(keyword, params, pagination) {
 				 removeAllChildNods(listEl);
 				 removeMarker();
 				var save_imgs=new Array();
-				console.log(data);
+				
 				for(var i=0; i<data.img.length; i++){
 					save_imgs.push(data.img[i]);
 				}
@@ -358,7 +461,6 @@ function displayInfowindow(places,marker, title, address, phone, url, i,img) {
     
     
 }
-
 
 
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
