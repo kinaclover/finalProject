@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<c:if test="${day>5}">
+	<div class="text-center py-5">
+		<h5>주말 추천은 개발중입니다!</h5>
+	</div>
+</c:if>
+
+<c:if test="${day<=5}">
 <!-- tabs - total -->
 <div id="totalRankList">
 	<nav>
@@ -22,20 +29,22 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!totalRankMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-2">
+			<div class="py-3 pl-5" style="width:25%;float:left;">
+				<div class="pl-5">
 					<c:forEach items="${totalRankMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalRankMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalRankMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="totalTabPie-total" class="col-5"></div>
+			</div>
+			<div class="row" style="width:70%;float:right;">
+				<div id="totalTabPie-total" class="col-6"></div>
 				<c:forEach items="${totalClassifyMap}" var="map" varStatus="stat">
 					<input type="hidden" class="totalClasMapKey-${stat.count}" value="${map.key}"/>
 					<input type="hidden" class="totalClasMapValue-${stat.count}" value="${map.value}"/>
 				</c:forEach>
-				<div id="totalTabPie-totalB" class="col-5"></div>
+				<div id="totalTabPie-totalB" class="col-6"></div>
 			</div>
 			</c:if>
 		</div>
@@ -45,16 +54,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!totalKMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;" >
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${totalKMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalKMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalKMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="totalTabPie-k" class="col-8"></div>
 			</div>
+			<div id="totalTabPie-k" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 일식-Japanese -->
@@ -63,16 +72,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!totalJMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${totalJMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalJMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalJMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="totalTabPie-j" class="col-8"></div>
 			</div>
+			<div id="totalTabPie-j" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 중식-Chinese -->
@@ -81,16 +90,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!totalCMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${totalCMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalCMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalCMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="totalTabPie-c" class="col-8"></div>
 			</div>
+			<div id="totalTabPie-c" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 양식-Western -->
@@ -99,16 +108,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!totalWMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${totalWMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalWMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalWMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="totalTabPie-w" class="col-8"></div>
 			</div>
+			<div id="totalTabPie-w" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 패스트푸드/분식-Fast -->
@@ -117,16 +126,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!totalFMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
-					<c:forEach items="${totalFMap}" var="map" end="4" varStatus="stat">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
+					<c:forEach items="${totalKMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalFMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalFMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="totalTabPie-f" class="col-8"></div>
 			</div>
+			<div id="totalTabPie-f" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 기타-Etc -->
@@ -135,16 +144,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!totalEMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${totalEMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalEMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalEMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="totalTabPie-e" class="col-8"></div>
 			</div>
+			<div id="totalTabPie-e" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 	</div>
@@ -171,20 +180,22 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!userRankMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-2">
+			<div class="py-3 pl-5" style="width:25%;float:left;">
+				<div class="pl-5">
 					<c:forEach items="${userRankMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userRankMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userRankMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="userTabPie-total" class="col-5"></div>
-				<c:forEach items="${userClassifyMap}" var="map" varStatus="stat">
+			</div>
+			<div class="row" style="width:70%;float:right;">
+				<div id="userTabPie-total" class="col-6"></div>
+				<c:forEach items="${totalClassifyMap}" var="map" varStatus="stat">
 					<input type="hidden" class="userClasMapKey-${stat.count}" value="${map.key}"/>
 					<input type="hidden" class="userClasMapValue-${stat.count}" value="${map.value}"/>
 				</c:forEach>
-				<div id="userTabPie-totalB" class="col-5"></div>
+				<div id="userTabPie-totalB" class="col-6"></div>
 			</div>
 			</c:if>
 		</div>
@@ -194,16 +205,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!userKMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${userKMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userKMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userKMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="userTabPie-k" class="col-8"></div>
 			</div>
+			<div id="userTabPie-k" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 일식-Japanese -->
@@ -212,16 +223,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!userJMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${userJMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userJMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userJMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="userTabPie-j" class="col-8"></div>
 			</div>
+			<div id="userTabPie-j" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 중식-Chinese -->
@@ -230,16 +241,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!userCMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${userCMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userCMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userCMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="userTabPie-c" class="col-8"></div>
 			</div>
+			<div id="userTabPie-c" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 양식-Western -->
@@ -248,16 +259,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!userWMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${userWMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userWMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userWMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="userTabPie-w" class="col-8"></div>
 			</div>
+			<div id="userTabPie-w" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 패스트푸드/분식-Fast -->
@@ -266,16 +277,16 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!userFMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${userFMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userFMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userFMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="userTabPie-f" class="col-8"></div>
 			</div>
+			<div id="userTabPie-f" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 		<!-- 기타-Etc -->
@@ -284,17 +295,18 @@
 				<h3 class="py-5 px-5">데이터가 부족합니다.</h3>
 			</c:if>
 			<c:if test="${!userEMap.isEmpty()}">
-			<div class="row py-3 px-5" style="height: 232px;">
-				<div class="col-4">
+			<div class="py-3 pl-5" style="width:40%;float:left;" >
+				<div class="pl-5">
 					<c:forEach items="${userEMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="userEMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="userEMapValue-${stat.count}" value="${map.value}"/>
-						<p class="">${stat.count}위. ${map.key}</p>
+						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?item=${map.key}">${map.key}</a></p>
 					</c:forEach>
 				</div>
-				<div id="userTabPie-e" class="col-8"></div>
 			</div>
+			<div id="userTabPie-e" class="" style="width:50%;float:right;"></div>
 			</c:if>
 		</div>
 	</div>
 </div>
+</c:if>

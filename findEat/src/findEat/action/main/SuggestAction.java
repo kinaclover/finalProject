@@ -139,6 +139,8 @@ public class SuggestAction {
 		request.setAttribute("totalFMap", totalFMap);
 		request.setAttribute("totalEMap", totalEMap);
 		
+		request.setAttribute("day", day);					//현재 요일 값 전송
+		
 		return "/main/suggestion";
 	}
 }

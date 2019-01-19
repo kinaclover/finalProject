@@ -11,8 +11,6 @@
 <link rel="stylesheet" href="css/billboard.css">
 <script src="js/billboard.pkgd.js"></script>
 <script src="js/moment.js"></script>
-<script src="js/Chart.js"></script>
-<script src="js/suggestChart.js"></script>
 </head>
 <body class="d-block">
 <!-- menu -->
@@ -48,8 +46,6 @@
 <div style="width:75%;overflow: auto;" class="mx-auto mt-3 mb-5">
 	<jsp:include page="${request.contextPath}/suggestion.do"></jsp:include>
 </div>
-
-<canvas id="test" width="200" height="100"></canvas>
 
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
