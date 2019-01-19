@@ -141,6 +141,6 @@ public class SuggestAction {
 		
 		request.setAttribute("day", day);					//현재 요일 값 전송
 		
-		return "/main/suggestion";
+		return "/main/suggestion-index";
 	}
 }
