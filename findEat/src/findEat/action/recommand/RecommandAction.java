@@ -32,6 +32,10 @@ public class RecommandAction {
 	public String test(HttpServletRequest request, Model model){
 		String menu=request.getParameter("menu");
 		model.addAttribute("menu", menu);
+		if(request.getParameter("keyword")!=null) {
+			System.out.println("keyword! : "+request.getParameter("keyword"));
+			model.addAttribute("keyword", request.getParameter("keyword"));
+		}
 		
 		return "recommand/search";
 	}

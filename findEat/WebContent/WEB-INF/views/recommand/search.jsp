@@ -8,7 +8,7 @@
 <link href="css/search.css" rel="stylesheet">
 </head>
 <body>
-<c:set var="menu" value="${keyword}"/>
+<input type="hidden" id="keywordValue" value="${keyword}"/>
 <!-- menu -->
 <div class="mt-0 mb-3" id="menu">
 	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
@@ -25,19 +25,17 @@
 		<div class="col-4">    
 			<div id="menu_wrap" class="bg_white">
 				<div class="option">
-					<form onsubmit="searchPlaces(); return false;">
-						<h5 class="mt-1 mb-3">검색 키워드 </h5>
-						<div class="my-1 mx-0">
-							<input class="form-control" type="text" id="keyword" name="" size="15"  placeholder="Search">
-						</div>
-						<div class="my-1 mx-0">
-							<button id="searchBtn"class="btn btn-mid btn-info btn-block mx-0" type="submit">검색하기</button>
-						</div>
-					</form>
+					<h5 class="mt-1 mb-3">검색 키워드 </h5>
+					<div class="my-1 mx-0">
+						<input class="form-control" type="text" id="keyword" size="15"  placeholder="Search">
+					</div>
+					<div class="my-1 mx-0">
+						<input type="button" class="btn btn-info btn-block mx-0" id="searchBtn" value="검색하기"/>
+					</div>
 					<!-- temporary -->
-					<input type="hidden" id="menu" value="${menu}"/>
+					<!-- <input type="hidden" id="menu" value="${menu}"/> -->
 					<div class="mt-1 mb-3 mx-0">
-						<button id="findLocal" class="btn btn-mid btn-info btn-block mx-0" onClick="getPosition()">내위치 맛집찾기</button>
+						<button id="findLocal" class="btn btn-info btn-block mx-0" onClick="getPosition()">내위치 맛집찾기</button>
 					</div>
 				</div>
 			</div>
