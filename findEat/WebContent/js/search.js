@@ -483,3 +483,9 @@ $(function(){
 		$("#placesList").attr("style","overflow:auto;height:630px");
 	});
 });
+//input reset
+$(function(){
+	$("#findLocal").click(function(){
+		$("#keyword").val("");
+	});
+});

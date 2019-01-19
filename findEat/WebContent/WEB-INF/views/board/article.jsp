@@ -34,13 +34,15 @@
 				<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do?pageNum=${pageNum}'">글 목록</button>
 			</c:if>
 		</div>
-		<div class="btn-group btn-group-sm">
-			<input type="button" class="btn btn-sm btn-outline-warning text-center" id="chkBtn" 
-						data-toggle="collapse" data-target="#collapsePw" value="수정"/>
-			<input type="button" class="btn btn-sm btn-outline-info text-center" id="modifyCancel" value="취소" hidden="hidden"/>
-			<input type="submit" class="btn btn-sm btn-outline-warning" id="confirmBtn" value="글 수정" hidden="hidden"/>
-			<input type="button" class="btn btn-sm btn-outline-danger text-center" id="articleDelBtn" value="삭제"/>
-		</div>
+		<c:if test="${sessionScope.id.equals(boardVO.id)||sessionScope.id.equals('admin')}">
+			<div class="btn-group btn-group-sm">
+				<input type="button" class="btn btn-sm btn-outline-warning text-center" id="chkBtn" 
+							data-toggle="collapse" data-target="#collapsePw" value="수정"/>
+				<input type="button" class="btn btn-sm btn-outline-info text-center" id="modifyCancel" value="취소" hidden="hidden"/>
+				<input type="submit" class="btn btn-sm btn-outline-warning" id="confirmBtn" value="글 수정" hidden="hidden"/>
+				<input type="button" class="btn btn-sm btn-outline-danger text-center" id="articleDelBtn" value="삭제"/>
+			</div>
+		</c:if>
 	</div>
 	<!-- article -->
 	<div>
@@ -102,7 +104,7 @@
 			<input type="hidden" id="chkNum" value="0"/>
 			
 			<div class="collapse" id="collapsePw">
-				<div class="mx-0 my-3 row" style="width:40%;">
+				<div class="mx-0 my-1 row" style="width:40%;">
 					<input type="password" class="form-control col-8" id="inputPw" name="pw" placeholder="password"/>
 					<input type="button" class="btn btn-sm btn-outline-secondary col-4" id="modifyBtn" value="Check"/>
 				</div>
@@ -124,8 +126,6 @@
 
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/main.js"></script>
 <script src="js/board.js"></script>

@@ -37,7 +37,7 @@
 					<!-- temporary -->
 					<input type="hidden" id="menu" value="${menu}"/>
 					<div class="mt-1 mb-3 mx-0">
-						<button class="btn btn-mid btn-info btn-block mx-0" onClick="getPosition()">내위치 맛집찾기</button>
+						<button id="findLocal" class="btn btn-mid btn-info btn-block mx-0" onClick="getPosition()">내위치 맛집찾기</button>
 					</div>
 				</div>
 			</div>
@@ -51,8 +51,6 @@
 
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/menu.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8d9b38a8afd2bcec1ece996622e6d39&libraries=services"></script>

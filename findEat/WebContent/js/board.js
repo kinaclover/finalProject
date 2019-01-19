@@ -1,7 +1,21 @@
-/**
- * 	- for board
+/*
+ *	- for board
  */
 
+//글 목록 로그인 유도
+$(function(){
+	$("#writeCheck").click(function(){
+		var chkId	= $("#checkId").val();
+		if(chkId==""){
+			alert("로그인이 필요합니다.");
+			if(confirm("로그인 하시겠습니까?")){
+				window.location	= "/findEat/login.do";
+			}
+		}else {
+			window.location	= "/findEat/insert.do";
+		}
+	});
+});
 
 //show/hide article modify button
 $(function(){
