@@ -40,7 +40,7 @@
 	<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
 	<button class="btn btn-mid btn-info btn-block" onclick="window.location='/findEat/join.do'">Sign Up</button>
 	
-	<div id="naverIdLogin"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
+	<div id="naverIdLogin" class="btn" style="width:380px;"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
 	
 	<script type="text/javascript">
 	var naverLogin = new naver.LoginWithNaverId(
@@ -48,7 +48,7 @@
 			clientId: "XbLB49KVP66WsUyV0qUz",
 			callbackUrl: "http://localhost:8080/findEat/naverLoginCallback.do",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, height: 40} /* 로그인 버튼의 타입을 지정 */
+			loginButton: {color: "green", type: 3, height: 50} /* 로그인 버튼의 타입을 지정 */
 		}
 	);	
    /* 설정정보를 초기화하고 연동을 준비 */
