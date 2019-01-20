@@ -494,7 +494,7 @@ $(document).ready(function(){
 	var keyword	= $("#keywordValue").val();
 	if(keyword!=""){
 		$("#keyword").val(keyword);
-		$("#placesList").attr("style","overflow:auto;height:630px");
+		$("#placesList").attr("style","overflow:auto;height:67vh");
 		searchPlaces();
 	}
 });
@@ -504,7 +504,7 @@ $(document).ready(function(){
 //ul tag style 수정
 $(function(){
 	$("#searchBtn").click(function(){
-		$("#placesList").attr("style","overflow:auto;height:63vh");
+		$("#placesList").attr("style","overflow:auto;height:67vh");
 		searchPlaces();
 	});
 });
@@ -512,6 +512,6 @@ $(function(){
 $(function(){
 	$("#findLocal").click(function(){
 		$("#keyword").val("");
-		$("#placesList").attr("style","overflow:auto;height:63vh");
+		$("#placesList").attr("style","overflow:auto;height:67vh");
 	});
 });
