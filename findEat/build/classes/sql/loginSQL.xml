@@ -35,8 +35,8 @@
 		insert into client values(#{id},#{pw},#{email},#{reset})
 	</insert>
 	
-	<delete id="delete" parameterType="HashMap">
-		delete from client where id=#{id} and pw=#{pw}
+	<delete id="delete" parameterType="String">
+		delete from client where id=#{value}
 	</delete>
 	
 	<select id="deleteCalCheck" parameterType="String" resultType="int">

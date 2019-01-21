@@ -6,7 +6,7 @@ public interface LoginDAO {
 	public int LoginPro(String id, String pw) throws Exception;
 	public int UpdatePro(LoginVO vo) throws Exception;
 	public int JoinPro(LoginVO vo) throws Exception;
-	public int DeletePro(String id, String pw) throws Exception;
+	public int DeletePro(String id) throws Exception;
 	public int DeleteCalCheck(String id) throws Exception;
 	public int DeleteCal(String id) throws Exception;
 	public LoginVO SelectPro(String id) throws Exception;

@@ -130,8 +130,9 @@ function emailCheck() {
 //delete - first action
 $(function(){
 	$('#deleteBtn').click(function(){
-		var result	= confirm("정말 삭제하시겠습니까?");
-		if(result) window.location	= "delete.do";
+		if(confirm("정말 삭제하시겠습니까?")){
+			window.location = "deletePro.do";
+		}
 	});
 });
 
