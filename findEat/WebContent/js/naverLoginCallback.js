@@ -19,6 +19,7 @@ window.addEventListener('load', function () {
 			/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
 			var uniqId = naverLogin.user.getId(); // 네이버 id 가 아닌 각 id 별 고유값 
 			var email = naverLogin.user.getEmail();
+			var email_head = email.split('@',1);
 			if( email == undefined || email == null || uniqId == undefined || uniqId == null) {
 				alert("이메일, 별명, 아이디에 대한 정보제공을 동의해주세요.");
 				/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
@@ -29,17 +30,17 @@ window.addEventListener('load', function () {
 			$.ajax({
 				async: true,
 				type: 'POST',
-				data: JSON.stringify(uniqId),
+				data: JSON.stringify(email_head),
 				contentType: "application/json; charset=UTF-8",
 				url: 'naverIdCheck.do',
 				success: function(data) {
 					if($.trim(data) != 0) { // 네이버 아이디 정보가 db 에 있을 때
-						alert(email.split('@',1)+" 님 어서오세요!");
+						alert(email_head+" 님 어서오세요!");
 						$.ajax ({
 							async: true,
 							type: 'POST',
 							data: {
-								"id": uniqId,
+								"id": email_head,
 								"pw": " "
 							},
 							url: 'naverLoginPro.do',
@@ -58,23 +59,23 @@ window.addEventListener('load', function () {
 								async: true,
 								type: 'POST',
 								data: {
-									"id": uniqId,
+									"id": email_head,
 									"email": email,
 									"pw": " "
 								},
 								url: 'naverJoinPro.do',
 								success: function(data) {
-									alert("data? : "+data);
+									//alert("data? : "+data);
 									$.ajax ({
 										async: true,
 										type: 'POST',
 										data: {
-											"id": uniqId,
+											"id": email_head,
 											"pw": " "
 										},
 										url: 'naverLoginPro.do',
 										success: function(data) {
-											alert(email.split('@',1)+" 님 어서오세요!");
+											alert(email_head+" 님 어서오세요!");
 											window.location="/findEat/index.do";
 										},
 										error: function(request,status,error) {
