@@ -17,30 +17,32 @@ window.addEventListener('load', function () {
 	naverLogin.getLoginStatus(function (status) {
 		if (status) {
 			/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
-			var uniqId = naverLogin.user.getId(); // 네이버 id 가 아닌 각 id 별 고유값 
+			//var uniqId = naverLogin.user.getId(); // 네이버 id 가 아닌 각 id 별 고유값 
 			var email = naverLogin.user.getEmail();
-			var email_head = email.split('@',1);
-			if( email == undefined || email == null || uniqId == undefined || uniqId == null) {
-				alert("이메일, 별명, 아이디에 대한 정보제공을 동의해주세요.");
+			if( email == undefined || email == null) {
+				alert("이메일에 대한 정보제공을 동의해주세요.");
 				/* (5-1) 사용자 정보 재동의를 위하여 다시 네아로 동의페이지로 이동함 */
-				naverLogin.reprompt();
+				naverLogin.reprompt();	
 				return;
 			}
-			
+			var emailHead = email.split('@',1);
+			emailHead = JSON.stringify(emailHead).replace(/"/g, "");
+			emailHead = emailHead.replace(/[[\]]/g,'');
+	
 			$.ajax({
 				async: true,
 				type: 'POST',
-				data: JSON.stringify(email_head),
+				data: JSON.stringify(emailHead),
 				contentType: "application/json; charset=UTF-8",
 				url: 'naverIdCheck.do',
 				success: function(data) {
 					if($.trim(data) != 0) { // 네이버 아이디 정보가 db 에 있을 때
-						alert(email_head+" 님 어서오세요!");
+						alert(emailHead+" 님 어서오세요!");
 						$.ajax ({
 							async: true,
 							type: 'POST',
 							data: {
-								"id": email_head,
+								"id": emailHead,
 								"pw": " "
 							},
 							url: 'naverLoginPro.do',
@@ -59,23 +61,22 @@ window.addEventListener('load', function () {
 								async: true,
 								type: 'POST',
 								data: {
-									"id": email_head,
+									"id": emailHead,
 									"email": email,
 									"pw": " "
 								},
 								url: 'naverJoinPro.do',
 								success: function(data) {
-									//alert("data? : "+data);
 									$.ajax ({
 										async: true,
 										type: 'POST',
 										data: {
-											"id": email_head,
+											"id": emailHead,
 											"pw": " "
 										},
 										url: 'naverLoginPro.do',
 										success: function(data) {
-											alert(email_head+" 님 어서오세요!");
+											alert(emailHead+" 님 어서오세요!");
 											window.location="/findEat/index.do";
 										},
 										error: function(request,status,error) {
@@ -87,8 +88,8 @@ window.addEventListener('load', function () {
 								}
 							});
 						}else{   //취소
-						    alert("error!");
-							return;
+						    //alert("error!");
+						    window.location="/findEat/login.do";
 						}
 					}
 				},
@@ -99,6 +100,7 @@ window.addEventListener('load', function () {
 			});					
 		} else {
 			alert("Error Code(5) : callback 처리에 실패하였습니다.");
+			window.location="/findEat/login.do";
 		}
 	});	
 });		
