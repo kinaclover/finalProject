@@ -14,11 +14,11 @@
 	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
 </div>
 
-<div class="container.fluid" style="height:850px">
-	<div class="row mx-3" style="height:100%;">
+<div class="container.fluid" style="height:90vh">
+	<div class="row mx-3" style="height:90vh;">
 		<div class="col-8">
-			<div class="map_wrap mx-3" style="height:100%">
-				<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+			<div class="map_wrap mx-3" style="height:90vh">
+				<div id="map" style="width:100%;height:90vh;position:relative;overflow:hidden;"></div>
 			</div>
 		</div>
 
@@ -39,9 +39,9 @@
 					</div>
 				</div>
 			</div>
-			<div style="width:100%;">
+			<div style="width:100%;height:67vh">
 				<ul class="px-0" id="placesList"></ul>
-				<div class="text-center mb-3" id="pagination"></div>
+				<div class="text-center mb-1" id="pagination"></div>
 			</div>
 		</div>
     </div>

@@ -1,4 +1,33 @@
 
+/*************************************************************************************************************************/
+
+$(document).ready(function(){
+	var keyword	= $("#keywordValue").val();
+	if(keyword!=""){
+		$("#keyword").val(keyword);
+		$("#placesList").attr("style","overflow:auto;height:63vh");
+		setTimeout(searchPlaces(),1000);
+	}
+});
+
+//custom function
+//search 버튼 눌렀을 때
+//ul tag style 수정
+$(function(){
+	$("#searchBtn").click(function(){
+		$("#placesList").attr("style","overflow:auto;height:63vh");
+		searchPlaces();
+	});
+});
+//input reset
+$(function(){
+	$("#findLocal").click(function(){
+		$("#keyword").val("");
+		$("#placesList").attr("style","overflow:auto;height:63vh");
+	});
+});
+/*************************************************************************************************************************/
+
 /**
 / * search javascript
  */
@@ -486,31 +515,3 @@ function closeOverlay() {
 	
 	infowindow.close();   
 }
-
-/***********************************************************************************************************************/
-
-/*************************************************************************************************************************/
-$(document).ready(function(){
-	var keyword	= $("#keywordValue").val();
-	if(keyword!=""){
-		$("#keyword").val(keyword);
-		$("#placesList").attr("style","overflow:auto;height:630px");
-		searchPlaces();
-	}
-});
-
-//custom function
-//search 버튼 눌렀을 때
-//ul tag style 수정
-$(function(){
-	$("#searchBtn").click(function(){
-		$("#placesList").attr("style","overflow:auto;height:630px");
-		searchPlaces();
-	});
-});
-//input reset
-$(function(){
-	$("#findLocal").click(function(){
-		$("#keyword").val("");
-	});
-});

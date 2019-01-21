@@ -142,3 +142,4 @@ $(function(){
 		if(result) window.location	= "deletePro.do";
 	});
 });
+
