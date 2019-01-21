@@ -39,7 +39,7 @@
 					</div>
 				</div>
 			</div>
-			<div style="width:100%;">
+			<div style="width:100%;height:67vh">
 				<ul class="px-0" id="placesList"></ul>
 				<div class="text-center mb-1" id="pagination"></div>
 			</div>
