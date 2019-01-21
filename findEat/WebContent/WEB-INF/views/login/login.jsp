@@ -59,7 +59,7 @@
    /* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
 </script>
- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">dfd</div>
+ <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
         function onSignIn(googleUser) {
             // Useful data for your client-side scripts:
@@ -74,6 +74,14 @@
             // The ID token you need to pass to your backend:
             var id_token = googleUser.getAuthResponse().id_token;
             console.log("ID Token: " + id_token);
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:8080/findEat/tokensignin.do');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+              console.log('Signed in as: ' + xhr.responseText);
+            };
+            xhr.send('idtoken=' + id_token);
         };
     </script>
 
