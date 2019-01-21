@@ -1,20 +1,36 @@
-/**
- * 	- for board
+/*
+ *	- for board
  */
 
+//글 목록 로그인 유도
+$(function(){
+	$("#writeCheck").click(function(){
+		var chkId	= $("#checkId").val();
+		if(chkId==""){
+			alert("로그인이 필요합니다.");
+			if(confirm("로그인 하시겠습니까?")){
+				window.location	= "/findEat/login.do";
+			}
+		}else {
+			window.location	= "/findEat/insert.do";
+		}
+	});
+});
 
 //show/hide article modify button
 $(function(){
 	$("#chkBtn").click(function(){
 		var chkNum = $("#chkNum").val();
 		if(chkNum==0){
-			$("#modifyDiv").removeAttr("hidden");
 			$("#chkBtn").val("취소");
+			$("#chkBtn").removeClass("btn-outline-warning");
+			$("#chkBtn").addClass("btn-outline-info");
 			$("#chkNum").val(1);
 			$("#inputPw").focus();
 		}else {
-			$("#modifyDiv").attr("hidden",true);
 			$("#chkBtn").val("수정");
+			$("#chkBtn").removeClass("btn-outline-info");
+			$("#chkBtn").addClass("btn-outline-warning");
 			$("#chkNum").val(0);
 		}
 	});
@@ -44,9 +60,6 @@ $(function(){
 			url: 'articleCheck.do',
 			success: function(data) {
 				if($.trim(data)!=0) {
-					$("#modifySub").removeAttr("hidden");
-					$("#inputSubject").removeAttr("readonly");
-					$("#inputContent").removeAttr("readonly");
 					$("#radio1").removeAttr("disabled");
 					$("#radio2").removeAttr("disabled");
 					$("#modiBox").attr("hidden",true);
@@ -55,6 +68,17 @@ $(function(){
 					$("#chkNum").val(0);
 					$("#inputPw").val("")
 					$("#inputContent").focus();
+					//
+					$("#collapsePw").removeClass("collapse show");
+					$("#collapsePw").addClass("collapse");
+					$("#showCont").attr("hidden",true);
+					$("#modiCont").removeAttr("hidden");
+					$("#modifyCancel").removeAttr("hidden");
+					$("#chkBtn").attr("hidden",true);
+					$("#chkBtn").removeClass("btn-outline-info");
+					$("#chkBtn").addClass("btn-outline-warning");
+					$("#confirmBtn").removeAttr("hidden");
+					$("#modiArea").focus();
 				} else {
 					alert("비밀번호를 확인해주세요.");
 				}
@@ -68,12 +92,13 @@ $(function(){
 //modify cancel
 $(function(){
 	$("#modifyCancel").click(function(){
-		$("#modiBox").removeAttr("hidden");
-		$("#modifySub").attr("hidden",true);
-		$("#inputSubject").attr("readonly",true);
-		$("#inputContent").attr("readonly",true);
 		$("#radio1").attr("disabled",true);
 		$("#radio2").attr("disabled",true);
+		$("#showCont").removeAttr("hidden");
+		$("#modiCont").attr("hidden",true);
+		$("#modifyCancel").attr("hidden",true);
+		$("#chkBtn").removeAttr("hidden");
+		$("#confirmBtn").attr("hidden",true);
 	});
 });
 

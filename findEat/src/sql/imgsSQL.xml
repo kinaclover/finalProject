@@ -4,16 +4,28 @@
 <mapper namespace="Imgs">
 
 	<insert id="insertImgs" parameterType="imgsVO">
-		insert into imgs_url values (#{img_url}, #{keyword}, #{place_name}, #{pageNum})
+		insert into imgs_url values (#{img_url}, #{place_name}, #{address1}, #{address2}, #{address3}, #{menu})
 	</insert>
 	
 	<select id="searchKeyword" parameterType="HashMap" resultType="int">
-		select count(*) from imgs_url where keyword like '%'||#{keyword}||'%' and pagenum = #{pageNum}
+		select count(*) from imgs_url where place_name= #{place_name} and address1=#{address_name1} and address2=#{address_name2} and address3=#{address_name3} and menu=#{menu} 
 	</select>
 	
 	<select id="selectKeyword" parameterType="HashMap" resultType="imgsVO">
-		select * from imgs_url where keyword like '%'||#{keyword}||'%' and pagenum = #{pageNum}
+		select distinct * from imgs_url where address1= #{address_name1} and address2 = #{address_name2} and address3 =#{address_name3} and menu =#{menu} and place_name =#{place_name}
+		
 	</select>
 	
+	<select id="checkMyPosition" parameterType="HashMap" resultType="int">
+		select count(*) from imgs_url where place_name=#{place_name} and address1=#{address_name1} and address2=#{address_name2} and address3=#{address_name3}
+	</select>
+			
+	<select id="selectMyPosition" parameterType="HashMap" resultType="mypositionVO">
+		select distinct img_url,place_name,address1,address2,address3 from imgs_url where place_name=#{place_name} and address1=#{address_name1} and address2=#{address_name2} and address3=#{address_name3}
+	</select>
+	
+	<insert id="insertMyPosition" parameterType="mypositionVO">
+		insert into imgs_url (img_url, place_name, address1, address2, address3) values (#{img_url}, #{place_name}, #{address_name1}, #{address_name2}, #{address_name3})
+	</insert>
 			
 </mapper>

@@ -43,7 +43,7 @@ public class Board {
 		if(request.getParameter("pageNum")!=null)
 			pageNum		= Integer.parseInt(request.getParameter("pageNum"));
 		
-		int pageSize	= 5;							//한 페이지에 표시될 최대 글 수
+		int pageSize	= 7;							//한 페이지에 표시될 최대 글 수
 		int start		= (pageNum-1) * pageSize + 1;
 		int end			= pageNum * pageSize;
 		int startPage	= 0;
@@ -94,6 +94,8 @@ public class Board {
 	public String article(HttpServletRequest request) throws Exception {
 		int idx	= Integer.parseInt(request.getParameter("idx"));
 		boardVO	= boardDAO.ViewArticle(idx);
+		String contents	= boardVO.getContent().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>");
+		request.setAttribute("contents",contents);
 		request.setAttribute("boardVO", boardVO);
 		request.setAttribute("idx", idx);
 		request.setAttribute("pageNum", request.getParameter("pageNum"));

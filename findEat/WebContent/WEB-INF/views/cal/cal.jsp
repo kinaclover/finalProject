@@ -180,8 +180,6 @@
 
 
 <!-- for bootstrap/jQuery/Popper -->
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/menu.js"></script>
 </body>

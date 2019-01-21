@@ -1,44 +1,23 @@
 package findEat.action.recommand;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-import org.mybatis.spring.SqlSessionTemplate;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.rosuda.REngine.REXP;
-import org.rosuda.REngine.REXPMismatchException;
-import org.rosuda.REngine.REngineException;
-import org.rosuda.REngine.RList;
 import org.rosuda.REngine.Rserve.RConnection;
-import org.rosuda.REngine.Rserve.RserveException;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import findEat.DB.bean.ImgsVO;
+import findEat.DB.bean.MyPositionVO;
 import findEat.DB.dao.ImgsDAOImpl;
 import findEat.recommand.bean.PlaceInfo;
 
@@ -51,9 +30,12 @@ public class RecommandAction {
 	
 	@RequestMapping("search.do")
 	public String test(HttpServletRequest request, Model model){
-		String listkeyword = request.getParameter("listkeyword");
-		System.out.println("server =========>"+listkeyword);
-		model.addAttribute("listkeyword", listkeyword);
+		String menu=request.getParameter("menu");
+		model.addAttribute("menu", menu);
+		if(request.getParameter("keyword")!=null) {
+			System.out.println("keyword! : "+request.getParameter("keyword"));
+			model.addAttribute("keyword", request.getParameter("keyword"));
+		}
 		
 		return "recommand/search";
 	}
@@ -62,31 +44,72 @@ public class RecommandAction {
 	@RequestMapping("searchPro.do")
 	@ResponseBody
 	public Map searchPro(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
-		String[] place_url=new String[result.length];
-		String keyword= request.getParameter("keyword");
-		String pageNum=request.getParameter("pageNum");
-		System.out.println("pagenum============="+pageNum);
-		System.out.println("keyword============="+keyword);
-		int check=imgsDAO.searchKeyword(keyword, pageNum);
+		
+		String address_name1= request.getParameter("address_name1");
+		
+		String address_name2= request.getParameter("address_name2");
+		
+		String address_name3= request.getParameter("address_name3");
+		
+		String menu= request.getParameter("menu");
+		
+		
+		
+		ArrayList<String> place_url=new ArrayList<String>();
+		ArrayList<String> place_name=new ArrayList<String>();
 		Map result_map=null;
-		List<ImgsVO> list=null;
-		for(int i=0; i<result.length; i++) {
-				place_url[i]=result[i].getPlace_url();		
+		ArrayList<String> result_imgs=new ArrayList<String>();
+		
+		//주소, 음식이름, 가게이름을 db에 있는지 없는지 체크한뒤 없으면 크롤링하기 위해 url을 저장한다.		
+		for(int i=0; i< result.length; i++) {
+		
+			String temp=result[i].getPlace_name();
+		    int check=imgsDAO.searchKeyword(address_name1.trim(), address_name2.trim(), address_name3.trim(), menu.trim(), temp.trim());
+		  
+		    if(check==0) {
+		    	
+		    	place_name.add(result[i].getPlace_name());
+		    	place_url.add(result[i].getPlace_url());
+		    }
 		}
 		
-		if(check==0) {
-			result_map=SeleniumCrawling(place_url);
-			inputDB(pageNum,keyword, result_map, result);
+		if(place_url.size()!=0) {
+			
+		//arraylist --> string 배열로 변환
+		String[] temp = new String[place_url.size()]; // string 배열로 url
+		String[] temp2 = new String[place_name.size()];// string 배열로 place_name
+		temp=place_url.toArray(temp);
+		temp2=place_name.toArray(temp2);
+			
+		//크롤링 결과 저장
+		result_map=SeleniumCrawling(temp);
+		String [] result_img=(String [])result_map.get("img");
+		
+		for(int i=0; i<result_img.length; i++) {
+			if(result_img[i]==null) {
+				result_img[i]="www.belimoseoul.com/data/3/7a9637933db7117ea07390745349a302.jpg";
+			}
+		}
+			
+		
+		for(int i=0; i<result_img.length; i++) {
+		inputDB(address_name1.trim(),address_name2.trim(),address_name3.trim(), result_img[i].trim(), temp2[i].trim(), menu.trim());
+		}
+		
 		}else {
 			result_map=new HashMap();
-			int i=0;
-			list=imgsDAO.selectList(keyword,pageNum);
-			Iterator<ImgsVO> it=list.iterator();
-			String[] imgs=new String[list.size()];
-			while(it.hasNext()) {
-				imgs[i++]=it.next().getImg_url();
-				
+			String[] t_place_name=new String[result.length];
+			for(int i=0; i<t_place_name.length; i++) {
+				t_place_name[i]=result[i].getPlace_name();
 			}
+			
+			for(int i=0; i<t_place_name.length; i++) {
+				ImgsVO iv=new ImgsVO();
+				iv=imgsDAO.selectVO(address_name1.trim(),address_name2.trim(),address_name3.trim(),menu.trim(),t_place_name[i].trim());
+				result_imgs.add(iv.getImg_url());
+			}
+			String[] imgs=new String[result_imgs.size()];
+			imgs=result_imgs.toArray(imgs);
 			
 			result_map.put("img",imgs);
 		}
@@ -96,9 +119,7 @@ public class RecommandAction {
 	
 	//동적 크롤링을 위한 함수
 	public Map SeleniumCrawling(String[] place_url){
-		for(String a : place_url) {
-			System.out.println("selenium place_url========>"+a);
-		}
+		
 		RConnection r=null;
 		Map result_map=new HashMap();
 		try {
@@ -126,10 +147,7 @@ public class RecommandAction {
 			String[] imgs=getIMG(rx.asStrings());
 			
 			result_map.put("img", imgs);
-			
-			for(String a : rx.asStrings()) {
-				System.out.println("크롤링에서 imgs===============>"+a);
-			}
+						
 			
 			}catch(Exception e) {
 			e.printStackTrace();
@@ -142,12 +160,9 @@ public class RecommandAction {
 	//이미지 주소를 추출하는 함수.
 	public String[] getIMG(String[] img) {
 		int size=img.length;
-		System.out.println("크기===============>"+size);
-		String[] result_img=new String[15];
+		String[] result_img=new String[size];
 		for(int i=0; i<img.length; i++) {
-			System.out.println("img 내용 ========>"+img[i]);
 			int start = img[i].indexOf("img1");
-			System.out.println("start indexof"+i+ "=======>"+start);
 			if(start==-1) {
 				continue;
 			}
@@ -159,38 +174,89 @@ public class RecommandAction {
 		
 	}
 
-	public void inputDB(String pageNum,String keyword, Map result, PlaceInfo[] info) throws Exception {
-		System.out.println("2222222222222");
-		int size= info.length;
-		System.out.println("sizezzzzz==>"+size);
-		String[] imgs=(String[]) result.get("img");
-		for(String a : imgs) {
-			System.out.println("inputdb imgs====================>"+a);
-		}
+	public void inputDB(String address_name1, String address_name2, String address_name3, String img_url, String place_name, String menu) throws Exception {
+		ImgsVO iv=new ImgsVO();
 		
-		for(int i=0; i<size; i++) {
-			ImgsVO iv=new ImgsVO();	
-			iv.setPageNum(pageNum);
-			if(imgs[i]==null) {
-				iv.setImg_url("www.belimoseoul.com/data/3/7a9637933db7117ea07390745349a302.jpg");
-			}else {
-			iv.setImg_url(imgs[i]);
-			}
-			iv.setKeyword(keyword);
-			iv.setPlace_name(info[i].getPlace_name());
-			
-			System.out.println("getImg_url==="+iv.getImg_url());
-			System.out.println("getPlace_name==="+iv.getPlace_name());
-			System.out.println("getKeyword==="+iv.getKeyword());
-			
-			
-			imgsDAO.insertIMGS(iv);
-		}
-		
-		
+		iv.setAddress1(address_name1);
+		iv.setAddress2(address_name2);
+		iv.setAddress3(address_name3);
+		iv.setImg_url(img_url);
+		iv.setPlace_name(place_name);
+		iv.setMenu(menu);
+				
+		imgsDAO.insertIMGS(iv);
 	}
-	
-	
+	@RequestMapping("myPosition.do")
+	@ResponseBody
+	public Map myPosition(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
+		
+		String address_name1= request.getParameter("address_name1");
+		String address_name2= request.getParameter("address_name2");
+		String address_name3= request.getParameter("address_name3");
+				
+		ArrayList<String> place_url=new ArrayList<String>();
+		ArrayList<String> place_name=new ArrayList<String>();
+		Map result_map=null;
+		ArrayList<String> result_imgs=new ArrayList<String>();
+		
+		//주소, 음식이름, 가게이름을 db에 있는지 없는지 체크한뒤 없으면 크롤링하기 위해 url을 저장한다.		
+		for(int i=0; i< result.length; i++) {
+			String temp=result[i].getPlace_name();
+		    int check=imgsDAO.checkMyPosition(address_name1.trim(), address_name2.trim(), address_name3.trim(), temp.trim());
+		    if(check==0) {
+		    	place_name.add(result[i].getPlace_name());
+		    	place_url.add(result[i].getPlace_url());
+		    }
+		}
+		
+		if(place_url.size()!=0) {
+		//arraylist --> string 배열로 변환
+		String[] temp = new String[place_url.size()]; // string 배열로 url
+		String[] temp2 = new String[place_name.size()];// string 배열로 place_name
+		temp=place_url.toArray(temp);
+		temp2=place_name.toArray(temp2);
+		
+		//크롤링 결과 저장
+		result_map=SeleniumCrawling(temp);
+		String [] result_img=(String [])result_map.get("img");
+		
+		for(int i=0; i<result_img.length; i++) {
+			if(result_img[i]==null) {
+				result_img[i]="www.belimoseoul.com/data/3/7a9637933db7117ea07390745349a302.jpg";
+			}
+		}
+			
+		
+		for(int i=0; i<result_img.length; i++) {
+			MyPositionVO pvo=new MyPositionVO();
+			pvo.setImg_url(result_img[i]);
+			pvo.setAddress_name1(address_name1);
+			pvo.setAddress_name2(address_name2);
+			pvo.setAddress_name3(address_name3);
+			pvo.setPlace_name(temp2[i]);
+			imgsDAO.insertMyPosition(pvo);
+		}
+		
+		}else {
+			
+			result_map=new HashMap();
+			String[] t_place_name=new String[result.length];
+			for(int i=0; i<t_place_name.length; i++) {
+				t_place_name[i]=result[i].getPlace_name();
+			}
+			for(int i=0; i<t_place_name.length; i++) {
+				MyPositionVO vo= new MyPositionVO();
+				vo=imgsDAO.getPostionVO(address_name1, address_name2, address_name3, t_place_name[i]);
+				result_imgs.add(vo.getImg_url());
+			}
+			String[] imgs=new String[result_imgs.size()];
+			imgs=result_imgs.toArray(imgs);
+			
+			result_map.put("img",imgs);
+		}
+		
+		return result_map;
+	}
 	
 	
 }
