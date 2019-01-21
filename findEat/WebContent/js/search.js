@@ -6,7 +6,7 @@ $(document).ready(function(){
 	if(keyword!=""){
 		$("#keyword").val(keyword);
 		$("#placesList").attr("style","overflow:auto;height:63vh");
-		searchPlaces();
+		setTimeout(searchPlaces(),1000);
 	}
 });
 
