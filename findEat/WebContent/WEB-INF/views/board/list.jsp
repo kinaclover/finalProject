@@ -14,15 +14,13 @@
 <div class="mt-0 mb-3" id="menu">
 	<jsp:include page="${request.contextPath}/menu.do"></jsp:include>
 </div>
-
+<input type="hidden" id="checkId" value="${sessionScope.id}"/>
 <!-- board List -->
 <c:if test="${check==0}">
 <div class="mx-auto my-3 d-block" style="width: 75%">
 	<div class="btn-group btn-group-sm">
 	<button type="button" class="btn btn btn-outline-primary" onclick="window.location='/findEat/index.do'">메인으로</button>
-	<c:if test="${sessionScope.id!=null}">
-		<button type="button" class="btn btn-outline-secondary" onclick="window.location='/findEat/insert.do'">글 작성</button>
-	</c:if>
+	<button type="button" id="writeCheck" class="btn btn-outline-secondary">글 작성</button>
 	</div>
 	<div class="text-center mt-5 mb-5">
 		<h2>게시글이 존재하지 않습니다.</h2>
@@ -34,9 +32,7 @@
 <div class="mx-auto my-3 d-block" style="width: 75%">
 	<div class="btn-group btn-group-sm mb-3">
 	<button type="button" class="btn btn btn-outline-primary" onclick="window.location='/findEat/index.do'">메인으로</button>
-	<c:if test="${sessionScope.id!=null}">
-		<button type="button" class="btn btn-outline-secondary" onclick="window.location='/findEat/insert.do'">글 작성</button>
-	</c:if>
+	<button type="button" id="writeCheck" class="btn btn-outline-secondary">글 작성</button>
 	</div>
 	<div id="boardList" class="mb-3">
 		<table class="table table-hover">
@@ -129,9 +125,8 @@
 
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
+<script src="js/board.js"></script>
 <script src="js/menu.js"></script>
 </body>
 </html>
