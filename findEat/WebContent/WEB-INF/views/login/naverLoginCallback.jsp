@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h2>로그인 처리중 </h2>
-
 	<!-- (1) LoginWithNaverId Javscript SDK -->
 	<script type="text/javascript" src="js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 	<script src="js/jquery-3.3.1.js"></script>
