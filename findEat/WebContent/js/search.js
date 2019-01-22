@@ -202,9 +202,7 @@ function displayMarker(locPosition, message) {
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
- 	if(keyword!="" || keyword!=null){
- 		keyword=null;
- 	}
+ 	
     keyword = document.getElementById('keyword').value;
     var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
     

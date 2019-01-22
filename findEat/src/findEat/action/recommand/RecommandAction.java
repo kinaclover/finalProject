@@ -67,7 +67,7 @@ public class RecommandAction {
 		    int check=imgsDAO.searchKeyword(address_name1.trim(), address_name2.trim(), address_name3.trim(), menu.trim(), temp.trim());
 		  
 		    if(check==0) {
-		    	
+		    	System.out.println("check====="+check);
 		    	place_name.add(result[i].getPlace_name());
 		    	place_url.add(result[i].getPlace_url());
 		    }
@@ -80,7 +80,12 @@ public class RecommandAction {
 		String[] temp2 = new String[place_name.size()];// string 배열로 place_name
 		temp=place_url.toArray(temp);
 		temp2=place_name.toArray(temp2);
-			
+		
+		for(String a : temp) {
+			System.out.println("place_url=====" + a);
+		}
+		
+		
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
 		String [] result_img=(String [])result_map.get("img");
