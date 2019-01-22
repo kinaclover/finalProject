@@ -38,4 +38,9 @@ public class CalendarDAOImpl implements CalendarDAO {
 		list	= sqlSession.selectList("cal.monthList",month);
 		return list;
 	}
+	@Override
+	public List<CalendarVO> UserMonth(CalendarVO cal) throws Exception {
+		list	= sqlSession.selectList("cal.userList",cal);
+		return list;
+	}
 }

@@ -41,6 +41,7 @@
 		<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown">My menu</button>
 			<div class="dropdown-menu">
 				<a class="dropdown-item" href="/findEat/cal.do">Calendar</a>
+				<a class="dropdown-item" href="/findEat/statistic.do">Statistic</a>
 				<a class="dropdown-item" href="/findEat/search.do">Search</a>
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="/findEat/modify.do">Modify</a>

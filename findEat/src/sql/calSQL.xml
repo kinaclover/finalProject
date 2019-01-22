@@ -15,4 +15,7 @@
 	<select id="monthList" parameterType="int" resultType="calVO">
 		select * from calendar where fmonth = #{value}
 	</select>
+	<select id="userList" parameterType="calVO" resultType="calVO">
+		select * from calendar where fmonth = #{fmonth} and id = #{id}
+	</select>
 </mapper>

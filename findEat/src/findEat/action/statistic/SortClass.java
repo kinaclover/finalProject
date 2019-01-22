@@ -43,17 +43,27 @@ public class SortClass {
 			return foodTotal;
 		}else if(temp.equals("category")) {
 			categoryTotal	= new HashMap<>();
+			categoryTotal.put("한식",0);
+			categoryTotal.put("일식",0);
+			categoryTotal.put("중식",0);
+			categoryTotal.put("양식",0);
+			categoryTotal.put("패스트푸드/분식",0);
+			categoryTotal.put("기타",0);
 			for(CalendarVO tmp: list) {
-				if(categoryTotal.isEmpty()) categoryTotal.put(tmp.getClassify(), 1);
-				else {
-					for(Entry<String,Integer> x: categoryTotal.entrySet()) {
-						if(tmp.getClassify().equals(x.getKey())) {
-							x.setValue(x.getValue()+1);
-							count++;
-						}
+				for(Entry<String,Integer> x: categoryTotal.entrySet()) {
+					if(tmp.getClassify().equals("k")) {
+						if(x.getKey().equals("한식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("j")) {
+						if(x.getKey().equals("일식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("c")) {
+						if(x.getKey().equals("중식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("w")) {
+						if(x.getKey().equals("양식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("f")) {
+						if(x.getKey().equals("패스트푸드/분식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("e")) {
+						if(x.getKey().equals("기타")) x.setValue(x.getValue()+1);
 					}
-					if(count==0) categoryTotal.put(tmp.getClassify(), 1);
-					count = 0;
 				}
 			}
 			categoryTotal	= Sorting(categoryTotal);
@@ -86,18 +96,26 @@ public class SortClass {
 			return dayFoodTotal;
 		}else if(temp.equals("category")) {
 			dayCategoryTotal	= new HashMap<>();
+			dayCategoryTotal.put("한식",0);
+			dayCategoryTotal.put("일식",0);
+			dayCategoryTotal.put("중식",0);
+			dayCategoryTotal.put("양식",0);
+			dayCategoryTotal.put("패스트푸드/분식",0);
+			dayCategoryTotal.put("기타",0);
 			for(CalendarVO tmp: list) {
-				if(tmp.getFday()==day) {
-					if(dayCategoryTotal.isEmpty()) dayCategoryTotal.put(tmp.getClassify(), 1);
-					else {
-						for(Entry<String,Integer> x: dayCategoryTotal.entrySet()) {
-							if(tmp.getClassify().equals(x.getKey())) {
-								x.setValue(x.getValue()+1);
-								count++;
-							}
-						}
-						if(count==0) dayCategoryTotal.put(tmp.getClassify(), 1);
-						count = 0;
+				for(Entry<String,Integer> x: dayCategoryTotal.entrySet()) {
+					if(tmp.getClassify().equals("k")) {
+						if(x.getKey().equals("한식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("j")) {
+						if(x.getKey().equals("일식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("c")) {
+						if(x.getKey().equals("중식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("w")) {
+						if(x.getKey().equals("양식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("f")) {
+						if(x.getKey().equals("패스트푸드/분식")) x.setValue(x.getValue()+1);
+					}else if(tmp.getClassify().equals("e")) {
+						if(x.getKey().equals("기타")) x.setValue(x.getValue()+1);
 					}
 				}
 			}
