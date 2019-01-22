@@ -68,7 +68,7 @@ public class RecommandAction {
 		    int check=imgsDAO.searchKeyword(id.trim());
 		  
 		    if(check==0) {
-		    	
+		    	System.out.println("check====="+check);
 		    	place_name.add(result[i].getPlace_name());
 		    	place_url.add(result[i].getPlace_url());
 		    	place_id.add(result[i].getId());
@@ -88,6 +88,7 @@ public class RecommandAction {
 		for(String a: temp) {
 			System.out.println("place_url==========>"+a);
 		}
+
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
 		String [] sresult_img=(String [])result_map.get("img");
