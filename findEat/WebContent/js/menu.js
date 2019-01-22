@@ -33,9 +33,17 @@ $(document).ready(function(){
 	if(path=='/findEat/index.do'){
 		$("#indexButton").attr('hidden',true);
 		$("#boardButton").removeAttr('hidden');
+		$("#searchButton").removeAttr('hidden');
 	}
 	if(path=='/findEat/list.do'){
 		$("#boardButton").attr('hidden',true);
 		$("#indexButton").removeAttr('hidden');
+		$("#searchButton").removeAttr('hidden');
 	}
+	if(path=='/findEat/search.do'){
+		$("#searchButton").attr('hidden',true);
+		$("#indexButton").removeAttr('hidden');
+		$("#boardButton").removeAttr('hidden');
+	}
+	
 });

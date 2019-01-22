@@ -32,4 +32,15 @@ public class CalendarDAOImpl implements CalendarDAO {
 		weekList	= sqlSession.selectList("cal.weekList",week);
 		return weekList;
 	}
+	//statistic
+	@Override
+	public List<CalendarVO> TotalMonth(int month) throws Exception {
+		list	= sqlSession.selectList("cal.monthList",month);
+		return list;
+	}
+	@Override
+	public List<CalendarVO> UserMonth(CalendarVO cal) throws Exception {
+		list	= sqlSession.selectList("cal.userList",cal);
+		return list;
+	}
 }
