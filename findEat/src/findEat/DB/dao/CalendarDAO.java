@@ -10,4 +10,6 @@ public interface CalendarDAO {
 	//suggestion-ver2
 	public List<CalendarVO> TotalClassifyList(int day) throws Exception;
 	public List<String> ThisWeekList(int week) throws Exception;
+	//statistic
+	public List<CalendarVO> TotalMonth(int month) throws Exception;
 }

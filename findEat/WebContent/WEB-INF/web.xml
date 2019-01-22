@@ -27,6 +27,7 @@
 				/WEB-INF/controller/login-servlet.xml
 				/WEB-INF/controller/main-servlet.xml
 				/WEB-INF/controller/board-servlet.xml
+				/WEB-INF/controller/statistic-servlet.xml
 			</param-value>
 		</init-param>
 	</servlet>

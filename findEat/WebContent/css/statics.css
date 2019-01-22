@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.list-group-horizontal .list-group-item {
+	display: inline-block;
+}
+.list-group-horizontal .list-group-item:hover {
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+.mon,.tue,.wed,.thu,.fri{
+	width: 19%;
+	height: 309px;
+	vertical-align: middle;
+}
+.foodMonth{
+	width: 30%;
+	float: left;
+}
+.categoryMonth{
+	width: 30%;
+	float: left;
+}

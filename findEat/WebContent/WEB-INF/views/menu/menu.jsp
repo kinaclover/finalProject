@@ -26,6 +26,7 @@
 	<div class="col-sm-5 text-right">
 		<button class="btn btn-sm btn-outline-info" id="indexButton" onclick="window.location='/findEat/index.do'">Index</button>
 		<button class="btn btn-sm btn-outline-secondary" id="boardButton" onclick="window.location='/findEat/list.do'">Board</button>
+		<button class="btn btn-sm btn-outline-dark" id="searchButton" onclick="window.location='/findEat/search.do'">Search</button>
 		<button class="btn btn-sm btn-outline-primary" onclick="window.location='/findEat/login.do'">Login</button>
 	</div>
 </c:if>
@@ -35,6 +36,7 @@
 	<div class="col-sm-5 text-right">
 		<button class="btn btn-sm btn-outline-info" id="indexButton" onclick="window.location='/findEat/index.do'">Index</button>
 		<button class="btn btn-sm btn-outline-secondary" id="boardButton" onclick="window.location='/findEat/list.do'">Board</button>
+		<button class="btn btn-sm btn-outline-dark" id="searchButton" onclick="window.location='/findEat/search.do'">Search</button>
 		<div class="btn-group">
 		<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown">My menu</button>
 			<div class="dropdown-menu">

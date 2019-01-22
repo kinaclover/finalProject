@@ -11,4 +11,8 @@
 	<select id="weekList" parameterType="int" resultType="String">
 		select fname from calendar where fweek = #{value}
 	</select>
+	<!-- statistic -->
+	<select id="monthList" parameterType="int" resultType="calVO">
+		select * from calendar where fmonth = #{value}
+	</select>
 </mapper>
