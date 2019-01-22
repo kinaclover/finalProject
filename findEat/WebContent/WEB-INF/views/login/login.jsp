@@ -59,7 +59,8 @@
    /* 설정정보를 초기화하고 연동을 준비 */
 	naverLogin.init();
 </script>
- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">dfd</div>
+
+ <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
     <script>
         function onSignIn(googleUser) {
             // Useful data for your client-side scripts:

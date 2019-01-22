@@ -4,28 +4,28 @@
 <mapper namespace="Imgs">
 
 	<insert id="insertImgs" parameterType="imgsVO">
-		insert into imgs_url values (#{img_url}, #{place_name}, #{address1}, #{address2}, #{address3}, #{menu})
+		insert into imgs_url values (#{img_url}, #{place_name}, #{address1}, #{address2}, #{address3}, #{menu}, #{id})
 	</insert>
 	
-	<select id="searchKeyword" parameterType="HashMap" resultType="int">
-		select count(*) from imgs_url where place_name= #{place_name} and address1=#{address_name1} and address2=#{address_name2} and address3=#{address_name3} and menu=#{menu} 
+	<select id="searchKeyword" parameterType="String" resultType="int">
+		select count(*) from imgs_url where id=#{id}
 	</select>
 	
-	<select id="selectKeyword" parameterType="HashMap" resultType="imgsVO">
-		select distinct * from imgs_url where address1= #{address_name1} and address2 = #{address_name2} and address3 =#{address_name3} and menu =#{menu} and place_name =#{place_name}
+	<select id="selectKeyword" parameterType="String" resultType="imgsVO">
+		select * from imgs_url where id=#{id}
 		
 	</select>
 	
 	<select id="checkMyPosition" parameterType="HashMap" resultType="int">
-		select count(*) from imgs_url where place_name=#{place_name} and address1=#{address_name1} and address2=#{address_name2} and address3=#{address_name3}
+		select count(*) from imgs_url where id=#{id}
 	</select>
 			
-	<select id="selectMyPosition" parameterType="HashMap" resultType="mypositionVO">
-		select distinct img_url,place_name,address1,address2,address3 from imgs_url where place_name=#{place_name} and address1=#{address_name1} and address2=#{address_name2} and address3=#{address_name3}
+	<select id="selectMyPosition" parameterType="String" resultType="mypositionVO">
+		select img_url,place_name,address1,address2,address3,id from imgs_url where id=#{id}
 	</select>
 	
 	<insert id="insertMyPosition" parameterType="mypositionVO">
-		insert into imgs_url (img_url, place_name, address1, address2, address3) values (#{img_url}, #{place_name}, #{address_name1}, #{address_name2}, #{address_name3})
+		insert into imgs_url (img_url, place_name, address1, address2, address3, id) values (#{img_url}, #{place_name}, #{address_name1}, #{address_name2}, #{address_name3}, #{id})
 	</insert>
 			
 </mapper>

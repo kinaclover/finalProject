@@ -6,6 +6,13 @@ public class MyPositionVO {
 	private String address_name1;
 	private String address_name2;
 	private String address_name3;
+	private String id;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getImg_url() {
 		return img_url;
 	}

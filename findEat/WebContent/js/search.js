@@ -1,33 +1,3 @@
-
-/*************************************************************************************************************************/
-
-$(document).ready(function(){
-	var keyword	= $("#keywordValue").val();
-	if(keyword!=""){
-		$("#keyword").val(keyword);
-		$("#placesList").attr("style","overflow:auto;height:63vh");
-		setTimeout(searchPlaces(),1000);
-	}
-});
-
-//custom function
-//search 버튼 눌렀을 때
-//ul tag style 수정
-$(function(){
-	$("#searchBtn").click(function(){
-		$("#placesList").attr("style","overflow:auto;height:63vh");
-		searchPlaces();
-	});
-});
-//input reset
-$(function(){
-	$("#findLocal").click(function(){
-		$("#keyword").val("");
-		$("#placesList").attr("style","overflow:auto;height:63vh");
-	});
-});
-/*************************************************************************************************************************/
-
 /**
 / * search javascript
  */
@@ -62,7 +32,7 @@ var ps = new daum.maps.services.Places();
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
-var keyword=$('input#menu').val();
+var keyword=$('input#keywordValue').val();
 var address_name1=null,address_name2=null,address_name3=null;
 getAddress();
 
@@ -202,8 +172,9 @@ function displayMarker(locPosition, message) {
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
- 	
-    keyword = document.getElementById('keyword').value;
+
+ 	keyword = document.getElementById('keyword').value;
+
     var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
     
     if(keyword=="" || keyword==null){
@@ -250,6 +221,7 @@ function post_to_url2(address_name1, address_name2, address_name3, params, pagin
 			    listStr = '';
 			 removeAllChildNods(listEl);
 			 removeMarker();
+			 
 			var save_imgs=new Array();
 			
 			for(var i=0; i<data.img.length; i++){
@@ -388,6 +360,7 @@ function post_to_url(keyword, params, pagination) {
 				    listStr = '';
 				 removeAllChildNods(listEl);
 				 removeMarker();
+				 console.log(data);
 				var save_imgs=new Array();
 				
 				for(var i=0; i<data.img.length; i++){

@@ -289,7 +289,6 @@ public class LoginAction {
 		request.setAttribute("status", status);
 		return "joinOK"; 
 	}
-	
 	@RequestMapping("googleIdCheck.do")
 	public @ResponseBody String googleIdCheck(@RequestBody String id) throws Exception{
 		System.out.println("googleIdCheck "+id);
