@@ -1,35 +1,3 @@
-
-/*************************************************************************************************************************/
-
-$(document).ready(function(){
-	console.log("1111111111==")
-	var keyword	= $("#keywordValue").val();
-	if(keyword!=""){
-		$("#keywordValue").val(keyword);
-		
-		$("#placesList").attr("style","overflow:auto;height:63vh");
-		setTimeout(searchPlaces(),1000);
-	}
-});
-
-//custom function
-//search 버튼 눌렀을 때
-//ul tag style 수정
-$(function(){
-	$("#searchBtn").click(function(){
-		$("#placesList").attr("style","overflow:auto;height:63vh");
-		searchPlaces();
-	});
-});
-//input reset
-$(function(){
-	$("#findLocal").click(function(){
-		$("#keyword").val("");
-		$("#placesList").attr("style","overflow:auto;height:63vh");
-	});
-});
-/*************************************************************************************************************************/
-
 /**
 / * search javascript
  */
@@ -45,18 +13,6 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 // 지도를 생성합니다    
 var map = new daum.maps.Map(mapContainer, mapOption); 
-
-//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
-var mapTypeControl = new daum.maps.MapTypeControl();
-
-// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
-// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
-map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
-
-// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-var zoomControl = new daum.maps.ZoomControl();
-map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
-//////////
 
 // 장소 검색 객체를 생성합니다
 var ps = new daum.maps.services.Places();  
@@ -204,7 +160,10 @@ function displayMarker(locPosition, message) {
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
- 	keyword = document.getElementById('keyword').value;
+ 	if(keyword!="" || keyword!=null){
+ 		keyword=null;
+ 	}
+    keyword = document.getElementById('keyword').value;
     var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
     
     if(keyword=="" || keyword==null){
@@ -251,7 +210,6 @@ function post_to_url2(address_name1, address_name2, address_name3, params, pagin
 			    listStr = '';
 			 removeAllChildNods(listEl);
 			 removeMarker();
-			 
 			var save_imgs=new Array();
 			
 			for(var i=0; i<data.img.length; i++){
@@ -281,9 +239,9 @@ function placesSearchCB(data, status, pagination) {
     if (status === daum.maps.services.Status.OK) {
     	// 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
-	  
+	  var id=data.id;
 	   
-       post_to_url(keyword,data,pagination);     
+       post_to_url(keyword,data,pagination, id);     
         
 
     } else if (status === daum.maps.services.Status.ZERO_RESULT) {
@@ -373,7 +331,7 @@ function getListItem(index, places) {
 
 //place 데이터 전송
 
-function post_to_url(keyword, params, pagination) {
+function post_to_url(keyword, params, pagination, id) {
 		
 		
 		$.ajax({
@@ -390,7 +348,6 @@ function post_to_url(keyword, params, pagination) {
 				    listStr = '';
 				 removeAllChildNods(listEl);
 				 removeMarker();
-				 console.log(data);
 				var save_imgs=new Array();
 				
 				for(var i=0; i<data.img.length; i++){
