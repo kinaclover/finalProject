@@ -76,6 +76,18 @@
             var id_token = googleUser.getAuthResponse().id_token;
             console.log("ID Token: " + id_token);
         
+         /*
+            $(".g-signin2").on("click", function(){
+                gapi.client.load('plus', 'v1', function () {
+                    gapi.client.plus.people.get({
+                        'userId': 'me'
+                    }).execute(function (res) {
+                        console.log(JSON.stringify(res));    
+                    });
+                });
+            });
+        */
+        
         
         var email= profile.getEmail();
         var emailHead = email.split('@',1);
@@ -151,6 +163,10 @@
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
 		});					
+		
+		
+		
+		
         };
     </script>
 
