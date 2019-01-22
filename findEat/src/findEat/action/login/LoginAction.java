@@ -261,7 +261,7 @@ public class LoginAction {
 		int count = (Integer)loginDAO.IdCheck(id);
 		return String.valueOf(count);
 	}
-	
+
 	
 	
 }
