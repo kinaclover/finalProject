@@ -8,10 +8,17 @@ public class ImgsVO {
 	private String address3;
 	private String menu;
 	private String place_name;
+	private String id;
 	
 
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getImg_url() {
 		return img_url;
 	}
