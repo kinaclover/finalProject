@@ -40,10 +40,8 @@ public class LoginDAOImpl implements LoginDAO {
 	}
 
 	@Override
-	public int DeletePro(String id, String pw) throws Exception {
-		map.put("id", id);
-		map.put("pw", pw);
-		int check	= (Integer)sqlSession.delete("login.delete",map);
+	public int DeletePro(String id) throws Exception {
+		int check	= (Integer)sqlSession.delete("login.delete",id);
 		return check;
 	}
 	

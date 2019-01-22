@@ -118,16 +118,16 @@ public class LoginAction {
 		request.setAttribute("status", status);
 		return "/login/status";
 	}
-
+	/*
 	@RequestMapping("delete.do")
 	public String delete() {
 		return "/login/delete";
 	}
-	
+	*/
 	@RequestMapping("deletePro.do")
-	public String deletePro(String pw, HttpServletRequest request) throws Exception {
+	public String deletePro(HttpServletRequest request) throws Exception {
 		String id	= (String)request.getSession().getAttribute("id");
-		int check	= (Integer)loginDAO.DeletePro(id, pw);
+		int check	= (Integer)loginDAO.DeletePro(id);
 		int temp	= 0;
 		/*	calendar database delete	*/
 		if(check==1) {
