@@ -31,6 +31,7 @@
 					</div>
 					<div class="my-1 mx-0">
 						<input type="button" class="btn btn-info btn-block mx-0" id="searchBtn" value="검색하기" onClick="searchPlaces()"/>
+
 					</div>
 					<!-- temporary -->
 					<!-- <input type="hidden" id="menu" value="${menu}"/> -->
@@ -52,6 +53,6 @@
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/menu.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e8d9b38a8afd2bcec1ece996622e6d39&libraries=services"></script>
-<script type="text/javascript" src="js/search.js"></script>
+<script src="js/search.js"></script>
 </body>
 </html>

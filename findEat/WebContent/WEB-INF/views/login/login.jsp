@@ -45,19 +45,15 @@
 	<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
 	<button class="btn btn-mid btn-info btn-block" onclick="window.location='/findEat/join.do'">Sign Up</button>
 	
-
-	<div id="naverIdLogin" class="btn" style="width:380px;"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
-
-	<div class="py-3" id="naverIdLogin"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
-
-	<script type="text/javascript">
+	<div id="naverIdLogin"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
 	
+	<script type="text/javascript">
 	var naverLogin = new naver.LoginWithNaverId(
 		{
 			clientId: "XbLB49KVP66WsUyV0qUz",
 			callbackUrl: "http://localhost:8080/findEat/naverLoginCallback.do",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, height: 50} /* 로그인 버튼의 타입을 지정 */
+			loginButton: {color: "green", type: 3, height: 40} /* 로그인 버튼의 타입을 지정 */
 		}
 	);	
    /* 설정정보를 초기화하고 연동을 준비 */
@@ -65,31 +61,7 @@
 </script>
 
  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-    <script>
-        function onSignIn(googleUser) {
-            // Useful data for your client-side scripts:
-            var profile = googleUser.getBasicProfile();
-            console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-            console.log('Full Name: ' + profile.getName());
-            console.log('Given Name: ' + profile.getGivenName());
-            console.log('Family Name: ' + profile.getFamilyName());
-            console.log("Image URL: " + profile.getImageUrl());
-            console.log("Email: " + profile.getEmail());
 
-            // The ID token you need to pass to your backend:
-            var id_token = googleUser.getAuthResponse().id_token;
-            console.log("ID Token: " + id_token);
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost:8080/findEat/tokensignin.do');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function() {
-              console.log('Signed in as: ' + xhr.responseText);
-            };
-            xhr.send('idtoken=' + id_token);
-
-        };
-    </script>
 
 
 	<p class="my-2 font-italic text-center"> <a class="badge badge-light" href="findPassword.do">Forgot Password?</a> </p>
@@ -103,5 +75,7 @@
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/login.js"></script>
+<script src="js/googleLogin.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 </html>

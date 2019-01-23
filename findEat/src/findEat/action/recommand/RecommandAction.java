@@ -63,7 +63,7 @@ public class RecommandAction {
 		    int check=imgsDAO.searchKeyword(id.trim());
 		  
 		    if(check==0) {
-		    	
+		    	System.out.println("check====="+check);
 		    	place_name.add(result[i].getPlace_name());
 		    	place_url.add(result[i].getPlace_url());
 		    	place_id.add(result[i].getId());
@@ -80,7 +80,14 @@ public class RecommandAction {
 		temp2=place_name.toArray(temp2);
 		temp3=place_id.toArray(temp3);
 		String[] result_imgs=new String[result.length];
+<<<<<<< HEAD
 		
+=======
+		for(String a: temp) {
+			System.out.println("place_url==========>"+a);
+		}
+
+>>>>>>> branch 'iam0210' of https://github.com/kinaclover/finalProject
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
 		String [] sresult_img=(String [])result_map.get("img");
