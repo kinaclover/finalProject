@@ -262,7 +262,7 @@ public class LoginAction {
 		return String.valueOf(count);
 	}
 	@RequestMapping("googleLoginPro.do")
-	public String googleLoginPro(String id, HttpServletRequest request) throws Exception{
+	public @ResponseBody String googleLoginPro(String id, HttpServletRequest request) throws Exception{
 		int idCheck	= 1;
 		System.out.println("googleLoginPro "+id);
 		int check	= 1;
@@ -280,7 +280,7 @@ public class LoginAction {
 	}
 	
 	@RequestMapping("googleJoinPro.do")
-	public String googleJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception{
+	public @ResponseBody String googleJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception{
 		loginVO.setReset(0);
 		System.out.println("googleJoinPro "+loginVO.getId());
 		int check	= (Integer)loginDAO.JoinPro(loginVO);
