@@ -80,14 +80,6 @@ public class RecommandAction {
 		temp2=place_name.toArray(temp2);
 		temp3=place_id.toArray(temp3);
 		String[] result_imgs=new String[result.length];
-<<<<<<< HEAD
-		
-=======
-		for(String a: temp) {
-			System.out.println("place_url==========>"+a);
-		}
-
->>>>>>> branch 'iam0210' of https://github.com/kinaclover/finalProject
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
 		String [] sresult_img=(String [])result_map.get("img");
