@@ -12,10 +12,10 @@
 		select fname from calendar where fweek = #{value}
 	</select>
 	<!-- statistic -->
-	<select id="monthList" parameterType="int" resultType="calVO">
-		select * from calendar where fmonth = #{value}
+	<select id="monthList" parameterType="HashMap" resultType="calVO">
+		select * from calendar where fmonth = #{fmonth} and fyear = #{fyear}
 	</select>
 	<select id="userList" parameterType="calVO" resultType="calVO">
-		select * from calendar where fmonth = #{fmonth} and id = #{id}
+		select * from calendar where fmonth = #{fmonth} and fyear = #{fyear} and id = #{id}
 	</select>
 </mapper>

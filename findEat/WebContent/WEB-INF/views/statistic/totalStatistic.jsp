@@ -25,83 +25,90 @@
 </c:if>
 
 <c:if test="${sessionScope.id!=null}">
+<input type="hidden" id="sessionId" value="${sessionScope.id}"/>
 <div>
 	<div class="btn-group pl-5">
 		<input type="button" class="btn-sm btn-outline-secondary" id="preMonth" value="&larr;"/>
 		<input type="button" class="btn-sm btn-outline-secondary" id="nextMonth" value="&rarr;"/>
-		<input type="button" class="btn-sm btn-outline-info" id="thisMonth" value="T"/>
-		<span id="currentMonth">${currentMonth}월</span>
+		<input type="button" class="btn-sm btn-outline-info" id="thisMonth" value=" T "/>
 	</div>
-	<div class="btn-group">
+	<input type="hidden" id="currentYear" value="${currentYear}"/>
+	<input type="hidden" id="currentMonth" value="${currentMonth}"/>
+	<span class="pl-5 pr-3 align-baseline font-weight-bold">
+	<label class="changeYear">${currentYear}</label>년 <label class="changeMonth">${currentMonth}</label>월</span>
+	<div class="btn-group pl-3 align-top">
 		<input type="hidden" id="btnChk" value="0"/>
 		<button type="button" id="totalBtn" class="btn btn-sm btn-dark">Total</button>
 		<button type="button" id="userBtn" class="btn btn-sm btn-light">User</button>
 	</div>
 </div>
+<div id="refreshSection">
+	<!-- set list/maps -->
+<input type="hidden" id="statisticList" value="${statisticList}"/>
 
 <!-- total statistic -->
 <div id="statisticTotal" class="" style="width:100%;margin:0 auto">
 	<!-- food -->
 	<div>
-		<c:forEach var="food" items="${foodTotal}" varStatus="stat">
+		<c:forEach var="food" items="${statisticList[0]}" varStatus="stat">
 			<input type="hidden" class="food-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="food-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${monFoodTotal}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[1]}" var="food" varStatus="stat">
 			<input type="hidden" class="monFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="monFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${tueFoodTotal}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[2]}" var="food" varStatus="stat">
 			<input type="hidden" class="tueFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="tueFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${wedFoodTotal}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[3]}" var="food" varStatus="stat">
 			<input type="hidden" class="wedFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="wedFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${thuFoodTotal}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[4]}" var="food" varStatus="stat">
 			<input type="hidden" class="thuFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="thuFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${friFoodTotal}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[5]}" var="food" varStatus="stat">
 			<input type="hidden" class="friFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="friFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
 	</div>
 	<!-- category -->
 	<div>
-		<c:forEach items="${categoryTotal}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[6]}" var="category" varStatus="stat">
 			<input type="hidden" class="category-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="category-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${monCategoryTotal}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[7]}" var="category" varStatus="stat">
 			<input type="hidden" class="monCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="monCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${tueCategoryTotal}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[8]}" var="category" varStatus="stat">
 			<input type="hidden" class="tueCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="tueCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${wedCategoryTotal}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[9]}" var="category" varStatus="stat">
 			<input type="hidden" class="wedCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="wedCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${thuCategoryTotal}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[10]}" var="category" varStatus="stat">
 			<input type="hidden" class="thuCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="thuCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${friCategoryTotal}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[11]}" var="category" varStatus="stat">
 			<input type="hidden" class="friCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="friCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
 	</div>
 	<div style="height:40vh" class="my-3 py-3 pl-5">
 		<div class="foodMonth">
-			<label for="foodMonth-total" class="">이번달 먹은 음식 Top 10</label>
+			<span class=""><label class="changeMonth">${currentMonth}</label>월 음식 Top 10</span>
 			<div class="mx-auto" id="foodMonth-total"></div>
 		</div>
 		<div class="categoryMonth">
-			<label for="foodMonth-total" class="">카테고리</label>
+			<span class=""><label class="changeMonth">${currentMonth}</label>월 카테고리 통계</span>
 			<div class="mx-auto" id="categoryMonth-total"></div>
 		</div>
 	</div>
@@ -143,65 +150,65 @@
 <div id="statisticUser" class="" style="width:100%;margin:0 auto" hidden="hidden">
 	<!-- food -->
 	<div>
-		<c:forEach var="food" items="${foodUser}" varStatus="stat">
+		<c:forEach var="food" items="${statisticList[12]}" varStatus="stat">
 			<input type="hidden" class="food-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="food-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${monFoodUser}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[13]}" var="food" varStatus="stat">
 			<input type="hidden" class="monFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="monFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${tueFoodUser}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[14]}" var="food" varStatus="stat">
 			<input type="hidden" class="tueFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="tueFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${wedFoodUser}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[15]}" var="food" varStatus="stat">
 			<input type="hidden" class="wedFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="wedFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${thuFoodUser}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[16]}" var="food" varStatus="stat">
 			<input type="hidden" class="thuFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="thuFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${friFoodUser}" var="food" varStatus="stat">
+		<c:forEach items="${statisticList[17]}" var="food" varStatus="stat">
 			<input type="hidden" class="friFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="friFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
 	</div>
 	<!-- category -->
 	<div>
-		<c:forEach items="${categoryUser}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[18]}" var="category" varStatus="stat">
 			<input type="hidden" class="category-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="category-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${monCategoryUser}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[19]}" var="category" varStatus="stat">
 			<input type="hidden" class="monCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="monCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${tueCategoryUser}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[20]}" var="category" varStatus="stat">
 			<input type="hidden" class="tueCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="tueCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${wedCategoryUser}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[21]}" var="category" varStatus="stat">
 			<input type="hidden" class="wedCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="wedCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${thuCategoryUser}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[22]}" var="category" varStatus="stat">
 			<input type="hidden" class="thuCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="thuCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${friCategoryUser}" var="category" varStatus="stat">
+		<c:forEach items="${statisticList[23]}" var="category" varStatus="stat">
 			<input type="hidden" class="friCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="friCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
 	</div>
 	<div style="height:40vh" class="my-3 py-3 pl-5">
 		<div class="foodMonth">
-			<label for="foodMonth-user" class="">이번달 먹은 음식 Top 10</label>
+			<span class=""><label class="changeMonth">${currentMonth}</label>월 음식 Top 10</span>
 			<div class="mx-auto" id="foodMonth-user"></div>
 		</div>
 		<div class="categoryMonth">
-			<label for="foodMonth-user" class="">카테고리</label>
+			<span class=""><label class="changeMonth">${currentMonth}</label>월 카테고리 통계</span>
 			<div class="mx-auto" id="categoryMonth-user"></div>
 		</div>
 	</div>
@@ -238,11 +245,14 @@
 		</div>
 	</div>
 </div>
+
+</div>
 </c:if>
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/menu.js"></script>
 <script src="js/statisticTotal.js"></script>
+<script src="js/statisticMenu.js"></script>
 </body>
 </html>

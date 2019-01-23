@@ -1,6 +1,8 @@
 package findEat.action.statistic;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,7 @@ public class StaticsAction {
 	private CalendarVO calVO	= new CalendarVO();
 	private List<CalendarVO> monthCalList			= null;
 	private List<CalendarVO> monthCalListUser		= null;
+	private List<Map<String,Integer>> statisticList	= null;
 	
 	private Map<String, Integer> foodTotal				= null;
 	private Map<String, Integer> monFoodTotal			= null;
@@ -54,16 +57,34 @@ public class StaticsAction {
 	
 	@RequestMapping("statistic.do")
 	public String statics(HttpServletRequest request) throws Exception {
+		int year	= 0;
+		int month	= 0;
 		String id	= null;
-		int month	= cal.get(Calendar.MONTH)+1;
-		
-		if(request.getSession().getAttribute("id")!=null) {
-			id	= (String)request.getSession().getAttribute("id");
+		if(request.getParameter("year")==null) {
+			year	= cal.get(Calendar.YEAR);
+			month	= cal.get(Calendar.MONTH)+1;
+		}else {
+			year	= Integer.parseInt(request.getParameter("year"));
+			month	= Integer.parseInt(request.getParameter("month"));
 		}
+		if(request.getSession().getAttribute("id")!=null) id = (String)request.getSession().getAttribute("id");
+		if(id!=null) {
+			statisticList	= statisticGraph(year,month,id);
+			request.setAttribute("statisticList", statisticList);
+		}
+
+		request.setAttribute("currentYear", year);
+		request.setAttribute("currentMonth", month);
+		
+		return "statistic/totalStatistic";
+	}
+	
+	public List<Map<String,Integer>> statisticGraph(int year, int month, String id) throws Exception {
 		if(id!=null) {
 			calVO.setId(id);
+			calVO.setFyear(year);
 			calVO.setFmonth(month);
-			monthCalList		= calDAO.TotalMonth(month);
+			monthCalList		= calDAO.TotalMonth(year,month);
 			monthCalListUser	= calDAO.UserMonth(calVO);
 			
 			foodTotal			= sort.TotalMap(monthCalList, "food");
@@ -98,36 +119,36 @@ public class StaticsAction {
 			thuCategoryUser		= sort.DayMap(monthCalListUser, "category", 4);
 			friCategoryUser		= sort.DayMap(monthCalListUser, "category", 5);
 			
-			request.setAttribute("foodTotal", foodTotal);
-			request.setAttribute("monFoodTotal", monFoodTotal);
-			request.setAttribute("tueFoodTotal", tueFoodTotal);
-			request.setAttribute("wedFoodTotal", wedFoodTotal);
-			request.setAttribute("thuFoodTotal", thuFoodTotal);
-			request.setAttribute("friFoodTotal", friFoodTotal);
-			request.setAttribute("categoryTotal", categoryTotal);
-			request.setAttribute("monCategoryTotal", monCategoryTotal);	
-			request.setAttribute("tueCategoryTotal", tueCategoryTotal);
-			request.setAttribute("wedCategoryTotal", wedCategoryTotal);
-			request.setAttribute("thuCategoryTotal", thuCategoryTotal);
-			request.setAttribute("friCategoryTotal", friCategoryTotal);	
+			statisticList	= new ArrayList<>();
+			statisticList.add(foodTotal);			//0
+			statisticList.add(monFoodTotal);		//1
+			statisticList.add(tueFoodTotal);		//2
+			statisticList.add(wedFoodTotal);		//3
+			statisticList.add(thuFoodTotal);		//4
+			statisticList.add(friFoodTotal);		//5
+			statisticList.add(categoryTotal);		//6
+			statisticList.add(monCategoryTotal);	//7
+			statisticList.add(tueCategoryTotal);	//8
+			statisticList.add(wedCategoryTotal);	//9
+			statisticList.add(thuCategoryTotal);	//10
+			statisticList.add(friCategoryTotal);	//11
 			
-			request.setAttribute("foodUser", foodUser);
-			request.setAttribute("monFoodUser", monFoodUser);
-			request.setAttribute("tueFoodUser", tueFoodUser);
-			request.setAttribute("wedFoodUser", wedFoodUser);
-			request.setAttribute("thuFoodUser", thuFoodUser);
-			request.setAttribute("friFoodUser", friFoodUser);
-			request.setAttribute("categoryUser", categoryUser);
-			request.setAttribute("monCategoryUser", monCategoryUser);	
-			request.setAttribute("tueCategoryUser", tueCategoryUser);
-			request.setAttribute("wedCategoryUser", wedCategoryUser);
-			request.setAttribute("thuCategoryUser", thuCategoryUser);
-			request.setAttribute("friCategoryUser", friCategoryUser);
+			statisticList.add(foodUser);			//12
+			statisticList.add(monFoodUser);			//13
+			statisticList.add(tueFoodUser);			//14
+			statisticList.add(wedFoodUser);			//15
+			statisticList.add(thuFoodUser);			//16
+			statisticList.add(friFoodUser);			//17
+			statisticList.add(categoryUser);		//18
+			statisticList.add(monCategoryUser);		//19
+			statisticList.add(tueCategoryUser);		//20
+			statisticList.add(wedCategoryUser);		//21
+			statisticList.add(thuCategoryUser);		//22
+			statisticList.add(friCategoryUser);		//23
+			
+			return statisticList;
+		}else {
+			return Collections.emptyList();
 		}
-		
-		
-		request.setAttribute("currentMonth", month);
-		
-		return "statistic/totalStatistic";
 	}
 }

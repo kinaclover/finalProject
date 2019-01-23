@@ -12,7 +12,7 @@ public class CalendarDAOImpl implements CalendarDAO {
 	
 	private SqlSessionTemplate sqlSession	= null;
 	private List<CalendarVO> list			= null;
-	private Map<String, String> map			= new HashMap<>();
+	private Map<String, Integer> map			= new HashMap<>();
 	//for suggestion ver2
 	private List<String> weekList			= null;
 	
@@ -34,8 +34,10 @@ public class CalendarDAOImpl implements CalendarDAO {
 	}
 	//statistic
 	@Override
-	public List<CalendarVO> TotalMonth(int month) throws Exception {
-		list	= sqlSession.selectList("cal.monthList",month);
+	public List<CalendarVO> TotalMonth(int year, int month) throws Exception {
+		map.put("fyear", year);
+		map.put("fmonth", month);
+		list	= sqlSession.selectList("cal.monthList",map);
 		return list;
 	}
 	@Override

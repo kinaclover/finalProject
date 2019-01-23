@@ -89,7 +89,6 @@ public class LoginAction {
 	@RequestMapping("joinPro.do")
 	public String joinPro(LoginVO loginVO, HttpServletRequest request) throws Exception {
 		loginVO.setReset(0);
-		System.out.println(loginVO.getId());
 		int check	= (Integer)loginDAO.JoinPro(loginVO);
 		int status	= 3;
 		request.setAttribute("check", check);
@@ -247,7 +246,6 @@ public class LoginAction {
 	@RequestMapping("naverJoinPro.do")
 	public @ResponseBody String naverJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception {
 		loginVO.setReset(0);
-		System.out.println("naverJoinPro "+loginVO.getId());
 		int check	= (Integer)loginDAO.JoinPro(loginVO);
 		int status	= 3;
 		request.setAttribute("check", check);
@@ -257,7 +255,6 @@ public class LoginAction {
 	
 	@RequestMapping("naverIdCheck.do")
 	public @ResponseBody String naverIdCheck(@RequestBody String id) throws Exception{
-		System.out.println("naverIdCheck "+id);
 		int count = (Integer)loginDAO.IdCheck(id);
 		return String.valueOf(count);
 	}
