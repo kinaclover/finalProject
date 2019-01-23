@@ -119,9 +119,7 @@ public class MapSort {
 	/* 전체 통계용 자료 */
 	public Map<String, Integer> TotalClassify(List<CalendarVO> list) {
 		if(list==null) list	= Collections.emptyList();
-		result		= new HashMap<>();
-		int count	= 0;
-		
+		result		= new HashMap<>();		
 		result.put("한식", 0);
 		result.put("일식", 0);
 		result.put("중식", 0);
@@ -152,7 +150,31 @@ public class MapSort {
 	}
 	
 	/**************************************************************************************************************************/
+	//week action
 	
+	public Map<String, Integer> ListUpforDay(List<CalendarVO> list, int day) {
+		insert 		= new HashMap<>();
+		int count	= 0;
+		for(CalendarVO temp: list) {
+			if(temp.getFday()==day) {
+				if(insert.isEmpty()) insert.put(temp.getFname(),1);
+				else {
+					for(Map.Entry<String, Integer> x:insert.entrySet()) {
+						if(temp.getFname().equals(x.getKey())) {
+							x.setValue(x.getValue()+1);
+							count++;
+						}
+					}
+					if(count==0) insert.put(temp.getFname(),1);
+					count = 0;
+				}
+			}
+		}
+		result	= Sorting(insert);
+		
+		return result;
+	}
+	/**************************************************************************************************************************/
 	public Map<String, Integer> Sorting(Map<String, Integer> temp) {
 		
 		if(temp==null) temp = Collections.emptyMap();

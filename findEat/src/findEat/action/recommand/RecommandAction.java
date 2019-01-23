@@ -63,7 +63,6 @@ public class RecommandAction {
 		    int check=imgsDAO.searchKeyword(id.trim());
 		  
 		    if(check==0) {
-		    	System.out.println("check====="+check);
 		    	place_name.add(result[i].getPlace_name());
 		    	place_url.add(result[i].getPlace_url());
 		    	place_id.add(result[i].getId());

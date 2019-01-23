@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>식사 통계 페이지</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/statistic.css">
@@ -32,15 +32,15 @@
 		<input type="button" class="btn-sm btn-outline-secondary" id="nextMonth" value="&rarr;"/>
 		<input type="button" class="btn-sm btn-outline-info" id="thisMonth" value=" T "/>
 	</div>
-	<input type="hidden" id="currentYear" value="${currentYear}"/>
-	<input type="hidden" id="currentMonth" value="${currentMonth}"/>
-	<span class="pl-5 pr-3 align-baseline font-weight-bold">
-	<label class="changeYear">${currentYear}</label>년 <label class="changeMonth">${currentMonth}</label>월</span>
 	<div class="btn-group pl-3 align-top">
 		<input type="hidden" id="btnChk" value="0"/>
 		<button type="button" id="totalBtn" class="btn btn-sm btn-dark">Total</button>
 		<button type="button" id="userBtn" class="btn btn-sm btn-light">User</button>
 	</div>
+	<input type="hidden" id="currentYear" value="${currentYear}"/>
+	<input type="hidden" id="currentMonth" value="${currentMonth}"/>
+	<span class="px-3 align-baseline font-weight-bold">
+	<label class="changeYear">${currentYear}</label>년 <label class="changeMonth">${currentMonth}</label>월</span>
 </div>
 <div id="refreshSection">
 	<!-- set list/maps -->
