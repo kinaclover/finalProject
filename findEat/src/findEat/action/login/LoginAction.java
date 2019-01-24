@@ -227,11 +227,10 @@ public class LoginAction {
 	@RequestMapping("naverLoginPro.do")
 	public @ResponseBody String naverLoginPro(String id, HttpServletRequest request) throws Exception {
 		int idCheck	= 1;
-		System.out.println("naverLoginPro "+id);
 		int check	= 1;
 		int status	= 1;
 		int mdCheck	= 0;
-		
+				
 		request.getSession().setAttribute("id", id);
 		mdCheck	= (Integer)loginDAO.ResetCheck(id);
 		
