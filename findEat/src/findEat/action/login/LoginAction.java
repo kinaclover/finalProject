@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import findEat.DB.bean.LoginVO;
 import findEat.DB.dao.LoginDAOImpl;
 
-
 @Controller
 public class LoginAction {
-	
 	/***********************************************************************************************************************/
 	/*
 	 * 	*** 로그인 프로세스
@@ -42,7 +40,7 @@ public class LoginAction {
 	 *	- findPassword	: 5
 	 *
 	/***********************************************************************************************************************/
-	
+
 	@Autowired
 	private LoginDAOImpl loginDAO = null;
 	
