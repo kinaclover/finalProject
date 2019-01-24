@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import findEat.DB.bean.BoardVO;
@@ -18,7 +19,10 @@ public class MainAction {
 	private BoardDAOImpl boardDAO = null;
 	
 	@RequestMapping("index.do")
-	public String index(HttpServletRequest request) throws Exception {
+	public String index(Model model,HttpServletRequest request) throws Exception {
+		String access_token=request.getParameter("acceess_token");
+		System.out.println("access_token==="+access_token);
+		model.addAttribute("access_token", access_token);
 		return "/main/index";
 	}
 	

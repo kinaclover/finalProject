@@ -1,13 +1,23 @@
 /**
  * 	menu javascript
- */
-
+*/
 //logout button
+
+Kakao.init('e8d9b38a8afd2bcec1ece996622e6d39');
 $(function() {
+	
 	$("#logoutBtn").click(function(){
 		var result	= confirm("로그아웃 하시겠습니까?");
-		if(result) window.location = "logout.do";
+		if(result){
+			
+			
+			
+			
+			window.location = "logout.do";
+		}
+			
 	});
+
 });
 
 //notice rolling

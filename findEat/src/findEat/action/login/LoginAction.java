@@ -261,8 +261,9 @@ public class LoginAction {
 		int count = (Integer)loginDAO.IdCheck(id);
 		return String.valueOf(count);
 	}
+	
 	@RequestMapping("googleLoginPro.do")
-	public String googleLoginPro(String id, HttpServletRequest request) throws Exception{
+	public @ResponseBody String googleLoginPro(String id, HttpServletRequest request) throws Exception{
 		int idCheck	= 1;
 		System.out.println("googleLoginPro "+id);
 		int check	= 1;
@@ -280,7 +281,7 @@ public class LoginAction {
 	}
 	
 	@RequestMapping("googleJoinPro.do")
-	public String googleJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception{
+	public @ResponseBody String googleJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception{
 		loginVO.setReset(0);
 		System.out.println("googleJoinPro "+loginVO.getId());
 		int check	= (Integer)loginDAO.JoinPro(loginVO);
@@ -289,11 +290,50 @@ public class LoginAction {
 		request.setAttribute("status", status);
 		return "joinOK"; 
 	}
+	
 	@RequestMapping("googleIdCheck.do")
 	public @ResponseBody String googleIdCheck(@RequestBody String id) throws Exception{
 		System.out.println("googleIdCheck "+id);
 		int count = (Integer)loginDAO.IdCheck(id);
 		return String.valueOf(count);
 	}
+	
+	@RequestMapping("kakaoLoginPro.do")
+	public @ResponseBody String kakaoLoginPro(String id, HttpServletRequest request) throws Exception{
+		int idCheck	= 1;
+		System.out.println("googleLoginPro "+id);
+		int check	= 1;
+		int status	= 1;
+		int mdCheck	= 0;
+		
+		request.getSession().setAttribute("id", id);
+		mdCheck	= (Integer)loginDAO.ResetCheck(id);
+		
+		request.setAttribute("idCheck", idCheck);
+		request.setAttribute("check", check);
+		request.setAttribute("status", status);
+		request.getSession().setAttribute("mdCheck", mdCheck);
+		return "loginOk";
+	}
+	
+	@RequestMapping("kakaoJoinPro.do")
+	public @ResponseBody String kakaoJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception{
+		loginVO.setReset(0);
+		System.out.println("googleJoinPro "+loginVO.getId());
+		int check	= (Integer)loginDAO.JoinPro(loginVO);
+		int status	= 3;
+		request.setAttribute("check", check);
+		request.setAttribute("status", status);
+		return "joinOK"; 
+	}
+	
+	@RequestMapping("kakaoIdCheck.do")
+	public @ResponseBody String kakaoIdCheck(@RequestBody String id) throws Exception{
+		System.out.println("googleIdCheck "+id);
+		int count = (Integer)loginDAO.IdCheck(id);
+		return String.valueOf(count);
+	}
+	
+	
 	
 }
