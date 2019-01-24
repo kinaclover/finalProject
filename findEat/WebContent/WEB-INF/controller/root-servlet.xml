@@ -31,6 +31,17 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
-	
 
+
+	<!-- error -->
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	    <property name="defaultErrorView" value="error/errorDefault" />
+	    <property name="exceptionMappings">
+	        <props>
+	            <prop key="findEat.action.error.DatabaseException">error/errorDefault1</prop>
+	            <prop key="findEat.action.error.SecurityException">error/errorDefault2</prop>
+	        </props>
+	    </property>
+	</bean>
+	
 </beans>

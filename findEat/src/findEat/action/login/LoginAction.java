@@ -20,18 +20,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import findEat.DB.bean.LoginVO;
 import findEat.DB.dao.LoginDAOImpl;
 
+/*
+ *	login 'status'
+ *	1 == login
+ *	2 == update
+ *	3 == join
+ *	4 == delete 
+ *	5 == findPassword
+ */
 
 @Controller
 public class LoginAction {
-	
-	/*
-	 *	login 'status'
-	 *	1 == login
-	 *	2 == update
-	 *	3 == join
-	 *	4 == delete 
-	 *	5 == findPassword
-	 */
 	
 	@Autowired
 	private LoginDAOImpl loginDAO = null;
