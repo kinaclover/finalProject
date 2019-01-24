@@ -47,8 +47,6 @@
 				<a class="dropdown-item" href="/findEat/modify.do">회원정보 수정</a>
 				<c:if test="${sessionScope.id.equals('admin')}">
 					<a class="dropdown-item" href="/findEat/insertFood.do">Food Administrator</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="/findEat/insertCalDB.do">Insert Calendar(temporary)</a>
 				</c:if>
 			</div>
 		</div>
