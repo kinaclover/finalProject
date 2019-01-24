@@ -14,12 +14,13 @@
         Kakao.API.request({
           url: '/v2/user/me',
           success: function(res) {
-        	        	
+        	 //이메일 데이터를 가져와 아이디를 분리합니다.       	
         	 var email= res.kakao_account.email;
              var emailHead = email.split('@',1);
            	emailHead = JSON.stringify(emailHead).replace(/"/g, "");
      		emailHead = emailHead.replace(/[[\]]/g,'');
      		$.ajax({
+     			//데이터베이스에 아이디를 체크, 0 = 가입이 안된 상태,0!= 가입된 상태 입니다.
      			async: true,
      			type: 'POST',
      			data: JSON.stringify(emailHead),
@@ -29,6 +30,7 @@
      				console.log(data)
      				if($.trim(data) != 0) { 
     					alert(emailHead+" 님 어서오세요!");
+    					//아이디를 넘겨 자동으로 로그인을 시킵니다.
     					$.ajax ({
     						async: true,
     						type: 'POST',
@@ -47,8 +49,10 @@
     						}
     					});
     				} else {
+    					//가입이 안된상태 
     					if (confirm("아직 가입하지 않은 사용자 입니다. 가입 하시겠습니까?") == true){    //확인
     					    $('#idCheck').val(1);
+    					    //아이다와 이메일, 비밀번호(공백으로정함)을 넘겨 자동으로 가입이 됩니다.
     						$.ajax ({	
     							async: true,
     							type: 'POST',
@@ -59,7 +63,7 @@
     							},
     							url: 'kakaoJoinPro.do',
     							success: function(data) {
-    								
+    								//가입을 한뒤 자동 로그인이 됩니다.
     								$.ajax ({
     									async: true,
     									type: 'POST',
@@ -71,7 +75,7 @@
     									url: 'kakaoLoginPro.do',
     									success: function(data) {
     										alert(emailHead+" 님 어서오세요!");
-    										window.location="/findEat/index.do";
+    										window.location="/findEat/index.do"; //로그인이 된후 index페이지로 이동합니다. 
     									},
     									error: function(request,status,error) {
     										alert("Error Code(2) : "+error.d);												}

@@ -20,9 +20,6 @@ public class MainAction {
 	
 	@RequestMapping("index.do")
 	public String index(Model model,HttpServletRequest request) throws Exception {
-		String access_token=request.getParameter("acceess_token");
-		System.out.println("access_token==="+access_token);
-		model.addAttribute("access_token", access_token);
 		return "/main/index";
 	}
 	

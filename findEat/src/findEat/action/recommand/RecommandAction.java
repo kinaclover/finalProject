@@ -32,7 +32,6 @@ public class RecommandAction {
 	@RequestMapping("search.do")
 	public String test(HttpServletRequest request, Model model){
 		if(request.getParameter("keyword")!=null) {
-			System.out.println("keyword! : "+request.getParameter("keyword"));
 			model.addAttribute("keyword", request.getParameter("keyword"));
 		}
 		
@@ -45,13 +44,9 @@ public class RecommandAction {
 	public Map searchPro(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
 		
 		String address_name1= request.getParameter("address_name1");
-		System.out.println("address_name1=="+address_name1);
 		String address_name2= request.getParameter("address_name2");
-		System.out.println("address_name2=="+address_name2);
 		String address_name3= request.getParameter("address_name3");
-		System.out.println("address_name3=="+address_name3);
 		String menu= request.getParameter("menu");
-		System.out.println("menu=="+menu);
 		
 		
 		ArrayList<String> place_url=new ArrayList<String>();
@@ -68,7 +63,6 @@ public class RecommandAction {
 		    int check=imgsDAO.searchKeyword(id.trim());
 		  
 		    if(check==0) {
-		    	System.out.println("check====="+check);
 		    	place_name.add(result[i].getPlace_name());
 		    	place_url.add(result[i].getPlace_url());
 		    	place_id.add(result[i].getId());
@@ -85,24 +79,11 @@ public class RecommandAction {
 		temp2=place_name.toArray(temp2);
 		temp3=place_id.toArray(temp3);
 		String[] result_imgs=new String[result.length];
-		for(String a: temp) {
-			System.out.println("place_url==========>"+a);
-		}
-
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
 		String [] sresult_img=(String [])result_map.get("img");
-		for(String a : sresult_img) {
-			System.out.println("result_img======="+ a);
-		}
+		
 		for(int i=0; i<sresult_img.length; i++) {
-			System.out.println("address_name1==="+address_name1.trim());
-			System.out.println("address_name2==="+address_name2.trim());
-			System.out.println("address_name3==="+address_name3.trim());
-			System.out.println("result_img==="+sresult_img[i].trim());
-			System.out.println("temp2==="+temp2[i].trim());
-			System.out.println("menu==="+menu.trim());
-			System.out.println("temp3==="+temp3[i].trim());
 			inputDB(address_name1.trim(),address_name2.trim(),address_name3.trim(), sresult_img[i].trim(), temp2[i].trim(), menu.trim(), temp3[i].trim());
 		}
 		
@@ -137,7 +118,6 @@ public class RecommandAction {
 	
 	//동적 크롤링을 위한 함수
 	public HashMap SeleniumCrawling(String[] place_url){
-		System.out.println("place_url==========>"+place_url.length);
 		RConnection r=null;
 		HashMap result_map=new HashMap();
 		try {
@@ -162,9 +142,7 @@ public class RecommandAction {
 			r.eval("result_img<-unlist(result_img, use.names=FALSE)");
 		
 			REXP rx=r.eval("result_img");
-			for(String a : rx.asStrings()) {
-				System.out.println("imgs=============>"+a);
-			}
+			
 			String[] imgs=getIMG(rx.asStrings());
 			
 			result_map.put("img", imgs);
@@ -212,11 +190,8 @@ public class RecommandAction {
 	public Map myPosition(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
 		
 		String address_name1= request.getParameter("address_name1");
-		System.out.println("address_name1=="+address_name1);
 		String address_name2= request.getParameter("address_name2");
-		System.out.println("address_name2=="+address_name2);
 		String address_name3= request.getParameter("address_name3");
-		System.out.println("address_name3=="+address_name3);
 	
 		
 		
@@ -240,7 +215,6 @@ public class RecommandAction {
 		    	place_id.add(result[i].getId());
 		    }
 		}
-		System.out.println("place_url size==================="+place_url.size());
 		if(place_url.size()!=0) {
 			
 		//arraylist --> string 배열로 변환
@@ -251,15 +225,11 @@ public class RecommandAction {
 		temp2=place_name.toArray(temp2);
 		temp3=place_id.toArray(temp3);
 		String[] result_imgs=new String[result.length];
-		for(String a: temp) {
-			System.out.println("place_url==========>"+a);
-		}
+		
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
 		String [] result_img=(String [])result_map.get("img");
-		for(String a : result_img) {
-			System.out.println("result_img======="+ a);
-		}
+		
 		for(int i=0; i<result_img.length; i++) {
 			
 			MyPositionVO pvo=new MyPositionVO();
@@ -289,18 +259,12 @@ public class RecommandAction {
 			}
 					
 			result_map=new HashMap();
-			System.out.println("temp3 result_imgs ======="+temp_id.length);
-			for(String a : temp_id) {
-				System.out.println("myposition id===========>"+a);
-			}
+			
 			for(int i=0; i<temp_id.length; i++) {
 				MyPositionVO pvo=null;
 				pvo=imgsDAO.selectMyPosition(temp_id[i]);
 				result_imgs[i]=pvo.getImg_url();
 				
-			}
-			for(String a : result_imgs) {
-				System.out.println("myposition result_imgs===>"+a);
 			}
 			
 			result_map.put("img",result_imgs);

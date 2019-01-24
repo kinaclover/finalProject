@@ -74,6 +74,9 @@ if (navigator.geolocation) {
 	
 }
 function getPosition(){
+	//검색 결과 틀에 스타일 추가
+	$("#placesList").attr("style","overflow:auto;height:65vh");
+	//
 	 var result_keyword=address_name1+" "+address_name2+" "+address_name3;
 	 var option ={ category_group_code : "FD6" };
 	 ps.keywordSearch(result_keyword, mylocationCallback, option);
@@ -159,15 +162,19 @@ function displayMarker(locPosition, message) {
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
+	//검색 결과 틀에 스타일 추가
+	$("#placesList").attr("style","overflow:auto;height:65vh");
+	//
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+
  	keyword = document.getElementById('keyword').value;
+	
+	if(keyword=="" || keyword==null){
+	alert("검색어를 입력해주세요");
+	return;
+	}
     var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
-    
-    if(keyword=="" || keyword==null){
-    	alert("검색어를 입력해주세요");
-    	return;
-    }
-    
+        
     var option ={ category_group_code : "FD6" };
     ps.keywordSearch(result_keyword, placesSearchCB, option);
     
