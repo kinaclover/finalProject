@@ -1,5 +1,6 @@
 package findEat.action.statistic;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -12,14 +13,31 @@ import java.util.Map.Entry;
 import findEat.DB.bean.CalendarVO;
 
 public class SortClass {
+	/***********************************************************************************************************************/
+	/*	
+	 *	*** 분류, 정렬을 위한 클래스
+	 *
+	 *	Sort method class
+	 *	- 통계 페이지를 위한 자료의 분류 및 정렬
+	 * 
+	/***********************************************************************************************************************/
 
+	private List<CalendarVO> userList				= null;
 	private Map<String, Integer> foodTotal			= null;
 	private Map<String, Integer> dayFoodTotal		= null;
 	private Map<String, Integer> categoryTotal		= null;
 	private Map<String, Integer> dayCategoryTotal	= null;
 	private Map<String, Integer> result				= null;
 	
-	//food/category Total map
+	//전체 list에서 해당 id의 데이터만 분류
+	public List<CalendarVO> UserList(List<CalendarVO> list, String id){
+		userList	= new ArrayList<>();
+		for(CalendarVO temp: list) {
+			if(temp.getId().equals(id)) userList.add(temp);
+		}
+		return userList;
+	}
+	//food/category 분류 및 정렬
 	public Map<String,Integer> TotalMap(List<CalendarVO> list, String temp) {
 		int count	= 0;
 		if(temp.equals("food")) {
@@ -70,7 +88,7 @@ public class SortClass {
 			return Collections.emptyMap();
 		}
 	}
-	//food/category day Total map
+	//food/category 요일별 분류 및 정렬
 	public Map<String, Integer> DayMap(List<CalendarVO> list, String temp, int day) {
 		int count	= 0;
 		if(temp.equals("food")) {
@@ -126,7 +144,7 @@ public class SortClass {
 		}
 	}
 	
-	//sorting
+	//정렬을 위한 메서드
 	public Map<String, Integer> Sorting(Map<String, Integer> temp) {
 		
 		if(temp==null) temp = Collections.emptyMap();
@@ -146,7 +164,7 @@ public class SortClass {
 		return result;
 	}
 	
-	//Empty value check
+	//빈 값을 채워주는 메서드
 	public Map<String, Integer> EmptyCheck(Map<String, Integer> map) {
 		int check	= map.size();
 		int count	= 1;
