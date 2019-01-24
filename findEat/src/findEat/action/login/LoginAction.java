@@ -241,7 +241,7 @@ public class LoginAction {
 		int check	= 1;
 		int status	= 1;
 		int mdCheck	= 0;
-		
+				
 		request.getSession().setAttribute("id", id);
 		mdCheck	= (Integer)loginDAO.ResetCheck(id);
 		
