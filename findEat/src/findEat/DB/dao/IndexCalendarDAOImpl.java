@@ -47,4 +47,16 @@ public class IndexCalendarDAOImpl implements IndexCalendarDAO {
 		list	= sqlSession.selectList("cal.thisWeek",map);
 		return list;
 	}
+	
+	/* Calendar 입력/삭제 */
+	//
+	@Override
+	public void InsertMenu(CalendarVO CalVO) throws Exception{
+		sqlSession.insert("cal.insertMenu",CalVO);	
+	}
+	
+	@Override
+	public void DeleteMenu(Map<String,Object> data) throws Exception{
+		sqlSession.delete("cal.deleteMenu",data);
+	}
 }

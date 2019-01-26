@@ -1,6 +1,7 @@
 package findEat.DB.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import findEat.DB.bean.CalendarVO;
 
@@ -14,4 +15,8 @@ public interface IndexCalendarDAO {
 	public List<CalendarVO> SelectAll(String id) throws Exception;					//해당 회원의 리스트
 	public List<CalendarVO> TotalWeekList(int fweek) throws Exception;				//해당 주의 리스트
 	public List<CalendarVO> SelectThisWeek(String id, int fweek) throws Exception;	//해당 회원의 주의 리스트
+	
+	//Calendar 입력/삭제
+	public void InsertMenu(CalendarVO CalVO) throws Exception; 
+	public void DeleteMenu(Map<String,Object> data) throws Exception;
 }
