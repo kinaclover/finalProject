@@ -3,11 +3,11 @@ package findEat.DB.bean;
 import java.sql.Timestamp;
 
 public class CommentsVO {
-	private int num;
-	private String id;
-	private int idx;
-	private String content;
-	private Timestamp regDate;
+	private int num;				//댓글 고유값
+	private String id;				//댓글 작성자 id
+	private int idx;				//댓글 번호
+	private String content;			//댓글 내용
+	private Timestamp regDate;		//댓글 작성 시간
 	public int getNum() {
 		return num;
 	}
