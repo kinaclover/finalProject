@@ -1,8 +1,6 @@
 package findEat.action.statistic;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
@@ -18,39 +16,49 @@ import findEat.DB.dao.CalendarDAOImpl;
 
 @Controller
 public class StaticsAction {
+
+	/***********************************************************************************************************************/
+	/*
+	 *	*** 월별 통계를 위한 페이지
+	 *
+	 *	Statistic Action class
+	 *	- 해당 월의 전체 통계수치를 연산, 전달
+	 *	- 전달하는 Map객체의 size가 10 미만일 경우 빈값을 넣어서 전달
+	 *	- 모든 Map객체들을 하나의 리스트에 묶어서 전달 / 순서에 유의 - view 페이지 참고
+	 *
+	/***********************************************************************************************************************/
 	
-	private Calendar cal		= new GregorianCalendar();
-	private SortClass sort		= new SortClass();
-	private CalendarVO calVO	= new CalendarVO();
-	private List<CalendarVO> monthCalList			= null;
-	private List<CalendarVO> monthCalListUser		= null;
-	private List<Map<String,Integer>> statisticList	= null;
+	private Calendar cal		= new GregorianCalendar();			//연,월,일 값을 가져오기 위한 달력 객체
+	private SortClass sort		= new SortClass();					//정렬을 위한 함수 클래스
 	
-	private Map<String, Integer> foodTotal				= null;
-	private Map<String, Integer> monFoodTotal			= null;
-	private Map<String, Integer> tueFoodTotal			= null;
-	private Map<String, Integer> wedFoodTotal			= null;
-	private Map<String, Integer> thuFoodTotal			= null;
-	private Map<String, Integer> friFoodTotal			= null;
-	private Map<String, Integer> categoryTotal			= null;
-	private Map<String, Integer> monCategoryTotal		= null;
-	private Map<String, Integer> tueCategoryTotal		= null;
-	private Map<String, Integer> wedCategoryTotal		= null;
-	private Map<String, Integer> thuCategoryTotal		= null;
-	private Map<String, Integer> friCategoryTotal		= null;
+	private List<CalendarVO> monthCalList				= null;		//DB에서 해당 월의 전체 자료 호출
+	private List<CalendarVO> monthCalListUser			= null;		//DB에서 받은 리스트 중 회원의 자료 분류
 	
-	private Map<String, Integer> foodUser				= null;
-	private Map<String, Integer> monFoodUser			= null;
-	private Map<String, Integer> tueFoodUser			= null;
-	private Map<String, Integer> wedFoodUser			= null;
-	private Map<String, Integer> thuFoodUser			= null;
-	private Map<String, Integer> friFoodUser			= null;
-	private Map<String, Integer> categoryUser			= null;
-	private Map<String, Integer> monCategoryUser		= null;
-	private Map<String, Integer> tueCategoryUser		= null;
-	private Map<String, Integer> wedCategoryUser		= null;
-	private Map<String, Integer> thuCategoryUser		= null;
-	private Map<String, Integer> friCategoryUser		= null;
+	private Map<String, Integer> foodTotal				= null;		//해당 월의 전체 순위
+	private Map<String, Integer> monFoodTotal			= null;		//해당 월의 월요일 순위
+	private Map<String, Integer> tueFoodTotal			= null;		//해당 월의 화요일 순위
+	private Map<String, Integer> wedFoodTotal			= null;		//해당 월의 수요일 순위
+	private Map<String, Integer> thuFoodTotal			= null;		//해당 월의 목요일 순위
+	private Map<String, Integer> friFoodTotal			= null;		//해당 월의 금요일 순위
+	private Map<String, Integer> categoryTotal			= null;		//해당 월의 전체 카테고리 순위
+	private Map<String, Integer> monCategoryTotal		= null;		//해당 월의 월요일 카테고리 순위
+	private Map<String, Integer> tueCategoryTotal		= null;		//해당 월의 화요일 카테고리 순위
+	private Map<String, Integer> wedCategoryTotal		= null;		//해당 월의 수요일 카테고리 순위
+	private Map<String, Integer> thuCategoryTotal		= null;		//해당 월의 목요일 카테고리 순위
+	private Map<String, Integer> friCategoryTotal		= null;		//해당 월의 금요일 카테고리 순위
+	
+	private Map<String, Integer> foodUser				= null;		//해당 월의 회원 전체 순위
+	private Map<String, Integer> monFoodUser			= null;		//해당 월의 회원 월요일 순위
+	private Map<String, Integer> tueFoodUser			= null;		//해당 월의 회원 화요일 순위
+	private Map<String, Integer> wedFoodUser			= null;		//해당 월의 회원 수요일 순위
+	private Map<String, Integer> thuFoodUser			= null;		//해당 월의 회원 목요일 순위
+	private Map<String, Integer> friFoodUser			= null;		//해당 월의 회원 금요일 순위
+	private Map<String, Integer> categoryUser			= null;		//해당 월의 회원 카테고리 순위
+	private Map<String, Integer> monCategoryUser		= null;		//해당 월의 월요일(회원) 카테고리 순위
+	private Map<String, Integer> tueCategoryUser		= null;		//해당 월의 화요일(회원) 카테고리 순위
+	private Map<String, Integer> wedCategoryUser		= null;		//해당 월의 수요일(회원) 카테고리 순위
+	private Map<String, Integer> thuCategoryUser		= null;		//해당 월의 목요일(회원) 카테고리 순위
+	private Map<String, Integer> friCategoryUser		= null;		//해당 월의 금요일(회원) 카테고리 순위
 	
 	@Autowired
 	private CalendarDAOImpl calDAO	= null;
@@ -60,33 +68,19 @@ public class StaticsAction {
 		int year	= 0;
 		int month	= 0;
 		String id	= null;
-		if(request.getParameter("year")==null) {
+		if(request.getParameter("year")==null) {								//쿼리스트링으로 받는 값이 없을 경우 오늘의 데이터 사용 
 			year	= cal.get(Calendar.YEAR);
 			month	= cal.get(Calendar.MONTH)+1;
-		}else {
+		}else {																	//쿼리스트링으로 받는 값이 있을 경우 입력
 			year	= Integer.parseInt(request.getParameter("year"));
 			month	= Integer.parseInt(request.getParameter("month"));
 		}
 		if(request.getSession().getAttribute("id")!=null) id = (String)request.getSession().getAttribute("id");
 		if(id!=null) {
-			statisticList	= statisticGraph(year,month,id);
-			request.setAttribute("statisticList", statisticList);
-		}
-
-		request.setAttribute("currentYear", year);
-		request.setAttribute("currentMonth", month);
-		
-		return "statistic/totalStatistic";
-	}
-	
-	public List<Map<String,Integer>> statisticGraph(int year, int month, String id) throws Exception {
-		if(id!=null) {
-			calVO.setId(id);
-			calVO.setFyear(year);
-			calVO.setFmonth(month);
-			monthCalList		= calDAO.TotalMonth(year,month);
-			monthCalListUser	= calDAO.UserMonth(calVO);
+			monthCalList		= calDAO.TotalMonth(year,month);				//DB에서 자료 호출
+			monthCalListUser	= sort.UserList(monthCalList, id);				//DB에서 받은 자료에서 해당 아이디로 분류
 			
+			//전체 데이터 분류 및 정렬
 			foodTotal			= sort.TotalMap(monthCalList, "food");
 			monFoodTotal		= sort.DayMap(monthCalList, "food", 1);
 			tueFoodTotal		= sort.DayMap(monthCalList, "food", 2);
@@ -100,12 +94,14 @@ public class StaticsAction {
 			thuCategoryTotal	= sort.DayMap(monthCalList, "category", 4);
 			friCategoryTotal	= sort.DayMap(monthCalList, "category", 5);
 			
+			//전체 데이터 분류 및 정렬(회원)
 			foodUser			= sort.TotalMap(monthCalListUser, "food");
 			monFoodUser			= sort.DayMap(monthCalListUser, "food", 1);
 			tueFoodUser			= sort.DayMap(monthCalListUser, "food", 2);
 			wedFoodUser			= sort.DayMap(monthCalListUser, "food", 3);
 			thuFoodUser			= sort.DayMap(monthCalListUser, "food", 4);
 			friFoodUser			= sort.DayMap(monthCalListUser, "food", 5);
+			//회원의 경우 값이 비어있을 경우 빈 값으로 값을 채워줌 >> 그래프에서의 null 방지
 			foodUser			= sort.EmptyCheck(foodUser);
 			monFoodUser			= sort.EmptyCheck(monFoodUser);
 			tueFoodUser			= sort.EmptyCheck(tueFoodUser);
@@ -119,36 +115,36 @@ public class StaticsAction {
 			thuCategoryUser		= sort.DayMap(monthCalListUser, "category", 4);
 			friCategoryUser		= sort.DayMap(monthCalListUser, "category", 5);
 			
-			statisticList	= new ArrayList<>();
-			statisticList.add(foodTotal);			//0
-			statisticList.add(monFoodTotal);		//1
-			statisticList.add(tueFoodTotal);		//2
-			statisticList.add(wedFoodTotal);		//3
-			statisticList.add(thuFoodTotal);		//4
-			statisticList.add(friFoodTotal);		//5
-			statisticList.add(categoryTotal);		//6
-			statisticList.add(monCategoryTotal);	//7
-			statisticList.add(tueCategoryTotal);	//8
-			statisticList.add(wedCategoryTotal);	//9
-			statisticList.add(thuCategoryTotal);	//10
-			statisticList.add(friCategoryTotal);	//11
+			request.setAttribute("foodTotal", foodTotal);
+			request.setAttribute("monFoodTotal", monFoodTotal);
+			request.setAttribute("tueFoodTotal", tueFoodTotal);
+			request.setAttribute("wedFoodTotal", wedFoodTotal);
+			request.setAttribute("thuFoodTotal", thuFoodTotal);
+			request.setAttribute("friFoodTotal", friFoodTotal);
+			request.setAttribute("categoryTotal", categoryTotal);
+			request.setAttribute("monCategoryTotal", monCategoryTotal);
+			request.setAttribute("tueCategoryTotal", tueCategoryTotal);
+			request.setAttribute("wedCategoryTotal", wedCategoryTotal);
+			request.setAttribute("thuCategoryTotal", thuCategoryTotal);
+			request.setAttribute("friCategoryTotal", friCategoryTotal);
 			
-			statisticList.add(foodUser);			//12
-			statisticList.add(monFoodUser);			//13
-			statisticList.add(tueFoodUser);			//14
-			statisticList.add(wedFoodUser);			//15
-			statisticList.add(thuFoodUser);			//16
-			statisticList.add(friFoodUser);			//17
-			statisticList.add(categoryUser);		//18
-			statisticList.add(monCategoryUser);		//19
-			statisticList.add(tueCategoryUser);		//20
-			statisticList.add(wedCategoryUser);		//21
-			statisticList.add(thuCategoryUser);		//22
-			statisticList.add(friCategoryUser);		//23
-			
-			return statisticList;
-		}else {
-			return Collections.emptyList();
+			request.setAttribute("foodUser", foodUser);
+			request.setAttribute("monFoodUser", monFoodUser);
+			request.setAttribute("tueFoodUser", tueFoodUser);
+			request.setAttribute("wedFoodUser", wedFoodUser);
+			request.setAttribute("thuFoodUser", thuFoodUser);
+			request.setAttribute("friFoodUser", friFoodUser);
+			request.setAttribute("categoryUser", categoryUser);
+			request.setAttribute("monCategoryUser", monCategoryUser);
+			request.setAttribute("tueCategoryUser", tueCategoryUser);
+			request.setAttribute("wedCategoryUser", wedCategoryUser);
+			request.setAttribute("thuCategoryUser", thuCategoryUser);
+			request.setAttribute("friCategoryUser", friCategoryUser);
 		}
+
+		request.setAttribute("currentYear", year);
+		request.setAttribute("currentMonth", month);
+		
+		return "statistic/totalStatistic";
 	}
 }

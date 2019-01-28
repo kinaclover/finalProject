@@ -50,54 +50,54 @@
 <div id="statisticTotal" class="" style="width:100%;margin:0 auto">
 	<!-- food -->
 	<div>
-		<c:forEach var="food" items="${statisticList[0]}" varStatus="stat">
+		<c:forEach items="${foodTotal}" var="food" varStatus="stat">
 			<input type="hidden" class="food-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="food-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[1]}" var="food" varStatus="stat">
+		<c:forEach items="${monFoodTotal}" var="food" varStatus="stat">
 			<input type="hidden" class="monFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="monFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[2]}" var="food" varStatus="stat">
+		<c:forEach items="${tueFoodTotal}" var="food" varStatus="stat">
 			<input type="hidden" class="tueFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="tueFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[3]}" var="food" varStatus="stat">
+		<c:forEach items="${wedFoodTotal}" var="food" varStatus="stat">
 			<input type="hidden" class="wedFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="wedFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[4]}" var="food" varStatus="stat">
+		<c:forEach items="${thuFoodTotal}" var="food" varStatus="stat">
 			<input type="hidden" class="thuFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="thuFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[5]}" var="food" varStatus="stat">
+		<c:forEach items="${friFoodTotal}" var="food" varStatus="stat">
 			<input type="hidden" class="friFood-total-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="friFood-total-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
 	</div>
 	<!-- category -->
 	<div>
-		<c:forEach items="${statisticList[6]}" var="category" varStatus="stat">
+		<c:forEach items="${categoryTotal}" var="category" varStatus="stat">
 			<input type="hidden" class="category-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="category-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[7]}" var="category" varStatus="stat">
+		<c:forEach items="${monCategoryTotal}" var="category" varStatus="stat">
 			<input type="hidden" class="monCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="monCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[8]}" var="category" varStatus="stat">
+		<c:forEach items="${tueCategoryTotal}" var="category" varStatus="stat">
 			<input type="hidden" class="tueCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="tueCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[9]}" var="category" varStatus="stat">
+		<c:forEach items="${wedCategoryTotal}" var="category" varStatus="stat">
 			<input type="hidden" class="wedCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="wedCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[10]}" var="category" varStatus="stat">
+		<c:forEach items="${thuCategoryTotal}" var="category" varStatus="stat">
 			<input type="hidden" class="thuCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="thuCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[11]}" var="category" varStatus="stat">
+		<c:forEach items="${friCategoryTotal}" var="category" varStatus="stat">
 			<input type="hidden" class="friCategory-total-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="friCategory-total-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
@@ -113,31 +113,31 @@
 		</div>
 	</div>
 	<div style="width:100%;height:40vh" class="list-group-horizontal text-center">
-		<div style="height:40vh" class="mon list-group-item">
+		<div style="height:40vh;width:19vw;" class="mon list-group-item">
 			<p class="dayHead btn-outline-danger">Monday</p>
 			<input type="hidden" class="MondayChk" value="0"/>
 			<div id="Monday-food-total"></div>
 			<div id="Monday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="tue list-group-item">
+		<div style="height:40vh;width:19vw;" class="tue list-group-item">
 			<p class="dayHead btn-outline-warning">Tuesday</p>
 			<input type="hidden" class="TuesdayChk" value="0"/>
 			<div id="Tuesday-food-total"></div>
 			<div id="Tuesday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="wed list-group-item">
+		<div style="height:40vh;width:19vw;" class="wed list-group-item">
 			<p class="dayHead btn-outline-primary">Wednesday</p>
 			<input type="hidden" class="WednesdayChk" value="0"/>
 			<div id="Wednesday-food-total"></div>
 			<div id="Wednesday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="thu list-group-item">
+		<div style="height:40vh;width:19vw;" class="thu list-group-item">
 			<p class="dayHead btn-outline-success">Thursday</p>
 			<input type="hidden" class="ThursdayChk" value="0"/>
 			<div id="Thursday-food-total"></div>
 			<div id="Thursday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="fri list-group-item">
+		<div style="height:40vh;width:19vw;" class="fri list-group-item">
 			<p class="dayHead btn-outline-info">Friday</p>
 			<input type="hidden" class="FridayChk" value="0"/>
 			<div id="Friday-food-total"></div>
@@ -150,54 +150,54 @@
 <div id="statisticUser" class="" style="width:100%;margin:0 auto" hidden="hidden">
 	<!-- food -->
 	<div>
-		<c:forEach var="food" items="${statisticList[12]}" varStatus="stat">
+		<c:forEach items="${foodUser}" var="food" varStatus="stat">
 			<input type="hidden" class="food-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="food-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[13]}" var="food" varStatus="stat">
+		<c:forEach items="${monFoodUser}" var="food" varStatus="stat">
 			<input type="hidden" class="monFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="monFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[14]}" var="food" varStatus="stat">
+		<c:forEach items="${tueFoodUser}" var="food" varStatus="stat">
 			<input type="hidden" class="tueFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="tueFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[15]}" var="food" varStatus="stat">
+		<c:forEach items="${wedFoodUser}" var="food" varStatus="stat">
 			<input type="hidden" class="wedFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="wedFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[16]}" var="food" varStatus="stat">
+		<c:forEach items="${thuFoodUser}" var="food" varStatus="stat">
 			<input type="hidden" class="thuFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="thuFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[17]}" var="food" varStatus="stat">
+		<c:forEach items="${friFoodUser}" var="food" varStatus="stat">
 			<input type="hidden" class="friFood-user-key-${stat.count}" value="${food.key}"/>
 			<input type="hidden" class="friFood-user-value-${stat.count}" value="${food.value}"/>
 		</c:forEach>
 	</div>
 	<!-- category -->
 	<div>
-		<c:forEach items="${statisticList[18]}" var="category" varStatus="stat">
+		<c:forEach items="${categoryUser}" var="category" varStatus="stat">
 			<input type="hidden" class="category-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="category-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[19]}" var="category" varStatus="stat">
+		<c:forEach items="${monCategoryUser}" var="category" varStatus="stat">
 			<input type="hidden" class="monCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="monCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[20]}" var="category" varStatus="stat">
+		<c:forEach items="${tueCategoryUser}" var="category" varStatus="stat">
 			<input type="hidden" class="tueCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="tueCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[21]}" var="category" varStatus="stat">
+		<c:forEach items="${wedCategoryUser}" var="category" varStatus="stat">
 			<input type="hidden" class="wedCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="wedCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[22]}" var="category" varStatus="stat">
+		<c:forEach items="${thuCategoryUser}" var="category" varStatus="stat">
 			<input type="hidden" class="thuCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="thuCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
-		<c:forEach items="${statisticList[23]}" var="category" varStatus="stat">
+		<c:forEach items="${friCategoryUser}" var="category" varStatus="stat">
 			<input type="hidden" class="friCategory-user-key-${stat.count}" value="${category.key}"/>
 			<input type="hidden" class="friCategory-user-value-${stat.count}" value="${category.value}"/>
 		</c:forEach>
@@ -213,31 +213,31 @@
 		</div>
 	</div>
 	<div style="height:40vh" class="list-group-horizontal text-center">
-		<div style="height:100%" class="mon list-group-item">
+		<div style="height:40vh;width:19vw;" class="mon list-group-item">
 			<p class="dayHead btn-outline-danger">Monday</p>
 			<input type="hidden" class="MondayChk" value="0"/>
 			<div id="Monday-food-user"></div>
 			<div id="Monday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="tue list-group-item">
+		<div style="height:40vh;width:19vw;" class="tue list-group-item">
 			<p class="dayHead btn-outline-warning">Tuesday</p>
 			<input type="hidden" class="TuesdayChk" value="0"/>
 			<div id="Tuesday-food-user"></div>
 			<div id="Tuesday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="wed list-group-item">
+		<div style="height:40vh;width:19vw;" class="wed list-group-item">
 			<p class="dayHead btn-outline-primary">Wednesday</p>
 			<input type="hidden" class="WednesdayChk" value="0"/>
 			<div id="Wednesday-food-user"></div>
 			<div id="Wednesday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="thu list-group-item">
+		<div style="height:40vh;width:19vw;" class="thu list-group-item">
 			<p class="dayHead btn-outline-success">Thursday</p>
 			<input type="hidden" class="ThursdayChk" value="0"/>
 			<div id="Thursday-food-user"></div>
 			<div id="Thursday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:100%" class="fri list-group-item">
+		<div style="height:40vh;width:19vw;" class="fri list-group-item">
 			<p class="dayHead btn-outline-info">Friday</p>
 			<input type="hidden" class="FridayChk" value="0"/>
 			<div id="Friday-food-user"></div>

@@ -15,7 +15,4 @@
 	<select id="monthList" parameterType="HashMap" resultType="calVO">
 		select * from calendar where fmonth = #{fmonth} and fyear = #{fyear}
 	</select>
-	<select id="userList" parameterType="calVO" resultType="calVO">
-		select * from calendar where fmonth = #{fmonth} and fyear = #{fyear} and id = #{id}
-	</select>
 </mapper>

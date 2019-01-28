@@ -17,6 +17,20 @@ import findEat.DB.dao.BoardDAOImpl;
 
 @Controller
 public class Board {
+
+	/***********************************************************************************************************************/
+	/*
+	 * 	*** 게시판
+	 * 	
+	 * 	Board Action class
+	 * 	- 게시글의 작성,수정,삭제 로직 수행 후 status값과 함께 status페이지로 일괄 이동
+	 * 	- 댓글 페이지 로드 / 댓글의 작성,수정,삭제 로직 포
+	 * 
+	 * 	글 관련 각 기능별 status value
+	 * 	- insert : 1
+	 * 	- update : 2
+	 * 	- delete : 3
+	/***********************************************************************************************************************/
 	
 	@Autowired
 	private BoardVO boardVO = null;
@@ -27,13 +41,7 @@ public class Board {
 	@Autowired
 	private BoardDAOImpl boardDAO = null;
 	
-	/*
-	 * 	status value
-	 * 	- insert : 1
-	 * 	- update : 2
-	 * 	- delete : 3
-	 */
-	
+	//글 목록
 	@RequestMapping("list.do")
 	public String list(HttpServletRequest request) throws Exception {
 		int check		= 0;							//db데이터 여부 확인
@@ -44,15 +52,16 @@ public class Board {
 			pageNum		= Integer.parseInt(request.getParameter("pageNum"));
 		
 		int pageSize	= 7;							//한 페이지에 표시될 최대 글 수
-		int start		= (pageNum-1) * pageSize + 1;
-		int end			= pageNum * pageSize;
-		int startPage	= 0;
-		int endPage		= 0;
-		int endNum		= 0;
+		int start		= (pageNum-1) * pageSize + 1;	//현재 페이지 값을 이용하여 시작 글 지정
+		int end			= pageNum * pageSize;			//현재 페이지 값을 이용하여 마지막 글 지정
+		int startPage	= 0;							//페이지 목록 시작
+		int endPage		= 0;							//페이지 목록 끝
+		int endNum		= 0;							//페이지 목록 끝 값 계산참조 변수
 		
-		List<BoardVO> normalList = boardDAO.ListUp(start,end);
-		List<BoardVO> noticeList = boardDAO.NoticeList();
-		total	= boardDAO.TotalNormal();
+		List<BoardVO> normalList = boardDAO.ListUp(start,end);		//일반 글 목록
+		List<BoardVO> noticeList = boardDAO.NoticeList();			//공지사항 목록
+		total	= boardDAO.TotalNormal();							//전체 글 수
+		//페이지 값 계산
 		if(total!=0) {
 			check	= 1;
 			count	= total - ((pageNum-1) * pageSize);
@@ -76,11 +85,12 @@ public class Board {
 		return "/board/list";
 	}
 	
+	//글 작성 페이지 로드
 	@RequestMapping("insert.do")
 	public String insert() {
 		return "/board/insert";
 	}
-	
+	//글 작성 로직
 	@RequestMapping("insertPro.do")
 	public String insertPro(BoardVO boardVO, HttpServletRequest request) throws Exception {
 		int check	= boardDAO.InsertArticle(boardVO);
@@ -89,7 +99,7 @@ public class Board {
 		request.setAttribute("status", status);
 		return "/board/status";
 	}
-	
+	//글 조회 페이지 - 
 	@RequestMapping("article.do")
 	public String article(HttpServletRequest request) throws Exception {
 		int idx	= Integer.parseInt(request.getParameter("idx"));
@@ -101,7 +111,7 @@ public class Board {
 		request.setAttribute("pageNum", request.getParameter("pageNum"));
 		return "/board/article";
 	}
-	
+	//글 수정 비밀번호 조회 - ajax
 	@ResponseBody
 	@RequestMapping("articleCheck.do")
 	public String articleCheck(@RequestBody Map<String,String> data) throws Exception{
@@ -110,7 +120,7 @@ public class Board {
 		int check = boardDAO.PasswordCheck(idx, pw);
 		return String.valueOf(check);
 	}
-	
+	//글 수정 로직
 	@RequestMapping("boardModifyPro.do")
 	public String modifyPro(BoardVO boardVO, HttpServletRequest request) throws Exception{
 		int check	= boardDAO.UpdateArticle(boardVO);
@@ -120,7 +130,7 @@ public class Board {
 		request.setAttribute("idx", boardVO.getIdx());
 		return "/board/status";
 	}
-	
+	//글 삭제 로직
 	@RequestMapping("deleteArticle.do")
 	public String deleteArticle(int idx, HttpServletRequest request) throws Exception {
 		int check	= boardDAO.DeleteArticle(idx);
@@ -129,14 +139,14 @@ public class Board {
 		request.setAttribute("status", status);
 		return "/board/status";
 	}
-	
+	//댓글 페이지 로드 - 글 조회 페이지에 include 되어있음
 	@RequestMapping("comments.do")
 	public String comments(int idx, HttpServletRequest request) throws Exception {
 		List<CommentsVO> list = boardDAO.CommentsList(idx);
 		request.setAttribute("commentsList", list);
 		return "/board/comment";
 	}
-	
+	//댓글 입력 로직 - ajax
 	@ResponseBody
 	@RequestMapping("insertComm.do")
 	public String insertComm(@RequestBody CommentsVO commentsVO) throws Exception {
@@ -144,7 +154,7 @@ public class Board {
 		boardDAO.UpdateCommentsCount(commentsVO.getIdx());
 		return String.valueOf(check);
 	}
-	
+	//댓글 수정 로직 - ajax
 	@ResponseBody
 	@RequestMapping("modifyComm.do")
 	public String modifyComm(@RequestBody Map<String,String> data) throws Exception {
@@ -153,7 +163,7 @@ public class Board {
 		int check	= boardDAO.UpdateComment(commentsVO);
 		return String.valueOf(check);
 	}
-	
+	//댓글 삭제 로직 - ajax
 	@ResponseBody
 	@RequestMapping("deleteComm.do")
 	public String deleteComm(@RequestBody Map<String,String> data) throws Exception {

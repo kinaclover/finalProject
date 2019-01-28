@@ -12,5 +12,4 @@ public interface CalendarDAO {
 	public List<String> ThisWeekList(int week) throws Exception;
 	//statistic
 	public List<CalendarVO> TotalMonth(int year, int month) throws Exception;
-	public List<CalendarVO> UserMonth(CalendarVO cal) throws Exception;
 }
