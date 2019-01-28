@@ -8,7 +8,8 @@
  <!-- 구글 api 사용  선언-->
  <meta name="google-signin-scope" content="profile email">
   <meta name="google-signin-client_id" content="1038690535673-jifm9rrcjmm9pcb4d6kbelenh7umudr8.apps.googleusercontent.com">
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <title>Login Page</title>
 <!-- bootstrap -->
 <link rel="stylesheet" href="css/bootstrap.css">
@@ -19,7 +20,7 @@
 <!-- naver login js -->
 <script type="text/javascript" src="js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body class="d-block">
 
@@ -64,7 +65,7 @@
 
 <!-- 구글 로그인 버튼(자동 제공) -->
  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-
+<a id="kakao-login-btn"></a>
 
 
 	<p class="my-2 font-italic text-center"> <a class="badge badge-light" href="findPassword.do">Forgot Password?</a> </p>
@@ -80,6 +81,7 @@
 <script src="js/login.js"></script>
 <script src="js/googleLogin.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="js/kakaologin.js"></script>
 
 </body>
 </html>
