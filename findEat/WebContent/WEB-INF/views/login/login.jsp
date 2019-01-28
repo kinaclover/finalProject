@@ -65,6 +65,9 @@
 
 <!-- 구글 로그인 버튼(자동 제공) -->
  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+ 
+ 
+ <!-- 다음 카카오 로그인버튼-->
 <a id="kakao-login-btn"></a>
 
 
