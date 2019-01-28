@@ -20,16 +20,24 @@
 	</select>
 
 	<insert id="insertMenu" parameterType="calVO">
-		insert into calendar values(#{id}, #{fyear}, #{fmonth}, #{fdate}, #{fday}, #{fweek}, #{fname}, #{fcode}, #{classify})
+		insert into calendar values(#{id}, #{fyear}, #{fmonth}, #{fdate}, #{fday}, #{fweek}, #{fname}, #{classify})
 	</insert>
+	
+	<update id="foodCountUp" parameterType="String">
+		update food set fcount = fcount+1 where fname = #{value}
+	</update>
 	
 	<delete id="deleteMenu" parameterType="hashmap">
 		delete from calendar where 
 		fyear=#{year} and 
 		fmonth=#{month} and 
 		fdate=#{date} and 
-		fcode=#{selCode} and 
+		fname=#{selName} and 
 		classify=#{selClfiy}
 	</delete>
+	
+	<update id="foodCountDown" parameterType="String">
+		update food set fcount = fcount-1 where fname = #{value}
+	</update>
 	
 </mapper>

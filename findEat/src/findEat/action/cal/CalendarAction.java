@@ -1,6 +1,7 @@
 package findEat.action.cal;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,8 @@ public class CalendarAction {
 	@Autowired
 	private IndexCalendarDAOImpl indexCalendarDAO = null;
 	
+	private CalendarSort comp	= null;
+	
 	@RequestMapping("cal.do")
 	public String calendar (@ModelAttribute("foodVO")FoodVO foodVO, HttpServletRequest request) throws Exception{
 		// 음식 그룹 설정
@@ -47,6 +50,15 @@ public class CalendarAction {
 		List<FoodVO> wGroup	= foodDAO.CheckGroup("w");
 		List<FoodVO> fGroup	= foodDAO.CheckGroup("f");
 		List<FoodVO> eGroup	= foodDAO.CheckGroup("e");
+		
+		//fcount 값을 기준으로 내림차순 정렬(desc)
+		comp	= new CalendarSort();
+		Collections.sort(kGroup, comp);
+		Collections.sort(jGroup, comp);
+		Collections.sort(cGroup, comp);
+		Collections.sort(wGroup, comp);
+		Collections.sort(fGroup, comp);
+		Collections.sort(eGroup, comp);
 		
 		request.setAttribute("kTotal", kTotal);
 		request.setAttribute("jTotal", jTotal);

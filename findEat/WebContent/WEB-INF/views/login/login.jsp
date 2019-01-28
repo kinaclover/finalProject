@@ -53,7 +53,7 @@
 	</div>
 	<p class="my-2 font-weight-bold text-center my-3 py-3">또는,</p>
 	
-	<div class="align-bottom mx-auto" style="height:50px;width:410px">
+	<div class="align-bottom mx-0" style="height:50px;width:400px;">
 		<div id="naverIdLogin" class="btn my-0 py-0 px-0 align-bottom" style="float:left;height:50px;"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
 		<div class="px-0 py-0 btn align-bottom" id="custom-login-btn" onclick="loginWithKakao()" style="float:left">
 			<img src="${request.contextPath}/findEat/images/kakao_login_btn_medium.png" style="width:131px;height:50px"/>
@@ -69,7 +69,7 @@
 				clientId: "XbLB49KVP66WsUyV0qUz",
 				callbackUrl: "http://localhost:8080/findEat/naverLoginCallback.do",
 				isPopup: false, /* 팝업을 통한 연동처리 여부 */
-				loginButton: {color: "green", type: 2, height: 50, width: 131} /* 로그인 버튼의 타입을 지정 */
+				loginButton: {color: "green", type: 2, height: 50} /* 로그인 버튼의 타입을 지정 */
 			}
 		);	
 		  /* 설정정보를 초기화하고 연동을 준비 */
