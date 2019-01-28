@@ -8,7 +8,6 @@ public class CalendarVO {
 	private int fday;			//해당 값의 요일
 	private int fweek;			//해당 값의 주
 	private String fname;		//음식 이름
-	private int fcode;			//음식 코드***삭제예정
 	private String classify;	//음식 카테고리
 	
 	public String getId() {
@@ -52,12 +51,6 @@ public class CalendarVO {
 	}
 	public void setFname(String fname) {
 		this.fname = fname;
-	}
-	public int getFcode() {
-		return fcode;
-	}
-	public void setFcode(int fcode) {
-		this.fcode = fcode;
 	}
 	public String getClassify() {
 		return classify;
