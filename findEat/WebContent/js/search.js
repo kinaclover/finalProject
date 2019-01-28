@@ -174,7 +174,7 @@ function searchPlaces() {
 	return;
 	}
     var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
-    
+
     var option ={ category_group_code : "FD6" };
     ps.keywordSearch(result_keyword, placesSearchCB, option);
     

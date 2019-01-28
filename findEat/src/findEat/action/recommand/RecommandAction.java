@@ -42,7 +42,7 @@ public class RecommandAction {
 	@RequestMapping("searchPro.do")
 	@ResponseBody
 	public Map searchPro(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
-		request.setCharacterEncoding("UTF-8");
+		
 		String address_name1= request.getParameter("address_name1");
 		String address_name2= request.getParameter("address_name2");
 		String address_name3= request.getParameter("address_name3");
@@ -188,7 +188,7 @@ public class RecommandAction {
 	@RequestMapping("myPosition.do")
 	@ResponseBody
 	public Map myPosition(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
-		request.setCharacterEncoding("utf-8");
+		
 		String address_name1= request.getParameter("address_name1");
 		String address_name2= request.getParameter("address_name2");
 		String address_name3= request.getParameter("address_name3");
