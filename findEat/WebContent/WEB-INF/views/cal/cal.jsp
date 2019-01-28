@@ -121,22 +121,22 @@
 						<select class="custom-select" id="inputGroup04" name="fcode"> <!-- 메서드에서 setting 한 db 음식 분류 정보를 출력하고 위 옵션에 따라 속성을 변경해가며 보여준다 -->
 							<option value="none" selected>선택하세요.</option>
 							<c:forEach items="${kGroup}" var="temp">
-								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+								<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 							</c:forEach>
 							<c:forEach items="${jGroup}" var="temp">
-								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+								<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 							</c:forEach>
 							<c:forEach items="${cGroup}" var="temp">
-								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+								<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 							</c:forEach>
 							<c:forEach items="${wGroup}" var="temp">
-								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+								<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 							</c:forEach>
 							<c:forEach items="${fGroup}" var="temp">
-								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+								<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 							</c:forEach>
 							<c:forEach items="${eGroup}" var="temp">
-								<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+								<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 							</c:forEach>
 						</select>
 					</div>

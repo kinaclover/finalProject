@@ -21,7 +21,11 @@
 		<input type="hidden" id="beforePage" value="${sessionScope.path}"/>
 		<script type="text/javascript">
 			var path = document.getElementById("beforePage").value;
-			window.location = path;
+			if(path=="/findEat/joinPro.do"){
+				window.location = "/findEat/index.do";
+			}else {
+				window.location = path;
+			}
 		</script>
 	</c:if>
 	<c:if test="${check!=1}">

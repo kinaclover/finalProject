@@ -18,24 +18,28 @@ public class IndexCalendarDAOImpl implements IndexCalendarDAO {
 		this.sqlSession	= sqlSession;
 	}
 	
-	/* override methods*/
-	
+	//추천 리스트
 	@Override
 	public List<CalendarVO> TotalList() throws Exception {
 		list	= sqlSession.selectList("cal.all");
 		return list;
 	}
-
+	
+	//해당 회원의 리스트
 	@Override
 	public List<CalendarVO> SelectAll(String id) throws Exception {
 		list	= sqlSession.selectList("cal.select",id);
 		return list;
 	}
+	
+	//해당 주의 리스트
 	@Override
 	public List<CalendarVO> TotalWeekList(int fweek) throws Exception {
 		list	= sqlSession.selectList("cal.totalWeek",fweek);
 		return list;
 	}
+	
+	//해당 회원의 주의 리스트
 	@Override
 	public List<CalendarVO> SelectThisWeek(String id, int fweek) throws Exception {
 		map.put("id", id);
@@ -43,6 +47,9 @@ public class IndexCalendarDAOImpl implements IndexCalendarDAO {
 		list	= sqlSession.selectList("cal.thisWeek",map);
 		return list;
 	}
+	
+	/* Calendar 입력/삭제 */
+	//
 	@Override
 	public void InsertMenu(CalendarVO CalVO) throws Exception{
 		sqlSession.insert("cal.insertMenu",CalVO);	
