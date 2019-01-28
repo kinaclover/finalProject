@@ -25,55 +25,63 @@
 <body class="d-block">
 
 <c:if test="${sessionScope.id!=null}">
-	<script type="text/javascript">
-		alert("잘못된 접근입니다.");
-		history.back();
-	</script>
+   <script type="text/javascript">
+      alert("잘못된 접근입니다.");
+      history.back();
+   </script>
 </c:if>
 <c:if test="${sessionScope.id==null}">
+
 <form class="form-signin" action="loginPro.do" method="post">
-	<div class="text-center">
-		<h1 class="text-center mb-4" id="title" onclick="window.location='/findEat/index.do'">FindEat</h1>
-		<h5 class="mt-5">오늘의 점심을 찾으시나요?</h5>
-		<h5 class="mb-5 font-weight-normal">로그인하세요!</h5>
-	</div>
-	<div class="form-label-group">
-		<input type="text" class="form-control" id="inputId" name="id" placeholder="ID" required autofocus/>
-		<label for="inputId">ID</label>
-	</div>
-	<div class="form-label-group">
-		<input type="password" class="form-control" id="inputPw" name="pw" placeholder="PASSWORD" required/>
-		<label for="inputPw">PASSWORD</label>
-	</div>
-	<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
-	<button class="btn btn-mid btn-info btn-block" onclick="window.location='/findEat/join.do'">Sign Up</button>
-	
-	<div id="naverIdLogin"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
-	
-	<script type="text/javascript">
-	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "XbLB49KVP66WsUyV0qUz",
-			callbackUrl: "http://localhost:8080/findEat/naverLoginCallback.do",
-			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-			loginButton: {color: "green", type: 3, height: 40} /* 로그인 버튼의 타입을 지정 */
-		}
-	);	
-   /* 설정정보를 초기화하고 연동을 준비 */
-	naverLogin.init();
-</script>
-
-<!-- 구글 로그인 버튼(자동 제공) -->
- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
- 
- 
- <!-- 다음 카카오 로그인버튼-->
-<a id="kakao-login-btn"></a>
-
-
-	<p class="my-2 font-italic text-center"> <a class="badge badge-light" href="findPassword.do">Forgot Password?</a> </p>
-	
-	<p class="my-5 mb-3 text-muted text-center">&copy; 2018 <strong>GlobalIT AM Group 3</strong></p>
+   <div class="text-center">
+      <h1 class="text-center mb-4" id="title" onclick="window.location='/findEat/index.do'">FindEat</h1>
+      <h5 class="mt-5">오늘의 점심을 찾으시나요?</h5>
+      <h5 class="mb-5 font-weight-normal">로그인하세요!</h5>
+   </div>
+   <div class="form-label-group">
+      <input type="text" class="form-control" id="inputId" name="id" placeholder="ID" required autofocus/>
+      <label for="inputId">ID</label>
+   </div>
+   <div class="form-label-group">
+      <input type="password" class="form-control" id="inputPw" name="pw" placeholder="PASSWORD" required/>
+      <label for="inputPw">PASSWORD</label>
+   </div>
+   <p class="mt-0 mb-3 font-italic text-right"> <a class="badge badge-light" href="findPassword.do">Forgot Password?</a> </p>
+      <div class="btn-group" style="width:100%;">
+      <input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in"/>
+      <button class="btn btn-md btn-secondary" onclick="window.location='/findEat/index.do'">Go to Index</button>
+   </div>
+   <p class="my-2 font-weight-bold text-center my-3 py-3">또는,</p>
+   
+   <div class="align-bottom mx-auto" style="height:50px;width:410px">
+      <div id="naverIdLogin" class="btn my-0 py-0 px-0 align-bottom" style="float:left;height:50px;"></div>  <!-- 버튼이 들어갈 위치 선언. ID는 반드시 지정된 값으로 설정하여야 합니다.-->
+      <div class="px-0 py-0 btn align-bottom" id="custom-login-btn" onclick="loginWithKakao()" style="float:left">
+         <img src="${request.contextPath}/findEat/images/kakao_login_btn_medium.png" style="width:131px;height:50px"/>
+      </div>
+      <div class="g-signin2 px-0 align-bottom"
+          data-onsuccess="onSignIn" data-theme="dark"
+          data-height="50" data-width="131.19" style="float:left;"></div> <!-- Google login -->
+   </div>
+   
+   <script type="text/javascript">
+      var naverLogin = new naver.LoginWithNaverId(
+         {
+            clientId: "XbLB49KVP66WsUyV0qUz",
+            callbackUrl: "http://localhost:8080/findEat/naverLoginCallback.do",
+            isPopup: false, /* 팝업을 통한 연동처리 여부 */
+            loginButton: {color: "green", type: 2, height: 50, width: 131} /* 로그인 버튼의 타입을 지정 */
+         }
+      );   
+        /* 설정정보를 초기화하고 연동을 준비 */
+      naverLogin.init();
+   </script>
+   <p class="my-2 font-weight-bold text-center my-3 py-3">아니면, 새로 가입하시겠어요?</p>
+   <div>
+      <button class="btn btn-lg btn-block btn-info" onclick="window.location='/findEat/join.do'">Sign Up</button>
+   </div>
+   <div class="btn-block pt-5" style="clear: both;">
+      <p class="my-5 mb-3 text-muted text-center">&copy; 2018 <strong>GlobalIT AM Group 3</strong></p>
+   </div>
 </form>
 </c:if>
 <!-- for bootstrap/jQuery/Popper -->
