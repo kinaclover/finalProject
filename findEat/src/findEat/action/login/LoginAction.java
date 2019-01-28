@@ -40,7 +40,6 @@ public class LoginAction {
 	 *	- findPassword	: 5
 	 *
 	/***********************************************************************************************************************/
-
 	@Autowired
 	private LoginDAOImpl loginDAO = null;
 	
