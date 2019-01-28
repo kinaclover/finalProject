@@ -4,8 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+ <!-- 구글 api 사용  선언-->
  <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="1038690535673-jifm9rrcjmm9pcb4d6kbelenh7umudr8.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="1038690535673-jifm9rrcjmm9pcb4d6kbelenh7umudr8.apps.googleusercontent.com">
 
 <title>Login Page</title>
 <!-- bootstrap -->
@@ -60,6 +62,7 @@
 	naverLogin.init();
 </script>
 
+<!-- 구글 로그인 버튼(자동 제공) -->
  <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
 
 
