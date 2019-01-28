@@ -19,27 +19,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import findEat.DB.bean.LoginVO;
 import findEat.DB.dao.LoginDAOImpl;
-
+/***********************************************************************************************************************/
+/*
+ * 	*** 로그인 프로세스
+ * 
+ * 	Login Action class
+ * 	- 로그인/로그아웃, 회원가입/탈퇴
+ * 	- 비밀번호 찾기 기능
+ * 	- OAuth2 를 활용한 로그인 작업(Naver, Google)
+ * 	- 각 작업 후 status값과 함께 status페이지로 이동
+ * 
+ *	로그인 관련 각 기능별 status value
+ *	- login			: 1
+ *	- update		: 2
+ *	- join			: 3
+ *	- delete		: 4
+ *	- findPassword	: 5
+ *
+/***********************************************************************************************************************/
 @Controller
 public class LoginAction {
-	/***********************************************************************************************************************/
-	/*
-	 * 	*** 로그인 프로세스
-	 * 
-	 * 	Login Action class
-	 * 	- 로그인/로그아웃, 회원가입/탈퇴
-	 * 	- 비밀번호 찾기 기능
-	 * 	- OAuth2 를 활용한 로그인 작업(Naver, Google)
-	 * 	- 각 작업 후 status값과 함께 status페이지로 이동
-	 * 
-	 *	로그인 관련 각 기능별 status value
-	 *	- login			: 1
-	 *	- update		: 2
-	 *	- join			: 3
-	 *	- delete		: 4
-	 *	- findPassword	: 5
-	 *
-	/***********************************************************************************************************************/
 	@Autowired
 	private LoginDAOImpl loginDAO = null;
 	

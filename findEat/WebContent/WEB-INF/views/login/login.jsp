@@ -62,7 +62,7 @@
 			 data-height="50" data-width="131.19" style="float:left;"></div> <!-- Google login -->
 	</div>
 	
-	<script type="text/javascript">
+	<script type="text/javascript">// 네이버 로그인 버튼 정보 설정
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "XbLB49KVP66WsUyV0qUz",
