@@ -16,6 +16,8 @@
 
 <div class="container.fluid" style="height:90vh">
 	<div class="row mx-3" style="height:90vh;">
+	
+	<!-- 지도 표시 -->
 		<div class="col-8">
 			<div class="map_wrap mx-3" style="height:90vh">
 				<div id="map" style="width:100%;height:90vh;position:relative;overflow:hidden;"></div>
@@ -40,6 +42,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 식당 리스트와 정보들 -->
 			<div style="width:100%;height:67vh">
 				<ul class="px-0" id="placesList"></ul>
 				<div class="text-center mb-1" id="pagination"></div>
