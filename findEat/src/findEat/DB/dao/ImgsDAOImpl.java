@@ -23,7 +23,7 @@ public class ImgsDAOImpl implements ImgsDAO {
 	
 	@Override
 	public void insertIMGS(ImgsVO imgs) throws Exception {
-			sqlSession.insert("Imgs.insertImgs", imgs);
+		sqlSession.insert("Imgs.insertImgs", imgs);
 	}
 
 	@Override
@@ -38,23 +38,17 @@ public class ImgsDAOImpl implements ImgsDAO {
 	}
 	@Override
 	public MyPositionVO selectMyPosition(String id) throws Exception {
-		
 		MyPositionVO vo=sqlSession.selectOne("Imgs.selectMyPosition", id);
 		return vo;
 	}
 	@Override
 	public int searchKeyword(String id) throws Exception {
-		
-		System.out.println("id====="+id);
-		
-		
 		int result=sqlSession.selectOne("Imgs.searchKeyword", id);
 		return result;
 	}
 	
 	@Override
 	public ImgsVO selectKeyword(String id) throws Exception{
-		
 		iv=sqlSession.selectOne("Imgs.selectKeyword", id);
 		return iv;
 	}

@@ -40,15 +40,13 @@
 		<div class="btn-group">
 		<button class="btn btn-sm btn-outline-success dropdown-toggle" type="button" data-toggle="dropdown">My menu</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="/findEat/cal.do">Calendar</a>
-				<a class="dropdown-item" href="/findEat/statistic.do">Statistic</a>
-				<a class="dropdown-item" href="/findEat/search.do">Search</a>
+				<a class="dropdown-item" href="/findEat/cal.do">월간 식사 입력</a>
+				<a class="dropdown-item" href="/findEat/statistic.do">식사 통계</a>
+				<a class="dropdown-item" href="/findEat/search.do">음식점 검색</a>
 				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="/findEat/modify.do">Modify</a>
+				<a class="dropdown-item" href="/findEat/modify.do">회원정보 수정</a>
 				<c:if test="${sessionScope.id.equals('admin')}">
 					<a class="dropdown-item" href="/findEat/insertFood.do">Food Administrator</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="/findEat/insertCalDB.do">Insert Calendar(temporary)</a>
 				</c:if>
 			</div>
 		</div>

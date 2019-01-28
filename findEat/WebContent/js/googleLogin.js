@@ -1,7 +1,7 @@
 /**
  * 	suggest javascript
  */
-			
+
         function onSignIn(googleUser) {
             // 구글 사용자 데이터 가져옴
             var profile = googleUser.getBasicProfile();
@@ -30,19 +30,34 @@
 				if($.trim(data) != 0) { 
 					alert(emailHead+" 님 어서오세요!");
 					$.ajax ({
+					
 						async: true,
 						type: 'POST',
 						data: {
 							"id": emailHead,
+							"email": email,
 							"pw": " "
 						},
-						url: 'googleLoginPro.do',
+						url: 'googleJoinPro.do',
 						success: function(data) {
-							window.location="/findEat/index.do";
+							$.ajax ({
+								async: true,
+								type: 'POST',
+								data: {
+									"id": emailHead,
+									"pw": " "
+								},
+								url: 'googleLoginPro.do',
+								success: function(data) {
+									alert(emailHead+" 님 어서오세요!");
+									window.location="/findEat/index.do";
+								},
+								error: function(request,status,error) {
+									alert("Error Code(2) : "+error.d);												}
+							});
 						},
 						error: function(request,status,error) {
-							alert("Error Code(1) : "+error.d);
-							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							alert("Error Code(3) : "+error.d);
 						}
 					});
 				} else {
@@ -83,11 +98,12 @@
 					    window.location="/findEat/login.do";
 					}
 				}
-			},
-			error: function(request,status,error) {
-				alert("Error Code(4) : "+error.d);
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				}
-			});					
-		
-        };
+
+		},
+		error: function(request,status,error) {
+			alert("Error Code(4) : "+error.d);
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});					
+
+};
