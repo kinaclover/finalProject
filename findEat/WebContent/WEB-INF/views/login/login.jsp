@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
- <!-- 구글 api 사용  선언-->
- <meta name="google-signin-scope" content="profile email">
-  <meta name="google-signin-client_id" content="1038690535673-jifm9rrcjmm9pcb4d6kbelenh7umudr8.apps.googleusercontent.com">
+<!-- 구글 api 사용  선언-->
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id" content="1038690535673-jifm9rrcjmm9pcb4d6kbelenh7umudr8.apps.googleusercontent.com">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width"/>
 <title>Login Page</title>
@@ -63,7 +62,7 @@
 			 data-height="50" data-width="131.19" style="float:left;"></div> <!-- Google login -->
 	</div>
 	
-	<script type="text/javascript">
+	<script type="text/javascript">// 네이버 로그인 버튼 정보 설정
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "XbLB49KVP66WsUyV0qUz",
@@ -93,6 +92,5 @@
 <script src="js/googleLogin.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="js/kakaologin.js"></script>
-
 </body>
 </html>
