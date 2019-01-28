@@ -1,5 +1,6 @@
 package findEat.action.main;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import findEat.DB.bean.FoodVO;
 import findEat.DB.dao.FoodAdminDAOImpl;
+import findEat.action.cal.CalendarSort;
 
 @Controller
 public class FoodAction {
@@ -32,6 +34,9 @@ public class FoodAction {
 	@Autowired
 	private FoodAdminDAOImpl foodDAO = null;
 	
+	//내림차순 정렬을 위한 함수
+	private CalendarSort comp = null;
+	
 	//페이지 로드
 	@RequestMapping("insertFood.do")
 	public String insertFood(@ModelAttribute("foodVO")FoodVO foodVO, HttpServletRequest request) throws Exception{
@@ -49,6 +54,15 @@ public class FoodAction {
 		List<FoodVO> wGroup	= foodDAO.CheckGroup("w");
 		List<FoodVO> fGroup	= foodDAO.CheckGroup("f");
 		List<FoodVO> eGroup	= foodDAO.CheckGroup("e");
+		
+		//fcount 값을 기준으로 내림차순 정렬(desc)
+		comp	= new CalendarSort();
+		Collections.sort(kGroup, comp);
+		Collections.sort(jGroup, comp);
+		Collections.sort(cGroup, comp);
+		Collections.sort(wGroup, comp);
+		Collections.sort(fGroup, comp);
+		Collections.sort(eGroup, comp);
 		
 		request.setAttribute("kTotal", kTotal);
 		request.setAttribute("jTotal", jTotal);
