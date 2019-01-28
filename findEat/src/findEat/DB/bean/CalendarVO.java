@@ -1,15 +1,15 @@
 package findEat.DB.bean;
 
 public class CalendarVO {
-	private String id;
-	private int fyear;
-	private int fmonth;
-	private int fdate;
-	private int fday;
-	private int fweek;
-	private String fname;
-	private int fcode;
-	private String classify;
+	private String id;			//회원 id
+	private int fyear;			//해당 값의 년도
+	private int fmonth;			//해당 값의 월
+	private int fdate;			//해당 값의 일
+	private int fday;			//해당 값의 요일
+	private int fweek;			//해당 값의 주
+	private String fname;		//음식 이름
+	private int fcode;			//음식 코드***삭제예정
+	private String classify;	//음식 카테고리
 	
 	public String getId() {
 		return id;

@@ -11,9 +11,9 @@ public class BoardVO {
 	private String content;			//글 내용
 	private Timestamp regDate;		//등록시간
 	private int vcount;				//뷰 카운트
-	private int src;				//
-	private int srcStep;			//
-	private int srcLevel;			//
+	private int src;				//답글 표시를 위한 값***현재 사용하지 않음
+	private int srcStep;			//답글 표시를 위한 값***현재 사용하지 않음
+	private int srcLevel;			//답글 표시를 위한 값***현재 사용하지 않음
 	private String atype;			//글 종류
 	private int comments;			//해당 글의 총 댓글 수
 	

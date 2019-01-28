@@ -6,7 +6,7 @@
 		
 	<!-- insert foods -->
 	<insert id="insertFood" parameterType="foodVO">
-		insert into food values(#{classify},#{fcode},#{fname})
+		insert into food values(#{classify},#{fname},0)
 	</insert>
 	
 	<!-- check total -->
@@ -19,13 +19,13 @@
 	
 	<!-- delete -->
 	<delete id="delete" parameterType="foodVO">
-		delete from food where classify = #{classify} and fcode = #{fcode}
+		delete from food where classify = #{classify} and fname = #{fname}
 	</delete>
 	
 	
 	<!-- temporary insert cal -->
 	<insert id="calDB" parameterType="calVO">
-		insert into calendar values(#{id},#{fyear},#{fmonth},#{fdate},#{fday},#{fweek},#{fname},#{fcode},#{classify})
+		insert into calendar values(#{id},#{fyear},#{fmonth},#{fdate},#{fday},#{fweek},#{fname},#{classify})
 	</insert>
 	<select id="selectAll" resultType="calVO">
 		select * from calendar

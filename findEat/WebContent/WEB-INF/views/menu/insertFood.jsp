@@ -52,9 +52,6 @@
 				</select>
 			</div>
 			<div>
-				<input class="input-group mb-3" type="number" name="fcode" placeholder="음식번호"/>
-			</div>
-			<div>
 				<input class="input-group mb-3" type="text" name="fname" placeholder="음식이름"/>
 			</div>
 			<div>
@@ -89,22 +86,22 @@
 				<select class="custom-select" id="inputGroup04" name="fcode">
 					<option selected>선택하세요.</option>
 					<c:forEach items="${kGroup}" var="temp">
-						<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+						<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 					</c:forEach>
 					<c:forEach items="${jGroup}" var="temp">
-						<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+						<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 					</c:forEach>
 					<c:forEach items="${cGroup}" var="temp">
-						<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+						<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 					</c:forEach>
 					<c:forEach items="${wGroup}" var="temp">
-						<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+						<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 					</c:forEach>
 					<c:forEach items="${fGroup}" var="temp">
-						<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+						<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 					</c:forEach>
 					<c:forEach items="${eGroup}" var="temp">
-						<option class="${temp.classify}" value="${temp.fcode}">${temp.fname}</option>
+						<option class="${temp.classify}" value="${temp.fname}">${temp.fname}</option>
 					</c:forEach>
 				</select>
 			</div>
@@ -126,8 +123,8 @@
 			<div id="col1" class="collapse">
 				<p>
 					<c:forEach items="${kGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname}/${temp.fcode},</c:if>
-						<c:if test="${stat.last}">${temp.fname}/${temp.fcode}</c:if>
+						<c:if test="${!stat.last}">${temp.fname},</c:if>
+						<c:if test="${stat.last}">${temp.fname}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -139,8 +136,8 @@
 			<div id="col2" class="collapse">
 				<p>
 					<c:forEach items="${jGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname}/${temp.fcode},</c:if>
-						<c:if test="${stat.last}">${temp.fname}/${temp.fcode}</c:if>
+						<c:if test="${!stat.last}">${temp.fname},</c:if>
+						<c:if test="${stat.last}">${temp.fname}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -152,8 +149,8 @@
 			<div id="col3" class="collapse">
 				<p>
 					<c:forEach items="${cGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname}/${temp.fcode},</c:if>
-						<c:if test="${stat.last}">${temp.fname}/${temp.fcode}</c:if>
+						<c:if test="${!stat.last}">${temp.fname},</c:if>
+						<c:if test="${stat.last}">${temp.fname}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -165,8 +162,8 @@
 			<div id="col4" class="collapse">
 				<p>
 					<c:forEach items="${wGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname}/${temp.fcode},</c:if>
-						<c:if test="${stat.last}">${temp.fname}/${temp.fcode}</c:if>
+						<c:if test="${!stat.last}">${temp.fname},</c:if>
+						<c:if test="${stat.last}">${temp.fname}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -178,8 +175,8 @@
 			<div id="col5" class="collapse">
 				<p>
 					<c:forEach items="${fGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname}/${temp.fcode},</c:if>
-						<c:if test="${stat.last}">${temp.fname}/${temp.fcode}</c:if>
+						<c:if test="${!stat.last}">${temp.fname},</c:if>
+						<c:if test="${stat.last}">${temp.fname}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -191,8 +188,8 @@
 			<div id="col6" class="collapse">
 				<p>
 					<c:forEach items="${eGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname}/${temp.fcode},</c:if>
-						<c:if test="${stat.last}">${temp.fname}/${temp.fcode}</c:if>
+						<c:if test="${!stat.last}">${temp.fname},</c:if>
+						<c:if test="${stat.last}">${temp.fname}</c:if>
 					</c:forEach>
 				</p>
 			</div>
