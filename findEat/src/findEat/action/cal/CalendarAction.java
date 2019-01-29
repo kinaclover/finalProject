@@ -1,6 +1,7 @@
 package findEat.action.cal;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,16 @@ import findEat.DB.bean.CalendarVO;
 import findEat.DB.bean.FoodVO;
 import findEat.DB.dao.FoodAdminDAOImpl;
 import findEat.DB.dao.IndexCalendarDAOImpl;
-
+/***********************************************************************************************************************/
+/*
+ * 	*** 캘린더 메뉴 등록
+ * 
+ * 	- 캘린더에서 선택할 음식 그룹 설정
+ *  - 메뉴 선택 후 db 에 추가
+ *  - 추가된 메뉴 db 에서 삭제
+ *  - 
+ * 
+/***********************************************************************************************************************/
 @Controller
 public class CalendarAction {
 
@@ -31,9 +41,11 @@ public class CalendarAction {
 	@Autowired
 	private IndexCalendarDAOImpl indexCalendarDAO = null;
 	
+	private CalendarSort comp	= null;
+	
 	@RequestMapping("cal.do")
-	public String calendar (@ModelAttribute("foodVO")FoodVO foodVO, HttpServletRequest request) throws Exception{
-		// 음식 그룹 설정
+	public String calendar(@ModelAttribute("foodVO")FoodVO foodVO, HttpServletRequest request) throws Exception{
+		// 음식 그룹 설정 
 		int kTotal	= (int)foodDAO.CheckTotal("k");
 		int jTotal	= (int)foodDAO.CheckTotal("j");
 		int cTotal	= (int)foodDAO.CheckTotal("c");
@@ -47,6 +59,15 @@ public class CalendarAction {
 		List<FoodVO> wGroup	= foodDAO.CheckGroup("w");
 		List<FoodVO> fGroup	= foodDAO.CheckGroup("f");
 		List<FoodVO> eGroup	= foodDAO.CheckGroup("e");
+		
+		//fcount 값을 기준으로 내림차순 정렬(desc)
+		comp	= new CalendarSort();
+		Collections.sort(kGroup, comp);
+		Collections.sort(jGroup, comp);
+		Collections.sort(cGroup, comp);
+		Collections.sort(wGroup, comp);
+		Collections.sort(fGroup, comp);
+		Collections.sort(eGroup, comp);
 		
 		request.setAttribute("kTotal", kTotal);
 		request.setAttribute("jTotal", jTotal);
@@ -67,7 +88,7 @@ public class CalendarAction {
 	
 	@RequestMapping(value="calFoodInsert.do", method=RequestMethod.POST)
 	public String calFoodInsert(@ModelAttribute("CalendarVO")CalendarVO CalendarVO) throws Exception{
-		indexCalendarDAO.InsertMenu(CalendarVO);
+		indexCalendarDAO.InsertMenu(CalendarVO); // 메뉴 선택 후 db 에 추가
 		return "cal/cal";
 	}
 	
@@ -76,12 +97,10 @@ public class CalendarAction {
 	    ObjectMapper mapper = new ObjectMapper(); // 반드시 mapper 클래스 import 할것
 	 	Map<String, Object> map = new HashMap<String, Object>();
 	 	String mapString = null;
-	 	// 개인별 저장된 음식 목록
-	 	List<CalendarVO> CalVOList = indexCalendarDAO.SelectAll(id);
-//	 	List<CalendarVO> CalVOList = indexCalendarDAO.TotalList();
-	 	map.put("CalVOList", CalVOList);
-//	 	System.out.println(CalVOList);
-	 	
+	 	// 개인별 저장된 음식 목록 가져옴
+	 	List<CalendarVO> CalVOList = indexCalendarDAO.SelectAll(id); 
+	 	map.put("CalVOList", CalVOList); // 가져온 음식 목록을 map 객체에 추가해 반환함.
+ 	
 	    try {
 	        mapString = mapper.writeValueAsString(map);
 	    } catch (IOException e) {
@@ -93,7 +112,7 @@ public class CalendarAction {
 	@ResponseBody
 	@RequestMapping(value="calFoodDelete.do", method=RequestMethod.POST)
 	public String calFoodDelete(@RequestBody Map<String,Object> data) throws Exception {
-		indexCalendarDAO.DeleteMenu(data);
+		indexCalendarDAO.DeleteMenu(data); // 선택한 날짜의 메뉴 삭제
 		return "success";
 	}
 }

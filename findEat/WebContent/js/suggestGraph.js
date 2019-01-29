@@ -15,10 +15,8 @@ var totalRank = bb.generate({
 			window.location.href = "/findEat/search.do?keyword="+d.id;
 		},
 		onover: function(d, i) {
-			console.log("onover", d, i);
 		},
 		onout: function(d, i) {
-			console.log("onout", d, i);
 		}
 		},
 	size: {
@@ -71,10 +69,8 @@ var userRank = bb.generate({
 			window.location.href = "/findEat/search.do?keyword="+d.id;
 		},
 		onover: function(d, i) {
-			console.log("onover", d, i);
 		},
 		onout: function(d, i) {
-			console.log("onout", d, i);
 		}
 	},
 	  size: {
@@ -130,10 +126,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -156,10 +150,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -182,10 +174,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -208,10 +198,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -234,10 +222,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -260,10 +246,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -287,10 +271,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -313,10 +295,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -339,10 +319,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -365,10 +343,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -391,10 +367,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {
@@ -417,10 +391,8 @@ $(document).ready(function(){
 				window.location.href = "/findEat/search.do?keyword="+d.id;
 		   },
 		    onover: function(d, i) {
-			console.log("onover", d, i);
 		   },
 		    onout: function(d, i) {
-			console.log("onout", d, i);
 		   }
 		  },
 		  size: {

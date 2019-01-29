@@ -4,8 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cal">
 	<!-- suggestion -->
-	<select id="totalClassifyList" parameterType="int" resultType="calVO">
-		select * from calendar where fday = #{value}
+	<select id="totalClassifyList" resultType="calVO">
+		select * from calendar
 	</select>
 	<select id="weekList" parameterType="int" resultType="String">
 		select fname from calendar where fweek = #{value}

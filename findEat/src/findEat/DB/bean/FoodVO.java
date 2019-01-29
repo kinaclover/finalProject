@@ -2,7 +2,7 @@ package findEat.DB.bean;
 
 public class FoodVO {
 	private String classify;
-	private int fcode;
+	private int fcount;
 	private String fname;
 	public String getClassify() {
 		return classify;
@@ -10,11 +10,11 @@ public class FoodVO {
 	public void setClassify(String classify) {
 		this.classify = classify;
 	}
-	public int getFcode() {
-		return fcode;
+	public int getFcount() {
+		return fcount;
 	}
-	public void setFcode(int fcode) {
-		this.fcode = fcode;
+	public void setFcount(int fcode) {
+		this.fcount = fcode;
 	}
 	public String getFname() {
 		return fname;

@@ -143,7 +143,7 @@ function modal_action(data) {
 			if(confirm("이미 값이 있습니다. 지우고 새로 입력하시겠습니까?")){
 				var pStr = $(thisId).attr('value').split(',');
 				var tdDate = $(thisId).parent('td').attr('id');
-				var selCode = pStr[0];
+				var selName = pStr[0];
 				var selClfiy = pStr[1];
 				$.ajax ({
 					async: true,
@@ -154,7 +154,7 @@ function modal_action(data) {
 						"year": year,
 						"month": month,
 						"date": tdDate,
-						"selCode": selCode,
+						"selName": selName,
 						"selClfiy": selClfiy
 					}),
 					success : function(s) {
@@ -260,7 +260,7 @@ function save() {
 		var week = $.datepicker.iso8601Week(cToday); // week of year // 주 시작 : (월) - 끝 : (일)
 		console.log('ymd day: '+year+" "+month+" "+date+" "+cTodays_day);
 		
-		var sel_menu_code = $('#inputGroup04 option:selected').val();
+//		var sel_menu_code = $('#inputGroup04 option:selected').val();
 		var sel_menu_name = $('#inputGroup04 option:selected').text();
 		var sel_menu_classify= $('#inputGroup04 option:selected').attr('class');
 		var id = $("#calIdCheck").val();
@@ -277,12 +277,11 @@ function save() {
 	      	  "fday": cTodays_day,
 	      	  "fweek": week,
 	      	  "fname": sel_menu_name,
-	      	  "fcode": sel_menu_code,
 	      	  "classify": sel_menu_classify
 	        },
 	        success : function() {
 	        	var html_btn = '<button type="button" class="close" onclick="deleteMenu(this)">×</button>';
-	        	$('#'+date).html("<strong>"+date+"</strong>"+'<br/><br/>'+'<span class="sel_menu" value="'+sel_menu_code+","+sel_menu_classify+
+	        	$('#'+date).html("<strong>"+date+"</strong>"+'<br/><br/>'+'<span class="sel_menu" value="'+sel_menu_name+","+sel_menu_classify+
 	        			'">'+sel_menu_name+html_btn+'</span>');
 	        	console.log("insert Success!");
 	        },
@@ -301,7 +300,7 @@ function deleteMenu(data) {
 	$("#delete_confirm").off("click").on('click',function(d) { 
 		var pStr = $(data).parent('span').attr('value').split(',');
 		var tdDate = $(data).parent('span').parent('td').attr('id');
-		var selCode = pStr[0];
+		var selName = pStr[0];
 		var selClfiy = pStr[1];
 		$.ajax ({
 			async: true,
@@ -312,7 +311,7 @@ function deleteMenu(data) {
 				"year": year,
 				"month": month,
 				"date": tdDate,
-				"selCode": selCode,
+				"selName": selName,
 				"selClfiy": selClfiy
 			}),
 			success : function(s) {
@@ -345,7 +344,7 @@ function loadDB(now_year,now_month) {
 			  	if(dataset.CalVOList[i].fmonth == now_month) { // 해당 달의
 			  		for(var k=0; k<32; k++) {
 			  			if($('#'+k).attr('id') == dataset.CalVOList[i].fdate) { // 해당 일에 추가
-			  				$('#'+k).html("<strong>"+dataset.CalVOList[i].fdate+"</strong>"+'<br/><br/><span class="sel_menu" value="'+dataset.CalVOList[i].fcode+
+			  				$('#'+k).html("<strong>"+dataset.CalVOList[i].fdate+"</strong>"+'<br/><br/><span class="sel_menu" value="'+dataset.CalVOList[i].fname+
 			  						','+dataset.CalVOList[i].classify+'">'+dataset.CalVOList[i].fname+html_btn+'</span>');
 			  			}
 			  		}

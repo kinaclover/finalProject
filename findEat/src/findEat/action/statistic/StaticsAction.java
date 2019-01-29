@@ -87,6 +87,13 @@ public class StaticsAction {
 			wedFoodTotal		= sort.DayMap(monthCalList, "food", 3);
 			thuFoodTotal		= sort.DayMap(monthCalList, "food", 4);
 			friFoodTotal		= sort.DayMap(monthCalList, "food", 5);
+			//값이 충분하지 않을 경우 빈 값으로 채
+			foodTotal			= sort.EmptyCheck(foodTotal);
+			monFoodTotal		= sort.EmptyCheck(monFoodTotal);
+			tueFoodTotal		= sort.EmptyCheck(tueFoodTotal);
+			wedFoodTotal		= sort.EmptyCheck(wedFoodTotal);
+			thuFoodTotal		= sort.EmptyCheck(thuFoodTotal);
+			friFoodTotal		= sort.EmptyCheck(friFoodTotal);
 			categoryTotal		= sort.TotalMap(monthCalList, "category");
 			monCategoryTotal	= sort.DayMap(monthCalList, "category", 1);
 			tueCategoryTotal	= sort.DayMap(monthCalList, "category", 2);
@@ -108,6 +115,7 @@ public class StaticsAction {
 			wedFoodUser			= sort.EmptyCheck(wedFoodUser);
 			thuFoodUser			= sort.EmptyCheck(thuFoodUser);
 			friFoodUser			= sort.EmptyCheck(friFoodUser);
+			
 			categoryUser		= sort.TotalMap(monthCalListUser, "category");
 			monCategoryUser		= sort.DayMap(monthCalListUser, "category", 1);
 			tueCategoryUser		= sort.DayMap(monthCalListUser, "category", 2);

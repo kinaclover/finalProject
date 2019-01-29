@@ -10,10 +10,9 @@
 </head>
 <body class="d-block">
 <div class="mt-5 text-center">
-	<H3>Oops, sorry. (code : default)</H3>
+	<H3>Oops, sorry. (code : 404)</H3>
 	<p class="mt-5">Something is wrong.. :(</p>
 	<p>Please give us some time to fix it.</p>
-	<h2>Exception : ${exception.message}</h2>
 </div>
 
 <div class="mt-5 text-center">
