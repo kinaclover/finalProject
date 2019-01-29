@@ -28,6 +28,7 @@
 				/WEB-INF/controller/main-servlet.xml
 				/WEB-INF/controller/board-servlet.xml
 				/WEB-INF/controller/statistic-servlet.xml
+				/WEB-INF/controller/error-servlet.xml
 			</param-value>
 		</init-param>
 	</servlet>
@@ -38,5 +39,15 @@
 	</servlet-mapping>
 	
 	
+	<!-- error -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/err404.jsp</location>
+  	</error-page>
+	
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/WEB-INF/views/error/errDefault.jsp</location>
+	</error-page>
 	
 </web-app>

@@ -13,7 +13,7 @@ public interface CalendarDAO {
 	 *
 	 */
 	//메인페이지 추천 항목
-	public List<CalendarVO> TotalClassifyList(int day) throws Exception;		//해당요일의 calendar DB 전체 값
+	public List<CalendarVO> TotalClassifyList() throws Exception;				//전체 기간의 calendar DB 전체 값
 	public List<String> ThisWeekList(int week) throws Exception;				//현재 주의 음식목록
 	
 	//통계페이지용 자료
