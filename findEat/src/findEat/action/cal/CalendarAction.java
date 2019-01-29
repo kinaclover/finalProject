@@ -93,11 +93,9 @@ public class CalendarAction {
 	}
 	
 	@RequestMapping(value="calFoodAddAndInsert.do",method=RequestMethod.POST)
-	public String calFoodAddAndInsert(@ModelAttribute("CalendarVO")CalendarVO CalendarVO) {
-		try {
+	public String calFoodAddAndInsert(@ModelAttribute("CalendarVO")CalendarVO CalendarVO) throws Exception{
 		indexCalendarDAO.AndMenu(CalendarVO);
 		indexCalendarDAO.InsertMenu(CalendarVO);
-		}catch(Exception e) {e.printStackTrace();}
 		return "cal/cal";
 	}
 	
