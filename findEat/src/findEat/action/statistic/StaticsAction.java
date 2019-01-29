@@ -65,12 +65,14 @@ public class StaticsAction {
 	
 	@RequestMapping("statistic.do")
 	public String statics(HttpServletRequest request) throws Exception {
-		int year	= 0;
-		int month	= 0;
+		int year		= 0;
+		int month		= 0;
+		int fixedYear	= cal.get(Calendar.YEAR);
+		int fixedMonth	= cal.get(Calendar.MONTH)+1;
 		String id	= null;
 		if(request.getParameter("year")==null) {								//쿼리스트링으로 받는 값이 없을 경우 오늘의 데이터 사용 
-			year	= cal.get(Calendar.YEAR);
-			month	= cal.get(Calendar.MONTH)+1;
+			year	= fixedYear;
+			month	= fixedMonth;
 		}else {																	//쿼리스트링으로 받는 값이 있을 경우 입력
 			year	= Integer.parseInt(request.getParameter("year"));
 			month	= Integer.parseInt(request.getParameter("month"));
@@ -152,6 +154,8 @@ public class StaticsAction {
 
 		request.setAttribute("currentYear", year);
 		request.setAttribute("currentMonth", month);
+		request.setAttribute("fixedYear", fixedYear);
+		request.setAttribute("fixedMonth",fixedMonth);
 		
 		return "statistic/totalStatistic";
 	}

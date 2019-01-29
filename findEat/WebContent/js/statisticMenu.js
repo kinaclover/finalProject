@@ -45,3 +45,9 @@ $("#nextMonth").click(function(){
 	window.location = "/findEat/statistic.do?year="+changeYear+"&month="+changeMonth;
 	//$("#refreshSection").load("/findEat/statisticGraph.do?year="+changeYear+"&month="+changeMonth);
 });
+
+$("#thisMonth").click(function(){
+	var year	= $("#fixedYear").val();
+	var month	= $("#fixedMonth").val();
+	window.location = "/findEat/statistic.do?year="+year+"&month="+month;
+});

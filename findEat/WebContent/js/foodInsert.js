@@ -1,5 +1,8 @@
-/**
+/*
  * 
+ *	관리자 전용 음식 관리 페이지 스크립트	
+ *	- Food view/insert/delete
+ *
  */
 
 $(document).ready(function(){

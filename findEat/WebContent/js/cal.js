@@ -139,6 +139,10 @@ function modal_action(data) {
 			$('#saveBtn').off("click").on('click', function() {
 				save();
 			});
+
+			$("#addAndSave").on('click',function(){
+				addAndSave();
+			});
 		} else {
 			if(confirm("이미 값이 있습니다. 지우고 새로 입력하시겠습니까?")){
 				var pStr = $(thisId).attr('value').split(',');
@@ -178,7 +182,7 @@ function modal_action(data) {
 				$('#inputGroup03').val("none").prop('selected', true);
 				$('#inputGroup04').val("none").prop('selected', true);
 				
-				$('#saveBtn').off("click").on('click', function() {
+				$('#saveBtn').off('click').on('click', function() {
 					save();
 				});
 			}
@@ -290,6 +294,39 @@ function save() {
 	        }
 	  });
 };
+
+function addAndSave() {
+	// db 전달 파라미터 // id; fyear; fmonth; fdate; fday; fweek; fname;
+	var cToday = new Date(year,month-1,date); // 클릭한 위치의 날짜
+	var cTodays_day = cToday.getDay();
+	var week = $.datepicker.iso8601Week(cToday); // week of year // 주 시작 : (월) - 끝 : (일)
+	var sel_menu_name = $('#addFname').val();
+	var sel_menu_classify= $('#addGroup01 option:selected').val();
+	var id = $("#calIdCheck").val();
+	$.ajax({
+		async: true,
+        url : "calFoodAddAndInsert.do",
+        type : "post",
+        data : {
+      	  "id": id,
+      	  "fyear": year,
+      	  "fmonth": month,
+      	  "fdate": date,
+      	  "fday": cTodays_day,
+      	  "fweek": week,
+      	  "fname": sel_menu_name,
+      	  "classify": sel_menu_classify
+        },
+        success : function() {
+        	var html_btn = '<button type="button" class="close" onclick="deleteMenu(this)">×</button>';
+        	$('#'+date).html("<strong>"+date+"</strong>"+'<br/><br/>'+'<span class="sel_menu" value="'+sel_menu_name+","+sel_menu_classify+
+        			'">'+sel_menu_name+html_btn+'</span>');
+        },
+        error : function(xhr, status, error) {
+            console.log("error ! status : " + status + ", xhr : " + xhr+ ", error : "+ error);
+        }
+	});
+}
 /************** modal save btn action **************/
 
 
@@ -358,3 +395,30 @@ function loadDB(now_year,now_month) {
 	});
 };
 /************** load all menu of this month **************/
+
+/************** add foot category action **************/
+
+$(function(){
+	$(".close").click(function(){
+		$(".collapse").removeClass("show");
+		changeSaveBtn();
+	});
+});
+
+$(function(){
+	$("#colAction").click(function(){
+		setTimeout(function(){changeSaveBtn()},500);
+	});
+});
+
+function changeSaveBtn(){
+	if($("#addFoodCategory").hasClass("show")){
+		$("#saveBtn").attr("hidden",true);
+		$("#addAndSave").removeAttr("hidden");
+	}else {
+		$("#saveBtn").removeAttr("hidden");
+		$("#addAndSave").attr("hidden",true);
+	}
+}
+
+/************** add foot category action **************/

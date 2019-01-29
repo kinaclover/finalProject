@@ -92,6 +92,15 @@ public class CalendarAction {
 		return "cal/cal";
 	}
 	
+	@RequestMapping(value="calFoodAddAndInsert.do",method=RequestMethod.POST)
+	public String calFoodAddAndInsert(@ModelAttribute("CalendarVO")CalendarVO CalendarVO) {
+		try {
+		indexCalendarDAO.AndMenu(CalendarVO);
+		indexCalendarDAO.InsertMenu(CalendarVO);
+		}catch(Exception e) {e.printStackTrace();}
+		return "cal/cal";
+	}
+	
 	@RequestMapping(value="calFoodSelect.do", method=RequestMethod.GET) // jackson mapper asl lib 추가
 	public @ResponseBody String calFoodSelect(@RequestParam("id") String id) throws Exception  {
 	    ObjectMapper mapper = new ObjectMapper(); // 반드시 mapper 클래스 import 할것
