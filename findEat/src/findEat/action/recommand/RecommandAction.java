@@ -34,8 +34,7 @@ public class RecommandAction {
 	@RequestMapping("search.do")
 	public String test(HttpServletRequest request,HttpServletResponse response ,Model model) throws Exception{
 		request.setCharacterEncoding("UTF-8");
-		
-		
+				
 		
 		if(request.getParameter("keyword")!=null) {
 			model.addAttribute("keyword", request.getParameter("keyword"));
