@@ -88,7 +88,7 @@
     	
     <!-- Modal -->
   	<div class="modal fade" id="menuModal" role="dialog">
-    
+    <input type="hidden" id="modalStat" value="0"/>
     <div class="modal-dialog">
     
 	<!-- Modal content-->

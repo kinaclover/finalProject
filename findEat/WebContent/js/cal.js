@@ -140,8 +140,9 @@ function modal_action(data) {
 				save();
 			});
 
-			$("#addAndSave").on('click',function(){
+			$("#addAndSave").off('click').on('click',function(){
 				addAndSave();
+				$("#tabBody").load(location.reload());
 			});
 		} else {
 			if(confirm("이미 값이 있습니다. 지우고 새로 입력하시겠습니까?")){
@@ -396,21 +397,14 @@ function loadDB(now_year,now_month) {
 };
 /************** load all menu of this month **************/
 
-/************** add foot category action **************/
+/************** add food category action **************/
 
-$(function(){
-	$(".close").click(function(){
-		$(".collapse").removeClass("show");
-		changeSaveBtn();
-	});
-});
-
+//음식 카테고리 추가창이 열렸다면 기존의 저장을 '추가후 저장'버튼으로 변경
 $(function(){
 	$("#colAction").click(function(){
 		setTimeout(function(){changeSaveBtn()},500);
 	});
 });
-
 function changeSaveBtn(){
 	if($("#addFoodCategory").hasClass("show")){
 		$("#saveBtn").attr("hidden",true);
@@ -418,6 +412,23 @@ function changeSaveBtn(){
 	}else {
 		$("#saveBtn").removeAttr("hidden");
 		$("#addAndSave").attr("hidden",true);
+	}
+}
+//클릭 이벤트로 modal 창의 상태 확인
+//modal 창이 'show'일 경우 modalStat 값을 1로 바꿔줌
+//위의 함수가 실행되기 전, modal창 안의 내용을 초기화(음식 추가창이 열려있었다면 닫아줌)
+$(document).click(function(){
+	if($("#modalStat").val()==0){
+		$(".collapse").removeClass("show");
+		changeSaveBtn();
+	}
+	setTimeout(function(){changeModalStat()},500)
+});
+function changeModalStat(){
+	if($("#menuModal").hasClass("show")){
+		$("#modalStat").val(1);
+	}else{
+		$("#modalStat").val(0);
 	}
 }
 
