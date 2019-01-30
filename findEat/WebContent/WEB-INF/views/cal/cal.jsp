@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/cal.css">
 <!-- calendar -->
 <script src="js/jquery-3.3.1.js"></script>
+<script src="js/bootstrap.js"></script>
 <script src="js/cal.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 </head>
@@ -83,7 +84,7 @@
    	</div>  
     <!-- 달력 -->	
     	
-    	
+
     	
     	
     <!-- Modal -->
@@ -100,7 +101,50 @@
 		
 		<div class="modal-body">
 		
-			<!-- 음식 선택창 -->
+			
+        </div>
+        
+		<div class="modal-footer">
+			
+		</div>
+	</div>
+      
+	</div>
+
+	</div>
+<!-- Modal -->
+
+<!-- Modal2 -->
+<div class="modal fade" id="deleteModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+      </div>
+      <!-- body -->
+      <div class="modal-body" id="delete_contents">
+            정말 삭제하시겠습니까?
+      </div>
+     <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="delete_confirm">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal2 -->
+</div>
+</c:if>
+
+<!-- popover -->
+<div id="pop_over" class="popover" role="tooltip">
+	<div class="arrow">
+	<button type="button" class="btn btn-default" data-dismiss="modal" id="saveBtn"> 저장 </button>             
+	<button type="button" class="btn btn-default" data-dismiss="modal" id="close"> 취소 </button>
+	</div>
+	<h3 class="popover-header">Food Select</h3>
+	<div class="popover-body">
+		<!-- 음식 선택창 -->
 			<div style="width:50%; margin:0 auto">
 				<fieldset> <!-- 음식 분류 정보는 spring 을 통해서 db 에서 가져오고 메서드로 setting 해줌 -->
 					<div class="input-group mb-3">
@@ -143,42 +187,11 @@
 				</fieldset>
 			</div>
 			<!-- 음식 선택창  -->
-        </div>
-        
-		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal" id="saveBtn"> 저장 </button>             
-			<button type="button" class="btn btn-default" data-dismiss="modal" id="close"> 취소 </button>
-		</div>
 	</div>
-      
-	</div>
-
-	</div>
-<!-- Modal -->
-
-<!-- Modal2 -->
-<div class="modal fade" id="deleteModal" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- 닫기(x) 버튼 -->
-        <button type="button" class="close" data-dismiss="modal">×</button>
-      </div>
-      <!-- body -->
-      <div class="modal-body" id="delete_contents">
-            정말 삭제하시겠습니까?
-      </div>
-     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" id="delete_confirm">확인</button>
-      </div>
-    </div>
-  </div>
 </div>
-<!-- Modal2 -->
-</div>
-</c:if>
-
-
+<!-- popover -->
+	
+	
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/menu.js"></script>
