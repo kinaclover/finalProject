@@ -59,13 +59,14 @@ function nextmonth(){  //다음 월로 가는 함수
 }
 
 /************** today action ***************/
-function todayMonth(){
+function todayMonth(){ // 현재 날짜 위치로 이동
 	year	= today.getFullYear();
 	month	= Number(today.getMonth())+Number(1);
 	present();
 	loadDB(year,month);
 }
 
+/************** draw Calendar **************/
 function present(){ // 달력 출력
 	var start = new Date(year, month-1, 1);	// 1월 클릭하면 1월 저장
 	var end = new Date(year, month, 1); // 1월 클릭하면 2월 저장
@@ -117,13 +118,12 @@ function present(){ // 달력 출력
 }
 /************** draw Calendar **************/
 
-
 /************** modal pop **************/
 function modal_action(data) {
 		var thisId	= "#"+$(data).attr('id')+" span";
 		var menu	= $(thisId).text();
 		
-		if(menu==""){
+		if(menu==""){ // 먹었던 점심 메뉴 새로 등록
 			$("#menuModal").modal();
 			date = $(data).attr("id"); // db 전달용
 	    	// 다른 날짜 클릭시 이전에 선택한 것들 초기화
@@ -144,13 +144,13 @@ function modal_action(data) {
 				addAndSave();
 				$("#tabBody").load(location.reload());
 			});
-		} else {
+		} else { // 등록된 점식 메뉴가 있을때 다른 음식으로 변경
 			if(confirm("이미 값이 있습니다. 지우고 새로 입력하시겠습니까?")){
 				var pStr = $(thisId).attr('value').split(',');
 				var tdDate = $(thisId).parent('td').attr('id');
 				var selName = pStr[0];
 				var selClfiy = pStr[1];
-				$.ajax ({
+				$.ajax ({ // 현재 등록 되어있는 메뉴는 삭제
 					async: true,
 					url: "calFoodDelete.do",
 					type: "post",
@@ -184,7 +184,7 @@ function modal_action(data) {
 				$('#inputGroup04').val("none").prop('selected', true);
 				
 				$('#saveBtn').off('click').on('click', function() {
-					save();
+					save(); // 새로 등록
 				});
 			}
 		}
@@ -270,7 +270,7 @@ function save() {
 		var sel_menu_classify= $('#inputGroup04 option:selected').attr('class');
 		var id = $("#calIdCheck").val();
 		
-		$.ajax({
+		$.ajax({// 모달창 데이터 db 로 전달
 			async: true,
 	        url : "calFoodInsert.do",
 	        type : "post",
@@ -295,8 +295,10 @@ function save() {
 	        }
 	  });
 };
+/************** modal save btn action **************/
 
-function addAndSave() {
+/************** modal additional save btn action **************/
+function addAndSave() { // 메뉴에 없는 음식 추가하는 기능
 	// db 전달 파라미터 // id; fyear; fmonth; fdate; fday; fweek; fname;
 	var cToday = new Date(year,month-1,date); // 클릭한 위치의 날짜
 	var cTodays_day = cToday.getDay();
@@ -328,11 +330,11 @@ function addAndSave() {
         }
 	});
 }
-/************** modal save btn action **************/
+/************** modal additional save btn action **************/
 
 
 /************** menu delete btn action **************/
-function deleteMenu(data) {
+function deleteMenu(data) { // 음식 이름 옆의 x 누르면 삭제되는 기능
 	event.stopPropagation();
 	$("#deleteModal").modal();
 	$("#delete_confirm").off("click").on('click',function(d) { 
@@ -367,7 +369,7 @@ function deleteMenu(data) {
 
 /************** load all menu of this month **************/
 function loadDB(now_year,now_month) {
-	$.ajax({ // 시작 시 db 에서 데이터 가져옴 
+	$.ajax({ // 시작 시 db 에 저장된 월별 음식 데이터 가져옴 
 	  url : "calFoodSelect.do",
 	  type: "get",
 	  data : { "id" : $("#calIdCheck").val() },
