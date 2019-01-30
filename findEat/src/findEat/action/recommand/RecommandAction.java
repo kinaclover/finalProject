@@ -35,9 +35,8 @@ public class RecommandAction {
 	//search.jsp로 keyword를 넘겨주는 함수.
 	@RequestMapping("search.do")
 	public String test(HttpServletRequest request,HttpServletResponse response ,Model model) throws Exception{
-		request.setCharacterEncoding("UTF-8"); //인코딩설정
-		
-		
+
+		request.setCharacterEncoding("UTF-8");
 		
 		if(request.getParameter("keyword")!=null) {
 			model.addAttribute("keyword", request.getParameter("keyword"));

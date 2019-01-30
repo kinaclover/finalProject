@@ -34,15 +34,6 @@
 				<button type="button" class="btn btn btn-outline-secondary" onclick="window.location='/findEat/list.do?pageNum=${pageNum}'">글 목록</button>
 			</c:if>
 		</div>
-		<c:if test="${sessionScope.id.equals(boardVO.id)||sessionScope.id.equals('admin')}">
-			<div class="btn-group btn-group-sm">
-				<input type="button" class="btn btn-sm btn-outline-warning text-center" id="chkBtn" 
-							data-toggle="collapse" data-target="#collapsePw" value="수정"/>
-				<input type="button" class="btn btn-sm btn-outline-info text-center" id="modifyCancel" value="취소" hidden="hidden"/>
-				<input type="submit" class="btn btn-sm btn-outline-warning" id="confirmBtn" value="글 수정" hidden="hidden"/>
-				<input type="button" class="btn btn-sm btn-outline-danger text-center" id="articleDelBtn" value="삭제"/>
-			</div>
-		</c:if>
 	</div>
 	<!-- article -->
 	<div>
@@ -92,7 +83,7 @@
 			<!-- contents -->
 			<div class="dropdown-divider mt-0 mb-3"></div>
 			<div class="mb-5" style="width:100%" id="showCont">${contents}</div>
-			<div class="row mb-5 mx-0" hidden="hidden" id="modiCont">
+			<div class="row mb-1 mx-0" hidden="hidden" id="modiCont">
 				<textarea class="col-12 px-0" rows="10" cols="" id="modiArea" name="content">${boardVO.content}</textarea>
 			</div>
 			<c:if test="${!sessionScope.id.equals(boardVO.id)&&!sessionScope.id.equals('admin')}">
@@ -101,6 +92,13 @@
 			<!-- modify -->
 			<c:if test="${sessionScope.id.equals(boardVO.id)||sessionScope.id.equals('admin')}">
 			<div class="dropdown-divider mb-3"></div>
+			<div class="btn-group btn-group-sm">
+				<input type="button" class="btn btn-sm btn-outline-warning text-center" id="chkBtn" 
+							data-toggle="collapse" data-target="#collapsePw" value="수정"/>
+				<input type="button" class="btn btn-sm btn-outline-info text-center" id="modifyCancel" value="취소" hidden="hidden"/>
+				<input type="submit" class="btn btn-sm btn-warning" id="confirmBtn" value="글 수정" hidden="hidden"/>
+				<input type="button" class="btn btn-sm btn-outline-danger text-center" id="articleDelBtn" value="삭제"/>
+			</div>
 			<input type="hidden" id="chkNum" value="0"/>
 			
 			<div class="collapse" id="collapsePw">
@@ -109,6 +107,9 @@
 					<input type="button" class="btn btn-sm btn-outline-secondary col-4" id="modifyBtn" value="Check"/>
 				</div>
 			</div>
+			
+			
+			
 			</c:if>
 			<!-- comments -->
 			<div class="mt-5 mb-3 mx-auto" style="width:90%;background-color: #e1efff;">
@@ -127,7 +128,6 @@
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
-<script src="js/main.js"></script>
 <script src="js/board.js"></script>
 <script src="js/menu.js"></script>
 </body>

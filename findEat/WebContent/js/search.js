@@ -2,6 +2,16 @@
 / * search javascript
  */
 
+
+
+//index 에서 넘어올 때 검색값이 있는 경우 결과창 css 추가
+$(document).ready(function(){
+	var keyword	= $("#keywordValue").val();
+	if(keyword!=""){
+		$("#placesList").attr("style","overflow:auto;height:65vh");
+	}
+});
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -218,7 +228,7 @@ function mylocationCallback(data, status, pagination){
 
 // 키워드 검색결과에 대한 이미지 주소를 크롤링하기 위한 함수
 function post_to_url2(address_name1, address_name2, address_name3, params, pagination){
-	
+	console.log("address_name1=="+address_name1);
 	$.ajax({
 		type : "POST",
 		url : "/findEat/myPosition.do?address_name1="+address_name1+"&address_name2="+address_name2+"&address_name3="+address_name3,
@@ -354,7 +364,7 @@ function getListItem(index, places) {
 
 // 이미지주소 크롤링을 위한 함수.
 function post_to_url(keyword, params, pagination, id) {
-		
+	console.log("keyword=="+keyword);
 		
 		$.ajax({
 			type : "POST",
@@ -495,3 +505,4 @@ function closeOverlay() {
 	
 	infowindow.close();   
 }
+

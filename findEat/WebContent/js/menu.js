@@ -3,7 +3,7 @@
 */
 //logout button
 
-
+//logout action
 $(function() {
 	$("#logoutBtn").click(function(){
 		var result	= confirm("로그아웃 하시겠습니까?");
@@ -11,7 +11,6 @@ $(function() {
 			window.location = "logout.do";
 		}
 	});
-
 });
 
 //notice rolling

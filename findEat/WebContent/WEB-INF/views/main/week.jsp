@@ -14,7 +14,7 @@
 			<c:if test="${totalMonList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalMonList}" end="1">
-					<li class="list-group-item btn-outline-danger">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-danger">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -26,7 +26,7 @@
 			<c:if test="${totalWeekMonList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalWeekMonList}" end="0">
-					<li class="list-group-item btn-outline-danger">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-danger">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -42,7 +42,7 @@
 			<c:if test="${totalTueList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalTueList}" end="1">
-					<li class="list-group-item btn-outline-warning">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-warning">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -54,7 +54,7 @@
 			<c:if test="${totalWeekTueList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalWeekTueList}" end="0">
-					<li class="list-group-item btn-outline-warning">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-warning">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -70,7 +70,7 @@
 			<c:if test="${totalWedList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalWedList}" end="1">
-					<li class="list-group-item btn-outline-primary">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-primary">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -82,7 +82,7 @@
 			<c:if test="${totalWeekWedList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalWeekWedList}" end="0">
-					<li class="list-group-item btn-outline-primary">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-primary">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -98,7 +98,7 @@
 			<c:if test="${totalThuList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalThuList}" end="1">
-					<li class="list-group-item btn-outline-success">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-success">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -110,7 +110,7 @@
 			<c:if test="${totalWeekThuList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalWeekThuList}" end="0">
-					<li class="list-group-item btn-outline-success">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-success">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -126,7 +126,7 @@
 			<c:if test="${totalFriList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalFriList}" end="1">
-					<li class="list-group-item btn-outline-info">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-info">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -138,7 +138,7 @@
 			<c:if test="${totalWeekFriList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${totalWeekFriList}" end="0">
-					<li class="list-group-item btn-outline-info">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-info">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -159,7 +159,7 @@
 			<c:if test="${monList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${monList}" end="1">
-					<li class="list-group-item btn-outline-danger">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-danger">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -189,7 +189,7 @@
 			<c:if test="${tueList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${tueList}" end="1">
-					<li class="list-group-item btn-outline-warning">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-warning">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -219,7 +219,7 @@
 			<c:if test="${wedList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${wedList}" end="1">
-					<li class="list-group-item btn-outline-primary">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-primary">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -249,7 +249,7 @@
 			<c:if test="${thuList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${thuList}" end="1">
-					<li class="list-group-item btn-outline-success">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-success">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>
@@ -279,7 +279,7 @@
 			<c:if test="${friList!=null}">
 				<ul class="list-group">
 				<c:forEach var="list" items="${friList}" end="1">
-					<li class="list-group-item btn-outline-info">${list.key}/${list.value}</li>
+					<li class="list-group-item btn-outline-info">${list.key}</li>
 				</c:forEach>
 				</ul>
 			</c:if>

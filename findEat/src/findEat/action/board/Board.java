@@ -60,7 +60,7 @@ public class Board {
 		
 		List<BoardVO> normalList = boardDAO.ListUp(start,end);		//일반 글 목록
 		List<BoardVO> noticeList = boardDAO.NoticeList();			//공지사항 목록
-		total	= boardDAO.TotalNormal();							//전체 글 수
+		total	= boardDAO.TotalNormal();							//전체 일반 글 수
 		//페이지 값 계산
 		if(total!=0) {
 			check	= 1;

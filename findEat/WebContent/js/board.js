@@ -1,8 +1,10 @@
 /*
- *	- for board
+ * 	Board javascript
+ *	- 로그인 확인
+ *	- 수정 버튼 동작
  */
 
-//글 목록 로그인 유도
+//글 작성 로그인 유도
 $(function(){
 	$("#writeCheck").click(function(){
 		var chkId	= $("#checkId").val();
@@ -17,17 +19,18 @@ $(function(){
 	});
 });
 
-//show/hide article modify button
+//수정버튼 액션
+//상황에 맞게 취소버튼 표시/숨김
 $(function(){
 	$("#chkBtn").click(function(){
 		var chkNum = $("#chkNum").val();
-		if(chkNum==0){
+		if(chkNum==0){		//클릭한 버튼을 취소버튼으로 수정
 			$("#chkBtn").val("취소");
 			$("#chkBtn").removeClass("btn-outline-warning");
 			$("#chkBtn").addClass("btn-outline-info");
 			$("#chkNum").val(1);
 			$("#inputPw").focus();
-		}else {
+		}else {				//클릭한 버튼을 수정버튼으로 수정
 			$("#chkBtn").val("수정");
 			$("#chkBtn").removeClass("btn-outline-info");
 			$("#chkBtn").addClass("btn-outline-warning");
@@ -36,7 +39,7 @@ $(function(){
 	});
 });
 
-//delete article
+//글 삭제 확인
 $(function(){
 	$("#articleDelBtn").click(function(){
 		if(confirm("정말 삭제하시겠습니까?")){
@@ -47,7 +50,7 @@ $(function(){
 });
 
 
-//password Check
+//글 수정 비밀번호 확인
 $(function(){
 	$("#modifyBtn").click(function(){
 		var idx		= $("#idx").val();
@@ -67,10 +70,8 @@ $(function(){
 					$("#chkBtn").val("수정");
 					$("#chkNum").val(0);
 					$("#inputPw").val("")
-					$("#inputContent").focus();
 					//
-					$("#collapsePw").removeClass("collapse show");
-					$("#collapsePw").addClass("collapse");
+					$("#collapsePw").removeClass("show");
 					$("#showCont").attr("hidden",true);
 					$("#modiCont").removeAttr("hidden");
 					$("#modifyCancel").removeAttr("hidden");
@@ -89,7 +90,8 @@ $(function(){
 		});
 	});
 });
-//modify cancel
+
+//수정 취소버튼
 $(function(){
 	$("#modifyCancel").click(function(){
 		$("#radio1").attr("disabled",true);
@@ -108,7 +110,7 @@ $(function(){
  * 	modBtn: 수정 / 0
  * 	delBtn: 삭제 / 1
  */
-//insert
+//댓글 작성
 $(function(){
 	$("#confComm").click(function(){
 		//댓글 입력
@@ -117,8 +119,8 @@ $(function(){
 			alert("로그인이 필요합니다.");
 			window.location = '/findEat/login.do';
 		}else {
-			var comm	= $("#inputComment").val();
-			var idx		= $("#idx").val();
+			var comm	= $("#inputComment").val();		//댓글의 내용
+			var idx		= $("#idx").val();				//해당 댓글이 달린 글의 idx
 			$.ajax({
 				async: true,
 				type: 'POST',
@@ -141,7 +143,7 @@ $(function(){
 	});
 });
 
-//modify check
+//댓글 수정 전작업 - 비밀번호 확인
 $(function(){
 	$(".modBtn").click(function(){
 		//수정버튼 클릭
@@ -151,7 +153,7 @@ $(function(){
 		var modiComm	= ".comm-"+num;
 		var chkClass	= ".modiCheck-"+num;
 		var chk			= $(chkClass).val();
-		if(chk==0){
+		if(chk==0){											//수정 확인되면 해당 버튼을 취소로 바꾸고 댓글 내용의 readonly 제거
 			$(modiComm).removeAttr("readonly");
 			$(modiComm).focus();
 			$(modBtn2).removeAttr("hidden");
@@ -170,12 +172,12 @@ $(function(){
 		}
 	});
 });
-//modify
+//댓글 수정
 $(function(){
 	$(".modBtn2").click(function(){
-		var num			= $(event.target).val();
+		var num			= $(event.target).val();	//선택한 댓글의 num
 		var modiComm	= ".comm-"+num;
-		var comm		= $(modiComm).val();
+		var comm		= $(modiComm).val();		//수정한 내용
 		$.ajax({
 			async: true,
 			type: 'POST',
@@ -194,13 +196,13 @@ $(function(){
 });
 
 
-//delete
+//댓글 삭제
 $(function(){
 	$(".delBtn").click(function(){
 		//삭제버튼 클릭
 		if(confirm("정말 삭제하시겠습니까?")){
-			var num	= $(event.target).val();
-			var idx	= $("#idx").val();
+			var num	= $(event.target).val();	//선택한 댓글의 num
+			var idx	= $("#idx").val();			//현재 댓글이 있는 글의 idx
 			$.ajax({
 				async: true,
 				type: 'POST',

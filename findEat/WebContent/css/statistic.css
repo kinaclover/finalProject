@@ -9,6 +9,7 @@
 }
 .mon,.tue,.wed,.thu,.fri{
 	vertical-align: middle;
+	overflow: auto;
 }
 .foodMonth{
 	width: 40%;
