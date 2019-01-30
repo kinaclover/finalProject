@@ -227,12 +227,12 @@ public class LoginAction {
 		request.setAttribute("check", check);
 		return "/login/status";
 	}
-	
+	//네이버 콜백페이지
 	@RequestMapping("naverLoginCallback.do")
 	public String naverLoginCallback() {
 		return "/login/naverLoginCallback";
 	}
-	
+	//네이버 로그인 처리
 	@RequestMapping("naverLoginPro.do")
 	public @ResponseBody String naverLoginPro(String id, HttpServletRequest request) throws Exception {
 		int idCheck	= 1;
@@ -249,7 +249,7 @@ public class LoginAction {
 		request.getSession().setAttribute("mdCheck", mdCheck);
 		return "loginOk";
 	}
-	
+	//DB에 정보 없을시 가입
 	@RequestMapping("naverJoinPro.do")
 	public @ResponseBody String naverJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception {
 		loginVO.setReset(0);
@@ -259,13 +259,13 @@ public class LoginAction {
 		request.setAttribute("status", status);
 		return "joinOK"; 
 	} 
-	
+	//id중복검사
 	@RequestMapping("naverIdCheck.do")
 	public @ResponseBody String naverIdCheck(@RequestBody String id) throws Exception{
 		int count = (Integer)loginDAO.IdCheck(id);
 		return String.valueOf(count);
 	}
-	
+	//구글 로그인 처리
 	@RequestMapping("googleLoginPro.do")
 	public @ResponseBody String googleLoginPro(String id, HttpServletRequest request) throws Exception{
 		int idCheck	= 1;
@@ -282,7 +282,7 @@ public class LoginAction {
 		request.getSession().setAttribute("mdCheck", mdCheck);
 		return "loginOk";
 	}
-	
+	//DB에 정보 없을시 가입
 	@RequestMapping("googleJoinPro.do")
 	public @ResponseBody String googleJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception{
 		loginVO.setReset(0);
@@ -292,13 +292,13 @@ public class LoginAction {
 		request.setAttribute("status", status);
 		return "joinOK"; 
 	}
-	
+	//id중복검사
 	@RequestMapping("googleIdCheck.do")
 	public @ResponseBody String googleIdCheck(@RequestBody String id) throws Exception{
 		int count = (Integer)loginDAO.IdCheck(id);
 		return String.valueOf(count);
 	}
-	
+	//kakao 로그인 처리
 	@RequestMapping("kakaoLoginPro.do")
 	public @ResponseBody String kakaoLoginPro(String id, HttpServletRequest request) throws Exception{
 		int idCheck	= 1;
@@ -315,7 +315,7 @@ public class LoginAction {
 		request.getSession().setAttribute("mdCheck", mdCheck);
 		return "loginOk";
 	}
-	
+	//DB에 정보 없을시 가입
 	@RequestMapping("kakaoJoinPro.do")
 	public @ResponseBody String kakaoJoinPro(LoginVO loginVO, HttpServletRequest request) throws Exception{
 		loginVO.setReset(0);
@@ -325,7 +325,7 @@ public class LoginAction {
 		request.setAttribute("status", status);
 		return "joinOK"; 
 	}
-	
+	//id중복검사
 	@RequestMapping("kakaoIdCheck.do")
 	public @ResponseBody String kakaoIdCheck(@RequestBody String id) throws Exception{
 		int count = (Integer)loginDAO.IdCheck(id);

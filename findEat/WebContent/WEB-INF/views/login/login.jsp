@@ -81,7 +81,6 @@
 	<div class="btn-block pt-5" style="clear: both;">
 		<p class="my-5 mb-3 text-muted text-center">&copy; 2018 <strong>GlobalIT AM Group 3</strong></p>
 	</div>
-
 </form>
 </c:if>
 <!-- for bootstrap/jQuery/Popper -->
