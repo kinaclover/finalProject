@@ -55,7 +55,11 @@ public class IndexCalendarDAOImpl implements IndexCalendarDAO {
 		sqlSession.insert("cal.insertMenu",CalVO);
 		sqlSession.update("cal.foodCountUp",CalVO.getFname());
 	}
-	
+
+	@Override
+	public void AndMenu(CalendarVO CalVO) throws Exception {
+		sqlSession.insert("cal.addMenu",CalVO);
+	}
 	@Override
 	public void DeleteMenu(Map<String,Object> data) throws Exception{
 		sqlSession.delete("cal.deleteMenu",data);

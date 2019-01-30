@@ -128,7 +128,7 @@
 			<c:if test="${!totalFMap.isEmpty()}">
 			<div class="py-3 pl-5" style="width:40%;float:left;" >
 				<div class="pl-5">
-					<c:forEach items="${totalKMap}" var="map" end="4" varStatus="stat">
+					<c:forEach items="${totalFMap}" var="map" end="4" varStatus="stat">
 						<input type="hidden" class="totalFMapKey-${stat.count}" value="${map.key}"/>
 						<input type="hidden" class="totalFMapValue-${stat.count}" value="${map.value}"/>
 						<p class="">${stat.count}위. <a href="${request.contextPath}/findEat/search.do?keyword=${map.key}">${map.key}</a></p>
