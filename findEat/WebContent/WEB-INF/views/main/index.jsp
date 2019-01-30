@@ -27,7 +27,6 @@
 </c:if>
 <c:if test="${sessionScope.id!=null}">
 <input type="hidden" id="sessionCheck" value="1"/>
-<%System.out.println("login"); %>
 </c:if>
 
 <!-- change button -->
