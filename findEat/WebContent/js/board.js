@@ -70,10 +70,8 @@ $(function(){
 					$("#chkBtn").val("수정");
 					$("#chkNum").val(0);
 					$("#inputPw").val("")
-					$("#inputContent").focus();
 					//
-					$("#collapsePw").removeClass("collapse show");
-					$("#collapsePw").addClass("collapse");
+					$("#collapsePw").removeClass("show");
 					$("#showCont").attr("hidden",true);
 					$("#modiCont").removeAttr("hidden");
 					$("#modifyCancel").removeAttr("hidden");
@@ -121,8 +119,8 @@ $(function(){
 			alert("로그인이 필요합니다.");
 			window.location = '/findEat/login.do';
 		}else {
-			var comm	= $("#inputComment").val();
-			var idx		= $("#idx").val();
+			var comm	= $("#inputComment").val();		//댓글의 내용
+			var idx		= $("#idx").val();				//해당 댓글이 달린 글의 idx
 			$.ajax({
 				async: true,
 				type: 'POST',
@@ -155,7 +153,7 @@ $(function(){
 		var modiComm	= ".comm-"+num;
 		var chkClass	= ".modiCheck-"+num;
 		var chk			= $(chkClass).val();
-		if(chk==0){
+		if(chk==0){											//수정 확인되면 해당 버튼을 취소로 바꾸고 댓글 내용의 readonly 제거
 			$(modiComm).removeAttr("readonly");
 			$(modiComm).focus();
 			$(modBtn2).removeAttr("hidden");
@@ -177,9 +175,9 @@ $(function(){
 //댓글 수정
 $(function(){
 	$(".modBtn2").click(function(){
-		var num			= $(event.target).val();
+		var num			= $(event.target).val();	//선택한 댓글의 num
 		var modiComm	= ".comm-"+num;
-		var comm		= $(modiComm).val();
+		var comm		= $(modiComm).val();		//수정한 내용
 		$.ajax({
 			async: true,
 			type: 'POST',
@@ -203,8 +201,8 @@ $(function(){
 	$(".delBtn").click(function(){
 		//삭제버튼 클릭
 		if(confirm("정말 삭제하시겠습니까?")){
-			var num	= $(event.target).val();
-			var idx	= $("#idx").val();
+			var num	= $(event.target).val();	//선택한 댓글의 num
+			var idx	= $("#idx").val();			//현재 댓글이 있는 글의 idx
 			$.ajax({
 				async: true,
 				type: 'POST',

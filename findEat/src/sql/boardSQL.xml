@@ -20,7 +20,7 @@
 	</select>
 	<!-- total -->
 	<select id="total" resultType="int">
-		select count(*) from board
+		select count(*) from board where atype='normal'
 	</select>
 	<!-- select article -->
 	<select id="select" parameterType="int" resultType="boardVO">

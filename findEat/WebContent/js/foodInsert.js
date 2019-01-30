@@ -4,7 +4,7 @@
  *	- Food view/insert/delete
  *
  */
-
+//음식 카테고리 정렬
 $(document).ready(function(){
 	var check = $('#insertCheck').val();
 	if(check==0) {

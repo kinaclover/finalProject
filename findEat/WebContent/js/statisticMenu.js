@@ -45,7 +45,7 @@ $("#nextMonth").click(function(){
 	window.location = "/findEat/statistic.do?year="+changeYear+"&month="+changeMonth;
 	//$("#refreshSection").load("/findEat/statisticGraph.do?year="+changeYear+"&month="+changeMonth);
 });
-
+//현재 월로 돌아오기
 $("#thisMonth").click(function(){
 	var year	= $("#fixedYear").val();
 	var month	= $("#fixedMonth").val();
