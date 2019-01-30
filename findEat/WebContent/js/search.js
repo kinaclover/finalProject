@@ -204,7 +204,7 @@ function mylocationCallback(data, status, pagination){
 
 // 키워드 검색결과에 대한 이미지 주소를 크롤링하기 위한 함수
 function post_to_url2(address_name1, address_name2, address_name3, params, pagination){
-	
+	console.log("address_name1=="+address_name1);
 	$.ajax({
 		type : "POST",
 		url : "/findEat/myPosition.do?address_name1="+address_name1+"&address_name2="+address_name2+"&address_name3="+address_name3,
@@ -340,7 +340,7 @@ function getListItem(index, places) {
 
 // 이미지주소 크롤링을 위한 함수.
 function post_to_url(keyword, params, pagination, id) {
-		
+	console.log("keyword=="+keyword);
 		
 		$.ajax({
 			type : "POST",
