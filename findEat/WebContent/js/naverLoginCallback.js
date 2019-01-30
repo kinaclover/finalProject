@@ -47,7 +47,7 @@ window.addEventListener('load', function () {
 							},
 							url: 'naverLoginPro.do',
 							success: function(data) {
-								window.location="/findEat/index.do";
+								window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
 							},
 							error: function(request,status,error) {
 								alert("Error Code(1) : "+error.d);
@@ -77,7 +77,7 @@ window.addEventListener('load', function () {
 										url: 'naverLoginPro.do',
 										success: function(data) {
 											alert(emailHead+" 님 어서오세요!");
-											window.location="/findEat/index.do";
+											window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
 										},
 										error: function(request,status,error) {
 											alert("Error Code(2) : "+error.d);												}
@@ -89,7 +89,7 @@ window.addEventListener('load', function () {
 							});
 						}else{   //취소
 						    //alert("error!");
-						    window.location="/findEat/login.do";
+						    window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
 						}
 					}
 				},
@@ -100,7 +100,7 @@ window.addEventListener('load', function () {
 			});					
 		} else {
 			alert("Error Code(5) : callback 처리에 실패하였습니다.");
-			window.location="/findEat/login.do";
+			window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
 		}
 	});	
 });		
