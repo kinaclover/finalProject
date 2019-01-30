@@ -1,7 +1,7 @@
 var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "XbLB49KVP66WsUyV0qUz",
-				callbackUrl: "http://localhost:8080/findEat/naverLoginCallback.do",
+				callbackUrl: "https://192.168.0.80:8443/findEat/naverLoginCallback.do",
 				isPopup: false,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
