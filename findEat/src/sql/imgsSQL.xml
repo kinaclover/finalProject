@@ -2,20 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Imgs">
-
+	
+	<!-- 이미지 주소,음식점 이름, 현재주소 등을 입력하는 쿼리문 -->
 	<insert id="insertImgs" parameterType="imgsVO">
 		insert into imgs_url values (#{img_url}, #{place_name}, #{address1}, #{address2}, #{address3}, #{menu}, #{id})
 	</insert>
-	
+	<!-- ID의 값이 DB에 있는지 체크하는 쿼리문 -->
 	<select id="searchKeyword" parameterType="String" resultType="int">
 		select count(*) from imgs_url where id=#{id}
 	</select>
-	
+	<!-- ID값에 해당되는 정보를 가져오는 쿼리문 -->
 	<select id="selectKeyword" parameterType="String" resultType="imgsVO">
 		select * from imgs_url where id=#{id}
 		
 	</select>
 	
+	
+	<!-- 현재위치정보 쿼리문 (위와 같음) -->
 	<select id="checkMyPosition" parameterType="HashMap" resultType="int">
 		select count(*) from imgs_url where id=#{id}
 	</select>

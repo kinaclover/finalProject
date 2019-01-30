@@ -25,15 +25,17 @@ import findEat.DB.dao.ImgsDAOImpl;
 import findEat.recommand.bean.PlaceInfo;
 
 
+
 @Controller
 public class RecommandAction {
+	//DAO객체 주입
 	@Autowired
 	private ImgsDAOImpl imgsDAO=null;
 	
-	
+	//search.jsp로 keyword를 넘겨주는 함수.
 	@RequestMapping("search.do")
 	public String test(HttpServletRequest request,HttpServletResponse response ,Model model) throws Exception{
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8"); //인코딩설정
 		
 		
 		
@@ -44,21 +46,21 @@ public class RecommandAction {
 		return "recommand/search";
 	}
 	
-	
+	//ajax로 넘어노는 키워드와 현재위치정보를 처리, 크롤링을 하는 함수
 	@RequestMapping("searchPro.do")
 	@ResponseBody
 	public Map searchPro(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
 		request.setCharacterEncoding("UTF-8");
-		String address_name1= request.getParameter("address_name1");
-		String address_name2= request.getParameter("address_name2");
-		String address_name3= request.getParameter("address_name3");
+		String address_name1= request.getParameter("address_name1"); //시
+		String address_name2= request.getParameter("address_name2"); //구
+		String address_name3= request.getParameter("address_name3"); //동
 		String menu= request.getParameter("menu");
 		
 		
-		ArrayList<String> place_url=new ArrayList<String>();
-		ArrayList<String> place_name=new ArrayList<String>();
-		ArrayList<String> place_id=new ArrayList<String>();
-		HashMap result_map=null;
+		ArrayList<String> place_url=new ArrayList<String>(); // 음식점 홈페이지 주소 저장하기 위한 ArrayList
+		ArrayList<String> place_name=new ArrayList<String>(); // 음식점 이름 저장하기 위한 ArrayList
+		ArrayList<String> place_id=new ArrayList<String>(); //음식점 아이디 저장하기 위한 ArrayList
+		HashMap result_map=null; //크롤링 결과를 받을 HashMap
 		
 		
 		//주소, 음식이름, 가게이름을 db에 있는지 없는지 체크한뒤 없으면 크롤링하기 위해 url을 저장한다.		
@@ -66,8 +68,9 @@ public class RecommandAction {
 		
 			String temp=result[i].getPlace_name();
 			String id= result[i].getId();
-		    int check=imgsDAO.searchKeyword(id.trim());
+		    int check=imgsDAO.searchKeyword(id.trim()); //음식점 ID가 있는지 DB체크
 		  
+		    //ID가 없으면 정보들 저장
 		    if(check==0) {
 		    	place_name.add(result[i].getPlace_name());
 		    	place_url.add(result[i].getPlace_url());
@@ -75,6 +78,7 @@ public class RecommandAction {
 		    }
 		}
 		
+		//음식점 정보가 DB에 없을경우 크롤링하는 위한 부분
 		if(place_url.size()!=0) {
 		
 		//arraylist --> string 배열로 변환
@@ -84,32 +88,37 @@ public class RecommandAction {
 		temp=place_url.toArray(temp);
 		temp2=place_name.toArray(temp2);
 		temp3=place_id.toArray(temp3);
-		String[] result_imgs=new String[result.length];
+		String[] result_imgs=new String[result.length]; //이미지 주소를 저장하는 String 배열
+		
 		//크롤링 결과 저장
 		result_map=SeleniumCrawling(temp);
 		String [] sresult_img=(String [])result_map.get("img");
 		
+		//DB에 넣는작업
 		for(int i=0; i<sresult_img.length; i++) {
 			inputDB(address_name1.trim(),address_name2.trim(),address_name3.trim(), sresult_img[i].trim(), temp2[i].trim(), menu.trim(), temp3[i].trim());
 		}
 		
+		// 크롤링한 이미지 주소 정보를 가져온다
 		for(int i=0; i<result.length; i++) {
 			ImgsVO iv=new ImgsVO();
 			iv=imgsDAO.selectKeyword(result[i].getId().trim());
 			result_imgs[i]=iv.getImg_url().trim();
 		}
 		result_map.clear();
-		result_map.put("img", result_imgs);
+		result_map.put("img", result_imgs); //결과를 HashMap에 저장
 		
 		
-		
+		//DB에 ID가 있는경우
 		}else {
+			
 			result_map=new HashMap();
-			String[] temp3= new String[result.length];
+			String[] temp3= new String[result.length]; //음식점 ID 정보를 저장하는 String 배열
 			for(int i=0; i<result.length; i++) {
 				temp3[i]=result[i].getId();
 			}
-			String[] result_imgs=new String[temp3.length];
+			String[] result_imgs=new String[temp3.length]; //이미지 주소를 저장할 String 배열
+			//이미지 주소 저장
 			for(int i=0; i<temp3.length; i++) {
 				ImgsVO iv=new ImgsVO();
 				iv=imgsDAO.selectKeyword(temp3[i].trim());
@@ -124,8 +133,9 @@ public class RecommandAction {
 	
 	//동적 크롤링을 위한 함수
 	public HashMap SeleniumCrawling(String[] place_url){
-		RConnection r=null;
-		HashMap result_map=new HashMap();
+		RConnection r=null; //R커넥션 객체
+		HashMap result_map=new HashMap(); //결과를 받을 HashMap객체
+		//이미지 주소를 크롤링 하는 부분
 		try {
 			r =new RConnection();
 			r.setStringEncoding("utf8");
@@ -149,7 +159,7 @@ public class RecommandAction {
 		
 			REXP rx=r.eval("result_img");
 			
-			String[] imgs=getIMG(rx.asStrings());
+			String[] imgs=getIMG(rx.asStrings()); //REXP 타입을 String 배열로 변환
 			
 			result_map.put("img", imgs);
 						
@@ -168,6 +178,7 @@ public class RecommandAction {
 		String[] result_img=new String[size];
 		for(int i=0; i<img.length; i++) {
 			int start = img[i].indexOf("img1");
+			//이미지가 없는 경우
 			if(start==-1) {
 				result_img[i]="localhost:8080/findEat/images/noimage.png";
 				continue;
@@ -179,7 +190,8 @@ public class RecommandAction {
 		return result_img;
 		
 	}
-
+	
+	//데이터베이스에 크롤링한 결과를 넣는 함수
 	public void inputDB(String address_name1, String address_name2, String address_name3, String img_url, String place_name, String menu, String id) throws Exception {
 		ImgsVO iv=new ImgsVO();
 		iv.setAddress1(address_name1);
@@ -191,6 +203,8 @@ public class RecommandAction {
 		iv.setId(id);
 		imgsDAO.insertIMGS(iv);
 	}
+	
+	//키워드 없이 현재위치정보만으로 음식점 정보를 찾기 위한 함수 (코드내용은 위와 같음)
 	@RequestMapping("myPosition.do")
 	@ResponseBody
 	public Map myPosition(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
