@@ -2,6 +2,16 @@
 / * search javascript
  */
 
+
+
+//index 에서 넘어올 때 검색값이 있는 경우 결과창 css 추가
+$(document).ready(function(){
+	var keyword	= $("#keywordValue").val();
+	if(keyword!=""){
+		$("#placesList").attr("style","overflow:auto;height:65vh");
+	}
+});
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -482,3 +492,4 @@ function closeOverlay() {
 	
 	infowindow.close();   
 }
+
