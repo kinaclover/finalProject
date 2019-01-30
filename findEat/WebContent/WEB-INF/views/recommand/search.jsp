@@ -21,9 +21,11 @@
 		<div class="col-8">
 			<div class="map_wrap mx-3" style="height:90vh">
 				<div id="map" style="width:100%;height:90vh;position:relative;overflow:hidden;"></div>
+				
 			</div>
 		</div>
-
+		
+		<!-- 검색창과 버튼 표시-->
 		<div class="col-4">    
 			<div id="menu_wrap" class="bg_white">
 				<div class="option">

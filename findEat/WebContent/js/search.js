@@ -2,8 +2,21 @@
 / * search javascript
  */
 
+
+
+//index 에서 넘어올 때 검색값이 있는 경우 결과창 css 추가
+$(document).ready(function(){
+	var keyword	= $("#keywordValue").val();
+	if(keyword!=""){
+		$("#placesList").attr("style","overflow:auto;height:65vh");
+	}
+});
+
 // 마커를 담을 배열입니다
 var markers = [];
+
+//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new daum.maps.MapTypeControl();
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -14,6 +27,15 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 // 지도를 생성합니다    
 var map = new daum.maps.Map(mapContainer, mapOption); 
 
+//지도에 컨트롤을 추가해야 지도위에 표시됩니다
+//daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+//지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new daum.maps.ZoomControl();
+map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+
 // 장소 검색 객체를 생성합니다
 var ps = new daum.maps.services.Places();  
 
@@ -22,7 +44,7 @@ var infowindow = new daum.maps.InfoWindow({zIndex:1});
 
 var keyword=$('input#keywordValue').val();
 var address_name1=null,address_name2=null,address_name3=null;
-getAddress();
+getAddress(); // 현재위치 정보를 가져온다.
 
 if(keyword!="" && keyword!=null){
 if (navigator.geolocation) {
@@ -73,6 +95,8 @@ if (navigator.geolocation) {
 	
 	
 }
+
+//현재위치 맛집정보를 찾습니다.
 function getPosition(){
 	//검색 결과 틀에 스타일 추가
 	$("#placesList").attr("style","overflow:auto;height:65vh");
@@ -174,7 +198,7 @@ function searchPlaces() {
 	return;
 	}
     var result_keyword=address_name1+" "+address_name2+" "+address_name3+" "+keyword;
-        
+
     var option ={ category_group_code : "FD6" };
     ps.keywordSearch(result_keyword, placesSearchCB, option);
     
@@ -469,7 +493,6 @@ function displayInfowindow(places,marker, title, address, phone, url, i,img) {
     
 }
 
-
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
 function removeAllChildNods(el) {   
     while (el.hasChildNodes()) {
@@ -482,3 +505,4 @@ function closeOverlay() {
 	
 	infowindow.close();   
 }
+
