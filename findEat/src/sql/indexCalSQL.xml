@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cal">
-
+	<!-- select -->
 	<select id="all" resultType="calVO">
 		select * from calendar
 	</select>
@@ -19,6 +19,8 @@
 		select * from calendar where id = #{id} and fweek = #{fweek}
 	</select>
 
+
+	<!-- insert -->
 	<insert id="addMenu" parameterType="calVO">
 		insert into food values(#{classify}, #{fname}, 0)
 	</insert>
@@ -26,11 +28,19 @@
 	<insert id="insertMenu" parameterType="calVO">
 		insert into calendar values(#{id}, #{fyear}, #{fmonth}, #{fdate}, #{fday}, #{fweek}, #{fname}, #{classify})
 	</insert>
-	
+
+
+	<!-- update -->	
 	<update id="foodCountUp" parameterType="String">
 		update food set fcount = fcount+1 where fname = #{value}
 	</update>
 	
+	<update id="foodCountDown" parameterType="String">
+		update food set fcount = fcount-1 where fname = #{value}
+	</update>
+	
+	
+	<!-- delete -->
 	<delete id="deleteMenu" parameterType="hashmap">
 		delete from calendar where 
 		fyear=#{year} and 
@@ -39,9 +49,5 @@
 		fname=#{selName} and 
 		classify=#{selClfiy}
 	</delete>
-	
-	<update id="foodCountDown" parameterType="String">
-		update food set fcount = fcount-1 where fname = #{value}
-	</update>
-	
+
 </mapper>

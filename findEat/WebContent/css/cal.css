@@ -1,18 +1,5 @@
 @charset "UTF-8";
-/* #position { */
-/*   position: absolute; */
-/*   left: 100px; */
-/*   top: 30px; */
-/*   right: 100px; */
-/*   bottom: 49px; */
-/*   padding: 16px; */
-/* } */
-/* #top-menu { */
-/*   display: inline-block; */
-/*   padding: 5px; */
-/*   margin-left: 10px;  */
-/*   margin-right: auto; */
-/* } */
+/******* 달력 메뉴 화살표 버튼 *************/
 .calendar-icon {   
 	width: 14px;   
 	height: 14px;   
@@ -26,19 +13,7 @@
 .ic-arrow-line-right {
   background: url('../images/ic-arrow-line-right.png') no-repeat;
 }
-
-.col-md-6 {
-
-}
-.table td{
-	height: 1px;
-	min-height: 75px;
-	max-height: 90px;
-}
-.table-hover-cells > tbody > tr > th:hover,
-.table-hover-cells > tbody > tr > td:hover {
-  background-color: #f5f5f5;
-}
+/******* 달력 메뉴 화살표 버튼 *************/
 
 /******* 버튼 *************/
 .btn-custom {
@@ -97,3 +72,16 @@
   position: absolute;
 }
 /******* 버튼 *************/
+
+
+/******* 테이블 *************/
+.table td{
+	height: 1px;
+	min-height: 75px;
+	max-height: 90px;
+}
+.table-hover-cells > tbody > tr > th:hover,
+.table-hover-cells > tbody > tr > td:hover {
+  background-color: #f5f5f5;
+}
+/******* 테이블 *************/

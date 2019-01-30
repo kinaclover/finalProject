@@ -22,14 +22,15 @@ import findEat.DB.bean.CalendarVO;
 import findEat.DB.bean.FoodVO;
 import findEat.DB.dao.FoodAdminDAOImpl;
 import findEat.DB.dao.IndexCalendarDAOImpl;
-/***********************************************************************************************************************/
+//**********************************************************************************************************************/
 /*
  * 	*** 캘린더 메뉴 등록
  * 
- * 	- 캘린더에서 선택할 음식 그룹 설정
+ * 	- 캘린더에서 선택할 음식 그룹 설정 초기화
  *  - 메뉴 선택 후 db 에 추가
+ *  - 카테고리에 없는 임의의 메뉴 db 에 추가
+ *  - db 에서 월별 음식 데이터 불러오기
  *  - 추가된 메뉴 db 에서 삭제
- *  - 
  * 
 /***********************************************************************************************************************/
 @Controller
@@ -43,6 +44,7 @@ public class CalendarAction {
 	
 	private CalendarSort comp	= null;
 	
+	// 캘린더에서 선택할 음식 그룹 설정 초기화
 	@RequestMapping("cal.do")
 	public String calendar(@ModelAttribute("foodVO")FoodVO foodVO, HttpServletRequest request) throws Exception{
 		// 음식 그룹 설정 
@@ -86,12 +88,14 @@ public class CalendarAction {
 		return "cal/cal";
 	}
 	
+	// 메뉴 선택 후 db 에 추가
 	@RequestMapping(value="calFoodInsert.do", method=RequestMethod.POST)
 	public String calFoodInsert(@ModelAttribute("CalendarVO")CalendarVO CalendarVO) throws Exception{
 		indexCalendarDAO.InsertMenu(CalendarVO); // 메뉴 선택 후 db 에 추가
 		return "cal/cal";
 	}
 	
+	// 카테고리에 없는 임의의 메뉴 db 에 추가
 	@RequestMapping(value="calFoodAddAndInsert.do",method=RequestMethod.POST)
 	public String calFoodAddAndInsert(@ModelAttribute("CalendarVO")CalendarVO CalendarVO) throws Exception{
 		indexCalendarDAO.AndMenu(CalendarVO);
@@ -99,6 +103,7 @@ public class CalendarAction {
 		return "cal/cal";
 	}
 	
+	// db 에서 월별 음식 데이터 불러오기
 	@RequestMapping(value="calFoodSelect.do", method=RequestMethod.GET) // jackson mapper asl lib 추가
 	public @ResponseBody String calFoodSelect(@RequestParam("id") String id) throws Exception  {
 	    ObjectMapper mapper = new ObjectMapper(); // 반드시 mapper 클래스 import 할것
@@ -116,6 +121,7 @@ public class CalendarAction {
 	    return mapString;
 	}
 	
+	// 추가된 메뉴 db 에서 삭제
 	@ResponseBody
 	@RequestMapping(value="calFoodDelete.do", method=RequestMethod.POST)
 	public String calFoodDelete(@RequestBody Map<String,Object> data) throws Exception {

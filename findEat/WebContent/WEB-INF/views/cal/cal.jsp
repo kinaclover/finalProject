@@ -97,8 +97,6 @@
 		<h3 class="popover-header">Food Select
 		<button type="button" class="close" data-dismiss="modal">×</button>
 		</h3>
-		
-		
 		<div class="modal-body">
 			<!-- 음식 선택창 -->
 			<div ><!-- style="width:50%; margin:0 auto" -->
@@ -168,7 +166,7 @@
 				</div>
 			</div>
         </div>
-        
+        <!-- 음식 추가입력 -->
 		<div class="modal-footer">
 			<button type="button" class="btn btn-default" data-dismiss="modal" id="saveBtn"> 저장 </button>
 			<button type="button" class="btn btn-default" data-dismiss="modal" id="addAndSave" hidden="hidden">입력 후 저장</button>
@@ -179,7 +177,7 @@
 	</div>
 <!-- Modal -->
 
-<!-- Modal2 -->
+<!-- Modal2 --> <!-- 삭제시 팝업되는 모달창 -->
 <div class="modal fade" id="deleteModal" role="dialog">
   <div class="modal-dialog"  style="width:276px;">
     <div class="modal-content">
