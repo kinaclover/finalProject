@@ -133,7 +133,7 @@ function getTrans(lat, lon){
 		});
 }
 
-
+//마커를 생성, 인포윈도우 생성, 마커 지도화면에 표시
 function displayMarker(locPosition, message) {
 
     // 마커를 생성합니다
@@ -179,6 +179,8 @@ function searchPlaces() {
     ps.keywordSearch(result_keyword, placesSearchCB, option);
     
 }
+
+//현재위치 검색결과를 처리하기 위한 콜백함수
 function mylocationCallback(data, status, pagination){
 	 if (status === daum.maps.services.Status.OK) {
 	    	   
@@ -199,7 +201,10 @@ function mylocationCallback(data, status, pagination){
 	    }
 	
 }
+
+// 키워드 검색결과에 대한 이미지 주소를 크롤링하기 위한 함수
 function post_to_url2(address_name1, address_name2, address_name3, params, pagination){
+	console.log("address_name1=="+address_name1);
 	$.ajax({
 		type : "POST",
 		url : "/findEat/myPosition.do?address_name1="+address_name1+"&address_name2="+address_name2+"&address_name3="+address_name3,
@@ -209,18 +214,18 @@ function post_to_url2(address_name1, address_name2, address_name3, params, pagin
 		success : function(data){
 			 var listEl = document.getElementById('placesList'), 
 			    menuEl = document.getElementById('menu_wrap'),
-			    fragment = document.createDocumentFragment(), 
-			    bounds = new daum.maps.LatLngBounds(), 
+			    fragment = document.createDocumentFragment(),  
+			    bounds = new daum.maps.LatLngBounds(),  
 			    listStr = '';
 			 removeAllChildNods(listEl);
 			 removeMarker();
-			var save_imgs=new Array();
+			var save_imgs=new Array(); //이미지 주소 저장 배열
 			
-			for(var i=0; i<data.img.length; i++){
+			for(var i=0; i<data.img.length; i++){ //이미지 주소 저장
 				save_imgs.push(data.img[i]);
 			}
 			
-			for(var i=0; i<params.length; i++){
+			for(var i=0; i<params.length; i++){ // 검색결과를 목록으로 표출시키는 작업
 				makeitemEl(params[i], markers[i], params[i].place_name,params[i].address_name, params[i].phone, params[i].place_url, i, save_imgs[i],bounds,fragment);
 			}
 			
@@ -245,7 +250,7 @@ function placesSearchCB(data, status, pagination) {
         // 검색 목록과 마커를 표출합니다
 	  var id=data.id;
 	   
-       post_to_url(keyword,data,pagination, id);     
+       post_to_url(keyword,data,pagination, id);     //이미지 크롤링을 위한 함수
         
 
     } else if (status === daum.maps.services.Status.ZERO_RESULT) {
@@ -333,10 +338,9 @@ function getListItem(index, places) {
     return el;
 }
 
-//place 데이터 전송
-
+// 이미지주소 크롤링을 위한 함수.
 function post_to_url(keyword, params, pagination, id) {
-		
+	console.log("keyword=="+keyword);
 		
 		$.ajax({
 			type : "POST",
@@ -352,13 +356,13 @@ function post_to_url(keyword, params, pagination, id) {
 				    listStr = '';
 				 removeAllChildNods(listEl);
 				 removeMarker();
-				var save_imgs=new Array();
+				var save_imgs=new Array();  //이미지 주소 저장을 위한 배열
 				
-				for(var i=0; i<data.img.length; i++){
+				for(var i=0; i<data.img.length; i++){ //이미지 주소 저장
 					save_imgs.push(data.img[i]);
 				}
 				
-				for(var i=0; i<params.length; i++){
+				for(var i=0; i<params.length; i++){ // 검색결과를 목록으로 표출하기 위한 함수
 					makeitemEl(params[i], markers[i], params[i].place_name,params[i].address_name, params[i].phone, params[i].place_url, i, save_imgs[i],bounds,fragment);
 				}
 				
@@ -473,6 +477,7 @@ function removeAllChildNods(el) {
     }
 }
 
+// 인포윈도우 창을 닫기 위한 함수.
 function closeOverlay() {
 	
 	infowindow.close();   

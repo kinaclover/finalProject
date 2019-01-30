@@ -67,7 +67,7 @@ public class SuggestAction {
 		if(request.getSession().getAttribute("id")!=null)	//id확인
 			id = (String)request.getSession().getAttribute("id");
 		
-		totalClassifyList	= calDAO.TotalClassifyList(day);
+		totalClassifyList	= calDAO.TotalClassifyList();
 		weekList			= calDAO.ThisWeekList(week);
 		
 		//회원일 경우에만 실행

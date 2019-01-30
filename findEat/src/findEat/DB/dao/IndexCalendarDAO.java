@@ -18,5 +18,6 @@ public interface IndexCalendarDAO {
 	
 	//Calendar 입력/삭제
 	public void InsertMenu(CalendarVO CalVO) throws Exception; 
+	public void AndMenu(CalendarVO CalVO) throws Exception;
 	public void DeleteMenu(Map<String,Object> data) throws Exception;
 }

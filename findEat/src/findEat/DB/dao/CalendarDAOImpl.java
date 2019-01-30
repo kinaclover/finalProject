@@ -28,8 +28,8 @@ public class CalendarDAOImpl implements CalendarDAO {
 	
 	//해당요일의 calendar DB 전체 값
 	@Override
-	public List<CalendarVO> TotalClassifyList(int day) throws Exception {
-		list	= sqlSession.selectList("cal.totalClassifyList",day);
+	public List<CalendarVO> TotalClassifyList() throws Exception {
+		list	= sqlSession.selectList("cal.totalClassifyList");
 		return list;
 	}
 	//현재 주의 음식목록

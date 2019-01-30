@@ -69,8 +69,7 @@ var foodMonthTotal = bb.generate({
 		}
 		},
 	size: {
-		"width": 350,
-		"height": 300
+		width: 350
 	},
 	bindto: "#foodMonth-total"
 });
@@ -90,8 +89,7 @@ var categoryMonthTotal = bb.generate({
 		}
 		},
 	size: {
-		"width": 350,
-		"height": 300
+		width: 350
 	},
 	bindto: "#categoryMonth-total"
 });
@@ -128,7 +126,7 @@ var monFoodTotal = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -174,7 +172,7 @@ var monCategoryTotal = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -219,7 +217,7 @@ var tueFoodTotal = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -265,7 +263,7 @@ var tueCategoryTotal = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -310,7 +308,7 @@ var wedFoodTotal = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -356,7 +354,7 @@ var wedCategoryTotal = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -401,7 +399,7 @@ var thuFoodTotal = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -447,7 +445,7 @@ var wedCategoryTotal = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -492,7 +490,7 @@ var friFoodTotal = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -538,7 +536,7 @@ var friCategoryTotal = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -573,8 +571,7 @@ var foodMonthUser = bb.generate({
 		}
 		},
 	size: {
-		"width": 350,
-		"height": 300
+		width: 350
 	},
 	bindto: "#foodMonth-user"
 });
@@ -594,8 +591,7 @@ var categoryMonthUser = bb.generate({
 		}
 		},
 	size: {
-		"width": 350,
-		"height": 300
+		width: 350
 	},
 	bindto: "#categoryMonth-user"
 });
@@ -632,7 +628,7 @@ var monFoodUser = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -678,7 +674,7 @@ var monCategoryUser = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -723,7 +719,7 @@ var tueFoodUser = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -769,7 +765,7 @@ var tueCategoryUser = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -814,7 +810,7 @@ var wedFoodUser = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -860,7 +856,7 @@ var wedCategoryUser = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -905,7 +901,7 @@ var thuFoodUser = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -951,7 +947,7 @@ var wedCategoryUser = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -996,7 +992,7 @@ var friFoodUser = bb.generate({
 		text: "Food"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {
@@ -1042,7 +1038,7 @@ var friCategoryUser = bb.generate({
 		text: "Category"
 	},
 	size: {
-		width: 160
+		width: 150
 	},
 	bar: {
         width: {

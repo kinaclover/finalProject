@@ -1,5 +1,6 @@
 package findEat.action.recommand;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,6 +10,7 @@ import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.Rserve.RConnection;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +32,10 @@ public class RecommandAction {
 	
 	
 	@RequestMapping("search.do")
-	public String test(HttpServletRequest request, Model model){
+	public String test(HttpServletRequest request,HttpServletResponse response ,Model model) throws Exception{
+		request.setCharacterEncoding("UTF-8");
+				
+		
 		if(request.getParameter("keyword")!=null) {
 			model.addAttribute("keyword", request.getParameter("keyword"));
 		}
@@ -42,7 +47,7 @@ public class RecommandAction {
 	@RequestMapping("searchPro.do")
 	@ResponseBody
 	public Map searchPro(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
-		
+		request.setCharacterEncoding("UTF-8");
 		String address_name1= request.getParameter("address_name1");
 		String address_name2= request.getParameter("address_name2");
 		String address_name3= request.getParameter("address_name3");
@@ -188,7 +193,7 @@ public class RecommandAction {
 	@RequestMapping("myPosition.do")
 	@ResponseBody
 	public Map myPosition(@RequestBody PlaceInfo[] result, HttpServletRequest request) throws Exception{
-		
+		request.setCharacterEncoding("UTF-8");
 		String address_name1= request.getParameter("address_name1");
 		String address_name2= request.getParameter("address_name2");
 		String address_name3= request.getParameter("address_name3");

@@ -1,7 +1,10 @@
-/**
+/*
  * 
+ *	관리자 전용 음식 관리 페이지 스크립트	
+ *	- Food view/insert/delete
+ *
  */
-
+//음식 카테고리 정렬
 $(document).ready(function(){
 	var check = $('#insertCheck').val();
 	if(check==0) {

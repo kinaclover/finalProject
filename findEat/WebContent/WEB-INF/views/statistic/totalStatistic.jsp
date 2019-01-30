@@ -26,6 +26,8 @@
 
 <c:if test="${sessionScope.id!=null}">
 <input type="hidden" id="sessionId" value="${sessionScope.id}"/>
+<input type="hidden" id="fixedYear" value="${fixedYear}"/>
+<input type="hidden" id="fixedMonth" value="${fixedMonth}"/>
 <div>
 	<div class="btn-group pl-5">
 		<input type="button" class="btn-sm btn-outline-secondary" id="preMonth" value="&larr;"/>
@@ -47,7 +49,7 @@
 <input type="hidden" id="statisticList" value="${statisticList}"/>
 
 <!-- total statistic -->
-<div id="statisticTotal" class="" style="width:100%;margin:0 auto">
+<div id="statisticTotal" class="" style="width:100vw;margin:0 auto">
 	<!-- food -->
 	<div>
 		<c:forEach items="${foodTotal}" var="food" varStatus="stat">
@@ -103,41 +105,41 @@
 		</c:forEach>
 	</div>
 	<div style="height:40vh" class="my-3 py-3 pl-5">
-		<div class="foodMonth">
+		<div class="foodMonth" style="width:40vw">
 			<span class=""><label class="changeMonth">${currentMonth}</label>월 음식 Top 10</span>
-			<div class="mx-auto" id="foodMonth-total"></div>
+			<div class="mx-auto" id="foodMonth-total" style="width:39vw"></div>
 		</div>
-		<div class="categoryMonth">
+		<div class="categoryMonth" style="width:40vw">
 			<span class=""><label class="changeMonth">${currentMonth}</label>월 카테고리 통계</span>
-			<div class="mx-auto" id="categoryMonth-total"></div>
+			<div class="mx-auto" id="categoryMonth-total" style="width:39vw"></div>
 		</div>
 	</div>
-	<div style="width:100%;height:40vh" class="list-group-horizontal text-center">
-		<div style="height:40vh;width:19vw;" class="mon list-group-item">
+	<div style="width:100vw;height:40vh;overflow:auto" class="list-group-horizontal text-center">
+		<div style="width:19vw;" class="mon list-group-item">
 			<p class="dayHead btn-outline-danger">Monday</p>
 			<input type="hidden" class="MondayChk" value="0"/>
 			<div id="Monday-food-total"></div>
 			<div id="Monday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="tue list-group-item">
+		<div style="width:19vw;" class="tue list-group-item">
 			<p class="dayHead btn-outline-warning">Tuesday</p>
 			<input type="hidden" class="TuesdayChk" value="0"/>
 			<div id="Tuesday-food-total"></div>
 			<div id="Tuesday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="wed list-group-item">
+		<div style="width:19vw;" class="wed list-group-item">
 			<p class="dayHead btn-outline-primary">Wednesday</p>
 			<input type="hidden" class="WednesdayChk" value="0"/>
 			<div id="Wednesday-food-total"></div>
 			<div id="Wednesday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="thu list-group-item">
+		<div style="width:19vw;" class="thu list-group-item">
 			<p class="dayHead btn-outline-success">Thursday</p>
 			<input type="hidden" class="ThursdayChk" value="0"/>
 			<div id="Thursday-food-total"></div>
 			<div id="Thursday-category-total" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="fri list-group-item">
+		<div style="width:19vw;" class="fri list-group-item">
 			<p class="dayHead btn-outline-info">Friday</p>
 			<input type="hidden" class="FridayChk" value="0"/>
 			<div id="Friday-food-total"></div>
@@ -147,7 +149,7 @@
 </div>
 
 <!-- user statistic -->
-<div id="statisticUser" class="" style="width:100%;margin:0 auto" hidden="hidden">
+<div id="statisticUser" class="" style="width:100vw;margin:0 auto" hidden="hidden">
 	<!-- food -->
 	<div>
 		<c:forEach items="${foodUser}" var="food" varStatus="stat">
@@ -203,41 +205,41 @@
 		</c:forEach>
 	</div>
 	<div style="height:40vh" class="my-3 py-3 pl-5">
-		<div class="foodMonth">
+		<div class="foodMonth" style="width:40vw">
 			<span class=""><label class="changeMonth">${currentMonth}</label>월 음식 Top 10</span>
-			<div class="mx-auto" id="foodMonth-user"></div>
+			<div class="mx-auto" id="foodMonth-user" style="width:39vw"></div>
 		</div>
-		<div class="categoryMonth">
+		<div class="categoryMonth" style="width:40vw">
 			<span class=""><label class="changeMonth">${currentMonth}</label>월 카테고리 통계</span>
-			<div class="mx-auto" id="categoryMonth-user"></div>
+			<div class="mx-auto" id="categoryMonth-user" style="width:39vw"></div>
 		</div>
 	</div>
-	<div style="height:40vh" class="list-group-horizontal text-center">
-		<div style="height:40vh;width:19vw;" class="mon list-group-item">
+	<div style="width:100vw;height:40vh;overflow:auto" class="list-group-horizontal text-center">
+		<div style="width:19vw;" class="mon list-group-item">
 			<p class="dayHead btn-outline-danger">Monday</p>
 			<input type="hidden" class="MondayChk" value="0"/>
 			<div id="Monday-food-user"></div>
 			<div id="Monday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="tue list-group-item">
+		<div style="width:19vw;" class="tue list-group-item">
 			<p class="dayHead btn-outline-warning">Tuesday</p>
 			<input type="hidden" class="TuesdayChk" value="0"/>
 			<div id="Tuesday-food-user"></div>
 			<div id="Tuesday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="wed list-group-item">
+		<div style="width:19vw;" class="wed list-group-item">
 			<p class="dayHead btn-outline-primary">Wednesday</p>
 			<input type="hidden" class="WednesdayChk" value="0"/>
 			<div id="Wednesday-food-user"></div>
 			<div id="Wednesday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="thu list-group-item">
+		<div style="width:19vw;" class="thu list-group-item">
 			<p class="dayHead btn-outline-success">Thursday</p>
 			<input type="hidden" class="ThursdayChk" value="0"/>
 			<div id="Thursday-food-user"></div>
 			<div id="Thursday-category-user" hidden="hidden"></div>
 		</div>
-		<div style="height:40vh;width:19vw;" class="fri list-group-item">
+		<div style="width:19vw;" class="fri list-group-item">
 			<p class="dayHead btn-outline-info">Friday</p>
 			<input type="hidden" class="FridayChk" value="0"/>
 			<div id="Friday-food-user"></div>
