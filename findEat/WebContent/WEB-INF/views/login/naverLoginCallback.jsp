@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Callback</title>
 </head>
 <body>
 	<!-- (1) LoginWithNaverId Javscript SDK -->

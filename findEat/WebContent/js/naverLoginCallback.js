@@ -1,7 +1,7 @@
 var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "XbLB49KVP66WsUyV0qUz",
-				callbackUrl: "http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/naverLoginCallback.do",
+				callbackUrl: "https://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/naverLoginCallback.do",
 				isPopup: false,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -47,7 +47,7 @@ window.addEventListener('load', function () {
 							},
 							url: 'naverLoginPro.do',
 							success: function(data) {
-								window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
+								window.location="https://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/index.do";
 							},
 							error: function(request,status,error) {
 								alert("Error Code(1) : "+error.d);
@@ -77,7 +77,7 @@ window.addEventListener('load', function () {
 										url: 'naverLoginPro.do',
 										success: function(data) {
 											alert(emailHead+" 님 어서오세요!");
-											window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
+											window.location="https://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/index.do";
 										},
 										error: function(request,status,error) {
 											alert("Error Code(2) : "+error.d);												}
@@ -88,8 +88,7 @@ window.addEventListener('load', function () {
 								}
 							});
 						}else{   //취소
-						    //alert("error!");
-						    window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
+						    window.location="https://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/index.do";
 						}
 					}
 				},
@@ -100,7 +99,7 @@ window.addEventListener('load', function () {
 			});					
 		} else {
 			alert("Error Code(5) : callback 처리에 실패하였습니다.");
-			window.location="http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/login.do";
+			window.location="https://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/index.do";
 		}
 	});	
 });		
