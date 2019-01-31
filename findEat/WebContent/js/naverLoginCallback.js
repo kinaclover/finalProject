@@ -8,7 +8,7 @@ var naverLogin = new naver.LoginWithNaverId(
 			}
 		);
 console.log(naverLogin);
-
+alert("https://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/findEat/naverLoginCallback.do");
 /* (3) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
 naverLogin.init();
 
