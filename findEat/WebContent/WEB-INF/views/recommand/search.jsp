@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/search.css" rel="stylesheet">
+<title>Search</title>
 </head>
 <body>
 <input type="hidden" id="keywordValue" value="${keyword}"/>

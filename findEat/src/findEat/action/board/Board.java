@@ -24,7 +24,7 @@ public class Board {
 	 * 	
 	 * 	Board Action class
 	 * 	- 게시글의 작성,수정,삭제 로직 수행 후 status값과 함께 status페이지로 일괄 이동
-	 * 	- 댓글 페이지 로드 / 댓글의 작성,수정,삭제 로직 포
+	 * 	- 댓글 페이지 로드 / 댓글의 작성,수정,삭제 로직 포함
 	 * 
 	 * 	글 관련 각 기능별 status value
 	 * 	- insert : 1
