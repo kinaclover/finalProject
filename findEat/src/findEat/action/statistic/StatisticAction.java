@@ -15,7 +15,7 @@ import findEat.DB.bean.CalendarVO;
 import findEat.DB.dao.CalendarDAOImpl;
 
 @Controller
-public class StaticsAction {
+public class StatisticAction {
 
 	/***********************************************************************************************************************/
 	/*
