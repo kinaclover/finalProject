@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="css/cal.css">
 <!-- calendar -->
 <script src="js/jquery-3.3.1.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/cal.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 </head>

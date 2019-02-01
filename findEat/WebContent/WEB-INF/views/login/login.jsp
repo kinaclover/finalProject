@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="css/login.css">
 <!-- naver login js -->
 <script type="text/javascript" src="js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body class="d-block">
@@ -85,8 +84,6 @@
 </c:if>
 <!-- for bootstrap/jQuery/Popper -->
 <script src="js/jquery-3.3.1.js"></script>
-<script src="js/popper.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.js"></script>
 <script src="js/login.js"></script>
 <script src="js/googleLogin.js"></script>
