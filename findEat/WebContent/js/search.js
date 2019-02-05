@@ -62,7 +62,7 @@ if (navigator.geolocation) {
 	        // 마커와 인포윈도우를 표시합니다
 	        displayMarker(locPosition, message);
 	       
-	            //좌표 --> 주소명 변환
+	        //좌표 --> 주소명 변환
 	        $.ajax({
 				type : "GET",
 				beforeSend: function(request) {
@@ -364,8 +364,7 @@ function getListItem(index, places) {
 
 // 이미지주소 크롤링을 위한 함수.
 function post_to_url(keyword, params, pagination, id) {
-	console.log("keyword=="+keyword);
-		
+		//ajax 호출
 		$.ajax({
 			type : "POST",
 			url : "/findEat/searchPro.do?address_name1="+address_name1+"&address_name2="+address_name2+"&address_name3="+address_name3+"&menu="+keyword+"&pageNum="+pagination.current,
@@ -373,13 +372,16 @@ function post_to_url(keyword, params, pagination, id) {
 			contentType:'application/json',
 			data : JSON.stringify(params),
 			success : function(data){
-				 var listEl = document.getElementById('placesList'), 
-				    menuEl = document.getElementById('menu_wrap'),
+				//검색결과를 보여줄 태그 가져오고 지도를 재설정하기 위한 객체를 생성합니다. 
+				var listEl = document.getElementById('placesList'),
+				    menuEl = document.getElementById('menu_wrap'), 
 				    fragment = document.createDocumentFragment(), 
 				    bounds = new daum.maps.LatLngBounds(), 
 				    listStr = '';
+				//검색결과 리스트를 삭제하고 지도에 표시된 마커들을 모두 삭제합니다.
 				 removeAllChildNods(listEl);
 				 removeMarker();
+				 
 				var save_imgs=new Array();  //이미지 주소 저장을 위한 배열
 				
 				for(var i=0; i<data.img.length; i++){ //이미지 주소 저장

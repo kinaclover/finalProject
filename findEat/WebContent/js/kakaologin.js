@@ -1,8 +1,10 @@
  /*
   *  kakao login javascript
   */ 	
-// 사용할 앱의 JavaScript 키를 설정해 주세요.
+// 사용할 앱의 JavaScript 키를 설정.
 Kakao.init('e8d9b38a8afd2bcec1ece996622e6d39');
+
+//AJAX를 이용하여 유효성 검사이후 로그인을 하는 과정의 코드입니다.
 
 //custom button login - start
 function loginWithKakao(){
