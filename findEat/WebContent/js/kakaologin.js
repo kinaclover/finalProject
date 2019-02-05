@@ -14,6 +14,7 @@ function loginWithKakao(){
 		    Kakao.API.request({
 		      url: '/v2/user/me',
 		      success: function(res) {
+		    	  console.log(JSON.stringify(res));
 		    	 //이메일 데이터를 가져와 아이디를 분리합니다.       	
 		    	 var email= res.kakao_account.email;
 		         var emailHead = email.split('@',1);
