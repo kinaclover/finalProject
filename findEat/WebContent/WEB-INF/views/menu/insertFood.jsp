@@ -123,8 +123,8 @@
 			<div id="col1" class="collapse">
 				<p>
 					<c:forEach items="${kGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname},</c:if>
-						<c:if test="${stat.last}">${temp.fname}</c:if>
+						<c:if test="${!stat.last}">${temp.fname}/${temp.fcount},</c:if>
+						<c:if test="${stat.last}">${temp.fname}/${temp.fcount}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -136,8 +136,8 @@
 			<div id="col2" class="collapse">
 				<p>
 					<c:forEach items="${jGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname},</c:if>
-						<c:if test="${stat.last}">${temp.fname}</c:if>
+						<c:if test="${!stat.last}">${temp.fname}/${temp.fcount},</c:if>
+						<c:if test="${stat.last}">${temp.fname}/${temp.fcount}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -149,8 +149,8 @@
 			<div id="col3" class="collapse">
 				<p>
 					<c:forEach items="${cGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname},</c:if>
-						<c:if test="${stat.last}">${temp.fname}</c:if>
+						<c:if test="${!stat.last}">${temp.fname}/${temp.fcount},</c:if>
+						<c:if test="${stat.last}">${temp.fname}/${temp.fcount}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -162,8 +162,8 @@
 			<div id="col4" class="collapse">
 				<p>
 					<c:forEach items="${wGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname},</c:if>
-						<c:if test="${stat.last}">${temp.fname}</c:if>
+						<c:if test="${!stat.last}">${temp.fname}/${temp.fcount},</c:if>
+						<c:if test="${stat.last}">${temp.fname}/${temp.fcount}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -175,8 +175,8 @@
 			<div id="col5" class="collapse">
 				<p>
 					<c:forEach items="${fGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname},</c:if>
-						<c:if test="${stat.last}">${temp.fname}</c:if>
+						<c:if test="${!stat.last}">${temp.fname}/${temp.fcount},</c:if>
+						<c:if test="${stat.last}">${temp.fname}/${temp.fcount}</c:if>
 					</c:forEach>
 				</p>
 			</div>
@@ -188,8 +188,8 @@
 			<div id="col6" class="collapse">
 				<p>
 					<c:forEach items="${eGroup}" var="temp" varStatus="stat">
-						<c:if test="${!stat.last}">${temp.fname},</c:if>
-						<c:if test="${stat.last}">${temp.fname}</c:if>
+						<c:if test="${!stat.last}">${temp.fname}/${temp.fcount},</c:if>
+						<c:if test="${stat.last}">${temp.fname}/${temp.fcount}</c:if>
 					</c:forEach>
 				</p>
 			</div>
